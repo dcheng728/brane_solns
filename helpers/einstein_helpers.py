@@ -56,3 +56,11 @@ def ricci_tensor(metric, coordinates):
         print(f"Computed R[{M},...]", end=",")
 
     return Ricci_MN
+
+def ricci_scalar(ricci_tensor, inv_metric):
+    n_dims = ricci_tensor.shape[0]
+    R = sp.S(0)
+    for M in range(n_dims):
+        for N in range(n_dims):
+            R += inv_metric[M,N] * ricci_tensor[M,N]
+    return sp.simplify(R)
