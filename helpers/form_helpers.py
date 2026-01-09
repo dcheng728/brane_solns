@@ -41,15 +41,32 @@ def perm_with_sign(t):
     for p in permutations(range(n)):                # p is a perm of indices
         yield tuple(t[i] for i in p), Permutation(p).signature()
 
-def find_nonzero_indices(_tensor):
+def find_nonzero_indices(tensor):
     """
     Given a sympy tensor F, find all indices where F is nonzero.
     Returns a list of index tuples.
     """
+    if hasattr(tensor, "_sparse_array"):
+        return [idx for idx, val in tensor._sparse_array.items() if val != 0]
+
+    if hasattr(tensor, "_array"):
+        shape = tensor.shape
+        out = []
+        k = 0
+        for val in tensor._array:
+            if val != 0:
+                kk = k
+                idx = []
+                for s in reversed(shape):
+                    kk, r = divmod(kk, s)
+                    idx.append(r)
+                out.append(tuple(reversed(idx)))
+            k += 1
+        return out
+
     nonzeros = []
-    for idx in product(*(range(s) for s in _tensor.shape)):
-        val = _tensor[idx]
-        if val != 0:                    # fast, but purely syntactic
+    for idx in product(*(range(s) for s in tensor.shape)):
+        if tensor[idx] != 0:
             nonzeros.append(idx)
     return nonzeros
 
