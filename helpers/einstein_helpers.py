@@ -11,6 +11,12 @@ def impose_harmonic_condition_sym(expr, dimension, Hpp, Hp, radius_symbol):
     }
     return expr.subs(harmonic_sub)
 
+def minkowski_metric(dimensions):
+    return sp.diag(*([-1] + [1]*(dimensions-1)))
+
+def euclidean_metric(dimensions):
+    return sp.diag(*([1]*dimensions))
+
 def ricci_tensor(metric, coordinates):
     n_dims = metric.shape[0]
     inv_metric = metric.inv()
@@ -27,7 +33,7 @@ def ricci_tensor(metric, coordinates):
                     d_gNP_dXQ = sp.diff(metric[N,P], coordinates[Q])
                     sum_term += inv_metric[M,Q] * (d_gNQ_dXP + d_gPQ_dXN - d_gNP_dXQ)
                 Gamma[M][N][P] = sp.simplify(sp.Rational(1,2) * sum_term)
-        print(f'Computed Gamma^{M}_...')
+        print(f"Computed Gamma^{M}_...", end=",")
 
     # compute ricci tensor
     # R_{MN} = \partial_P \Gamma^P_{MN} - \partial_{N}\Gamma^P_{MP} + \Gamma^P_{MN}\Gamma^Q_{PQ} - \Gamma^P_{MQ}\Gamma^Q_{NP}
@@ -47,6 +53,6 @@ def ricci_tensor(metric, coordinates):
                     sum_term += Gamma[P][M][N] * Gamma[Q][P][Q] - Gamma[P][M][Q] * Gamma[Q][N][P]
 
             Ricci_MN[M,N] = sum_term
-        print(f'Computed R[{M},...]')
+        print(f"Computed R[{M},...]", end=",")
 
     return Ricci_MN
