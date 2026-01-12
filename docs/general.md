@@ -1,4 +1,7 @@
-In $D$ dimensions, for Einstein-Hilbert action coupled to n-forms
+## Setup, Conventions, and EQMs
+Much of this is follows [Stelle, 9803116]
+
+In $D$ dimensions, for Einstein-Hilbert action coupled to various n-forms with no dilaton
 $$
 S = \int d^D x \sqrt{-g}\left[R - \sum_n\frac{1}{2}\frac{1}{n!}F_n^2\right]
 $$
@@ -13,15 +16,29 @@ R_{MN}
 (F_n)_{M...}(F_n)_N{}^{...}-\frac{n-1}{n(d+\tilde{d})}(F_n)^2g_{MN}  
 \right]
 $$
+$$
+dF = 0
+$$
+We look for solutions that are $d$ dimensional Minkowski space transverse to $D-d$ dimensional Euclidean space.
+So our coordinates are split into $x^M=(x^\mu,y^m)$, where $x^\mu$ for $\mu = 0,1,...,d-1$ are coordinates on the Minkowski space, and $y^m$ for $m = d,d+1,...,D-1$ are embedding coordinates on the $D-d$ dimensional Euclidean space.
 
 ## Brane-solution implications
 We usually solve with the ansatz for $(d-1)$-brane
 $$
-ds_D^2 = H^{a}ds_{1,d-1} + H^b ds_{D-d}
+ds_D^2 = H^{a}(r)\eta_{\mu\nu}dx^\mu dx^\nu + H^b(r) \delta_{mn}dy^mdy^n,\quad
+r\equiv \sqrt{y^my^m}.
 $$
-where $H$ is a harmonic function in $D-d$ dimensions.
+where $H$ is a harmonic function in $(D-d)$-dimensions.
+Then the Ricci tensor is found to be
+$$
+R_{\mu\nu}
+=-\eta_{\mu\nu}(H')^2H^{a-b-2}\left[\frac{a(ad+b\tilde d-2)}{4}\right]
+$$
+$$
+\mathcal{B} = \frac{(H')^2}{4H^2}b(ad+b\tilde{d}-2)+\frac{H'}{2rH}(ad+b\tilde{d})
+$$
 
-Typically $F \sim d A \sim H'$, for some harmonic function $H$.
+We will also use ansatzs that $A_{n-1} \propto H$ hence $F_n \propto H'$, for some harmonic function $H$.
 Then it's safe to state that $S_{MN}$ will be exactly quadratic in $H'$: 
 
 $$S_{MN}\sim H^{(...)} (H')^2.$$
