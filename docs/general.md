@@ -4,7 +4,9 @@ Much of this is follows [Stelle, 9803116]
 In $D$ dimensions, for Einstein-Hilbert action coupled to various n-forms with no dilaton
 
 $$
+\begin{equation}
 S = \int d^D x \sqrt{-g}\left[R - \sum_n\frac{1}{2}\frac{1}{n!}F_n^2\right]
+\end{equation}
 $$
 
 The Einstein equation is
