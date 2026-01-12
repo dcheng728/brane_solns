@@ -11,16 +11,22 @@ $$
 The Einstein equations are
 
 $$
+\begin{aligned}
 R_{MN} 
 = S_{MN} 
-= \sum_n \frac{1}{2(n-1)!}
+&= \sum_n \frac{1}{2(n-1)!}
 \left[
 (F_n)_{M...}(F_n)_N{}^{...}-\frac{n-1}{n(D-2)}(F_n)^2g_{MN}  
-\right]
+\right]\\
+&=\frac{1}{2}\sum_n \left[
+    \frac{1}{(n-1)!}F_{M...}F_N^{...}
+    -\frac{n-1}{D-2}\left(\frac{1}{n!}F^2\right)g_{MN}
+\right],
+\end{aligned}
 $$
 
 $$
-dF = 0
+dF = 0.
 $$
 
 We look for solutions that are $d$-dimensional Minkowski space transverse to $(D-d)$-dimensional Euclidean space.
