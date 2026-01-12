@@ -4,9 +4,7 @@ Much of this is follows [Stelle, 9803116]
 In $D$ dimensions, for Einstein-Hilbert action coupled to various n-forms with no dilaton
 
 $$
-\begin{equation}
 S = \int d^D x \sqrt{-g}\left[R - \sum_n\frac{1}{2}\frac{1}{n!}F_n^2\right]
-\end{equation}
 $$
 
 The Einstein equation is
@@ -125,3 +123,8 @@ ds_{12}^2 + H^{-1/3}ds_{1,5}^2 + H^{1/2}ds_6^2
 $$
 
 But if you wanted to reduce these to 10d and obtain the D3 solution, the 12 to 10 ansatz is not in 12=2+10 form. So perhaps you should not try to follow this.
+
+
+## References
+
+[^Stelle98] Stelle, 9803116
