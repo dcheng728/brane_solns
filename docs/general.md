@@ -5,8 +5,14 @@ In $D$ dimensions, for Einstein-Hilbert action coupled to various n-forms with n
 
 $$
 S = \int d^D x \sqrt{-g}\left[R - \sum_n\frac{1}{2}\frac{1}{n!}F_n^2\right]
+\qquad(1)
 $$
-(1)
+
+**The Cauchy-Schwarz Inequality**
+
+```math
+\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
+```
 
 The Einstein equation is
 
