@@ -1,5 +1,5 @@
 ## Setup, Conventions, and EQMs
-Much of this is follows [Stelle, 9803116]
+Much of this is follows [^Stelle98]
 
 In $D$ dimensions, for Einstein-Hilbert action coupled to various n-forms with no dilaton
 
