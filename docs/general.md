@@ -143,6 +143,7 @@ One can then solve to find that
 
 $$
 a = -\frac{2}{d},\quad
+b = \frac{2}{\tilde{d}},\quad
 c^2 = \frac{2(D-2)}{d\tilde{d}}.
 $$
 
