@@ -107,6 +107,8 @@ a = -\frac{2}{d},\quad
 c^2 = \frac{2(D-2)}{d\tilde{d}}.
 $$
 
+There are then no free parameters, and we end up with the usual electric brane solutions as described in [^Stelle98].
+
 
 ## 12d to 10d reduction ansatz
 What should be the reduction ansatz from 12 to 10?
