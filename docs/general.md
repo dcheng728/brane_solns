@@ -48,7 +48,8 @@ $$
 We will use $\epsilon_{\mu_1 ... \mu_p}$ to denote the Levi-Civita tensor and $\varepsilon_{\mu_1 ... \mu_p}$ to denote the flat-space fully antisymmetrized symbol.
 
 $$
-\epsilon_{\mu_1...\mu_D} = \sqrt{|g|}\varepsilon_{\mu_1...\mu_D},
+\epsilon_{\mu_1...\mu_D} = \sqrt{|g|}\varepsilon_{\mu_1...\mu_D},\quad
+\varepsilon_{01...(D-2)(D-1)} = 1,
 $$
 
 $$
