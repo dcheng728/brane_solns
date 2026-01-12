@@ -8,7 +8,7 @@ S = \int d^D x \sqrt{-g}\left[R - \sum_n\frac{1}{2}\frac{1}{n!}F_n^2\right]
 \qquad(1)
 $$
 
-The Einstein equation is
+The Einstein equations are
 
 $$
 R_{MN} 
