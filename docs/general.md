@@ -165,6 +165,8 @@ $$
 But if you wanted to reduce these to 10d and obtain the D3 solution, the 12 to 10 ansatz is not in 12=2+10 form. So perhaps you should not try to follow this.
 
 
-## References
 
-[^Stelle98]: Stelle, 9803116
+[^Stelle98]: K. S. Stelle, 
+*BPS branes in supergravity*,
+*ICTP Summer School in High-Energy Physics and Cosmology* (1997),
+[arXiv:hep-th/9803116](https://inspirehep.net/literature/468167).
