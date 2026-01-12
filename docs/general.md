@@ -46,14 +46,14 @@ R_{\mu\nu}
 =-\eta_{\mu\nu}(H')^2H^{a-b-2}\left[\frac{a(ad+b\tilde d-2)}{4}\right]
 $$
 
-$$
+<!-- $$
 \mathcal{B} = \frac{(H')^2}{4H^2}b(ad+b\tilde{d}-2)+\frac{H'}{rH}\frac{(ad+b\tilde{d})}{2}
 $$
 
 $$
 \mathcal{C} = \frac{(H')^2}{4H^2}[ad(a-b)-(ad+b\tilde{d})(b+2)]
 +\frac{H'}{rH}\frac{(ad+b\tilde{d})}{2}(-2-\tilde{d})
-$$
+$$ -->
 
 $$
 \begin{aligned}
@@ -63,16 +63,30 @@ R_{mn}
 \end{aligned}
 $$
 
-We will also use ansatzs that $A_{n-1} \propto H$ hence $F_n \propto H'$, for some harmonic function $H$.
-Then it's safe to state that $S_{MN}$ will be exactly quadratic in $H'$: 
+Usually one adopts the ansatzs that $A_{n-1} \propto H$ hence $F_n \propto H'$.
+Then $S_{MN}$ will be exactly quadratic in $H'$ up to some powers of $H$: 
 
 $$S_{MN}\sim H^{(...)} (H')^2.$$
 
-which means after substituting the harmonic condition of $H$, in order to satify the Einstein equation $R_{MN}$ should be exactly quadratic in $H'$.
-This allows us to obtain
+which means in order to satify the Einstein equation $R_{MN}$ should be exactly quadratic in $H'$.
+This demands
 
 $$
-b=-a\left(\frac{d}{D-d-2}\right).
+b=-ad/\tilde{d},
+$$
+
+and we can write down a simplified Ricci tensor
+
+$$
+R_{\mu\nu} = \frac{a}{2}(H')^2H^{a-b-2} \eta_{\mu\nu}
+=\frac{a}{2}(H')^2H^{\frac{ad+(a-2)(D-d-2)}{(D-d-2)}} \eta_{\mu\nu},
+$$
+
+$$
+R_{mn} =\frac{(H')^2}{4H^2}\left[2b\delta_{mn}-ad(a-b)\frac{y^my^n}{r^2}\right]
+=-\frac{ad}{2(D-d-2)}\frac{(H')^2}{H^2}\left[
+\delta_{mn}+\frac{a(D-2)}{2}\frac{y^m y^n}{r^2}
+\right]
 $$
 
 ## 12d to 10d
