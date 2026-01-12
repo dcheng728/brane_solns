@@ -8,12 +8,6 @@ S = \int d^D x \sqrt{-g}\left[R - \sum_n\frac{1}{2}\frac{1}{n!}F_n^2\right]
 \qquad(1)
 $$
 
-**The Cauchy-Schwarz Inequality**
-
-```math
-\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
-```
-
 The Einstein equation is
 
 $$
@@ -107,6 +101,7 @@ $$
 
 which satisfies $d F_{d+1} = 0$. The exponent $-1 + \frac{ad}{2}$ is required by matching the scaling in $H$ on both sides of $R_{mn} = S_{mn}$.
 One can then solve to find that
+
 $$
 a = -\frac{2}{d},\quad
 c^2 = \frac{2(D-2)}{d\tilde{d}}.
