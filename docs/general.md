@@ -5,6 +5,7 @@ In $D$ dimensions, for Einstein-Hilbert action coupled to various n-forms with n
 
 $$
 S = \int d^D x \sqrt{-g}\left[R - \sum_n\frac{1}{2}\frac{1}{n!}F_n^2\right]
+\\qquad (1)
 $$
 
 The Einstein equation is
@@ -14,7 +15,7 @@ R_{MN}
 = S_{MN} 
 = \sum_n \frac{1}{2(n-1)!}
 \left[
-(F_n)_{M...}(F_n)_N{}^{...}-\frac{n-1}{n(d+\tilde{d})}(F_n)^2g_{MN}  
+(F_n)_{M...}(F_n)_N{}^{...}-\frac{n-1}{n(D-2)}(F_n)^2g_{MN}  
 \right]
 $$
 
@@ -25,8 +26,10 @@ $$
 We look for solutions that are $d$ dimensional Minkowski space transverse to $D-d$ dimensional Euclidean space.
 So our coordinates are split into $x^M=(x^\mu,y^m)$, where $x^\mu$ for $\mu = 0,1,...,d-1$ are coordinates on the Minkowski space, and $y^m$ for $m = d,d+1,...,D-1$ are embedding coordinates on the $D-d$ dimensional Euclidean space.
 
-## Brane-solution implications
-We usually solve with the ansatz for $(d-1)$-brane
+We will use $\epsilon_{\mu_0 \mu_1 ... \mu_p}$ to denote the Levi-Vicita tensor and $\varepsilon_{\mu_0 \mu_1 ... \mu_p}$ to denote the flat-space fully antisymmetrized operator.
+
+## Brane-solution ansatz and its implications
+We usually solve with the ansatz for $(p=d-1)$-brane
 
 $$
 ds_D^2 = H^{a}(r)\eta_{\mu\nu}dx^\mu dx^\nu + H^b(r) \delta_{mn}dy^mdy^n,\quad
@@ -89,8 +92,30 @@ R_{mn} =\frac{(H')^2}{4H^2}\left[2b\delta_{mn}-ad(a-b)\frac{y^my^n}{r^2}\right]
 \right]
 $$
 
-## 12d to 10d
+## Electric ansatz
+For a $F_{d+1}$ form field, the electric ansatz can be given by
+
+$$
+(F_{d+1})_{m \mu_0 \mu_1...\mu_{d-1}} = c\varepsilon_{\mu_0 \mu_1...\mu_{d-1}}H^{-1 + \frac{ad}{2}} \partial_m H
+$$
+
+which satisfies $d F_{d+1} = 0$. The exponent $-1 + \frac{ad}{2}$ is required by matching the scaling in $H$ on both sides of $R_{mn} = S_{mn}$.
+One can then solve to find that
+$$
+a = -\frac{2}{d},\quad
+c^2 = \frac{2(D-2)}{d\tilde{d}}.
+$$
+
+
+## 12d to 10d reduction ansatz
 What should be the reduction ansatz from 12 to 10?
+In 12d one should not know about the torus, hence know nothing about 10d.
+Only once the torus is introduced the 10d theory is obtained via 12 = 10 + 2.
+The reduction ansatz should only break symmetry as 12 = 10 + 2.
+
+$$
+ds_{12}^2 = H^f ds_2^2 + H^g ds_{10}^2
+$$
 
 $$
 ds_{12}^2 = H^f ds_2^2 + H^{g-\frac{1}{2}}ds_{1,3}^2 + H^{g+\frac{1}{2}}ds_6^2
