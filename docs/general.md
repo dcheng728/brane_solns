@@ -26,7 +26,39 @@ $$
 We look for solutions that are $d$-dimensional Minkowski space transverse to $(D-d)$-dimensional Euclidean space.
 So our coordinates are split into $x^M=(x^\mu,y^m)$, where $x^\mu$ for $\mu = 0,1,...,d-1$ are coordinates on the Minkowski space, and $y^m$ for $m = d,d+1,...,D-1$ are embedding coordinates on the $D-d$ dimensional Euclidean space.
 
-We will use $\epsilon_{\mu_0 \mu_1 ... \mu_p}$ to denote the Levi-Civita tensor and $\varepsilon_{\mu_0 \mu_1 ... \mu_p}$ to denote the flat-space fully antisymmetrized symbol.
+
+
+### Form field conventions
+
+$$
+A^{(p)} = \frac{1}{p!}A^{(p)}_{\mu_1...\mu_p} dx^{\mu_1}...dx^{\mu_p},\quad
+A^{(p)}_{\mu_1...\mu_p} = A^{(p)}_{[\mu_1...\mu_p]},
+$$
+
+$$
+(d A^{(p)})_{\mu_1...\mu_{p+1}} = (p+1)\partial_{[\mu_1} A^{(p)}_{\mu_2...\mu_{p+1}]}
+$$
+
+$$
+\quad
+(A^{(p)} \wedge B^{(q)})_{\mu_1...\mu_p \nu_1 ... \nu_q}
+=\frac{(p+q)!}{p!q!}A^{(p)}_{[\mu_1...\mu_p}  B^{(q)}_{\nu_1 ... \nu_q]}
+$$
+
+We will use $\epsilon_{\mu_1 ... \mu_p}$ to denote the Levi-Civita tensor and $\varepsilon_{\mu_1 ... \mu_p}$ to denote the flat-space fully antisymmetrized symbol.
+
+$$
+\epsilon_{\mu_1...\mu_D} = \sqrt{|g|}\varepsilon_{\mu_1...\mu_D},
+$$
+
+$$
+(*A)_{\mu_1...\mu_{D-p}} = \frac{1}{p!}
+\epsilon_{\mu_1...\mu_{D-p}}{}^{\nu_1...\nu_p} A^{(p)}_{\nu_1...\nu_p},
+$$
+
+$$
+*(*A) = (-1)^{[t]}(-1)^{p(D-p)}A.
+$$
 
 ## Brane-solution ansatz and its implications
 We usually solve with the ansatz for a $(p=d-1)$-brane:
@@ -108,6 +140,11 @@ c^2 = \frac{2(D-2)}{d\tilde{d}}.
 $$
 
 There are then no free parameters, and we end up with the usual electric brane solutions as described in [^Stelle98].
+
+## Magnetic ansatz
+For a $F_{d+1}$ form field, the electric ansatz can be given by
+
+
 
 
 ## 12d to 10d reduction ansatz
