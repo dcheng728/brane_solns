@@ -188,10 +188,19 @@ $$
 with 
 
 $$
-\frac{1}{2\kappa_{12}^2}=\frac{1}{2\kappa_{10}^2}\frac{1}{4\pi^2 l^2} \frac{1}{g_s^{5/2}}
+\frac{1}{2\kappa_{12}^2}=\frac{1}{2\kappa_{10}^2}\frac{1}{4\pi^2 l^2} \frac{1}{g_s^2 \sqrt{M}}
 $$
 
-and $M^{d_7}=g_s$, $d_5 = d_7$, $2d_4 = d_7 + \frac{1}{2}$, and $d_7$ left undetermined.
+and $M^{d_7}=g_s$, $d_5 = d_7$, $2d_4 = d_7 + \frac{1}{2}$, and $d_7$ not yet determined (it would be really nice to find a way to constrain it).
+
+As a quick reminder $l$ was defined to be the length scale of the torus, if we also let $l$ be the length scale in 12d, since there shouldn't be any parameters besides a length scale, we expect (we now ignore constant factors for simplicity)
+
+$$
+\frac{1}{\kappa_{12}^2} = \frac{1}{l^{10}} = \frac{1}{\kappa_{10}^2 g_s^2  l^2 \sqrt{M}} \
+$$
+
+which suggests $l^8 = g_s^2 \sqrt{M} l_s^8 = g_s^{2+\frac{1}{2d_7}}l_s^8$.
+
 It is tempting to take $d_7 = -\frac{1}{2}$ so that $d_4 = 0$, then
 
 $$
