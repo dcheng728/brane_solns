@@ -1,6 +1,6 @@
 # Conventions and useful identities
 
-### Form field
+## Form field
 
 $$
 A = \frac{1}{p!}A_{\mu_1...\mu_p} dx^{\mu_1}...dx^{\mu_p},\quad
@@ -36,6 +36,8 @@ $$
 \epsilon_{\mu_1...\mu_{D-p}}{}^{\nu_1...\nu_p} A_{\nu_1...\nu_p},
 $$
 
+## Useful Identities
+
 One can then show that
 
 $$
@@ -56,7 +58,7 @@ $$
 \right]
 $$
 
-Derivation
+Derivation:
 
 $$
 \begin{aligned}
