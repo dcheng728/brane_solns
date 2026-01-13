@@ -57,9 +57,8 @@ $$
 \frac{1}{2\kappa_{10}^2g_s^2}\int d^{10}x\sqrt{-g}\left(
 R - \frac{\partial\tau \partial\bar\tau}{2\tau_2^2}
 \right)
-=
-\underbrace{\frac{1}{2\kappa_{10}^2g_s^2}\frac{1}{4\pi^2 l^2}\frac{1}{\sqrt{M}}}_{2\kappa_{12}^2}
-\underbrace{\int_{T_2}dudv\int d^{10}x\sqrt{-\mathcal{G}}\mathcal{R}}_{"12d"}.
+= \underbrace{\left(\frac{1}{2\kappa_{10}^2g_s^2}\frac{1}{4\pi^2 l^2}\frac{1}{\sqrt{M}}\right)}_{2\kappa_{12}^2}
+\underbrace{\left(\int_{T_2}dudv\int d^{10}x\sqrt{-\mathcal{G}}\mathcal{R}\right)}_{"12d"}.
 $$
 
 Where we have separated 10d parameters and torus parameters such as $\kappa_{10}, g_s, l, \sqrt{M}$ on one side and "12d" terms on the other. 
@@ -142,8 +141,7 @@ Hence
 $$
 \frac{1}{2\kappa_{10}^2g_s^2}\left(-\frac{g_s^2}{4}\right)
 \int d^{10}x\sqrt{-g}|\tilde{F}_5|^2
-=
-\frac{1}{2\kappa_{10}^2g_s^2}\frac{g_s^2M^{-2d_7-1/2}}{4\pi^2l^2}\int_{T_2} dudv\int d^{10}x\sqrt{-\mathcal{G}}\left[-\frac{1}{4}|\tilde{\mathcal{F}}_7|^2\right]_{\mathcal{G}_{MN}}
+=\frac{1}{2\kappa_{10}^2g_s^2}\frac{g_s^2M^{-2d_7-1/2}}{4\pi^2l^2}\int_{T_2} dudv\int d^{10}x\sqrt{-\mathcal{G}}\left[-\frac{1}{4}|\tilde{\mathcal{F}}_7|^2\right]_{\mathcal{G}_{MN}}
 $$
 
 
@@ -188,9 +186,11 @@ $$
 
 
 with 
+
 $$
 \frac{1}{2\kappa_{12}^2}=\frac{1}{2\kappa_{10}^2}\frac{1}{4\pi^2 l^2} \frac{1}{g_s^{5/2}}
 $$
+
 and $M^{d_7}=g_s$, $d_5 = d_7$, $2d_4 = d_7 + \frac{1}{2}$, and $d_7$ left undetermined.
 It is tempting to take $d_7 = -\frac{1}{2}$ so that $d_4 = 0$, then
 
