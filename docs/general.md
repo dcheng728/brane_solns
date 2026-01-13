@@ -123,7 +123,14 @@ $$
 S_{MN}|_{*F} = -(-1)^{[t]}S_{MN}|_{F}.
 $$
 
-So for spacetime with an odd number of timelike directions, the Hodge dual of the electric ansatz above solves the Einstein equation.
+So for spacetime with an odd number of timelike directions, the Hodge dual of the electric solution is the magnetic solution.
+Performing the duality transformation, we find that for a $D-d-1$ form $*F$, it supports the $d-1$ brane ansatz with
+
+$$
+(* F)_{m_1... m_{D-d-1}} = - c\varepsilon_{m_1...m_{D-d-1} m}\partial_m H.
+$$
+
+From this we conclude that a $(d-1)$-brane can either be supported by a $(d+1)$-form or a $(D-d-1)$-form.
 
 
 
