@@ -1,6 +1,6 @@
 # Conventions and useful identities
 
-### Form field
+## Form field
 
 $$
 A = \frac{1}{p!}A_{\mu_1...\mu_p} dx^{\mu_1}...dx^{\mu_p},\quad
@@ -36,6 +36,8 @@ $$
 \epsilon_{\mu_1...\mu_{D-p}}{}^{\nu_1...\nu_p} A_{\nu_1...\nu_p},
 $$
 
+## Useful Identities
+
 One can then show that
 
 $$
@@ -56,7 +58,7 @@ $$
 \right]
 $$
 
-Derivation
+Derivation:
 
 $$
 \begin{aligned}
@@ -69,7 +71,7 @@ F^{\mu_1...\mu_p}F_{\nu_1...\nu_p}\\
 \end{aligned}
 $$
 
-$\delta^{[\rho \nu_1...\nu_p]}_{[\mu \mu_1...\mu_p]}$ has in total $(p+1)!(p+1)!$ terms and is thus normalized by such number. Within those terms, $(p+1)p!p!$ of which give $\delta^{\rho \nu_1...\nu_p}_{\mu \mu_1...\mu_p}$ equivalent and $(p+1)(p)p!p!$ give $-\delta^{\rho \nu_1...\nu_p}_{\mu_1 \mu ...\mu_p}$ equivalent, so we find
+$\delta^{[\rho \nu_1 ... \nu_p]}_{[\mu \mu_1 ...\mu_p]}$ has in total $(p+1)!(p+1)!$ terms and is thus normalized by such number. Within those terms, $(p+1)p!p!$ of which give $\delta^{\rho}_{\mu} \delta^{\nu_1...\nu_p}_{\mu_1...\mu_p}$ equivalent and $(p+1)(p)p!p!$ give $-\delta^{\rho}_{\mu_1}\delta^{\nu_1...\nu_p}_{ \mu ...\mu_p}$ equivalent, so we find
 
 $$
 \frac{1}{(D-p-1)!}(*F)_{\mu ...}(*F)_\nu{}^{...}

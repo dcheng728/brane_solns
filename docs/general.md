@@ -117,8 +117,13 @@ $$
 There are then no free parameters, and we end up with the usual electric brane solutions as described in [^Stelle98].
 
 ## Magnetic ansatz
-For a $F_{d+1}$ form field, the electric ansatz can be given by
+From the form field identities given in [conventions.md](conventions.md), one can show a relation between the form field and its Hodge dual
 
+$$
+S_{MN}|_{*F} = -(-1)^{[t]}S_{MN}|_{F}.
+$$
+
+So for spacetime with an odd number of timelike directions, the Hodge dual of the electric ansatz above solves the Einstein equation.
 
 
 
