@@ -28,7 +28,7 @@ $$
 $$
 \epsilon_{\mu_1...\mu_p \lambda_1 ...\lambda_{D-p}}
 \epsilon^{\nu_1...\nu_p \lambda_1 ...\lambda_{D-p}}
-=(-1)^[t] p!(D-p)!\delta^{\nu_1...\nu_p}_{\mu_1...\mu_p}
+=(-1)^{[t]} p!(D-p)!\delta^{\nu_1...\nu_p}_{\mu_1...\mu_p}
 $$
 
 $$
@@ -47,10 +47,34 @@ $$
 |*F|^2 = (-1)^{[t]}|F|^2
 $$
 
+as well as
+
+$$
+\frac{1}{(D-p-1)!}(*F)_{\mu ...}(*F)_\nu{}^{...}
+=(-1)^{[t]}\left[
+    \frac{1}{p!}F^2 g_{\mu\nu} - \frac{1}{(p-1)!}F_{\mu...}F_\nu{}^{...}
+\right]
+$$
 
 <details>
-<summary>Click to expand</summary>
+<summary>Derivation</summary>
 
-This content is hidden by default and will be revealed when the user clicks on the summary.
+$$
+\begin{aligned}
+\frac{1}{(D-p-1)!}(*F)_{\mu ...}(*F)_\nu{}^{...}
+&=\frac{1}{(D-p-1)!}\frac{1}{p!p!}
+\epsilon_{\mu \mu_1...\mu_p \lambda_1...\lambda_{D-p-1}}
+\epsilon_{\nu} {}^{\nu_1...\nu_p} {}^{\lambda_1...\lambda_{D-p-1}}
+F^{\mu_1...\mu_p}F_{\nu_1...\nu_p}\\
+&=\frac{p+1}{p!}(-1)^{[t]} g_{\nu\rho} \delta^{[\rho \nu_1...\nu_p]}_{[\mu \mu_1...\mu_p]}F^{\mu_1...\mu_p}F_{\nu_1...\nu_p}
+\end{aligned}
+$$
+
+$\delta^{[\rho \nu_1...\nu_p]}_{[\mu \mu_1...\mu_p]}$ has in total $(p+1)!(p+1)!$ terms and is thus normalized by such number. Within those terms, $(p+1)p!p!$ of which give $\delta^{\rho \nu_1...\nu_p}_{\mu \mu_1...\mu_p}$ equivalent and $(p+1)(p)p!p!$ give $-\delta^{\rho \nu_1...\nu_p}_{\mu_1 \mu ...\mu_p}$ equivalent, so we find
+
+$$
+\frac{1}{(D-p-1)!}(*F)_{\mu ...}(*F)_\nu{}^{...}
+=(-1)^{[t]}\left[\frac{1}{p!}F^2 g_{\mu\nu} - \frac{1}{(p-1)!}F_{\mu...}F_{\nu}{}^{...}\right].
+$$
 
 </details>
