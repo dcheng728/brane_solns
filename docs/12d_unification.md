@@ -57,11 +57,11 @@ $$
 \frac{1}{2\kappa_{10}^2g_s^2}\int d^{10}x\sqrt{-g}\left(
 R - \frac{\partial\tau \partial\bar\tau}{2\tau_2^2}
 \right)
-= \underbrace{\left(\frac{1}{2\kappa_{10}^2g_s^2}\frac{1}{4\pi^2 l^2}\frac{1}{\sqrt{M}}\right)}_{2\kappa_{12}^2}
+= \underbrace{\left(\frac{1}{2\kappa_{10}^2g_s^2}\frac{M^{-1/2}}{4\pi^2 l^2}\right)}_{2\kappa_{12}^2}
 \underbrace{\left(\int_{T_2}dudv\int d^{10}x\sqrt{-\mathcal{G}}\mathcal{R}\right)}_{"12d"}.
 $$
 
-Where we have separated 10d parameters and torus parameters such as $\kappa_{10}, g_s, l, \sqrt{M}$ on one side and "12d" terms on the other. 
+Where we have separated 10d parameters and torus parameters such as $\kappa_{10}, g_s, l, M$ on one side and "12d" terms on the other. 
 In 12d one should not know about $\kappa_{10}$, or the torus at all.
 We are hoping that the various 10d and torus parameters reorganize themselves into a 12d parameter $\kappa_{12}$.
 
@@ -193,18 +193,22 @@ $$
 
 and $M^{d_7}=g_s$, $d_5 = d_7$, $2d_4 = d_7 + \frac{1}{2}$, and $d_7$ not yet determined (it would be really nice to find a way to constrain it).
 
-As a quick reminder $l$ was defined to be the length scale of the torus, if we also let $l$ be the length scale in 12d, since there shouldn't be any parameters besides a length scale, we expect (we now ignore constant factors for simplicity)
+As a quick reminder $l$ was defined to be the unit of length of the torus.
+A key question now is how should $l$ be?
+It should not matter, because after all it's just a choice of in what unit did we measure it in.
+For us, there is no other choice but to use $l = l_s$.
+To avoid any ambiguity in the consideration of length scales, we will let $\sqrt{M_s}$ be $\sqrt{M}$ measured  with $l_s$, i.e. $vol(T_2) = 4\pi^2\sqrt{M_s}l_s^2$.
+
+In 12d there should be a length scale $l_F$, since there shouldn't be any parameters besides a length scale, we expect (we now ignore constant factors for simplicity)
 
 $$
-\frac{1}{\kappa_{12}^2} = \frac{1}{l^{10}} = \frac{1}{\kappa_{10}^2 g_s^2  l^2 \sqrt{M}} \
+\frac{1}{\kappa_{12}^2} = \frac{1}{l_F^{10}} = \frac{1}{\kappa_{10}^2 g_s^2 \sqrt{M_s}}
 $$
 
-which suggests $l^8 = g_s^2 \sqrt{M} l_s^8 = g_s^{2+\frac{1}{2d_7}}l_s^8$.
-
-It is tempting to take $d_7 = -\frac{1}{2}$ so that $d_4 = 0$, then
+which suggests 
 
 $$
-\frac{1}{g_s} =\sqrt{M} = \frac{Vol(T_2)}{(2\pi l)^2}.
+\sqrt{M_s} = \frac{l_F^{10}}{l_s^{10}g_s^2}.
 $$
 
 
