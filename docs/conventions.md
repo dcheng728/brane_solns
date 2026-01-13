@@ -56,8 +56,7 @@ $$
 \right]
 $$
 
-<details>
-<summary>Derivation</summary>
+Derivation
 
 $$
 \begin{aligned}
@@ -76,5 +75,3 @@ $$
 \frac{1}{(D-p-1)!}(*F)_{\mu ...}(*F)_\nu{}^{...}
 =(-1)^{[t]}\left[\frac{1}{p!}F^2 g_{\mu\nu} - \frac{1}{(p-1)!}F_{\mu...}F_{\nu}{}^{...}\right].
 $$
-
-</details>
