@@ -5,7 +5,6 @@ In $D$ dimensions, for the Einstein-Hilbert action coupled to various $n$-forms 
 
 $$
 S = \int d^D x \sqrt{-g}\left[R - \sum_n\frac{1}{2}\frac{1}{n!}F_n^2\right]
-\qquad(1)
 $$
 
 The Einstein equations are
