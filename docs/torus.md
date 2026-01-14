@@ -40,10 +40,31 @@ $$
 Now rename, and get 
 
 $$
-ds^2 = |d\sigma^1 + \tau d\sigma^2|^2
+\boxed{
+ds^2 = |d\sigma^1 + \tau d\sigma^2|^2,\quad
+(\sigma^1,\sigma^2)\sim(\sigma^1 + 2\pi m ,\sigma^2+2\pi n)
+}.
 $$
 
-which is how these metrics appear in the literature. 
+Here the periodicity condition of $\sigma \in [0,2\pi]$ implies that they are dimensionless angular coordinates.
+As in, they are given as some others dimensionful coordinates divided by some length $R/\sqrt{\tau_2}$ , which is the dimensionful length scale of the torus.
+To put the proper dimensions back, we write
+
+$$
+\boxed{
+ds^2 = \frac{R^2}{\tau_2}|d\sigma^1 + \tau d\sigma^2|^2=|dy^1+\tau dy^1|^2, \quad
+\vec{y} \equiv \frac{R}{\sqrt{\tau_2}} \vec{\sigma} \in \left[0,\frac{2\pi R}{\sqrt{\tau_2}}\right],\quad
+(y^1,y^2)
+\sim \left(y^1 +  \frac{2\pi mR}{\sqrt{\tau_2}},y^2+ \frac{2\pi n R}{\sqrt{\tau_2}}\right)
+}.
+$$
+
+The volume of the torus is the determinant of the metric which is
+
+$$
+Vol(T_2) = 4\pi^2 R^2
+$$
+
 
 ## SL(2, Z)
 
