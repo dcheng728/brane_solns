@@ -2,9 +2,31 @@
 
 ## 11d to 10d ansatz
 
-In 11d, we are measuring length with $l_P$ and in 10d we are using $l_S$, both of which has dimension of length.
+In 11d, we are measuring length in units of $l_P$, and in 10d we are using $l_S$, both of which has dimension of length.
 
-We use 11d coordinates of $(\vec{x},\theta)$, where $x$ are Minkowski coordinates with dimension length and $\theta$ is a dimensionless compact coordinate on a circle of radius $R$.
+We use 11d coordinates of $(\vec{x},u)$, where $x$ are Minkowski coordinates with dimension length and $u \sim u + 2\pi R$ is a coordinate with length dimension in the 11th dimension, whose length scale is $R$.
+
+It is natural to write down a relation between the 11d and 10d metrics
+
+$$
+ds_{11}^2 = ds_{10}^2 + (du + A_m dx^m)^2
+$$
+
+with implicit unit conversions.
+Because as numerical values $ds_{10}^2$ is measured as quantities of $l_S^2$, while $ds_{11}^2$ is measured in $l_P^2$, and $du$ is measured in $R$.
+To make the unit conversions explicit, we divide dimensionful displacements such as $dx, ds^2, du$ by the natural length units they are measured in, to obtain a dimensionless equation, for numerical measurereadings that one would see on a ruler
+
+$$
+\frac{ds_{11}^2}{l_P^2}
+=\frac{l_S^2}{l_P^2}
+\left[
+    \frac{ds_{(S),10}^2}{l_S^2}+
+    \left(\frac{R}{l_S}\right)^2\left(\frac{du}{R} + \frac{\vec{A}}{R/l_S}\cdot \frac{d\vec{x}}{l_S}\right)^2
+\right]
+$$
+
+We can obtain a dimensionless equation by dividing every dimensionful quan
+
 The most general dimensional reduction formula, with the correct units is
 
 $$
@@ -44,6 +66,8 @@ $$
 l_P^3 = g_s l_S^3,\quad
 R = g_s l_S.
 $$
+
+## Torus setup
 
 ## 12d to 10d ansatz
 
