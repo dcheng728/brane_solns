@@ -241,3 +241,11 @@ Suppose we choose $l = l_F$, then we obtain the relation
 $$
 l_F^{8} = \sqrt{M_F}g_S^2 l_S^8.
 $$
+
+There are good reasons to believe that $\sqrt{M_F} = 1$ which gives
+
+$$
+l_F^4 = g_Sl_S^4,\quad
+\sqrt{M_S} = g_S^{1/2},\quad
+Vol(T_2) = 4\pi^2 g_S^{1/2}l_S^2.
+$$
