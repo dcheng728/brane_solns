@@ -5,6 +5,7 @@ In $D$ dimensions, for the Einstein-Hilbert action coupled to various $n$-forms 
 
 $$
 S = \int d^D x \sqrt{-g}\left[R - \sum_n\frac{1}{2}\frac{1}{n!}F_n^2\right]
+\qquad{1}
 $$
 
 The Einstein equations are
@@ -22,10 +23,12 @@ R_{MN}
     -\frac{n-1}{D-2}\left(\frac{1}{n!}F^2\right)g_{MN}
 \right],
 \end{aligned}
+\qquad{2}
 $$
 
 $$
 dF = 0.
+\qquad{3}
 $$
 
 We look for solutions that are $d$-dimensional Minkowski space transverse to $(D-d)$-dimensional Euclidean space.
@@ -39,12 +42,14 @@ We usually solve with the ansatz for a $(p=d-1)$-brane:
 $$
 ds_D^2 = H^{a}(r)\eta_{\mu\nu}dx^\mu dx^\nu + H^b(r) \delta_{mn}dy^mdy^n,\quad
 r\equiv \sqrt{y^my^m}.
+\qquad{4}
 $$
 
 where $H$ is a harmonic function in $(D-d)$-dimensions, usually taken to be
 
 $$
 H = 1 + \frac{Q}{r^{\tilde{d}}},\quad \tilde{d} = D-d-2
+\qquad{5}
 $$
 
 Then the Ricci tensor is found to be
@@ -52,9 +57,11 @@ Then the Ricci tensor is found to be
 $$
 R_{\mu\nu}
 =-\eta_{\mu\nu}(H')^2H^{a-b-2}\left[\frac{a(ad+b\tilde d-2)}{4}\right]
+\qquad{6}
 $$
 
-<!-- $$
+<!-- 
+$$
 \mathcal{B} = \frac{(H')^2}{4H^2}b(ad+b\tilde{d}-2)+\frac{H'}{rH}\frac{(ad+b\tilde{d})}{2}
 $$
 
@@ -69,18 +76,22 @@ R_{mn}
 &= \frac{(H')^2}{4H^2}\left[-b(ad+b\tilde{d}-2)\delta_{mn}-\frac{y^m y^n}{r^2}\left[ad(a-b)-(ad+b\tilde{d})(b+2)\right]\right]\\
 &+\frac{H'}{rH}\frac{(ad+b\tilde{d})}{2}\left[-\delta_{mn} + \frac{y^m y^n}{r^2}(2+\tilde{d})\right]
 \end{aligned}
+\qquad{7}
 $$
 
 Usually one adopts the ansatz that $A_{n-1} \propto H$, hence $F_n \propto H'$.
 Then $S_{MN}$ will be exactly quadratic in $H'$ up to some powers of $H$: 
 
-$$S_{MN}\sim H^{(...)} (H')^2.$$
+$$
+S_{MN}\sim H^{(...)} (H')^2.
+$$
 
 which means in order to satisfy the Einstein equation, $R_{MN}$ should be exactly quadratic in $H'$.
 This demands
 
 $$
 b=-ad/\tilde{d},
+\qquad{8}
 $$
 
 and we can write down a simplified Ricci tensor
@@ -88,6 +99,7 @@ and we can write down a simplified Ricci tensor
 $$
 R_{\mu\nu} = \frac{a}{2}(H')^2H^{a-b-2} \eta_{\mu\nu}
 =\frac{a}{2}(H')^2H^{\frac{ad+(a-2)(D-d-2)}{(D-d-2)}} \eta_{\mu\nu},
+\qquad{9}
 $$
 
 $$
@@ -95,6 +107,7 @@ R_{mn} =\frac{(H')^2}{4H^2}\left[2b\delta_{mn}-ad(a-b)\frac{y^my^n}{r^2}\right]
 =-\frac{ad}{2(D-d-2)}\frac{(H')^2}{H^2}\left[
 \delta_{mn}+\frac{a(D-2)}{2}\frac{y^m y^n}{r^2}
 \right]
+\qquad{10}
 $$
 
 ## Electric ansatz
@@ -102,6 +115,7 @@ For a $F_{d+1}$ form field, the electric ansatz can be given by
 
 $$
 (F_{d+1})_{m \mu_0 \mu_1...\mu_{d-1}} = c\varepsilon_{\mu_0 \mu_1...\mu_{d-1}}H^{-1 + \frac{ad}{2}} \partial_m H
+\qquad{11}
 $$
 
 which satisfies $d F_{d+1} = 0$. The exponent $-1 + \frac{ad}{2}$ is required by matching the scaling in $H$ on both sides of $R_{mn} = S_{mn}$.
@@ -111,6 +125,7 @@ $$
 a = -\frac{2}{d},\quad
 b = \frac{2}{\tilde{d}},\quad
 c^2 = \frac{2(D-2)}{d\tilde{d}}.
+\qquad{12}
 $$
 
 There are then no free parameters, and we end up with the usual electric brane solutions as described in [^Stelle98].
@@ -120,6 +135,7 @@ From the form field identities given in [conventions.md](conventions.md), one ca
 
 $$
 S_{MN}|_{*F} = -(-1)^{[t]}S_{MN}|_{F}.
+\qquad{13}
 $$
 
 So for spacetime with an odd number of timelike directions, the Hodge dual of the electric solution is the magnetic solution.
@@ -127,6 +143,7 @@ Performing the duality transformation, we find that for a $D-d-1$ form $*F$, it 
 
 $$
 (* F)_{m_1... m_{D-d-1}} = - c\varepsilon_{m_1...m_{D-d-1} m}\partial_m H.
+\qquad{14}
 $$
 
 From this we conclude that a $(d-1)$-brane can either be supported by a $(d+1)$-form or a $(D-d-1)$-form.
@@ -141,10 +158,12 @@ The reduction ansatz should only break symmetry as 12 = 10 + 2.
 
 $$
 ds_{12}^2 = H^f ds_2^2 + H^g ds_{10}^2
+\qquad{15}
 $$
 
 $$
 ds_{12}^2 = H^f ds_2^2 + H^{g-\frac{1}{2}}ds_{1,3}^2 + H^{g+\frac{1}{2}}ds_6^2
+\qquad{16}
 $$
 
 Then either (1) the reduction came from 12d 5-brane, $f=g-\frac{1}{2}$ or (2) the reduction came from 12d 3-brane $f=g+\frac{1}{2}$.
@@ -153,24 +172,28 @@ Then either (1) the reduction came from 12d 5-brane, $f=g-\frac{1}{2}$ or (2) th
 
 $$
 ds_{12}^2 = H^f ds_{1,5}^2 + H^{f+1}ds_6^2
+\qquad{17}
 $$
 
 Solving using above formula yields
 
 $$
 ds_{12}^2 = H^{-\frac{2}{5}}ds_{1,5}^2 +H^{\frac{3}{5}}ds_6^2
+\qquad{18}
 $$
 
 ### 12d 3-brane
 
 $$
 ds_{12}^2 = H^{f-1} ds_{1,3}^2 + H^{f}ds_8^2
+\qquad{19}
 $$
 
 Solving using above formula yields
 
 $$
 ds_{12}^2 = H^{-\frac{3}{5}}ds_{1,3}^2 +H^{\frac{2}{5}}ds_8^2
+\qquad{20}
 $$
 
 This makes sense; try to balance with this.
@@ -181,10 +204,12 @@ Following Kelly's paper, you shall find 12d metrics balanced by 5 and 7-forms
 
 $$
 ds_{12}^2 = H^{-1/2}ds_{1,3}^2 + H^{2/3}ds_8^2
+\qquad{21}
 $$
 
 $$
 ds_{12}^2 = H^{-1/3}ds_{1,5}^2 + H^{1/2}ds_6^2
+\qquad{22}
 $$
 
 But if you wanted to reduce these to 10d and obtain the D3 solution, the 12 to 10 ansatz is not in 12=2+10 form. So perhaps you should not try to follow this.
