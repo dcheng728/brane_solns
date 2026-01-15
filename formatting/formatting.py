@@ -11,7 +11,9 @@ from typing import List, Optional, Tuple
 
 
 class EquationNumberer:
-    _num_suffix = re.compile(r"^(?P<body>.*?)(?P<ws>\s*)\\qquad\{(?P<num>\d+)\}\s*$")
+    _num_suffix = re.compile(
+        r"^(?P<body>.*?)(?P<ws>\s*)\\qquad\{(?P<lpar>\()?(?P<num>\d+)(?P<rpar>\))?\}\s*$"
+    )
 
     def __init__(self, start: int = 1) -> None:
         self._start = start
@@ -73,26 +75,27 @@ class EquationNumberer:
 
     def _number_block(self, block_lines: List[str], eq_number: int, newline: str) -> List[str]:
         if not block_lines:
-            return [f"\\qquad{{{eq_number}}}{newline}"]
+            return [f"\\qquad{{({eq_number})}}{newline}"]
 
         last_nonempty = self._last_nonempty_index(block_lines)
         if last_nonempty is None:
-            return [f"\\qquad{{{eq_number}}}{newline}"] + block_lines
+            return [f"\\qquad{{({eq_number})}}{newline}"] + block_lines
 
         raw, eol = self._strip_eol(block_lines[last_nonempty])
 
         m = self._num_suffix.match(raw)
         if m:
             existing = int(m.group("num"))
-            if existing == eq_number:
+            has_parens = (m.group("lpar") is not None) and (m.group("rpar") is not None)
+            if existing == eq_number and has_parens:
                 return block_lines
             body = m.group("body")
             ws = m.group("ws")
-            block_lines[last_nonempty] = f"{body}{ws}\\qquad{{{eq_number}}}{eol}"
+            block_lines[last_nonempty] = f"{body}{ws}\\qquad{{({eq_number})}}{eol}"
             return block_lines
 
         insert_eol = eol or newline
-        insertion = f"\\qquad{{{eq_number}}}{insert_eol}"
+        insertion = f"\\qquad{{({eq_number})}}{insert_eol}"
         return block_lines[: last_nonempty + 1] + [insertion] + block_lines[last_nonempty + 1 :]
 
     @staticmethod
