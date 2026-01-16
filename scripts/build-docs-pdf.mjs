@@ -43,10 +43,6 @@ function runPandoc({ inputMd, outputHtml }) {
     '--resource-path', `${docsDir}${path.delimiter}${repoRoot}`,
   ];
 
-  // Pandoc 3+: --embed-resources replaces --self-contained for HTML.
-  // If your runner has an older pandoc, this might fail; see README note.
-  args.push('--embed-resources');
-
   if (header) {
     args.push('--include-in-header', header);
   }
