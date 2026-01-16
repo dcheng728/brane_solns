@@ -18,7 +18,7 @@ with a single harmonic function $H$ on the transverse space, where for codimensi
 
     $$
     \begin{equation}
-    ds_{(S),10}^2=dx^\mu dx^\mu+H\,dx^mdx^m,\qquad e^{2\Phi}=g_s^2H,\qquad H_3=\star_4 dH.
+    ds_{(S),10}^2=dx^\mu dx^\mu+H\cdot dx^mdx^m,\qquad e^{2\Phi}=g_s^2H,\qquad H_3=\star_4 dH.
     \end{equation}
     $$
 
@@ -26,7 +26,7 @@ with a single harmonic function $H$ on the transverse space, where for codimensi
 
     $$
     \begin{equation}
-    ds_{(S),10}^2=H^{-\frac{1}{2}}dx^\mu dx^\mu+H^{\frac{1}{2}}dx^mdx^m,\qquad e^{\Phi}=g_s\,H^{\frac{3-p}{4}},\qquad C_{0\cdots p}=H^{-1}-1.
+    ds_{(S),10}^2=H^{-\frac{1}{2}}dx^\mu dx^\mu+H^{\frac{1}{2}}dx^mdx^m,\qquad e^{\Phi}=g_sH^{\frac{3-p}{4}},\qquad C_{0\cdots p}=H^{-1}-1.
     \end{equation}
     $$
 
@@ -59,14 +59,56 @@ Setting $C = 0$ here.
 
 ### D(-1)
 
+$$
+\begin{equation}
+ds_{12}^2=g_s^{-\frac{1}{2}}dx^mdx^m+g_sH\cdot du^2+g_s^{-1}H^{-1}\cdot dv^2.
+\end{equation}
+$$
+
 ### F1
+
+$$
+\begin{equation}
+ds_{12}^2=g_s^{-\frac{1}{2}}\Big(H^{-\frac{3}{4}}(-dt^2+dx_1^2)+H^{\frac{1}{4}}dx^mdx^m\Big)+g_sH^{-\frac{1}{2}}\cdot du^2+g_s^{-1}H^{\frac{1}{2}}\cdot dv^2.
+\end{equation}
+$$
 
 ### D1
 
+$$
+\begin{equation}
+ds_{12}^2=g_s^{-\frac{1}{2}}\Big(H^{-\frac{3}{4}}(-dt^2+dx_1^2)+H^{\frac{1}{4}}dx^mdx^m\Big)+g_sH^{\frac{1}{2}}\cdot du^2+g_s^{-1}H^{-\frac{1}{2}}\cdot dv^2.
+\end{equation}
+$$
+
 ### D3
+
+$$
+\begin{equation}
+ds_{12}^2=g_s^{-\frac{1}{2}}\Big(H^{-\frac{1}{2}}dx^\mu dx^\mu+H^{\frac{1}{2}}dx^mdx^m\Big)+g_s\cdot du^2+g_s^{-1}\cdot dv^2.
+\end{equation}
+$$
 
 ### NS5
 
+$$
+\begin{equation}
+ds_{12}^2=g_s^{-\frac{1}{2}}\Big(H^{-\frac{1}{4}}dx^\mu dx^\mu+H^{\frac{3}{4}}dx^mdx^m\Big)+g_sH^{\frac{1}{2}}\cdot du^2+g_s^{-1}H^{-\frac{1}{2}}\cdot dv^2.
+\end{equation}
+$$
+
 ### D5
 
+$$
+\begin{equation}
+ds_{12}^2=g_s^{-\frac{1}{2}}\Big(H^{-\frac{1}{4}}dx^\mu dx^\mu+H^{\frac{3}{4}}dx^mdx^m\Big)+g_sH^{-\frac{1}{2}}\cdot du^2+g_s^{-1}H^{\frac{1}{2}}\cdot dv^2.
+\end{equation}
+$$
+
 ### D7
+
+$$
+\begin{equation}
+ds_{12}^2=g_s^{-\frac{1}{2}}\Big(dx^\mu dx^\mu+H\cdot dx^mdx^m\Big)+g_sH^{-1}\cdot du^2+g_s^{-1}H\cdot dv^2.
+\end{equation}
+$$
