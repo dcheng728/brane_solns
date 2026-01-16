@@ -4,10 +4,92 @@
 <script defer src="/node_modules/katex/dist/contrib/auto-render.min.js"></script>
 
 <style>
-  /* Minimal print-friendly styling; tweak as desired */
-  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.35; }
-  pre, code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  /* Aim for a LaTeX-like look in the printed PDF */
+  :root {
+    --text-size: 11pt;
+    --line-height: 1.2;
+  }
+
+  html { font-size: var(--text-size); }
+
+  body {
+    margin: 0;
+    color: #111;
+    line-height: var(--line-height);
+    font-family:
+      "Latin Modern Roman",
+      "Computer Modern Serif",
+      "STIX Two Text",
+      "TeX Gyre Termes",
+      "Times New Roman",
+      Times,
+      serif;
+  }
+
+  /* Headings closer to LaTeX defaults */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 1.2em 0 0.5em;
+  }
+  h1 { font-size: 1.55em; }
+  h2 { font-size: 1.3em; }
+  h3 { font-size: 1.15em; }
+
+  p { margin: 0.6em 0; }
+  ul, ol { margin: 0.6em 0 0.6em 1.4em; }
+  li { margin: 0.15em 0; }
+
   img { max-width: 100%; }
+
+  /* Code blocks: compact, print-friendly */
+  pre, code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.92em;
+  }
+  pre {
+    line-height: 1.15;
+    background: #f7f7f7;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    padding: 0.65em 0.8em;
+    overflow: auto;
+  }
+  code {
+    background: rgba(0,0,0,0.04);
+    padding: 0.05em 0.25em;
+    border-radius: 3px;
+  }
+  pre code {
+    background: transparent;
+    padding: 0;
+  }
+
+  /* KaTeX tweaks */
+  .katex { font-size: 1.0em; }
+
+  /* Auto-number displayed equations (simple LaTeX-like numbering) */
+  body { counter-reset: equation; }
+  .katex-display.equation-numbered {
+    position: relative;
+    padding-right: 3.0em;
+  }
+  .katex-display.equation-numbered::after {
+    counter-increment: equation;
+    content: "(" counter(equation) ")";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.95em;
+    color: #111;
+    white-space: nowrap;
+  }
+
+  /* Print tweaks */
+  @media print {
+    a { color: inherit; text-decoration: none; }
+  }
 </style>
 
 <script>
@@ -23,6 +105,13 @@
       ],
       throwOnError: false
     });
+
+    // Add simple equation numbers to display math blocks, unless the author
+    // already tagged the equation with \tag{...}.
+    for (const el of document.querySelectorAll('.katex-display')) {
+      if (el.querySelector('.tag')) continue;
+      el.classList.add('equation-numbered');
+    }
 
     window.__katexRendered = true;
   });

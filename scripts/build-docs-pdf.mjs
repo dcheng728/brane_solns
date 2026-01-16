@@ -153,7 +153,7 @@ async function main() {
         path: outPdf,
         format: 'A4',
         printBackground: true,
-        margin: { top: '20mm', right: '18mm', bottom: '20mm', left: '18mm' },
+        margin: { top: '14mm', right: '14mm', bottom: '14mm', left: '14mm' },
       });
 
       console.log(`PDF: ${outPdf}  (from ${mdFile})`);
