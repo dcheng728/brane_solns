@@ -1,6 +1,6 @@
 # Type IIB supergravity action
 
-These are given in [^PolchinskiVol2]
+These are given in [^Polchinski98]
 
 ## String frame (split into NS/R/CS)
 
@@ -58,6 +58,17 @@ S^{(E)}_{\mathrm{R}}=-\frac{1}{4\kappa_{10}^2}\int d^{10}x(-G_E)^{1/2}\left(e^{2
 \end{equation}
 $$
 
+Equivalently, combining the NSNS and RR sectors into a single Einstein-frame integral and keeping the Chern-Simons term separate,
+
+$$
+\begin{equation}
+\begin{aligned}
+S_{\mathrm{IIB}}&=\frac{1}{2\kappa_{10}^2}\int d^{10}x(-G_E)^{1/2}\Bigg(\left(R_E-\frac{\partial_{\mu}\bar\tau\partial^{\mu}\tau}{2\tau_2^2}\right)-\frac{1}{2}\left(e^{-\Phi}|H_3|^2+e^{\Phi}|\tilde F_3|^2\right)-\frac{1}{4}|\tilde F_5|^2\Bigg)\\
+&\quad-\frac{1}{4\kappa_{10}^2}\int C_4\wedge H_3\wedge F_3.
+\end{aligned}
+\end{equation}
+$$
+
 ## Einstein frame (SL(2)-covariant form)
 
 $$
@@ -68,4 +79,4 @@ $$
 
 ## References
 
-[^PolchinskiVol2]: J. Polchinski, *String Theory, Volume 2: Superstring Theory and Beyond*, Cambridge University Press (1998).
+[^Polchinski98]: J. Polchinski, *String Theory, Volume 2: Superstring Theory and Beyond*, Cambridge University Press (1998).
