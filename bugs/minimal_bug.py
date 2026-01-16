@@ -20,14 +20,14 @@ christoffel_array = sp.MutableDenseNDimArray.zeros(4,4,4)
 
 # If you replace tensor like this, it works
 repl = {
-    Gamma(mu,-nu,-rho): christoffel_array
+    Gamma(mu,-nu,-rho): christoffel_array, Lorentz: sp.diag(-1,1,1,1)
 }
 print(Riemann_expr.replace_with_arrays(repl)[0,0,0,0])
 
 # But if you replace with indices in a different order
 # like this, it gives ValueError: incompatible indices: [\lambda_0, -\mu, -\nu] and [\lambda_0, -\rho, -\mu]
 repl = {
-    Gamma(nu,-rho, -mu): christoffel_array
+    Gamma(nu,-rho, -mu): christoffel_array, Lorentz: sp.diag(-1,1,1,1)
 }
 
 print(Riemann_expr.replace_with_arrays(repl)[0,0,0,0])
