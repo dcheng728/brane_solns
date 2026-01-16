@@ -1,0 +1,29 @@
+<!-- Injected into Pandoc HTML header to render TeX with KaTeX (local node_modules) -->
+<link rel="stylesheet" href="/node_modules/katex/dist/katex.min.css">
+<script defer src="/node_modules/katex/dist/katex.min.js"></script>
+<script defer src="/node_modules/katex/dist/contrib/auto-render.min.js"></script>
+
+<style>
+  /* Minimal print-friendly styling; tweak as desired */
+  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.35; }
+  pre, code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  img { max-width: 100%; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (!window.renderMathInElement) return;
+
+    window.renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false }
+      ],
+      throwOnError: false
+    });
+
+    window.__katexRendered = true;
+  });
+</script>
