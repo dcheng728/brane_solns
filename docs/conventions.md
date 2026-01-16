@@ -1,3 +1,8 @@
+---
+layout: docs
+title: Conventions and useful identities
+---
+
 # Conventions and useful identities
 
 ## Form field

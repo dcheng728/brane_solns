@@ -1,3 +1,8 @@
+---
+layout: docs
+title: Implications of the dimensional reduction ansatz
+---
+
 # Implications of the dimensional reduction ansatz
 
 ## 11d to 10d ansatz

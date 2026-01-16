@@ -1,3 +1,8 @@
+---
+layout: docs
+title: Torus setup
+---
+
 # Torus setup
 
 ## Torus metric

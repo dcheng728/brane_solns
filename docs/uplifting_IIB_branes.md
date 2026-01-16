@@ -1,8 +1,13 @@
+---
+layout: docs
+title: Uplifting IIB branes to 12d
+---
+
 # Uplifting IIB branes to 12d
 
 ## Type IIB branes
 
-We have review the type IIB brane solutions supported by form-fields in [review](review.pdf). They are given by
+We have review the type IIB brane solutions supported by form-fields in [review](review). They are given by
 
 with a single harmonic function $H$ on the transverse space, where for codimension $\ge 3$ one may take $H=1+\frac{Q}{r^{7-p}}$. In string frame, the elementary solutions are:
 

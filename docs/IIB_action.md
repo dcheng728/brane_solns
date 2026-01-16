@@ -1,3 +1,8 @@
+---
+layout: docs
+title: Type IIB supergravity action
+---
+
 # Type IIB supergravity action
 
 These are given in [^Polchinski98]

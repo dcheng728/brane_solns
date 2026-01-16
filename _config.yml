@@ -1,0 +1,8 @@
+title: brane_solns
+markdown: kramdown
+
+kramdown:
+	math_engine: mathjax
+
+# Keep it minimal; we just want Jekyll to render docs/*.md as pages.
+

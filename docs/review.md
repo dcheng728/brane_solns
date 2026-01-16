@@ -1,3 +1,8 @@
+---
+layout: docs
+title: A review of brane solutions
+---
+
 # A review of brane solutions
 
 

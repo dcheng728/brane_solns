@@ -1,3 +1,8 @@
+---
+layout: docs
+title: IIB brane solutions
+---
+
 # IIB brane solutions
 
 This is a quick reference for the standard half-BPS Type IIB brane solutions.
