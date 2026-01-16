@@ -161,34 +161,6 @@ From this we conclude that a $(d-1)$-brane can either be supported by a $(d+1)$-
 
 
 
-## 12d to 10d reduction ansatz, assuming SO(12) -> SO(10)xSO(2)
-What should be the reduction ansatz from 12 to 10?
-If we assume that in 12d one should not know about the torus, hence know nothing about 10d, and that only once the torus is introduced the 10d theory is obtained via 12 = 10 + 2.
-The reduction ansatz should only break symmetry as 12 = 10 + 2.
-
-$$
-\begin{equation}
-ds_{12}^2 = e^{f\Phi} ds_{(S),10}^2 + e^{g\Phi} ds_2^2
-\end{equation}
-$$
-
-and $e^\Phi$ is the 10d dilaton for the shape moduli of the torus. 
-There is no other non-compact scalar to use for comformal factors.
-The metric $ds_2^2$ is the metric on the torus of constant volume, given by $e^\Phi, C$.
-
-From F-theory, and the pp-wave uplift of the D(-1), we are led to $f = -\frac{1}{2}, g = 0$. In other words, we can write
-
-$$
-\begin{equation}
-ds_{12}^2 = e^{-\frac{1}{2}\Phi}ds_{(S),10}^2 + e^\Phi[(du+Cdv)^2 + e^{-2\Phi}dv^2]
-\end{equation}
-$$
-
-We now give the 
-
-### D3
-
-
 
 
 <!-- $$
