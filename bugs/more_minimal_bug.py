@@ -3,23 +3,21 @@ import sympy as sp
 
 # Define tensor indices
 Lorentz = TensorIndexType("Lorentz")
-# Lorentz.set_metric(sp.diag(1,1))
-# mu, nu, rho, alpha, beta = tensor_indices(r"\mu \nu \rho \alpha \beta", Lorentz)
 i,j,k,l,m = tensor_indices(r"i j k l m", Lorentz)
 
 # Define Christoffel symbols and Riemann tensor
-Gamma = TensorHead(r"\Gamma", [Lorentz,Lorentz,Lorentz]) # Christoffel symbols
+G = TensorHead(r"\Gamma", [Lorentz,Lorentz,Lorentz]) # Christoffel symbols
 
 # Riemann tensor expression in terms of Gamma, only kept one term for minimal example
 Riemann_expr = (
-  + Gamma(l, -m, -k) * Gamma(k, -i, -j)
+  + G(l, -m, -k) * G(k, -i, -j)
 )
 
 # Use Christoffel symbols for flat spacetime, which is just zeros
 christoffel_array = sp.MutableDenseNDimArray.zeros(2,2,2)
 
 repl = {
-    Gamma(j, -k, -i): christoffel_array, Lorentz: sp.diag(1,1)
+    G(i, -k, -l): christoffel_array, Lorentz: sp.diag(1,1)
 }
 
 print(Riemann_expr.replace_with_arrays(repl)[0,0,0,0])
