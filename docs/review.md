@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: default
 title: A review of brane solutions
 ---
 

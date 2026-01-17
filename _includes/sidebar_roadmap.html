@@ -1,0 +1,101 @@
+{% assign roots = site.sidebar_roots | default: nil %}
+
+{% assign current_url = page.url | replace: 'index.html', '' %}
+{% assign current_last = current_url | slice: -1, 1 %}
+{% if current_last != '/' %}{% assign current_url = current_url | append: '/' %}{% endif %}
+
+{% comment %}
+Auto roadmap:
+- shows pages under configured `sidebar_roots` (URL paths)
+- sort: nav_order (optional) then title
+- exclude any page with `nav_exclude: true`
+
+Config example:
+sidebar_roots:
+  - path: /docs/
+    title: Docs
+  - path: /notes/
+    title: Notes
+{% endcomment %}
+
+{% assign active_root_title = nil %}
+{% assign active_root_path = nil %}
+{% if roots %}
+  {% for r in roots %}
+    {% assign root = r.path | default: r %}
+    {% assign root = root | replace: 'index.html', '' %}
+    {% assign root_last = root | slice: -1, 1 %}
+    {% if root_last != '/' %}{% assign root = root | append: '/' %}{% endif %}
+    {% if current_url contains root %}
+      {% assign active_root_title = r.title %}
+      {% assign active_root_path = root %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<nav class="roadmap" aria-label="Roadmap">
+  <div class="roadmap-title">Roadmap</div>
+
+  <div class="roadmap-here">
+    <div class="roadmap-here-label">You are here</div>
+    <div class="roadmap-here-path">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      {% if active_root_path %}
+        <span class="sep">/</span>
+        <a href="{{ active_root_path | relative_url }}">{{ active_root_title | default: active_root_path }}</a>
+      {% endif %}
+      {% if page.title %}
+        <span class="sep">/</span>
+        <span class="current">{{ page.title }}</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <ul class="roadmap-list">
+    {% if roots %}
+      {% for r in roots %}
+        {% assign root = r.path | default: r %}
+        {% assign root = root | replace: 'index.html', '' %}
+        {% assign root_last = root | slice: -1, 1 %}
+        {% if root_last != '/' %}{% assign root = root | append: '/' %}{% endif %}
+
+        {% assign pages_in_root = site.pages
+          | where_exp: 'p', "p.url contains root"
+          | where_exp: 'p', 'p.nav_exclude != true' %}
+
+        {% if r.title %}
+          {% assign pages_in_root = pages_in_root | where_exp: 'p', 'p.url != root' %}
+        {% endif %}
+
+        {% assign ordered = pages_in_root | where_exp: 'p', 'p.nav_order != nil' | sort: 'nav_order' %}
+        {% assign unordered = pages_in_root | where_exp: 'p', 'p.nav_order == nil' | sort: 'title' %}
+
+        {% if r.title %}
+          <li class="roadmap-item{% if current_url contains root %} active{% endif %}">
+            <a href="{{ root | relative_url }}">{{ r.title }}</a>
+          </li>
+        {% endif %}
+
+        {% for p in ordered %}
+          {% assign p_url = p.url | replace: 'index.html', '' %}
+          {% assign p_last = p_url | slice: -1, 1 %}
+          {% if p_last != '/' %}{% assign p_url = p_url | append: '/' %}{% endif %}
+          <li class="roadmap-item{% if p_url == current_url %} active{% endif %}">
+            <a href="{{ p.url | relative_url }}">{{ p.title | default: p.name }}</a>
+          </li>
+        {% endfor %}
+
+        {% for p in unordered %}
+          {% assign p_url = p.url | replace: 'index.html', '' %}
+          {% assign p_last = p_url | slice: -1, 1 %}
+          {% if p_last != '/' %}{% assign p_url = p_url | append: '/' %}{% endif %}
+          <li class="roadmap-item{% if p_url == current_url %} active{% endif %}">
+            <a href="{{ p.url | relative_url }}">{{ p.title | default: p.name }}</a>
+          </li>
+        {% endfor %}
+      {% endfor %}
+    {% else %}
+      <li class="roadmap-item"><a href="{{ '/' | relative_url }}">Configure `sidebar_roots` in _config.yml</a></li>
+    {% endif %}
+  </ul>
+</nav>

@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: default
 title: Uplifting IIB branes to 12d
 ---
 

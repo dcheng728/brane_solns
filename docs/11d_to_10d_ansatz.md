@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: default
 title: Implications of the dimensional reduction ansatz
 ---
 

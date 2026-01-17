@@ -1,6 +1,18 @@
 title: brane_solns
 markdown: kramdown
 
+# Generate extension-less URLs like /docs/conventions/.
+permalink: pretty
+
+# Sidebar roadmap roots (only pages under these URL paths are shown).
+# Example:
+# sidebar_roots:
+#   - path: /docs/
+#     title: Docs
+sidebar_roots:
+  - path: /docs/
+    title: Docs
+
 kramdown:
   math_engine: mathjax
 
