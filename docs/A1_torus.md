@@ -41,7 +41,7 @@ The benefit here is that we get back the rectangular periodicity condition
 $$
 \begin{equation}
 \tilde \sigma^1 + \tau \tilde \sigma^2 \sim 
-\tilde \sigma^1 + \tau \tilde \sigma^2 + 2\pi (m,\tau n).
+\tilde \sigma^1 + \tau \tilde \sigma^2 + 2\pi (m+\tau n).
 \end{equation}
 $$
 
@@ -49,7 +49,7 @@ Thus we have, for these new coordinates
 
 $$
 \begin{equation}
-ds^2 = |d\sigma^1 + d\sigma^2|^2
+ds^2 = |d\sigma^1 + id\sigma^2|^2
 =|d\tilde \sigma^1 + \tau d\tilde \sigma^2|^2
 \end{equation}
 $$
@@ -72,7 +72,7 @@ To put the proper dimensions back, we write
 $$
 \begin{equation}
 \boxed{
-ds^2 = \frac{R^2}{\tau_2}|d\sigma^1 + \tau d\sigma^2|^2=|dy^1+\tau dy^1|^2, \quad
+ds^2 = \frac{R^2}{\tau_2}|d\sigma^1 + \tau d\sigma^2|^2=|dy^1+\tau dy^2|^2, \quad
 \vec{y} \equiv \frac{R}{\sqrt{\tau_2}} \vec{\sigma},\quad
 (y^1,y^2)
 \sim \left(y^1 +  \frac{2\pi mR}{\sqrt{\tau_2}},y^2+ \frac{2\pi n R}{\sqrt{\tau_2}}\right)
@@ -89,7 +89,7 @@ Vol(T_2) = 4\pi^2 R^2.
 $$
 
 Here we defined the dimensionful length scale $\vec{y}$ by $\vec{y} \equiv \frac{R}{\sqrt{\tau}_2}$ in order to get the volume to only be parameterized by $R^2$.
-Then the periodicity on the torus is $[0,\frac{2\pi R}{\tau_2}]$. 
+Then the periodicity on the torus is $\frac{2\pi R}{\tau_2}$. 
 
 
 ## SL(2, Z)
@@ -100,7 +100,9 @@ In the Quantum Theory, path-integrating over all metrics on the torus becomes pa
 - $\tau \to 1/\tau$ is equivalent to $\tau \to \tau$, $(m,n) \to (n,m)$, followed by a constant scaling of the coordinates $\sigma^a \to \tau \sigma^a$ which leaves the metric invariant. 
 
 
-These two operations generate the SL(2,Z) transformations on $\tau$: $\tau \to \frac{a\tau +b}{c^\tau + d}$, $ad-bc = 1$. So this is how one should think of the SL(2,Z) symmetry of the torus: it is a footprint of the periodic identification one has to make, when putting coordinates on $S^1 \times S^1$. In other words, whenever one writes the metric inside the torus as $ds^2 = |d\sigma^1 + \tau d\sigma^2|^2$, there must be this SL(2,Z) symmetry on $\tau$ because before the coordinate transformations, when the metric was written in a less agreeable form, there was a periodic ientification on $\sigma^1,\sigma^2$.
+These two operations generate the SL(2,Z) transformations on $\tau$: $\tau \to \frac{a\tau +b}{c\tau + d}$, 
+$ad-bc = 1$. So this is how one should think of the SL(2,Z) symmetry of the torus: it is a footprint of the periodic identification one has to make, when putting coordinates on $S^1 \times S^1$. 
+In other words, whenever one writes the metric inside the torus as $ds^2 = |d\sigma^1 + \tau d\sigma^2|^2$, there must be this SL(2,Z) symmetry on $\tau$ because before the coordinate transformations, when the metric was written in a less agreeable form, there was a periodic ientification on $\sigma^1,\sigma^2$.
 In the IIB literature, one often packages $\tau = C + ie^{-\Phi}$, then the metric takes the form
 
 $$
