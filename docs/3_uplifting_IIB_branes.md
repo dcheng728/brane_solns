@@ -1,21 +1,19 @@
 ---
 layout: default
-title: Uplifting IIB branes to 12d
+title: 3. Uplifting IIB branes to 12d
 ---
 
 # Uplifting IIB branes to 12d
 
 ## Type IIB branes
 
-We have review the type IIB brane solutions supported by form-fields in [review](review). They are given by
-
-with a single harmonic function $H$ on the transverse space, where for codimension $\ge 3$ one may take $H=1+\frac{Q}{r^{7-p}}$. In string frame, the elementary solutions are:
+We have review the standard construction of type IIB brane solutions supported by form-fields in [review](review). They are given by a single harmonic function $H$ on the transverse space, where one may take $H=1+\frac{Q}{r^{7-p}}$. In string frame, the elementary solutions are:
 
 - **Fundamental string (F1)** (supported by $B_2$). With worldvolume coordinates $x^{0,1}$ and transverse coordinates $x^m$,
 
     $$
     \begin{equation}
-    ds_{(S),10}^2=H^{-1}(-dt^2+dx_1^2)+dx^mdx^m,\qquad e^{2\Phi}=g_s^2H^{-1},\qquad B_{01}=H^{-1}-1.
+    ds_{(S),10}^2=H^{-1}(-dt^2+dx_1^2)+dx^mdx^m,\qquad \frac{e^{2\Phi}}{g_s}^2=H^{-1},\qquad B_{01}=H^{-1}-1.
     \end{equation}
     $$
 
@@ -23,7 +21,7 @@ with a single harmonic function $H$ on the transverse space, where for codimensi
 
     $$
     \begin{equation}
-    ds_{(S),10}^2=dx^\mu dx^\mu+H\cdot dx^mdx^m,\qquad e^{2\Phi}=g_s^2H,\qquad H_3=\star_4 dH.
+    ds_{(S),10}^2=dx^\mu dx^\mu+H\cdot dx^mdx^m,\qquad \frac{e^{2\Phi}}{g_s^2}=H,\qquad H_3=\star_4 dH.
     \end{equation}
     $$
 
@@ -31,7 +29,7 @@ with a single harmonic function $H$ on the transverse space, where for codimensi
 
     $$
     \begin{equation}
-    ds_{(S),10}^2=H^{-\frac{1}{2}}dx^\mu dx^\mu+H^{\frac{1}{2}}dx^mdx^m,\qquad e^{\Phi}=g_sH^{\frac{3-p}{4}},\qquad C_{0\cdots p}=H^{-1}-1.
+    ds_{(S),10}^2=H^{-\frac{1}{2}}dx^\mu dx^\mu+H^{\frac{1}{2}}dx^mdx^m,\qquad \frac{e^\Phi}{g_s}=H^{\frac{3-p}{4}},\qquad C_{0\cdots p}=H^{-1}-1.
     \end{equation}
     $$
 

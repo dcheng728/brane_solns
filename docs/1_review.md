@@ -1,6 +1,6 @@
 ---
 layout: default
-title: A review of brane solutions
+title: 1. A review of brane solutions
 ---
 
 # A review of brane solutions
