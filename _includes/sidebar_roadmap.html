@@ -69,7 +69,7 @@ sidebar_roots:
 
         {% if r.title %}
           <li class="roadmap-item{% if current_url contains root %} active{% endif %}">
-            <a href="{{ root | relative_url }}">{{ r.title }}</a>
+            <a href="{{ root | relative_url }}" style="padding-left: 8px;">{{ r.title }}</a>
           </li>
         {% endif %}
 
@@ -81,7 +81,7 @@ sidebar_roots:
           {% assign segs = rel | split: '/' %}
           {% assign depth = segs.size | minus: 2 %}
           {% if depth < 0 %}{% assign depth = 0 %}{% endif %}
-          {% assign pad = depth | times: 12 | plus: 8 %}
+          {% assign pad = depth | plus: 1 | times: 12 | plus: 8 %}
           <li class="roadmap-item{% if p_url == current_url %} active{% endif %}">
             <a href="{{ p.url | relative_url }}" style="padding-left: {{ pad }}px;">{{ p.title | default: p.name }}</a>
           </li>
@@ -95,7 +95,7 @@ sidebar_roots:
           {% assign segs = rel | split: '/' %}
           {% assign depth = segs.size | minus: 2 %}
           {% if depth < 0 %}{% assign depth = 0 %}{% endif %}
-          {% assign pad = depth | times: 12 | plus: 8 %}
+          {% assign pad = depth | plus: 1 | times: 12 | plus: 8 %}
           <li class="roadmap-item{% if p_url == current_url %} active{% endif %}">
             <a href="{{ p.url | relative_url }}" style="padding-left: {{ pad }}px;">{{ p.title | default: p.name }}</a>
           </li>
