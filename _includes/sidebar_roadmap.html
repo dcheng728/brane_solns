@@ -77,8 +77,13 @@ sidebar_roots:
           {% assign p_url = p.url | replace: 'index.html', '' %}
           {% assign p_last = p_url | slice: -1, 1 %}
           {% if p_last != '/' %}{% assign p_url = p_url | append: '/' %}{% endif %}
+          {% assign rel = p.url | remove_first: root %}
+          {% assign segs = rel | split: '/' %}
+          {% assign depth = segs.size | minus: 2 %}
+          {% if depth < 0 %}{% assign depth = 0 %}{% endif %}
+          {% assign pad = depth | times: 12 | plus: 8 %}
           <li class="roadmap-item{% if p_url == current_url %} active{% endif %}">
-            <a href="{{ p.url | relative_url }}">{{ p.title | default: p.name }}</a>
+            <a href="{{ p.url | relative_url }}" style="padding-left: {{ pad }}px;">{{ p.title | default: p.name }}</a>
           </li>
         {% endfor %}
 
@@ -86,8 +91,13 @@ sidebar_roots:
           {% assign p_url = p.url | replace: 'index.html', '' %}
           {% assign p_last = p_url | slice: -1, 1 %}
           {% if p_last != '/' %}{% assign p_url = p_url | append: '/' %}{% endif %}
+          {% assign rel = p.url | remove_first: root %}
+          {% assign segs = rel | split: '/' %}
+          {% assign depth = segs.size | minus: 2 %}
+          {% if depth < 0 %}{% assign depth = 0 %}{% endif %}
+          {% assign pad = depth | times: 12 | plus: 8 %}
           <li class="roadmap-item{% if p_url == current_url %} active{% endif %}">
-            <a href="{{ p.url | relative_url }}">{{ p.title | default: p.name }}</a>
+            <a href="{{ p.url | relative_url }}" style="padding-left: {{ pad }}px;">{{ p.title | default: p.name }}</a>
           </li>
         {% endfor %}
       {% endfor %}
