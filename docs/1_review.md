@@ -46,7 +46,7 @@ $$
 We look for solutions that are $d$-dimensional Minkowski space transverse to $(D-d)$-dimensional Euclidean space.
 So our coordinates are split into $x^M=(x^\mu,y^m)$, where $x^\mu$ for $\mu = 0,1,...,d-1$ are coordinates on the Minkowski space, and $y^m$ for $m = d,d+1,...,D-1$ are embedding coordinates on the $D-d$ dimensional Euclidean space.
 
-Our conventions for form fields are given in [conventions](conventions.pdf).
+Our conventions for form fields are given in [conventions](0_conventions.md).
 
 ## Brane-solution ansatz and its implications
 We usually solve with the ansatz for a $(p=d-1)$-brane:
@@ -145,7 +145,7 @@ $$
 There are then no free parameters, and we end up with the usual electric brane solutions as described in [^Stelle98].
 
 ## Magnetic ansatz
-From the form field identities given in [conventions](conventions.pdf), one can show a relation between the form field and its Hodge dual
+From the form field identities given in [conventions](0_conventions.md), one can show a relation between the form field and its Hodge dual
 
 $$
 \begin{equation}

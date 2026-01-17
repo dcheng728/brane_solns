@@ -7,7 +7,7 @@ title: 3. Uplifting IIB branes to 12d
 
 ## Type IIB branes
 
-We have review the standard construction of type IIB brane solutions supported by form-fields in [review](review). They are given by a single harmonic function $H$ on the transverse space, where one may take $H=1+\frac{Q}{r^{7-p}}$. In string frame, the elementary solutions are:
+We have review the standard construction of type IIB brane solutions supported by form-fields in [review](1_review.md). They are given by a single harmonic function $H$ on the transverse space, where one may take $H=1+\frac{Q}{r^{7-p}}$. In string frame, the elementary solutions are:
 
 - **Fundamental string (F1)** (supported by $B_2$). With worldvolume coordinates $x^{0,1}$ and transverse coordinates $x^m$,
 

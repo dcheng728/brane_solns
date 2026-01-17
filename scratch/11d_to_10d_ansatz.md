@@ -87,7 +87,7 @@ $$
 \right].
 $$
 
-We are adopting to the same notation in [12d_unification.md](12d_unification.md), where $u,v$ have dimension of length and the torus has volume $4\pi^2 \sqrt{M_s}l_S^2$. One can also choose to measure the torus with $l_F$, in which case the torus has volume $4\pi^2\sqrt{M_F}l_F^2$ , and the two choices are related by $\sqrt{M_s}l_S^2 = \sqrt{M_F}l_F^2$.
+We are adopting to the same notation in [12d_unification_incorrect.md](12d_unification_incorrect.md), where $u,v$ have dimension of length and the torus has volume $4\pi^2 \sqrt{M_s}l_S^2$. One can also choose to measure the torus with $l_F$, in which case the torus has volume $4\pi^2\sqrt{M_F}l_F^2$ , and the two choices are related by $\sqrt{M_s}l_S^2 = \sqrt{M_F}l_F^2$.
 
 
 The 12d reduction ansatz to 10d written in string frame is
