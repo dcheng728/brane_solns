@@ -89,7 +89,25 @@ Vol(T_2) = 4\pi^2 R^2.
 $$
 
 Here we defined the dimensionful length scale $\vec{y}$ by $\vec{y} \equiv \frac{R}{\sqrt{\tau}_2}$ in order to get the volume to only be parameterized by $R^2$.
-Then the periodicity on the torus is $\frac{2\pi R}{\tau_2}$. 
+Then the periodicity on the torus is $\frac{2\pi R}{\sqrt{\tau_2}}$. 
+
+This dependence of the periodicity on $\tau_2$ is not physical: it is purely an artifact of the coordinate choice.
+Indeed, a coordinate rescaling changes the metric components, but it also rescales the fundamental domain (and hence the integration range) in exactly the compensating way, so that the geometric area $Vol(T_2)$ is invariant.
+If one wants both the periodicity and the volume to be manifestly independent of $\tau_2$, one can instead use the dimensionful coordinates
+$Y^a \equiv R\sigma^a$, for which $(Y^1,Y^2)\sim(Y^1+2\pi mR, Y^2+2\pi nR)$.
+In these coordinates the $\tau_2$-dependence sits entirely in the metric components:
+
+$$
+\begin{equation}
+\boxed{
+ds^2 = \frac{1}{\tau_2}\left|dY^1 + \tau dY^2\right|^2,\quad
+(Y^1,Y^2)\sim\left(Y^1+2\pi mR, Y^2+2\pi nR\right),\quad
+Vol(T_2)=4\pi^2R^2
+}.
+\end{equation}
+$$
+
+
 
 
 ## SL(2, Z)
