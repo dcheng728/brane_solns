@@ -5,6 +5,8 @@ title: Torus setup
 
 # Torus setup
 
+Reference ^Polchinski98
+
 ## Torus metric
 
 A torus is $S^1 \times S^1$ with two coordinates $(\sigma^1,\sigma^2)\sim (\sigma^1,\sigma^2) + 2\pi R (m,n)$.
@@ -89,6 +91,6 @@ $$
     \end{pmatrix}
 $$
 
-## Reference
+## References
 
-Polchinski 1998 section 5.1
+[^Polchinski98]: J. Polchinski, *String Theory, Volume 1: An introduction to the bosonic string*, Cambridge University Press (1998).
