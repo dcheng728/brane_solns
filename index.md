@@ -5,4 +5,4 @@ title: Home
 
 # brane_solns
 
-- [Docs](docs/)
+contains files for uplifting type IIB solns

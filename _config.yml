@@ -11,7 +11,9 @@ permalink: pretty
 #     title: Docs
 sidebar_roots:
   - path: /docs/
-    title: Docs
+    title: Writeups
+  - path: /scratch/
+    title: Scratch
 
 kramdown:
   math_engine: mathjax
