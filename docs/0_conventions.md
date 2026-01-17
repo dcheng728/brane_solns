@@ -1,9 +1,8 @@
 ---
 layout: default
-title: Conventions and useful identities
+title: 0. Conventions and useful identities
 ---
 
-# Conventions and useful identities
 
 ## Form field
 
