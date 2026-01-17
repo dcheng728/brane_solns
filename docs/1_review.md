@@ -217,7 +217,4 @@ But if you wanted to reduce these to 10d and obtain the D3 solution, the 12 to 1
 
 ## References
 
-[^Stelle98]: K. S. Stelle, 
-*BPS branes in supergravity*,
-*ICTP Summer School in High-Energy Physics and Cosmology* (1997),
-[arXiv:hep-th/9803116](https://inspirehep.net/literature/468167).
+[^Stelle98]: K. S. Stelle, *BPS branes in supergravity*, *ICTP Summer School in High-Energy Physics and Cosmology* (1997), [arXiv:hep-th/9803116](https://inspirehep.net/literature/468167).
