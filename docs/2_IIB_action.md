@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 2. Type IIB supergravity action
+title: 1. Type IIB supergravity action
 ---
 
 # Type IIB supergravity action

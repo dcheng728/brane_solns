@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 4. 12d Unification with g_s
+title: 2. 12d Unification with g_s
 ---
 
 
