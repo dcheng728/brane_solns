@@ -1,4 +1,10 @@
-# A 12d Unification
+---
+layout: default
+title: 4. 12d Unification with g_s
+---
+
+
+# 12d Unification with g_s
 
 There are several problems that a 12d unification needs to address
 - self-duality of $F_5$
