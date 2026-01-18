@@ -15,7 +15,7 @@ It would be a miracle if in 12d or in the 12d to 10d reduction ansatz, one is ab
 
 ## Putting $g_S$ back
 
-In 2512.10746 we had proposed a 12d uplift of the various form-fields when $g_S = 1$.
+In [^Cheng25] we had proposed a 12d uplift of the various form-fields when $g_S = 1$.
 We now work in the convention where $g_s$ is treated as a generic constant, the terms in the type IIB action may be grouped by their couplings to $g_S$ as 
 
 $$
@@ -295,7 +295,7 @@ l_F^{8} = \sqrt{M_F}g_S^2 l_S^8.
 \end{equation}
 $$
 
-If one believes that $l = l_F$, i.e. that $\sqrt{M_F} = 1$, they would find
+If one believes that $l = l_F$, i.e. that the volume (actually area) of the torus is square of the 12d length scale, they would find
 
 $$
 \begin{equation}
@@ -304,3 +304,7 @@ l_F^4 = g_Sl_S^4,\quad
 Vol(T_2) = 4\pi^2 g_S^{1/2}l_S^2.
 \end{equation}
 $$
+
+## References
+
+[^Cheng25]: C. Cheng, *A 12d Origin of the Type IIB String Theory: A Review*, (2025), arXiv:2512.10746 [hep-th].
