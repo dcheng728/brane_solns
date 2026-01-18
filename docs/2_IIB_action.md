@@ -79,61 +79,55 @@ e^{-\Phi}|H_3|^2+e^\Phi|\tilde{F}_3|^2
 &-g_s^2\left[\frac{1}{4}\int d^{10}x\sqrt{-g}
 |\tilde F_5|^2
 +\frac{1}{2}\int C_4\wedge H_3\wedge F_3\right].
-\end{aligned}.
-\label{IIB action by orders of coupling}
+\end{aligned}
 \end{equation}
 $$
 
-We note that $$\eqref{IIB action by orders of coupling}$$, \eqref{IIB action by orders of coupling} adopts the convention where $\Phi_0 \neq 0$, and the value of $\Phi_0$ can be chosen arbitrarily by appropriately shifting the definition of $\Phi$.
+We note that above we adopted the convention where $\Phi_0 \neq 0$, below is an alternative convention.
 
 ### Alternative convention (Polchinski)
 
-In Polchinski Vol. 2 Einstein-frame metric by the Weyl rescaling
+In his book[^Polchinski98], Polchinski adopts the convention where $\Phi_0 = 0$:
+
+An alternative convention can be found in Polchinski[^Polchinski98], which we present as
 
 $$
 \begin{equation}
-G^{(E)}_{\mu\nu}=e^{-\Phi/2}G_{\mu\nu}.
+g^{(E)}_{mn}=e^{-\Phi^{(E)}/2}g_{mn}^{(S)},\quad
+\Phi^{(E)}\equiv \Phi - \Phi_0,
 \end{equation}
 $$
 
-In terms of $G_E$ the action becomes
+where $\Phi$ is the same dilaton in string frame.
 
-$$
-\begin{equation}
-S_{\mathrm{IIB}}=S^{(E)}_{\mathrm{NS}}+S^{(E)}_{\mathrm{R}}+S_{\mathrm{CS}},
-\end{equation}
-$$
+In terms of $g^{(E)}_{mn}$ the action becomes
 
-$$
-\begin{equation}
-S^{(E)}_{\mathrm{NS}}=\frac{1}{2\kappa_{10}^2}\int d^{10}x(-G_E)^{1/2}\left(R_E-\frac{1}{2}(\partial\Phi)^2-\frac{1}{2}e^{-\Phi}|H_3|^2\right),
-\end{equation}
-$$
-
-$$
-\begin{equation}
-S^{(E)}_{\mathrm{R}}=-\frac{1}{4\kappa_{10}^2}\int d^{10}x(-G_E)^{1/2}\left(e^{2\Phi}|F_1|^2+e^{\Phi}|\tilde F_3|^2+\frac{1}{2}|\tilde F_5|^2\right).
-\end{equation}
-$$
-
-Equivalently, combining the NSNS and RR sectors into a single Einstein-frame integral and keeping the Chern-Simons term separate,
 
 $$
 \begin{equation}
 \begin{aligned}
-S_{\mathrm{IIB}}&=\frac{1}{2\kappa_{10}^2}\int d^{10}x(-G_E)^{1/2}\Bigg(\left(R_E-\frac{\partial_{\mu}\bar\tau\partial^{\mu}\tau}{2\tau_2^2}\right)-\frac{1}{2}\left(e^{-\Phi}|H_3|^2+e^{\Phi}|\tilde F_3|^2\right)-\frac{1}{4}|\tilde F_5|^2\Bigg)\\
+S_{\mathrm{IIB}}&=\frac{1}{2\kappa_{10}^2}\int d^{10}x\sqrt{-g}
+\Bigg[\left(R-\frac{\partial_{\mu}\bar\tau\partial^{\mu}\tau}{2\tau_2^2}\right)-\frac{1}{2}\left(e^{-\Phi^{(E)}}|H_3|^2+e^{\Phi^{(E)}}|\tilde F_3|^2\right)-\frac{1}{4}|\tilde F_5|^2\Bigg]\\
 &\quad-\frac{1}{4\kappa_{10}^2}\int C_4\wedge H_3\wedge F_3.
 \end{aligned}
 \end{equation}
 $$
 
-## Einstein frame (SL(2)-covariant form)
+### Comments
+
+It appears that the different conventions of $g_s$ arises from the ambiguity in the definition of the Einstein frame metric, and that this ambiguity can be absorbed by redefining the dilaton in the Einstein frame.
+So it appears that one has to decide between the two:
+
+1. Accept explicit $g_s = e^{\Phi_0}$, then the non-compact scalar $\Phi$ of type IIB in string frame and Einstein frame are the same field
+2. Set $g_S = 1$, and accept the string frame and Einstein frame non-compact scalar $\Phi$ to differ by a constant: $\Phi^{(E)} = \Phi - \Phi_0$.
+
+<!-- ## Einstein frame (SL(2)-covariant form)
 
 $$
 \begin{equation}
 S_{\mathrm{IIB}}=\frac{1}{2\kappa_{10}^2}\int d^{10}x(-G_E)^{1/2}\left(R_E-\frac{\partial_{\mu}\bar\tau\partial^{\mu}\tau}{2(\mathrm{Im}\tau)^2}-\frac{\mathcal{M}_{ij}}{2}\tilde F_3^i\cdot\tilde F_3^j-\frac{1}{4}|\tilde F_5|^2\right)-\frac{\epsilon_{ij}}{8\kappa_{10}^2}\int C_4\wedge\tilde F_3^i\wedge\tilde F_3^j.
 \end{equation}
-$$
+$$ -->
 
 ## References
 
