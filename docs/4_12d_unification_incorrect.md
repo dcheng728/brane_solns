@@ -16,8 +16,7 @@ It would be a miracle if in 12d or in the 12d to 10d reduction ansatz, one is ab
 ## Putting $g_S$ back
 
 In 2512.10746 we had proposed a 12d uplift of the various form-fields when $g_S = 1$.
-We note that with $g_S$ restored, as a generic constant, the terms in the type IIB action may be grouped by their couplings to $g_S$ as 
-(this form of the action can be obtained by taking e.g. the type IIB action )
+We now work in the convention where $g_s$ is treated as a generic constant, the terms in the type IIB action may be grouped by their couplings to $g_S$ as 
 
 $$
 \begin{equation}
@@ -39,7 +38,10 @@ $$
 The gravity plus axio-dilaton action only depend on the 10d metric and the shape structure of the torus, hence they don't feel the volume of the torus. They also don't couple to $g_S$ (with $\kappa_{10}^2 g_S^2$ factored out).
 The SL(2, R) doublet fields should come from wrapping on one-cycles of the torus, hence depend on the volume of the torus, they couple to $g_S$.
 The self-dual 5-form may come from wrapping a 7-form completely on a torus, they couple to $g_S^2$.
-Suppose the volume of the torus is related to $g_S$, then it is natural to ask whether there is a consistent way to perform the 12d to 10d reduction such that the various $g_S$ couplings arise naturally from wrapping on the torus differently. 
+
+The key question is what is the 12d to 10d dimensional reduction ansatz, for the form fields?
+After reducing to 10d, we should know about the torus volume, which we speculate to be given by $g_s$ and $l_s$.
+It is natural to ask whether there is a consistent way to perform the 12d to 10d reduction such that the various $g_S$ couplings arise naturally from wrapping on the torus differently. 
 We now explore this possibility.
 
 Let the 12d coordinates be parameterized by $(x^m,u,v)$, with 
@@ -97,7 +99,7 @@ R - \frac{\partial\tau \partial\bar\tau}{2\tau_2^2}
 \end{equation}
 $$
 
-Where we have separated 10d parameters and torus parameters such as $\kappa_{10}, g_S, l, M$ and "12d" terms. 
+where we have separated 10d parameters and torus parameters such as $\kappa_{10}, g_S, l, M$ and "12d" terms. 
 We are hoping that the various 10d and torus parameters reorganize themselves into a 12d parameter $\kappa_{12}$.
 
 
@@ -285,7 +287,7 @@ $$
 \end{equation}
 $$
 
-Suppose we choose $l = l_F$, then we obtain the relation
+Then we obtain the relation
 
 $$
 \begin{equation}
