@@ -120,6 +120,10 @@ So it appears that one has to decide between the two:
 1. Accept explicit $g_s = e^{\Phi_0}$, then the non-compact scalar $\Phi$ of type IIB in string frame and Einstein frame are the same field
 2. Set $g_s = 1$, and accept the string frame and Einstein frame non-compact scalar $\Phi$ to differ by a constant: $\phi = \Phi - \Phi_0$.
 
+But we note one important caveat: SL(2, R) acts on the axio-dilaton $\tau = C + i e^{-\Phi}$, which is manifest in (8). Writing $\Phi = \Phi_0 + \phi$ gives the same field as $\tau = C + i\frac{e^{-\phi}}{g_s}$. 
+Thus if one works at fixed background $g_s$ and uses $\phi$ as the dynamical field, SL(2, R) is no longer manifest in the variables $(C,\phi)$ in (10). 
+For example, at $C=0$ the S-generator sends $e^{\Phi}\to e^{-\Phi}$, which in terms of $e^{\Phi}=g_s e^{\phi}$ corresponds to $g_s e^{\phi}\to g_s^{-1}e^{-\phi}$, which is not a manifest symmetry of (10).
+
 <!-- ## Einstein frame (SL(2)-covariant form)
 
 $$
