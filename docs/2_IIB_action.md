@@ -41,7 +41,7 @@ However this only determines the metric upto a constant factor
 $$
 \begin{equation}
 g_{mn}^{(E)}
-\equiv e^{-\frac{\Phi - \Phi_0}{2}}g_{mn}.
+\equiv e^{-\frac{\Phi - \Phi_0}{2}}g^{(S)}_{mn}.
 \end{equation}
 $$
 
@@ -87,8 +87,6 @@ We note that above we adopted the convention where $\Phi_0 \neq 0$, below is an 
 
 ### Alternative convention (Polchinski)
 
-In his book[^Polchinski98], Polchinski adopts the convention where $\Phi_0 = 0$:
-
 An alternative convention can be found in Polchinski[^Polchinski98], which we present as
 
 $$
@@ -98,7 +96,7 @@ g^{(E)}_{mn}=e^{-\Phi^{(E)}/2}g_{mn}^{(S)},\quad
 \end{equation}
 $$
 
-where $\Phi$ is the same dilaton in string frame.
+where $\Phi$ is the dilaton in string frame.
 
 In terms of $g^{(E)}_{mn}$ the action becomes
 
@@ -119,7 +117,7 @@ It appears that the different conventions of $g_s$ arises from the ambiguity in 
 So it appears that one has to decide between the two:
 
 1. Accept explicit $g_s = e^{\Phi_0}$, then the non-compact scalar $\Phi$ of type IIB in string frame and Einstein frame are the same field
-2. Set $g_S = 1$, and accept the string frame and Einstein frame non-compact scalar $\Phi$ to differ by a constant: $\Phi^{(E)} = \Phi - \Phi_0$.
+2. Set $g_s = 1$, and accept the string frame and Einstein frame non-compact scalar $\Phi$ to differ by a constant: $\Phi^{(E)} = \Phi - \Phi_0$.
 
 <!-- ## Einstein frame (SL(2)-covariant form)
 
@@ -133,4 +131,4 @@ $$ -->
 
 [^Polchinski98]: J. Polchinski, *String Theory, Volume 2: Superstring Theory and Beyond*, Cambridge University Press (1998).
 
-[^Bento23]: B. V. Bento, D. Chakraborty, S. Parameswaran, and I. Zavala, *A guide to frames, 2 $\pi$’s, scales and corrections in string compactifications*, (2023), [arXiv:2301.0517 [hep-th]](https://arxiv.org/abs/2301.05178).
+[^Bento23]: B. V. Bento, D. Chakraborty, S. Parameswaran, and I. Zavala, *A guide to frames, 2 $\pi$’s, scales and corrections in string compactifications* (2023), [arXiv:2301.0517 [hep-th]](https://arxiv.org/abs/2301.05178).
