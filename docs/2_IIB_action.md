@@ -5,9 +5,10 @@ title: 2. Type IIB supergravity action
 
 # Type IIB supergravity action
 
-These are given in [^Polchinski98]
 
 ## String frame (split into NS/R/CS)
+
+These are given in [^Polchinski98]
 
 $$
 \begin{equation}
@@ -91,8 +92,8 @@ An alternative convention can be found in Polchinski[^Polchinski98], which we pr
 
 $$
 \begin{equation}
-g^{(E)}_{mn}=e^{-\Phi^{(E)}/2}g_{mn}^{(S)},\quad
-\Phi^{(E)}\equiv \Phi - \Phi_0,
+g^{(E)}_{mn}=e^{-\phi/2}g_{mn}^{(S)},\quad
+\phi\equiv \Phi - \Phi_0,
 \end{equation}
 $$
 
@@ -105,7 +106,7 @@ $$
 \begin{equation}
 \begin{aligned}
 S_{\mathrm{IIB}}&=\frac{1}{2\kappa_{10}^2}\int d^{10}x\sqrt{-g}
-\Bigg[\left(R-\frac{\partial_{\mu}\bar\tau\partial^{\mu}\tau}{2\tau_2^2}\right)-\frac{1}{2}\left(e^{-\Phi^{(E)}}|H_3|^2+e^{\Phi^{(E)}}|\tilde F_3|^2\right)-\frac{1}{4}|\tilde F_5|^2\Bigg]\\
+\Bigg[\left(R-\frac{\partial_{\mu}\bar\tau\partial^{\mu}\tau}{2\tau_2^2}\right)-\frac{1}{2}\left(e^{-\phi}|H_3|^2+e^{\phi}|\tilde F_3|^2\right)-\frac{1}{4}|\tilde F_5|^2\Bigg]\\
 &\quad-\frac{1}{4\kappa_{10}^2}\int C_4\wedge H_3\wedge F_3.
 \end{aligned}
 \end{equation}
@@ -117,7 +118,7 @@ It appears that the different conventions of $g_s$ arises from the ambiguity in 
 So it appears that one has to decide between the two:
 
 1. Accept explicit $g_s = e^{\Phi_0}$, then the non-compact scalar $\Phi$ of type IIB in string frame and Einstein frame are the same field
-2. Set $g_s = 1$, and accept the string frame and Einstein frame non-compact scalar $\Phi$ to differ by a constant: $\Phi^{(E)} = \Phi - \Phi_0$.
+2. Set $g_s = 1$, and accept the string frame and Einstein frame non-compact scalar $\Phi$ to differ by a constant: $\phi = \Phi - \Phi_0$.
 
 <!-- ## Einstein frame (SL(2)-covariant form)
 
