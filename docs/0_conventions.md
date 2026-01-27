@@ -58,7 +58,7 @@ $$
 \end{equation}
 $$
 
-## Useful Identities
+## Useful Forms Identities
 
 One can then show that
 
@@ -137,5 +137,14 @@ $$
 \begin{equation}
 \frac{1}{(D-p-1)!}(*F)_{\mu ...}(*F)_\nu{}^{...}
 =(-1)^{[t]}\left[\frac{1}{p!}F^2 g_{\mu\nu} - \frac{1}{(p-1)!}F_{\mu...}F_{\nu}{}^{...}\right].
+\end{equation}
+$$
+
+## Useful gravity identities
+
+$$
+\begin{equation}
+R(\Lambda^2 g_{mn})
+=\Lambda^{-2}[R-2(d-1)\nabla^2\ln\Lambda - (d-2)(d-1)(\nabla \ln \Lambda)^2]
 \end{equation}
 $$

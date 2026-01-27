@@ -8,7 +8,7 @@ title: 1. Type IIB supergravity action
 
 ## String frame (split into NS/R/CS)
 
-These are given in [^Polchinski98]
+These are given in [^Polchinski98] [^BBS07]
 
 $$
 \begin{equation}
@@ -37,7 +37,7 @@ $$
 ## Einstein frame 
 
 The Einstein frame is the frame which the Einstein-Hilbert action takes the canonical form $\sqrt{-g} R$.
-However this only determines the metric upto a constant factor
+However this definition only determines the metric upto a constant factor
 
 $$
 \begin{equation}
@@ -56,7 +56,7 @@ $$
 \end{equation}
 $$
 
-as well as[^Bento23]
+as well as
 
 $$
 \begin{equation}
@@ -65,26 +65,25 @@ $$
 \end{equation}
 $$
 
-Substituting these into the string frame action and letting $e^{\Phi_0}$ be denoted by $g_s$, we find the Einstein frame action
+Substituting these into the string frame action, we find the Einstein frame action
 
 $$
 \begin{equation}
 \begin{aligned}
-2\kappa_{10}^2g_s^2S_{IIB}
-&=\int d^{10}x\sqrt{-g}\left[
+2\kappa_{10}^2 S_{IIB}
+&=\frac{1}{e^{2\Phi_0}}\int d^{10}x\sqrt{-g}\left[
 R-\frac{1}{2}\frac{\partial\tau\partial\bar\tau}{\tau_2^2}
 \right]\\
-&-\frac{g_s}{2}\int d^{10}x\sqrt{-g}\left[
+&-\frac{1}{2 e^{\Phi_0}}\int d^{10}x\sqrt{-g}\left[
 e^{-\Phi}|H_3|^2+e^\Phi|\tilde{F}_3|^2
 \right]\\
-&-g_s^2\left[\frac{1}{4}\int d^{10}x\sqrt{-g}
+&-\frac{1}{4}\int d^{10}x\sqrt{-g}
 |\tilde F_5|^2
-+\frac{1}{2}\int C_4\wedge H_3\wedge F_3\right].
+-\frac{1}{2}\int C_4\wedge H_3\wedge F_3.
 \end{aligned}
 \end{equation}
 $$
 
-We note that above we adopted the convention where $\Phi_0 \neq 0$, below is an alternative convention.
 
 ### Alternative convention (Polchinski)
 
@@ -135,5 +134,7 @@ $$ -->
 ## References
 
 [^Polchinski98]: J. Polchinski, *String Theory, Volume 2: Superstring Theory and Beyond*, Cambridge University Press (1998).
+
+[^BBS07]: K. Becker, M. Becker, and J. H. Schwarz, *String Theory and M-Theory: A Modern Introduction*, Cambridge University Press (2007).
 
 [^Bento23]: B. V. Bento, D. Chakraborty, S. Parameswaran, and I. Zavala, *A guide to frames, 2 $\pi$’s, scales and corrections in string compactifications* (2023), [arXiv:2301.0517 [hep-th]](https://arxiv.org/abs/2301.05178).
