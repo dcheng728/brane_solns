@@ -1,0 +1,68 @@
+\section{The D3 Brane and Self-Duality}
+The low-energy dynamics of a D3 brane in a given type IIB supergravity background are described by the Dirac-Born-Infeld action supplemented by a Wess-Zumino term, with background metric, NSNS and RR fields entering through the appropriate pullbacks to the brane worldvolume \cite{Leigh:1989jq,Polchinski:1998rr}.
+In particular, the bosonic sector of the D3 low-energy action takes the form \cite{Tseytlin:1996it}
+\begin{equation}
+\begin{aligned}
+S_{D3}
+=\int d^4x
+\Bigg[
+&\sqrt{-\det (\hat{g}_{mn} + e^{-\hat \Phi/2} \mathfrak{F}_{mn})}\\
+&+\frac{1}{8}\epsilon^{mnkl}
+\Bigg(
+\frac{1}{3}\hat C_{mnkl}
++2\hat C_{mn}\mathfrak{F}_{kl}
++C\mathfrak{F}_{mn}\mathfrak{F}_{kl}
+\Bigg)
+\Bigg]
++\text{higher order},\\
+&\mathfrak{F}_{mn} \equiv\partial_m A_n-\partial_n A_m+\hat B_{mn}.
+\end{aligned}
+\label{D3 action}
+\end{equation}
+Here hats denote bulk fields pulled back onto the brane worldvolume, and $m,n$ label worldvolume indices.
+The vector $A_m$ is the dynamical gauge potential on the brane worldvolume.
+To perform worldvolume electromagnetic duality transformation, one introduces a Lagrange multiplier
+\begin{equation}
+\Lambda^{mn} = \epsilon^{mnkl}\partial_k \tilde A_l,
+\end{equation}
+where $\tilde A_l$ is the dual vector potential, with field strength $\tilde F_{pq}$.
+Then after $F_{mn}$ is eliminated with the field equations of $\Lambda^{mn}$, one is left with the dual field $\tilde{F}_{mn}$.
+It was shown \cite{Tseytlin:1996it} that as one performs the electromagnetic duality transformation, the D3 action \eqref{D3 action} is invariant only if one simultaneously performs the following SL(2, Z) bulk transformation:
+\begin{equation}
+e^{-\Phi}\to \frac{1}{e^{-\Phi}+e^\Phi C^2},\quad
+C\to -\frac{C e^\Phi}{e^{-\Phi}+e^\Phi C^2},\quad
+B_{\mu\nu} \to C_{\mu\nu},\quad
+C_{\mu\nu}\to -B_{\mu\nu}.
+\end{equation}
+Since the action is also invariant under the axion shift $C \to C+1$, the symmetry is the full SL(2, Z). Each worldvolume SL(2, Z) transformation thus maps directly to a bulk type IIB duality transformation.
+The bulk generator $T: \tau\to \tau+1$ corresponds to $\theta\to \theta + 2\pi$ on the D3 worldvolume, for the complexified coupling $\tau_{YM}\equiv \frac{\theta}{2\pi} + \frac{4\pi i}{g^2}$.
+Meanwhile, the bulk generator $S:\tau\to-1/\tau$ is mapped to the electromagnetic duality transformation on the worldvolume field strengths.
+Thus the SL(2, Z) duality of $\mathcal N=4$ SYM on the D3 worldvolume is intimately linked to the type IIB SL(2, Z) duality, which acts on the bulk NSNS and RR fields. 
+
+For comparison, we recall a similar story on the type IIA side.
+The analogy is not direct because there is no analogue of the SL(2, Z) duality in the type IIA theory.
+The D2 action can be written as \cite{Schmidhuber:1996fy,Tseytlin:1996it}
+\begin{equation}
+S_{D2}
+=\int d^3x \sqrt{-e^{-2\hat{\Phi}}\det (\hat{g}_{mn}+\mathfrak{F}_{mn})}
++\frac{1}{6}\epsilon^{mnl}[\hat C_{mnl}-3\hat C_m\mathfrak{F}_{nl}],\quad
+\mathfrak{F}_{mn}\equiv 2\partial_{[m}A_{n]}-\hat B_{mn}.
+\end{equation}
+By performing the worldvolume vector-scalar duality transformation, we exchange the worldvolume vector $A_n$ for a scalar $\partial_n y$, and the action becomes
+\begin{equation}
+S_{D2}
+=\int d^3 x\sqrt{-\hat{\mathcal{G}}} + \frac{1}{6}\epsilon^{mnl}\hat{\mathcal C}_{mnl},
+\end{equation}
+with
+\begin{equation}
+\hat{\mathcal G}_{mn} \equiv e^{-2\hat\Phi/3}\hat g_{mn}  + e^{4\hat\Phi/3}(\hat C_m-\partial_my)(\hat C_n-\partial_ny),\quad
+\hat{\mathcal C}_{mnl}\equiv \hat{C}_{mnl} + 3 \hat{B}_{mn}\partial_l y.
+\end{equation}
+We see that if one interprets the worldvolume scalar $y$ as a 10d scalar pulled back onto the D2 worldvolume, then this is precisely the M2 action directly reduced on $S_1$ \cite{Bergshoeff:1987cm,Tseytlin:1996it,Schmidhuber:1996fy}.
+
+Given the fundamental role of the M2 brane in 11d supergravity, this analogy suggests that some 3-brane might play an analogous role in a speculative 12d effective description of the type IIB theory.
+A simple degrees of freedom count suggests that the D3 has enough fields to be embedded in 12d.
+However, its two on-shell bosonic degrees of freedom arise from a gauge field, which makes a direct interpretation in terms of embedding coordinates difficult.
+One can perform a double dimensional reduction of the D3 so that the vector decomposes into two scalars \cite{Jatkar:1996np,Kar:1997cx}, but this simply reproduces the standard relation between M-theory on $T_2$ and 9d supergravity \cite{Green:1997as}.
+
+

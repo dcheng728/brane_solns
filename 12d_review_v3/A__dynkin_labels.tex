@@ -1,0 +1,53 @@
+\section{Dynkin Labels}
+\label{sec:Dynkin Label Conventions}
+Our convention for Dynkin labels is illustrated with the $B_4$ and $D_4$ diagrams
+\begin{equation}
+\begin{aligned}
+[n_1, n_2, n_3, n_4]_{SO(9)} &= \dynkin[labels={n_1,n_2,n_3,n_4}, scale = 2]{B}{4},\\
+[n_1, n_2, n_3, n_4]_{SO(8)} &= \dynkin[labels={n_1,n_2,n_3,n_4}, scale = 2]{D}{4}.
+\end{aligned}
+\end{equation}
+With this convention, below we tabulate the common representations of the orthogonal groups.
+\begin{center}
+\begin{tabular}{p{0.35\textwidth} p{0.25\textwidth} p{0.25\textwidth}}
+\toprule
+\multicolumn{3}{c}{\textbf{Representations of } $SO(2n)$} \\
+\midrule
+\textbf{Dynkin Label} & \textbf{Dimension} & \textbf{Field} \\
+\midrule
+$[0\,0\ldots 0]$                     & $1$                    & Scalar \\
+$[1\,0\ldots 0]$                     & $2n$                   & 1-form \\
+$[0\,1\,0\ldots 0]$                  & $\binom{2n}{2}$        & 2-form \\
+1 in $k$-th position                 & $\binom{2n}{k}$        & $k$-form \\
+$[0\ldots 0\,1\,1]$                  & $\binom{2n}{n-1}$      & $(n-1)$-form \\
+$[0\ldots 0\,2\,0] + [0\ldots 0\,0\,2]$  
+                                     & $\binom{2n}{n}$        & SD and ASD $n$-form \\
+$[0\ldots 0\,1\,0]$                  & $2^{n-1}$            & LH Spinor \\
+$[0\ldots 0\,0\,1]$                  & $2^{n-1}$            & RH Spinor \\
+$[1\,0\ldots 0\,1\,0]$               & $(2n-1)2^{n-1}$      & LH Gravitino \\
+$[1\,0\ldots 0\,0\,1]$               & $(2n-1)2^{n-1}$      & RH Gravitino \\
+$[2\,0\ldots 0]$                     & $n(2n+1)-1$            & Graviton \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{1em}
+
+\begin{center}
+\begin{tabular}{p{0.35\textwidth} p{0.25\textwidth} p{0.25\textwidth}}
+\toprule
+\multicolumn{3}{c}{\textbf{Representations of } $SO(2n+1)$} \\
+\midrule
+\textbf{Dynkin Label} & \textbf{Dimension} & \textbf{Field} \\
+\midrule
+$[0\,0\ldots 0]$                     & $1$                    & Scalar \\
+$[1\,0\ldots 0]$                     & $2n+1$                 & 1-form \\
+$[0\,1\,0\ldots 0]$                  & $\binom{2n+1}{2}$      & 2-form \\
+1 in $k$-th position                 & $\binom{2n+1}{k}$      & $k$-form \\
+$[0\ldots 0\,0\,2]$                  & $\binom{2n+1}{n}$      & $n$-form \\
+$[0\ldots 0\,0\,1]$                  & $2^{n}$              & Spinor \\
+$[1\,0\ldots 0\,1]$                  & $(2n)2^{n}$          & Gravitino \\
+$[2\,0\ldots 0]$                     & $n(2n+3)$              & Graviton \\
+\bottomrule
+\end{tabular}
+\end{center}

@@ -1,0 +1,294 @@
+\section{Effective Actions and their 12d Consistencies}
+The type IIB supergravity \eqref{Einstein frame IIB action} is understood as the low energy effective field theory of the type IIB string theory.
+Under higher-derivative and stringy corrections, the SL(2, R) symmetry is believed to be broken to the discrete group SL(2, Z) \cite{Schwarz:1995dk}.
+If the type IIB theory admits certain 12d interpretation, such interpretation, and its implications on effective actions, must be consistent with the type IIB effective action and SL(2, Z).
+
+In this section, we review the current understandings in SL(2, Z) as arising from higher-derivative corrections, and their 12d interpretations.
+We will begin by reviewing how one obtains higher-derivative corrections in supergravity from perturbative string theory, most importantly how the SL(2, Z) invariance arises non-perturbatively from the D(-1) backgrounds.
+Then we discuss current understandings on 12d interpretations of SL(2, Z), and identify certain directions in advancing them. 
+We conclude by discussing a potential parallel, between type IIA and type IIB, where the D0 and D(-1) backgrounds are effectively accounted for by loops of higher-dimensional KK modes.
+
+\subsection{Recap: Perturbative String Theory and Higher-Derivative Supergravity}
+In principle, one can obtain the higher derivative supergravity effective actions through Feynman diagrams.
+In practice, they are obtained from string amplitudes. 
+We briefly recap how this is done.
+
+There are two perturbative parameters in string theory: $\alpha',g_s$.
+\begin{itemize}
+    \item $\alpha'=l_s^2$ controls low-energy expansion. Small $\alpha'$ is the particle limit of string theory, where we enter field theory (supergravity) whose higher derivatives appear accompanied by $\alpha'$.
+    \item $g_s$ (string coupling) counts the genus of the string worldsheet in string path-integrals. Any given string amplitude is a summation over worldsheet path-integrals of all genus
+    \begin{equation}
+        \mathcal A_n(\alpha') = \sum_{g=0}^\infty g_s^{2g-2+n} \mathcal A_n^{(g)}(\alpha').
+    \end{equation}
+\end{itemize}
+The tree-level 4-point function in the type IIA and type IIB string theories is the Virasoro-Shapiro amplitude \cite{Green:2012oqa}, for the symmetric traceless massless modes in the NSNS sector of the string, they take the following form \cite{Green:1999pv}
+\begin{equation}
+\mathcal A_4
+=-t_8^{\mu_1...\mu_8}t_8^{\nu_1...\nu_8}
+\prod_{r=1}^4\zeta^{(r)}_{\mu_{2r}\nu_{2r}}k^{(r)}_{\mu_{2r-1}}k^{(r)}_{\nu_{2r-1}}
+\times \frac{\alpha^{\prime 4}}{g_s^2}
+\times\frac{64}{\alpha^{\prime 3}stu}
+\frac{\Gamma[1-\tfrac{\alpha'}{4}s]\Gamma[1-\tfrac{\alpha'}{4}t]\Gamma[1-\tfrac{\alpha'}{4}u]}{\Gamma[1+\tfrac{\alpha'}{4}s]\Gamma[1+\tfrac{\alpha'}{4}t]\Gamma[1+\tfrac{\alpha'}{4}u]}
+\end{equation}
+where $s,t,u$ are Mandelstam variables, $\zeta^{(i)}_{\mu\nu}$ is the polarization of the symmetric traceless modes on a closed string, they may also be interpreted as polarizations of the spacetime graviton $h^{(i)}_{\mu\nu}$ in $g_{\mu\nu}=\eta_{\mu\nu} + h_{\mu\nu}$. 
+The symmetry of $\zeta_{\mu\nu}$ implies $t_8^{\mu_1...\mu_8}t_8^{\nu_1...\nu_8}$ is symmetric under $\mu_i\leftrightarrow\nu_i$.
+Its explicit form can be found in \cite{Schwarz:1982jn,Liu:2025uqu}.
+We can expand the $t_8t_8$ contraction explicitly and put back the momenta as derivatives
+\begin{equation}
+\begin{aligned}
+&t^{\mu_1...\mu_8}t^{\nu_1...\nu_8}
+[\zeta^{(1)}_{\mu_2\nu_2}k^{(1)}_{\mu_1}k^{(1)}_{\nu_1}]
+[\zeta^{(2)}_{\mu_4\nu_4}k^{(2)}_{\mu_3}k^{(2)}_{\nu_3}]
+[\zeta^{(3)}_{\mu_6\nu_6}k^{(3)}_{\mu_5}k^{(3)}_{\nu_5}]
+[\zeta^{(4)}_{\mu_8\nu_8}k^{(4)}_{\mu_7}k^{(4)}_{\nu_7}]\\
+&=t^{\mu_1...\mu_8}t^{\nu_1...\nu_8}
+[h^{(1)}_{\mu_2\nu_2,\mu_1\nu_1}]
+[h^{(2)}_{\mu_4\nu_4,\mu_3\nu_3}]
+[h^{(3)}_{\mu_6\nu_6,\mu_5\nu_5}]
+[h^{(4)}_{\mu_8\nu_8,\mu_7\nu_7}].
+\end{aligned}
+\end{equation}
+Using $g_{\mu\nu} = \eta_{\mu\nu}+h_{\mu\nu}$, one finds
+\begin{equation}
+\begin{aligned}
+R_{\mu\alpha\nu\beta}
+&=\frac{1}{2}[-h_{\alpha\beta,\mu\nu}+h_{\alpha\nu,\mu\beta}]
+-\frac{1}{2}[-h_{\mu\beta,\alpha\nu}+h_{\mu\nu,\alpha\beta}]
++ O(h^2)\\
+&=-2h_{\big[\alpha[\beta,\mu \big]\nu]}  + O(h^2).
+\end{aligned}
+\end{equation}
+Putting back the $O(h^2)$ in the Riemann tensor, we find\footnote{
+It is conventional to define the following contraction
+\begin{equation}
+t_8t_8 R^4\equiv
+t_8^{\mu_1...\mu_8}t_8^{\nu_1...\nu_8}
+R_{\mu_2\nu_2\mu_1\nu_1}
+R_{\mu_4\nu_4\mu_3\nu_3}
+R_{\mu_6\nu_6\mu_5\nu_5}
+R_{\mu_8\nu_8\mu_7\nu_7}.
+\end{equation}
+}
+\begin{equation}
+t_8t_8h^4=t_8t_8R^4 + O(h^5).
+\end{equation}
+Now we can write the string amplitude with spacetime fields, which amounts to the following effective Lagrangian
+\begin{equation}
+\mathcal L_4\supset
+-t_8t_8 R^4\frac{4}{\alpha^{\prime 3}stu}
+\frac{\Gamma[1-\tfrac{\alpha'}{4}s]\Gamma[1-\tfrac{\alpha'}{4}t]\Gamma[1-\tfrac{\alpha\prime}{4}u]}{\Gamma[1+\tfrac{\alpha'}{4}s]\Gamma[1+\tfrac{\alpha'}{4}t]\Gamma[1+\tfrac{\alpha'}{4}u]}
++O(h^5).
+\end{equation}
+The $t_8t_8R^4$ has no dependence on $\alpha'$, so by expanding the fraction of Gamma functions in $\alpha'$ we obtain the low energy effective action of the type II string theory.
+Going into the Einstein frame\footnote{
+One goes into the Einstein frame by replacing $g^{(S)}_{\mu\nu}=g_s^{1/2}g^{(E)}_{\mu\nu}$ with other terms kept intact. 
+One then also needs to account for the $\sqrt{-g^{(S)}}$ multiplying the Lagrangian, as well as the inverse metric for contractions on the mandelstam variables.
+}
+we find\footnote{
+We had also used
+\begin{equation}
+\ln\Gamma(1-x)-\ln\Gamma(1+x) = 2\sum_{m\ge0}\frac{\zeta(2m+3)}{2m+3}x^{2m+3},
+\end{equation}
+\begin{equation}
+\frac{s^3+t^3+u^3}{stu}=3,\quad
+\frac{s^5+t^5+u^5}{stu}=\frac{5}{2}(s^2+t^2+u^2),\quad
+\frac{s^7+t^7+u^7}{stu}=\frac{7}{4}(s^2+t^2+u^2)^2.
+\end{equation}
+} \cite{Green:1999pv}
+\begin{equation}
+\begin{aligned}
+\mathcal{A}^{(E)}_4
+=-4\pi^7(t_8t_8R^4)(\alpha')^4
+\Bigg[&\frac{4^3}{\alpha^{\prime 3}stu}+2\zeta(3)\tau_2^{3/2}+
+\zeta(5)\tau_2^{5/2}\frac{\alpha^{\prime 2}(s^2+t^2+u^2)}{4^2}\\
+&+\frac{2}{3}\zeta(3)^2\tau_2^3\frac{\alpha^{\prime 3}(s^3+t^3+u^3)}{4^3}
+\Bigg] +O(\alpha^8).
+\end{aligned}
+\end{equation}
+This is the genus-zero 4-graviton effective action, common between type IIA and type IIB, expanded in $\alpha'$.
+The $\alpha'$ parameter appears with zeta functions, while the kinematics has, at leading order, a nonlocal pole
+\begin{equation}
+\frac{t_8t_8 R^4}{stu}
+\end{equation}
+trailed by local operators
+\begin{equation}
+t_8t_8 R^4,\quad
+t_8t_8 R^4(s^2+t^2+u^2),\quad
+t_8t_8 R^4(s^3+t^3+u^3),\quad
+t_8t_8 R^4(s^2+t^2+u^2)^2.
+\end{equation}
+The poles of the Virasoro-Shapiro amplitude occur at $s,t,u=0$. These correspond to massless exchanges and reproduce exactly the pole structure expected from the $s,t,u$-channel diagrams generated by the cubic graviton vertices.
+The nonlocal $1/stu$ contribution is therefore attributed to the tree-level supergravity dynamics.
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.75\linewidth]{image.png}
+%     \caption{Schematic illustration of how $\frac{1}{stu}$ is attributed to tree-level amplitudes.}
+%     \label{fig:stu}
+% \end{figure}
+By contrast, the trailing contributions are local in the low-energy expansion.
+They are attributed to higher derivative corrections, usually accounted for by introducing terms denoted $D^{2k}R^4$, defined appropriately to absorb $(s^a+t^a+u^a)^b$.
+The $t_8t_8R^4$ kinematics is often accompanied by $\epsilon_{10}\epsilon_{10} R^4$, however the $\epsilon_{10}\epsilon_{10}$ contributions vanish at 4-point and begins to contribute at 5-point amplitudes.
+
+% It is also standard to define the combination
+% \begin{equation}
+% R^4 = t_8t_8 R^4 + \epsilon_{10}\epsilon_{10}R^4
+% \end{equation}
+% as the $\epsilon_{10}\epsilon_{10}$ contraction accompanies the $t_8 t_8$
+
+The next order correction comes from genus-1 amplitudes \cite{Green:1999pv}.
+It is also common in both type IIA and IIB theories, and comes with the $t_8 t_8 R^4$ factor. 
+Combining the genus-0 and genus-1 amplitudes, we have the local effective actions
+\begin{equation}
+\mathcal{A}_4 = -4\pi^7 (t_8 t_8 R^4)(\alpha')^4
+\left[
+2 \zeta(3)\tau_2^{3/2}
++\frac{2\pi^2}{3}\tau_2^{-1/2}
+\right]
++O(\alpha^{\prime 5}).
+\end{equation}
+Non-renormalization theorems suggest the perturbative corrections to $R^4$ terminate here at one-loop \cite{Green:1997tv,Kehagias:1997cq}.
+Note that $\mathcal{A}_4$ as given above no longer has SL(2, R) symmetry. 
+In fact, the SL(2, R) symmetry of the type IIB supergravity is only present at the two-derivative level together with corrections that do not depend on $\tau$.
+As soon as higher-derivative terms with non-trivial dependence on $\tau$ enter, SL(2, R) is explicitly broken, with the discretized SL(2, Z) restored when contributions from terms that are non-perturbative in $g_s$ are included. 
+
+In particular, the type IIB string path integral requires summing over the D(-1) backgrounds \eqref{D-1 background}.
+The single and multi-charged D(-1) backgrounds give rise to non-perturbative $R^4$ corrections \cite{Green:1997tv,Kehagias:1997cq} of the form
+\begin{equation}
+\mathcal A_{D(-1)}\sim (\alpha')^4t_8t_8R^4\sum_{m,n\ge1}\left(\frac{m}{n^3}\right)^{1/2}
+(e^{2\pi i mn\tau}+e^{-2\pi i mn\bar{\tau}})
+\left(
+1+\sum_{k=1}^\infty(4\pi mn\tau_2)^{-k}\frac{\Gamma[k-1/2]}{\Gamma[-k-1/2]k!}
+\right).
+\end{equation}
+When combined with the genus-0 and genus-1 perturbative contributions, these D(-1) terms assemble into the modular-invariant, non-holomorphic Eisenstein series
+\begin{equation}
+\begin{aligned}
+E_{3/2}(\tau,\bar\tau)
+&=\sum_{(m,n)\neq(0,0)}\frac{\tau_2^{3/2}}{|m+n\tau|^3}\\
+&=2\zeta(3)\tau_2^{3/2}+\frac{2\pi^2}{3}\tau_2^{-1/2}\\
+&\quad+4\pi^{3/2}\sum_{m,n\ge1}\left(\frac{m}{n^3}\right)^{1/2}
+(e^{2\pi i mn\tau}+e^{-2\pi i mn\bar{\tau}})
+\left(
+1+\sum_{k=1}^\infty(4\pi mn\tau_2)^{-k}\frac{\Gamma[k-1/2]}{\Gamma[-k-1/2]k!}
+\right),
+\end{aligned}
+\end{equation}
+thereby restoring the SL(2, Z) duality symmetry.
+
+\subsection{12d Effective Corrections}
+From our previous discussion, the type IIB 4-graviton effective action takes on the following schematic form \cite{Kehagias:1997cq,Green:1997tv}
+\begin{equation}
+L^{(3)} \propto E_{3/2}(\tau,\bar\tau)(t_8t_8 + \epsilon_{10}\epsilon_{10})R^4
+\label{10d IIB 4-graviton effective action}
+\end{equation}
+The rest of the 4-point effective action consists of axio-dilaton and is SL(2, Z) invariant, they can be found in \cite{Policastro:2006vt,Policastro:2008hg}.
+To produce the 10d effective action \eqref{10d IIB 4-graviton effective action},
+a ``12d effective action" had been proposed as \cite{Minasian:2015bxa} 
+\begin{equation}
+\mathfrak{L}^{(3)} \propto E_{3/2}(\tau,\bar\tau)(\mathfrak{t}_8\mathfrak{t}_8 +{\varepsilon}_{12}{\varepsilon}_{12})\mathcal{R}^4,
+\label{Liu 12d effective action}
+\end{equation}
+where $\mathfrak{t}_8$ is a 12d uplift of $t_8$\footnote{
+The definition of $\mathfrak{t_8}$ can be found in \cite{Minasian:2015bxa}, it involves contractions of the 12d metric \eqref{12d metric ansatz}.},
+and $\varepsilon_{12}$ is the 12d Levi-Civita tensor.
+It was shown that \eqref{Liu 12d effective action} reduced on the 12d metric ansatz \eqref{12d metric ansatz} produces, at 4-point, the effective action in the axio-dilaton sector \cite{Policastro:2006vt,Policastro:2008hg}.
+However, it was later shown that \eqref{Liu 12d effective action} is inconsistent with 10d type IIB amplitudes at 5-point \cite{Liu:2025uqu}.
+
+We now comment on certain limitations of the proposed 12d effective action \eqref{Liu 12d effective action} and outline possible directions forward.
+First, $\epsilon_{10}\epsilon_{10}R^4$ vanishes at 4-point, so the result of \cite{Minasian:2015bxa} on $\epsilon_{10}\epsilon_{10}R^4$ was that $\varepsilon_{12}\varepsilon_{12}\mathcal R^4$ vanishes at 4-point as well, after reducing $\mathcal G_{MN}$ to $g_{mn},\phi,C$.
+The correspondence would be significantly stronger if non-vanishing components of $\epsilon_{10}\epsilon_{10}R^4$ could be verified, e.g. for 5-point amplitudes.
+Unfortunately, this does not occur \cite{Liu:2025uqu}.
+
+A second issue concerns the interpretation of the $t_8t_8 R^4$ term.
+The $t_8$ tensor is originally defined by traces over the gamma matrices of SO(8) \cite{Schwarz:1982jn}, which is the little group of SO(9, 1).
+Accordingly, the kinematic structure encoded by $t_8t_8R^4$ is that of the 8d space transverse to a massless momentum.
+In the 4-graviton amplitude, the kinematic structure of $t_8t_8 R^4$ is thus determined solely by the 8 transverse components of the graviton polarizations and momenta, rather than all 10.
+For example, one is able to extract $t_8t_8 R^4$ from 9d amplitudes obtained by compactifying M-theory on a torus \cite{Green:1997as}.
+Consequently, when examining non-vanishing 4-graviton $t_8t_8R^4$ amplitudes, it is ambiguous whether one is investigating the established relation between 11d and 9d, or between 12d and 10d.
+By contrast, $\epsilon_{10}\epsilon_{10}R^4$ is intrinsically 10d.
+Thus, to strengthen the proposed relation between 12d and 10d amplitudes, it is worth investigating how one may capture $\epsilon_{10}\epsilon_{10}R^4$ from 12d.
+
+Lastly, in 12d $\tau$ should not show up. 
+The point in repackaging the type IIB theory and its corrections in a 12d-covariant way is to geometrize $\tau$ as part of the metric, so one should be alarmed to find the need to put in SL(2, Z) covariance by hand, e.g. via $E_{3/2}(\tau,\bar\tau)$.
+Perhaps a more appropriate 12d amplitude would be
+\begin{equation}
+\mathfrak{L}^{(3)} \propto f(\mathcal G_{MN},\mathcal R_{MNPQ}).
+\end{equation}
+Then upon reduction on a torus, 2 of the 12 directions are singled out, we are thus able to distinguish $\tau$ from the rest of the metric, and obtain the modular function and $R^4$
+\begin{equation}
+f(\mathcal G_{MN},\mathcal R_{MNPQ})
+= E_{3/2}(\tau,\bar\tau)(t_8t_8 + \epsilon_{10}\epsilon_{10})R^4 + ....
+\end{equation}
+This alternative, more general route may be worth exploring.
+One may look into functions that admit expansions over $E_{3/2}$, or consider possible 12d interpretations of the IIB 5-point amplitudes.
+The type IIB amplitudes, starting at 5-points, famously contain the ``U(1)-violating terms". This has been identified as a primary obstruction in finding 12d uplifts of effective actions \cite{Liu:2025uqu}.
+It would also be illuminating to elucidate how this obstruction shall be interpreted, or worked around, in 12d.
+% In particular, we will look into functions that admit expansions over Eisenstein series $E_{3/2}(\tau,\bar\tau)$.
+% We may also consider possible 12d interpretations of the critical IIB 5-point amplitudes.
+% In this project, we will also seek to understand such U(1)-obstruction.
+
+
+
+
+
+
+\subsection{KK-modes and D-brane Backgrounds}
+Previously we argued that the type IIB effective action at 5-point is critical in validating the 12d repackaging of the 10d effective actions.
+The significance of the 5-point amplitudes is further elevated in a separate but closely related context of the type IIB effective actions, namely the role of the supergravity KK-modes as an effective repackaging of the D0 and D(-1) backgrounds in string path integrals. 
+
+We begin in 12d, with coordinates ($x^\mu,y^1,y^2)$, after identifying
+\begin{equation}
+y^1\to y^1+2\pi R,\quad
+(y^1,y^2)\to (y^1+2\pi R\tau_1,y^2+2\pi R\tau_2)
+\end{equation}
+for some radius $R$, we can Fourier expand a scalar in 12d on $T_2$:
+\begin{equation}
+\Phi(x^\mu,y^1,y^2)
+=\sum_{m,n}\Phi_{m,n}(x^\mu) \times\exp
+\left[
+\frac{i}{R\tau_2}\left(m\tau_2y^1 + (n-m\tau_1)y^2\right)
+\right].
+\end{equation}
+The massive modes are
+\begin{equation}
+[-\nabla^2_{10}-\nabla^2_2]\phi_{p,m,n}
+=\left(p_{10}^2+M_{m,n}^2\right)\phi_{p,m,n},\quad
+M^2_{m,n} 
+= \frac{m^2}{R^2}+\frac{(n-m\tau_1)^2}{R^2\tau_2^2}
+=\frac{|n-m\tau|^2}{R^2\tau_2^2}.
+\end{equation}
+For 4-point amplitudes in 10d, we may evaluate contributions from loops of the infinite tower of massive KK-modes using Schwinger proper time
+\cite{Green:1997as,Beccaria:2023hhi}
+\begin{equation}
+\begin{aligned}
+\mathcal{A}_4
+\propto \sum_{n,m}\int_{\Lambda^{-2}}^\infty
+\frac{d\lambda}{\lambda^{3/2}}
+e^{-\lambda \frac{|n+m\tau|^2}{R^2\tau_2^2}}
+P(s,t;\lambda),\quad
+P(s,t;\lambda)
+=\int_0^1d\rho_3 \int_0^{\rho_3}d\rho_2\int_0^{\rho_2} d\rho_1e^{-\tau M(s,t;\rho)},\\
+M(s,t;\rho)=s\rho_1\rho_2+t\rho_2\rho_3+u\rho_1\rho_3 + t(\rho_1-\rho_2),\quad
+s+t+u=0.
+\end{aligned}
+\label{4-point Schwinger parameter}
+\end{equation}
+To evaluate $\mathcal{A}_4$ above, one performs Poisson resummations followed by zeta-function renormalization, and a low-energy expansion over $s,t,u$.
+But there is a shortcut of adding a spectator dimension to known results of 11d amplitudes on a torus \cite{Green:1997as}.
+Either way, one finds
+\begin{equation}
+\begin{aligned}
+\mathcal{A}_4
+&\propto  E_{3/2}(\tau,\bar\tau)(s^2+t^2+u^2)+...\\
+&\sim E_{3/2}(\tau,\bar\tau)t_8t_8R^4+....
+\end{aligned}
+\end{equation}
+Viewed from string theory, this is the effective action at genus-1 with the D(-1) background.
+In other words, the tower of KK-modes on a torus acts as a surrogate for the D(-1) background.
+This is in parallel with the 10d type IIA supergravity, where the KK modes on $S_1$ running in a loop produce the D0 background in the type IIA strings \cite{Green:1997as}.
+
+We do not wish to overclaim.
+The point we are making is that what used to be a relation between 11d and 9d \cite{Green:1997as} is perfectly compatible with that between 12d and 10d.
+But this might just arise from $t_8t_8 R^4$ not being an intrinsically 10d term.
+It is worth exploring amplitudes that clearly signal 10d momenta, e.g. $\epsilon_{10}\epsilon_{10}R^4$ at 5-point.
+One may attempt to evaluate KK-loop contributions to 5-point amplitudes, using the 5-point Schwinger proper time formula analogous to \eqref{4-point Schwinger parameter}, as given in \cite{Minasian:2015bxa,Green:1999by,Liu:2022bfg}.
