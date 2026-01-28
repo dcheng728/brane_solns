@@ -22,9 +22,14 @@
       "command": "biber",
       "args": [
         "--output-directory=%OUTDIR%",
+<<<<<<< HEAD
         "%OUTDIR%/%DOCFILE%"
       ],
       "env": {}
+=======
+        "%DOCFILE%"
+      ]
+>>>>>>> c311a2e9d1eaa9d2c3119a72a7620d6ccf55e970
     }
   ],
   "latex-workshop.latex.recipes": [
