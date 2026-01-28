@@ -1,0 +1,229 @@
+\section{Type IIB and its Puzzles}
+We set the stage for the type IIB supergravity by writing down its spectrum, action and puzzles.
+Early on, it was understood that to have a unitary, interacting theory of gravity, the particles can have at most spin 2 \cite{Weinberg:1964ew,Weinberg:1965nx}, which limits the amount of supercharges to be at most 32 \cite{Nahm:1977tg}. 
+The most notable theories with 32 supercharges are the 11d, type IIA, and type IIB supergravities. 
+These theories are believed to be the low-energy limits of the corresponding membrane and string theories \cite{Green:2012oqa}.
+
+
+The on-shell degrees of freedom of the 11d supergravity multiplet \cite{Nahm:1977tg,Cremmer1978} furnish representations of the little group SO(9), and consist of a gravitino, a graviton, and a 3-form potential.
+It is considered maximal\footnote{
+Maximal here means (1) the multiplet contains the highest number of supercharges: 32 (2) there is no consistent supergravity with spin $\le 2$ in any dimension higher than 10+1, as shown by \cite{Nahm:1977tg}.
+}. 
+The 11d supergravity multiplet can be given with SO(9) Dynkin labels as\footnote{Our convention for Dynkin Labels is given in Appendix \ref{sec:Dynkin Label Conventions}}
+\begin{equation}
+G_{11} = [2000]_{SO(9)} + [0010]_{SO(9)} + [1001]_{SO(9)}.
+\label{11d SUGRA multiplet}
+\end{equation}
+To go to 10d, one decomposes SO(9) representations into those of SO(8)
+\begin{equation}
+\begin{aligned}
+[2000]_{SO(9)} &= [2000]_{SO(8)} + [1000]_{SO(8)}+[0000]_{SO(8)}\\
+[0010]_{SO(9)} &= [0011]_{SO(8)} + [0100]_{SO(8)}\\
+[1001]_{SO(9)} &= [1001]_{SO(8)} + [1010]_{SO(8)}+[0010]_{SO(8)}+[0001]_{SO(8)}.
+\end{aligned}
+\end{equation}
+Doing so one finds the type IIA multiplet in 10d (with SO(8) Dynkin labels)
+\begin{equation}
+\begin{aligned}
+G_{IIA} 
+&= \underbrace{[2000]+[0100]+[0000]}_{NSNS} + \underbrace{[0011] + [1000]}_{RR} + [1001] + [0010] + [1010] + [0001]\\
+&=([1000] + [0001]) \times ([1000] + [0010]).
+\end{aligned}
+\label{IIA multiplet}
+\end{equation}
+Remarkably, the type IIA multiplet \eqref{IIA multiplet} factorizes, as the product of two vector multiplets of different chirality in 10d.
+In this product, the bosonic fields are classified based on how they are obtained: the NSNS sector is that obtained by tensor product between two vectors, and the RR sector is that obtained by two spinors \cite{Polchinski:1998rr}.
+We note that the NSNS/RR distinction is not apparent when the IIA multiplet is viewed as dimensionally reduced from 11d supergravity, but only becomes distinguished when viewed as 10d tensor products.
+This is related to how membranes live naturally in 11d \cite{Bergshoeff:1987cm}, while strings live in 10d \cite{Green:2012oqa}, and the NSNS/RR classification has a stringy origin \cite{Polchinski:1995mt}.
+
+The factorization of the type IIA multiplet \eqref{IIA multiplet} leads one to construct the other supergravity multiplet with 32 supercharges, by instead taking the tensor product of two vector multiplets of the same chirality. This is the (chiral) type IIB supergravity multiplet
+\begin{equation}
+\begin{aligned}
+G_{IIB}
+&=\left([1000] + [0001]\right)^2\\
+&=\underbrace{[2000]+[0100] + [0000]}_{NSNS} 
++ \underbrace{[0002] + [0100] + [0000]}_{RR} + 2\cdot[1001] + 2\cdot[0010].
+\end{aligned}
+\end{equation}
+Unlike the type IIA supergravity theory, the type IIB theory in 10 dimensions is not known to follow from dimensional reduction of another.
+This is the first puzzle of the type IIB theory: does it have a higher dimensional origin?
+
+For theories with 32 supercharges, we demand a 128 + 128 split between the bosonic and fermionic degrees of freedom.
+At the multiplet level, the type IIB theory only admits the 4-form potential with self-dual 5-form field strength.
+Had the full 4-form been included in the IIB multiplet, the 128+128 split would be violated.
+This leads to the second major puzzle of the type IIB theory: 
+what is the dynamical mechanism behind self-duality of the 5-form field strength?
+This can not be imposed at the level of the action, e.g. via Lagrange multipliers\footnote{
+A simple way to see this is to start with a generic 4-form $C_4$ with field strength $F_5$, which has 70 on-shell degrees of freedom in 10d.
+Adding a Lagrange multiplier $\Lambda_4$ imposing $F_5 = * F_5$.
+The on-shell degrees of freedom now contains two 4-forms, the self-duality constraint only removes half, leaving again 70 degrees of freedom.
+}. 
+In practice, one imposes the self-duality as an additional equation or follow the PST formalism \cite{Pasti:1996vs, DallAgata:1997gnw, DallAgata:1998ahf}, which allows one to derive the self-duality condition from an action, by introducing extra scalar fields along with gauge invariance.
+
+Although the two scalars and 2-form potentials of the type IIB multiplet have different NSNS/RR origins, they mix under an SL(2, R) symmetry, believed to be broken to SL(2, Z) when stringy effects are accounted for \cite{Schwarz:1995dk}.
+The action of the type IIB supergravity \cite{Schwarz:1983qr,Howe:1983sra} in string frame \cite{Becker:2006dvp,ValeixoBento:2025emh} is\footnote{
+We will not follow the PST approach, and instead impose self-duality as an additional field equation.
+}
+\begin{equation}
+\begin{aligned}
+S_{IIB}
+&=S_{NSNS} + S_{RR} + S_{CS}\\
+&=\frac{1}{2\kappa_{10}^2}
+\int d^{10}x \sqrt{-g^{(S)}}
+\Bigg[
+e^{-2\Phi}\left(R + 4(\partial\Phi)^2-\frac{1}{2}|H_3|^2\right)
+-\left(\frac{1}{2}(\partial C)^2+\frac{1}{2}|\tilde F_3|^2+\frac{1}{4}|\tilde{F}_5|^2\right)
+\Bigg]\\
+&\quad -\frac{1}{4\kappa_{10}^2}\int C_4\wedge H_3\wedge F_3
+\end{aligned}
+\label{string frame IIB action}
+\end{equation}
+with $2\kappa_{10}^2=(2\pi)^7l_s^8=(2\pi)^7\alpha^{\prime 4}$, and
+\begin{equation}
+F_p = dC_{p-1}, \quad 
+H_3 = dB_2, \quad
+\tilde F_3 = F_3 - C H_3,\quad
+\tilde F_5 = * \tilde F_5 = F_5 - \frac12 C_2\wedge H_3 + \frac12 B_2\wedge F_3.
+\end{equation}
+
+The Einstein frame is defined as the conformal frame where the Einstein-Hilbert action appears in the canonical form, this only fixes the Einstein frame metric up to a conventional constant $\Phi_0$:
+\begin{equation}
+g_{mn}^{(S)} = e^{\frac{\Phi-\Phi_0}{2}}g^{(E)}_{mn}.
+\label{einstein frame and string frame relation}
+\end{equation}
+Despite the choice for the constant $\Phi_0$ being conventional, it leaves implications on the length units used in the string and Einstein frame, which we will clarify here.
+The subtlety arising from the two conventions discussed also applies to the type IIA theory.
+
+\paragraph{Einstein frame ($g^{(S)}_{mn} = e^{\Phi/2} g_{mn}^{(E)}$)}
+
+In this convention the type IIB supergravity action is \cite{Polchinski:1998rr,Becker:2006dvp}
+\begin{equation}
+\begin{aligned}
+2\kappa_{10}^2S_{\mathrm{IIB}}
+&=\int d^{10}x\sqrt{-g}
+\Bigg[\left(R-\frac{\partial\bar\tau\partial\tau}{2\tau_2^2}\right)-\frac{1}{2}\left(e^{-\Phi}|H_3|^2+e^{\Phi}|\tilde F_3|^2\right)-\frac{1}{4}|\tilde F_5|^2\Bigg]\\
+&\quad-\frac{1}{2}\int C_4\wedge H_3\wedge F_3,
+\label{einstein frame}
+\end{aligned}
+\end{equation}
+where $\tau= \tau_1 + i\tau_2 \equiv C + ie^{-\Phi}$. 
+Crucially, the change between the Einstein and string frame \eqref{einstein frame and string frame relation} is not a transformation induced by certain diffeomorphism $x \to x'(x)$, but a redefinition of solely the metric field which implicitly introduces a shift in unit length. 
+We now illustrate this idea using examples of mass measured in the two frames.
+
+Suppose in the Einstein frame we have an asymptotically flat spacetime
+\begin{equation}
+g^{(E)}_{mn}\big|_{r\to\infty} =\eta_{mn} + h_{mn},\quad h_{mn}\sim \frac{1}{r},
+\end{equation}
+then the ADM mass is given by \cite{Arnowitt:1960es,Harmark:2004ch,Townsend:1997ku}
+\begin{equation}
+M^{(E)} = \frac{1}{2\kappa_{10}^2} \int_{S_\infty^8} dS n^i(\partial_j h^j{}_i - \partial_i h^j{}_j).
+\end{equation}
+In the string frame, the spacetime is only asymptotically flat up to a constant factor:
+\begin{equation}
+g^{(S)}_{mn}\big|_{r\to\infty} = g_s^{1/2}(\eta_{mn} + h_{mn}).
+\end{equation}
+To compute the string frame ADM mass, we perform a constant scaling $x^m \to g_s^{1/4}x^m$ to put the metric in an asymptotically flat form, which induces
+\begin{equation}
+\int_{S_\infty^8}dS \to \int_{S_\infty^8}dS,\quad
+n^i \to n^i,\quad
+(\partial_j h^j{}_i - \partial_i h^j{}_j) \to g_s^{-1/4} (\partial_j h^j{}_i - \partial_i h^j{}_j).
+\end{equation}
+Hence
+\begin{equation}
+M^{(S)} = g_s^{-1/4}M^{(E)}.
+\end{equation}
+
+% For spacetimes that are not asymptotically-flat, the same mass relation can be illustrated with e.g. the Komar mass 
+% \footnote{
+% Suppose the Einstein frame spacetime admits a timelike Killing vector $\partial_t$, the Komar mass \cite{Wald:1984rg} is defined as
+% \begin{equation}
+% M^{(E)} = (const) \int_{S_\infty^8} *dk^{(E)}
+% \end{equation}
+% where $k^{(E)}$ is the one-form associated with the vector $\partial_t$, normalized such that $|k^{(E)}|^2= -1$ asymptotically. 
+% In the string frame after accounting for the factor of $g_s^{1/2}$ in the metric and levi-civita tensor, and defining the appropriate normalization for $k^{(S)}$ such that $|k^{(S)}|^2=-1$ asymptotically, one again finds $M^{(S)}=g_s^{-1/4}M^{(E)}$.
+% }.
+
+Thus one should be careful when comparing masses and lengths between the string and Einstein frame \footnote{For extended discussions, see \cite{ValeixoBento:2025emh} as well as chapter 10 and section 15.2.2 of \cite{Ortin:2015hya}.}.
+Alternatively, one can choose to work in another convention otherwise known as the ``modified Einstein frame" \cite{Ortin:2015hya}.
+
+\paragraph{Modified Einstein frame ($g^{(S)}_{mn} = e^{\frac{\Phi-\langle\Phi\rangle}{2}} g_{mn}$)}
+
+Here, the type IIB action is
+
+\begin{equation}
+\begin{aligned}
+2\kappa_{10}^2 S_{IIB}
+&=\int d^{10}x\sqrt{-g}\left[
+\frac{1}{g_s^2}\left(R-\frac{1}{2}\frac{\partial\bar\tau\partial\tau}{\tau_2^2}\right)
+-\frac{1}{2 g_s}\left(
+e^{-\Phi}|H_3|^2+e^\Phi|\tilde{F}_3|^2
+\right)
+-\frac{1}{4}|\tilde F_5|^2
+\right]\\
+&-\frac{1}{2}\int C_4\wedge H_3\wedge F_3.
+\end{aligned}
+\label{Modified Einstein frame}
+\end{equation}
+The benefit of setting $g^{(S)}_{mn} = e^{\frac{\Phi-\langle\Phi\rangle}{2}} g^{(E)}_{mn}$ is that the string and Einstein frame metrics agree at the vacuum, hence the unit length and mass will agree, but this is done at the cost of introducing $g_s$ into the action.
+In this review we follow the convention $g^{(S)}_{mn} = e^{\frac{\Phi-\langle\Phi\rangle}{2}} g^{(E)}_{mn}$.
+When we say Einstein frame action we are referring to \eqref{Modified Einstein frame}, and we will denote $g_{mn}^{(E)}$ with simply $g_{mn}$.
+
+
+One observes \eqref{Modified Einstein frame} possesses an SL(2, R) symmetry
+\begin{equation}
+\tau\to\frac{a\tau+b}{c\tau+d},\quad
+\begin{pmatrix}
+C_2\\ B_2
+\end{pmatrix}\to
+\begin{pmatrix}
+a & b \\ c&d
+\end{pmatrix}
+\begin{pmatrix}
+C_2\\ B_2
+\end{pmatrix},\quad
+\begin{pmatrix}
+a & b \\ c&d
+\end{pmatrix}\in SL(2, R).
+\label{IIB SL(2, R) transformations}
+\end{equation}
+This symmetry can be made manifest, by writing the action \eqref{Modified Einstein frame} in the SL(2, R)-covariant form \cite{ValeixoBento:2025emh,Weigand:2018rez}
+\begin{equation}
+2\kappa_{10}^2
+S_{IIB}
+=\frac{1}{g_s^2}\int d^{10}x\sqrt{-g}\left(
+R - \frac{\partial_m\tau \partial^m\bar\tau}{2(\text{Im} \tau)^2} - \frac{g_s}{2}\frac{|G_3|^2}{\text{Im} \tau}
+-\frac{g_s^2}{4}|\tilde F_5|^2
+\right)
+-\frac{i}{4}\int \frac{1}{\text{Im} \tau}C_4\wedge G_3\wedge \bar G_3,
+\label{SL(2, R) maniest IIB action}
+\end{equation}
+% \begin{equation}
+% S_{IIB}
+% =\int d^{10}x\sqrt{-g}\left(
+% R - \frac{\partial_m\tau \partial^m\bar\tau}{2(\text{Im} \tau)^2} - \frac{1}{2}\frac{|G_3|^2}{\text{Im} \tau}
+% -\frac{1}{4}|\tilde F_5|^2
+% \right)
+% -\frac{i}{4}\int \frac{1}{\text{Im} \tau}C_4\wedge G_3\wedge \bar G_3,
+% \label{SL(2, R) maniest IIB action}
+% \end{equation}
+where $G_3 \equiv F_3-\tau H_3$.
+
+Although the scalars $\Phi, C$, and the form fields $C_2, B_2$ have different NSNS, RR origins in 10d, they transform into each other under SL(2, R). 
+This SL(2, R)-invariance will hold at the two-derivative level, as well as higher-derivative corrections with trivial dependence on $\tau$.
+But as soon as any corrections to type IIB supergravity with non-trivial dependence on $\tau$ enter, the SL(2, R) symmetry will be broken\footnote{As a quick way to see this, suppose higher derivative corrections enter in the form $f(\tau,\bar\tau,...)$. Demanding that $f$ is invariant under SL(2, R) transformations on $\tau$ forces $f$ to be a constant.}. 
+Then as one includes the corrections that account for the string and brane-effects, the symmetry will also become SL(2, Z).
+This reflects the quantization of NSNS and RR charges in type IIB string theory.
+
+As we have discussed earlier, the NSNS vs RR distinction is really a 10d one.
+Both the NSNS and RR fields in type IIA combine to form SO(9) multiplets.
+Analogously, the NSNS and RR fields in type IIB combine to form $SL(2, R)\times SO(8)$ multiplets, and it is natural to ask whether this could be a hint of a higher-dimensional origin?
+This is the third puzzle of the type IIB theory, and it is unlikely to be independent of the previous two: where does the SL(2, Z)\footnote{
+SL(2, R) at the two-derivative supergravity level.
+} symmetry come from\footnote{
+The type IIB theory is understood as the decompactifying limit of M-theory on a torus, which could explain SL(2, Z). But SL(2, Z) is a true symmetry in 10d already.}?
+We approach this review motivated by the 3 guiding questions introduced above:
+\begin{enumerate}
+    \item Does the type IIB theory have a higher-dimensional origin?
+    \item What is the underlying mechanism of $F_5 = *_{10}F_5$?
+    \item What is the role and origin of SL(2, Z)?
+\end{enumerate}

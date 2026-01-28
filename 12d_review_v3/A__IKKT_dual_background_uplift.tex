@@ -1,0 +1,34 @@
+\section{12d Interpretations of Matrix Model Dual Backgrounds}
+\label{sec:IKKT uplift}
+Recently, the mass-deformed IKKT matrix model \cite{Bonelli:2002mb,Ishibashi:1996xs} was studied \cite{Hartnoll:2024csr,Komatsu:2024bop}.
+The IKKT matrix model is a zero-dimensional supersymmetric matrix model obtained by dimensional reduction of the 10d $\mathcal N=1$ SYM to zero dimensions.
+It is conjectured to provide a non-perturbative definition of the type IIB string theory \cite{Ishibashi:1996xs,Ciceri:2025wpb}.
+The action of the mass-deformed IKKT model can be found in \cite{Hartnoll:2024csr}, which has symmetry SO(3)$\times$SO(7).
+The mass deformation introduces a scale $\mu$.
+In the relevant limit of $\mu$, the matrix model is dual to a probe D1 brane in an Einstein-frame-flat background \cite{Hartnoll:2024csr}.
+In this subsection we identify the 12d interpretation of such background.
+
+The dual supergravity background of the matrix model studied in \cite{Hartnoll:2024csr} is
+\begin{equation}
+ds_{10}^2 = \sum_i dx_i^2,\quad
+e^\phi = -\frac{1}{C} = 1 - \frac{\mu^2}{32}\left(\sum_{A=1}^7x_A^2 + 3\sum_{a=9}^{10}x_a^2\right),\quad
+H_3 = \mu dx^8 \wedge dx^9\wedge dx^{10}.
+\label{hartnoll liu background}
+\end{equation}
+As the dilaton is required to be non-negative, the solution is only valid in the appropriate ellipsoidal region. 
+% The probe D1 brane is understood as emerging from $N$ probe D-instantons, who are able to lower their energy by grouping themselces into an $S_2$.
+Uplifting this background to 12d using \eqref{12d metric ansatz} with Wick rotation performed to keep $ds^2$ real, we find
+\begin{equation}
+ds_{12}^2 =2dudv + e^\phi du^2 + \sum_{i=1}^{10}dx_i^2.
+\end{equation}
+Since $e^\phi$ is not a harmonic, it's not a pp-wave, but the metric is of the Brinkmann form \cite{Ortin:2015hya,Brinkmann:1925fr}, which has the non-vanishing Ricci tensor component
+\begin{equation}
+R_{uu}=\frac{\mu^2}{2}.
+\end{equation}
+This metric is supported by 12d gravity coupled to a 4-form flux
+\begin{equation}
+S = \int d^{12}x \sqrt{-\mathcal{G}}\left[\mathcal{R} - \frac{1}{2}|F_4|^2\right],\quad
+\mathcal{F}_4 = \mu du\wedge dx^8\wedge dx^9\wedge dx^{10} = du\wedge H_3.
+\end{equation}
+In \cite{Komatsu:2024bop} a more general solution of \cite{Hartnoll:2024csr} had been obtained with both NSNS and RR 3-forms turned on, which reduces to \eqref{hartnoll liu background} asymptotically.
+The 12d uplift of the \cite{Komatsu:2024bop} solution is not much more illuminating thus will not be discussed.

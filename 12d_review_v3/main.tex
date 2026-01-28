@@ -1,0 +1,200 @@
+\documentclass[11pt]{article}
+% or [12pt] if you want it a bit larger
+
+\usepackage{graphicx, amsmath, amsfonts, amssymb, amsthm, mathrsfs} % Required 
+\usepackage[margin=1in]{geometry}
+% \usepackage[hidelinks]{hyperref}
+\usepackage[setpagesize=false,pagebackref=false, 
+linktocpage, bookmarksopen=true, colorlinks=true, 
+linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{color}
+\usepackage{dynkin-diagrams}
+\usepackage{booktabs}
+% \usepackage{setspace}
+% \setstretch{1.2}
+\renewcommand{\baselinestretch}{1.2}
+
+
+\usepackage{latexsym,amsmath,amssymb,theorem,epsfig}
+\usepackage[margin=1in]{geometry}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%% biblatex set up
+\usepackage[
+  backend=biber,
+  style=numeric,
+  sorting=none,
+  giveninits=true,   % initials only
+  date=year,         % only the year
+  doi=false, url=false, isbn=false,  % do NOT print DOI/URL lines
+  maxbibnames=99, maxcitenames=3
+]{biblatex}
+
+% No "In:"
+\renewbibmacro{in:}{}
+
+% Strip months, etc.
+% \AtEveryBibitem{%
+%   \clearfield{month}\clearfield{day}%
+%   \clearlist{publisher}\clearfield{location}%
+% }
+\AtEveryBibitem{%
+  \clearfield{month}\clearfield{day}%
+  \clearfield{location}%
+  % keep publisher for books, strip it for everything else
+  \ifentrytype{book}
+    {}
+    {\clearlist{publisher}}%
+}
+
+
+% Titles italic (no quotes)
+\DeclareFieldFormat[article]{title}{\mkbibemph{#1}}
+\DeclareFieldFormat[inproceedings]{title}{\mkbibemph{#1}}
+\DeclareFieldFormat[incollection]{title}{\mkbibemph{#1}}
+\DeclareFieldFormat[unpublished]{title}{\mkbibemph{#1}}
+\DeclareFieldFormat[misc]{title}{\mkbibemph{#1}}
+\DeclareFieldFormat[book]{title}{\mkbibemph{#1}}
+
+% Year in parentheses: (2024)
+\renewbibmacro*{date}{\printtext[parens]{\printfield{year}}}
+
+% ---- arXiv in brackets *and clickable* ----
+\DeclareFieldFormat{eprint:arxiv}{%
+  \mkbibbrackets{%
+    \ifhyperref{\href{https://arxiv.org/abs/#1}{#1}}{#1}}}
+\ExecuteBibliographyOptions{eprint=true}
+
+% ---- Make the entire "Journal vol (year) pages" block clickable ----
+% If DOI exists -> link to https://doi.org/<doi>
+% else if URL exists -> link to that
+% else print plain text
+\newbibmacro*{my:journalblock}{%
+  \printfield[journaltitle]{journaltitle}\addspace
+  \printfield{volume}\addspace
+  \printtext[parens]{\printfield{year}}\addspace
+  \printfield{pages}%
+}
+\renewbibmacro*{journal+issuetitle}{%
+  \iffieldundef{journaltitle}
+    {}
+    {\printtext{%
+       \iffieldundef{doi}
+         {\iffieldundef{url}
+            {\usebibmacro{my:journalblock}}
+            {\href{\thefield{url}}{\usebibmacro{my:journalblock}}}}
+         {\href{https://doi.org/\thefield{doi}}{\usebibmacro{my:journalblock}}}}%
+     \newunit}%
+}
+
+% --- No "p." or "pp." before pages in the bibliography ---
+\DeclareFieldFormat{pages}{#1}
+\DeclareFieldFormat[article]{pages}{#1}
+\DeclareFieldFormat[inproceedings]{pages}{#1}
+\DeclareFieldFormat[incollection]{pages}{#1}
+\DeclareFieldFormat{pagetotal}{#1}  % if you ever print total pages
+
+
+% (Optional) Bold volume like many HEP styles:
+% \DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
+
+% --- Make commas the default separator and remove trailing periods ---
+\renewcommand*{\newunitpunct}{\addcomma\space}
+\renewcommand*{\finentrypunct}{} % no final period at end of entry
+\renewcommand*{\finentrypunct}{.}
+% --- Minimal article driver: Author, Title (italic), linked Journal vol (year) pages, [linked arXiv] ---
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \printnames{author}%
+  \setunit{\addcomma\space}%
+  \printfield[title]{title}%
+  \setunit{\addcomma\space}%
+  \usebibmacro{journal+issuetitle}% uses your linked block w/ pages inside
+  \setunit{\addcomma\space}%
+  \printfield[eprint:arxiv]{eprint}% prints [arXiv] with your clickable format
+  \usebibmacro{finentry}%
+}
+
+\DeclareBibliographyDriver{book}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \printnames{author}% T. Ortin
+  \setunit{\addcomma\space}%
+  \printfield[title]{title}% Gravity and Strings (italic)
+  \setunit{\addcomma\space}%
+  \printfield{edition}% 2nd ed.   (biblatex formats "2" -> "2nd ed.")
+  \setunit{\addcomma\space}%
+  \printlist{publisher}% Cambridge University Press
+  \setunit{\space}%
+  \usebibmacro{date}% (2015)
+  \usebibmacro{finentry}%
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% \addbibresource{bib/12d review.bib}
+\addbibresource{bib/F-theory.bib}
+\addbibresource{bib/others.bib}
+\addbibresource{bib/12d_sugra.bib}
+\addbibresource{bib/branes.bib}
+\addbibresource{bib/matrix_models.bib}
+\addbibresource{bib/effective_action.bib}
+\addbibresource{bib/IIB_SUGRA.bib}
+\title{A 12d Origin of the Type IIB String Theory: A Review}
+
+% \author{\footnote{Email:  }}
+
+% \author{}
+% commented out for double anonymous review
+\author{
+\\[2pt]
+\large{Chang Cheng}\footnote{\href{mailto:chang.cheng24@imperial.ac.uk}{chang.cheng24@imperial.ac.uk}} 
+\\[10pt]
+\it{Department of Physics,}\\
+\it{Imperial College London, SW7 2AZ, U.K.}
+\\[2pt]
+}
+
+\date{}
+\begin{document}
+\maketitle
+
+
+
+\begin{abstract}
+We review several lines of evidence for a 12d interpretation of the type IIB brane solutions and effective actions.
+The axio-dilaton sector fits naturally into 12d gravity, as supported by brane geometries and supersymmetry.
+The special role of the D3 brane in a potential 12d interpretation of type IIB is reviewed, with emphasis on the connection between its SL(2, Z) self-duality and worldvolume electromagnetic duality.
+Whether the higher-derivative corrections of type IIB admit a 12d interpretation is discussed, and we suggest certain directions for future exploration.
+\end{abstract}
+\tableofcontents
+\input{1__introduction}
+\input{2__IIB}
+\input{3__12d_supergravity}
+\input{4__brane_perspective}
+\input{5__D3}
+\input{6__12d_covariant_unification}
+\input{7__effective_actions}
+\input{8__Outlook}
+
+
+% commented out for double anonymous review
+\section{Acknowledgements}
+This review was submitted in partial fulfillment of the requirements for the MSc degree in Physics at Imperial College London.
+We would like to thank Arkady Tseytlin for his guidance and many valuable discussions.
+We would also like to thank Jesse van Muiden for comments on the draft. 
+
+\newpage
+\appendix
+\input{A__dynkin_labels}
+\input{A__11d_on_a_line}
+\input{A__IKKT_dual_background_uplift}
+
+\printbibliography
+
+
+
+\end{document}

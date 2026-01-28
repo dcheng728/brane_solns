@@ -3,6 +3,8 @@
     "python-envs.defaultPackageManager": "ms-python.python:conda",
     "python-envs.pythonProjects": [],
     "workbench.colorTheme": "Solarized Light",
+    "latex-workshop.latex.outDir": "%DIR%/latex_outputs",
+    "latex-workshop.view.pdf.viewer": "tab",
 
 "latex-workshop.latex.tools": [
     {
@@ -11,11 +13,25 @@
       "args": [
         "-interaction=nonstopmode",
         "-file-line-error",
+        "-output-directory=%OUTDIR%",
         "%DOC%"
       ]
+    },
+    {
+      "name": "biber",
+      "command": "biber",
+      "args": [
+        "--output-directory=%OUTDIR%",
+        "%OUTDIR%/%DOCFILE%"
+      ],
+      "env": {}
     }
   ],
   "latex-workshop.latex.recipes": [
+    {
+      "name": "pdflatex ➞ biber ➞ pdflatex × 2",
+      "tools": ["pdflatex", "biber", "pdflatex", "pdflatex"]
+    },
     {
       "name": "pdflatex",
       "tools": ["pdflatex"]

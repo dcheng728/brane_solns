@@ -1,0 +1,38 @@
+\section{Action for 11d Supergravity on a circle}
+\label{sec:Action for 11d on a circle}
+In \cite{Choi:2014vya,Choi:2015gia}, a ``12d" action
+\begin{equation}
+S = \int d^{11}x dy' \sqrt{-\mathcal G}
+\left(
+\mathcal R-\frac{1}{2}|\mathcal F_5|^2
+\right)
++\frac{1}{6}
+\int \mathcal C_4\wedge F_4 \wedge F_4
+\label{1504.00602 eq 2.3}
+\end{equation}
+was proposed.
+Here the calligraphic letters denote 12d fields with dependence on the 12-th dimension $y'$, straight letters denote 11d field. Here $\mathcal G$ is the 12d metric, $\mathcal F_5$ is a 5-form field strength.
+In the setup of \cite{Choi:2014vya,Choi:2015gia}, all 12th dimension dependence is packaged into a scalar field $r\equiv r(x^m,y')$, which also appears in the metric. In particular,
+\begin{equation}
+\mathcal C_4(x^m,y') \equiv r(x^m,y')C_3(x)\wedge dy',\quad
+\mathcal F_5(x^m,y') \equiv r(x^m,y')dC_3(x)\wedge dy' =r(x^m,y')F_4\wedge dy',
+\end{equation}
+\begin{equation}
+\mathcal G_{mn}(x) = g_{mn}(x),\quad
+\mathcal G_{my'} =0,\quad
+\mathcal G_{y'y'}(x,y') = r(x,y')^2.
+\end{equation}
+The question is whether the 12th dimension in \eqref{1504.00602 eq 2.3} is dynamical.
+Substituting the expressions for $\mathcal F_5$ and $\mathcal C_4$ given above, and evaluating $\int \sqrt{-\mathcal G}\mathcal R$, we find \eqref{1504.00602 eq 2.3} can be written as
+\begin{equation}
+S = 
+\int d^{11}x
+\left[
+\left(\sqrt{-g}R-\frac{1}{2}|F_4|^2\right)
++\frac{1}{6}\int C_3\wedge F_4\wedge F_4
+\right]
+\lambda(x)
++\text{boundary},\quad
+\lambda(x)\equiv \int dy' r(x,y').
+\end{equation}
+We see this is nothing but the bosonic action of 11d supergravity, multiplied by an auxiliary field whose equation of motion imposes that 11d bosonic action vanishes.
