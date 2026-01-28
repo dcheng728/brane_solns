@@ -13,7 +13,7 @@ We have review the standard construction of type IIB brane solutions supported b
 
     $$
     \begin{equation}
-    ds_{(S),10}^2=H^{-1}(-dt^2+dx_1^2)+dx^mdx^m,\qquad \frac{e^{2\Phi}}{g_s}^2=H^{-1},\qquad B_{01}=H^{-1}-1.
+    ds_{(S),10}^2=H^{-1}(-dt^2+dx_1^2)+dx^mdx^m,\qquad \frac{e^{\Phi}}{g_s}=H^{-1/2},\qquad B_{01}=H^{-1}-1.
     \end{equation}
     $$
 
@@ -21,11 +21,11 @@ We have review the standard construction of type IIB brane solutions supported b
 
     $$
     \begin{equation}
-    ds_{(S),10}^2=dx^\mu dx^\mu+H\cdot dx^mdx^m,\qquad \frac{e^{2\Phi}}{g_s^2}=H,\qquad H_3=\star_4 dH.
+    ds_{(S),10}^2=dx^\mu dx^\mu+H\cdot dx^mdx^m,\qquad \frac{e^{\Phi}}{g_s}=H^{1/2},\qquad H_3=\star_4 dH.
     \end{equation}
     $$
 
-- **D$p$-branes** (supported by RR fields), where for type IIB we have $p=-1,1,3,5,7,9$. With worldvolume coordinates $x^{0,\dots,p}$,
+- **D $p$ -branes** (supported by RR fields), where for type IIB we have $p=-1,1,3,5,7,9$. With worldvolume coordinates $x^{0,\dots,p}$,
 
     $$
     \begin{equation}
@@ -52,7 +52,7 @@ From F-theory, and the pp-wave uplift of the D(-1), we are led to $f = -\frac{1}
 
 $$
 \begin{equation}
-ds_{12}^2 = e^{-\frac{1}{2}\Phi}ds_{(S),10}^2 + e^\Phi[(du+Cdv)^2 + e^{-2\Phi}dv^2]
+ds_{12}^2 = g_s^{1/2}e^{-\Phi/2}ds_{(S)9,1}^2 + e^\Phi[(dy+Cdt)^2 + e^{-2\Phi}dt^2]
 \end{equation}
 $$
 
@@ -62,26 +62,31 @@ Setting $C = 0$ here.
 
 ### D(-1)
 
-$$
-\begin{equation}
-ds_{12}^2=g_s^{-\frac{1}{2}}dx^mdx^m+g_sH\cdot du^2+g_s^{-1}H^{-1}\cdot dv^2.
-\end{equation}
-$$
+PP-wave
 
 ### F1
 
 $$
 \begin{equation}
-ds_{12}^2=g_s^{-\frac{1}{2}}\Big(H^{-\frac{3}{4}}(-dt^2+dx_1^2)+H^{\frac{1}{4}}dx^mdx^m\Big)+g_sH^{-\frac{1}{2}}\cdot du^2+g_s^{-1}H^{\frac{1}{2}}\cdot dv^2.
+ds_{12}^2=
+H^{-3/4}ds_{1,1}^2 + H^{1/4}ds_8^2+g_sH^{-1/2}dz_1^2 + g_s^{-1}H^{1/2}dz_2^2,
 \end{equation}
+$$
+
+$$
+(\mathcal C_3)_{012} = H^{-1}-1.
 $$
 
 ### D1
 
 $$
 \begin{equation}
-ds_{12}^2=g_s^{-\frac{1}{2}}\Big(H^{-\frac{3}{4}}(-dt^2+dx_1^2)+H^{\frac{1}{4}}dx^mdx^m\Big)+g_sH^{\frac{1}{2}}\cdot du^2+g_s^{-1}H^{-\frac{1}{2}}\cdot dv^2.
+ds_{12}^2 = H^{-3/4}ds_{1,1}^2 + H^{1/4}ds_8^2 + g_sH^{1/2}dz_1^2 + g_s^{-1}H^{-1/2}dz_2^2,
 \end{equation}
+$$
+
+$$
+(\mathcal C_3)_{013} = H^{-1}-1.
 $$
 
 ### D3
@@ -95,23 +100,26 @@ $$
 ### NS5
 
 $$
-\begin{equation}
-ds_{12}^2=g_s^{-\frac{1}{2}}\Big(H^{-\frac{1}{4}}dx^\mu dx^\mu+H^{\frac{3}{4}}dx^mdx^m\Big)+g_sH^{\frac{1}{2}}\cdot du^2+g_s^{-1}H^{-\frac{1}{2}}\cdot dv^2.
-\end{equation}
+ds_{12}^2 = 
+H^{-1/4}ds_{1,5}^2 + H^{3/4}ds_4^2 + g_sH^{1/2}dz_1^2 + g_s^{-1}H^{-1/2}dz_2^2,
 $$
+
+$$
+(\mathcal F_4)_{m_1 m_2 m_3 2} = \varepsilon_{m_1 m_2 m_3}{}^n\partial_n H
+$$
+
 
 ### D5
 
 $$
-\begin{equation}
-ds_{12}^2=g_s^{-\frac{1}{2}}\Big(H^{-\frac{1}{4}}dx^\mu dx^\mu+H^{\frac{3}{4}}dx^mdx^m\Big)+g_sH^{-\frac{1}{2}}\cdot du^2+g_s^{-1}H^{\frac{1}{2}}\cdot dv^2.
-\end{equation}
+ds_{12}^2 =
+H^{-1/4}ds_{1,5}62 + H^{3/4}ds_4^2 + g_sH^{-1/2}dz_1^2 + g_s^{-1}H^{1/2}dz_2^2
+$$
+
+$$
+(\mathcal F_4)_{m_1 m_2 m_3 3} = \varepsilon_{m_1 m_2 m_3}{}^n\partial_n H
 $$
 
 ### D7
 
-$$
-\begin{equation}
-ds_{12}^2=g_s^{-\frac{1}{2}}\Big(dx^\mu dx^\mu+H\cdot dx^mdx^m\Big)+g_sH^{-1}\cdot du^2+g_s^{-1}H\cdot dv^2.
-\end{equation}
-$$
+KK-monopole
