@@ -5,12 +5,18 @@
     "workbench.colorTheme": "Solarized Light",
     "latex-workshop.latex.outDir": "%DIR%/latex_outputs",
     "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+    "latex-workshop.synctex.path": "synctex",
+    "latex-workshop.latex.rootFile.doNotPrompt": true,
+    "latex-workshop.latex.rootFile.useSubFile": false,
 
 "latex-workshop.latex.tools": [
     {
       "name": "pdflatex",
       "command": "pdflatex",
       "args": [
+        "-synctex=1",
         "-interaction=nonstopmode",
         "-file-line-error",
         "-output-directory=%OUTDIR%",
