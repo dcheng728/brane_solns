@@ -35,7 +35,7 @@ We have review the standard construction of type IIB brane solutions supported b
 
 ## 12d to 10d reduction ansatz, assuming SO(12) -> SO(10)xSO(2)
 What should be the reduction ansatz from 12 to 10?
-If we assume that in 12d one should not know about the torus, hence know nothing about 10d, and that only once the torus is introduced the 10d theory is obtained via 12 = 10 + 2.
+If we assume that in 12d one should not know about the torus, hence know nothing about 10d, and that only once the torus is introduced the 10d theory is obtained via the symmetry breaking 12 = 10 + 2.
 The reduction ansatz should only break symmetry as 12 = 10 + 2.
 
 $$
