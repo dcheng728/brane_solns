@@ -7,31 +7,28 @@ title: 3. Uplifting IIB branes to 12d
 
 ## Type IIB branes
 
-We have review the standard construction of type IIB brane solutions supported by form-fields in [review](1_review.md). They are given by a single harmonic function $H$ on the transverse space, where one may take $H=1+\frac{Q}{r^{7-p}}$. In string frame, the elementary solutions are:
+We use the convention where $g^{(S)}_{mn} = e^{(\Phi-\langle\Phi\rangle)/2}g^{(E)}_{mn}$
 
-- **Fundamental string (F1)** (supported by $B_2$). With worldvolume coordinates $x^{0,1}$ and transverse coordinates $x^m$,
+We have reviewed the standard construction of type IIB brane solutions supported by form-fields in [review](1_review.md). They are given by a single harmonic function $H$ on the transverse space, where one may take $H=1+\frac{Q}{r^{7-p}}$. In string frame, the elementary solutions are:
 
-    $$
-    \begin{equation}
-    ds_{(S),10}^2=H^{-1}(-dt^2+dx_1^2)+dx^mdx^m,\qquad \frac{e^{\Phi}}{g_s}=H^{-1/2},\qquad B_{01}=H^{-1}-1.
-    \end{equation}
-    $$
+- Fundamental string (F1): (supported by $B_2$). With worldvolume coordinates $x^{0,1}$ and transverse coordinates $x^m$,
 
-- **NS5-brane** (supported by $H_3=dB_2$). With worldvolume coordinates $x^{0,\dots,5}$,
+$$
+ds_{(S),10}^2=H^{-1}(-dt^2+dx_1^2)+dx^mdx^m,\qquad \frac{e^{\Phi}}{g_s}=H^{-1/2},\qquad
+(B_2)_{01} = H^{-1}-1.
+$$
 
-    $$
-    \begin{equation}
-    ds_{(S),10}^2=dx^\mu dx^\mu+H\cdot dx^mdx^m,\qquad \frac{e^{\Phi}}{g_s}=H^{1/2},\qquad H_3=\star_4 dH.
-    \end{equation}
-    $$
+- NS5-brane (supported by $H_3=dB_2$). With worldvolume coordinates $x^{0,\dots,5}$,
 
-- **D $p$ -branes** (supported by RR fields), where for type IIB we have $p=-1,1,3,5,7,9$. With worldvolume coordinates $x^{0,\dots,p}$,
+$$
+ds_{(S),10}^2=dx^\mu dx^\mu+H\cdot dx^mdx^m,\qquad \frac{e^{\Phi}}{g_s}=H^{1/2},\qquad H_3=\star_4 dH.
+$$
 
-    $$
-    \begin{equation}
-    ds_{(S),10}^2=H^{-\frac{1}{2}}dx^\mu dx^\mu+H^{\frac{1}{2}}dx^mdx^m,\qquad \frac{e^\Phi}{g_s}=H^{\frac{3-p}{4}},\qquad C_{0\cdots p}=H^{-1}-1.
-    \end{equation}
-    $$
+- D $p$ -branes (supported by RR fields), where for type IIB we have $p=-1,1,3,5,7,9$. With worldvolume coordinates $x^{0,\dots,p}$,
+
+$$
+ds_{(S),10}^2=H^{-\frac{1}{2}}dx^\mu dx^\mu+H^{\frac{1}{2}}dx^mdx^m,\qquad \frac{e^\Phi}{g_s}=H^{\frac{3-p}{4}},\qquad C_{0\cdots p}=H^{-1}-1.
+$$
 
 ## 12d to 10d reduction ansatz, assuming SO(12) -> SO(10)xSO(2)
 What should be the reduction ansatz from 12 to 10?
@@ -52,7 +49,7 @@ From F-theory, and the pp-wave uplift of the D(-1), we are led to $f = -\frac{1}
 
 $$
 \begin{equation}
-ds_{12}^2 = g_s^{1/2}e^{-\Phi/2}ds_{(S)9,1}^2 + e^\Phi[(dy+Cdt)^2 + e^{-2\Phi}dt^2]
+ds_{12}^2 = g_s^{1/2}e^{-\Phi/2}ds_{(S),10}^2 + e^\Phi[(dy+Cdt)^2 + e^{-2\Phi}dt^2]
 \end{equation}
 $$
 
@@ -92,9 +89,10 @@ $$
 ### D3
 
 $$
-\begin{equation}
-ds_{12}^2=g_s^{-\frac{1}{2}}\Big(H^{-\frac{1}{2}}dx^\mu dx^\mu+H^{\frac{1}{2}}dx^mdx^m\Big)+g_s\cdot du^2+g_s^{-1}\cdot dv^2.
-\end{equation}
+ds_{12}^2=
+H^{-\frac{1}{2}}ds_{1,3}^2
++H^{\frac{1}{2}}ds_6^2
++g_s\cdot du^2+g_s^{-1}\cdot dv^2.
 $$
 
 ### NS5
@@ -113,7 +111,7 @@ $$
 
 $$
 ds_{12}^2 =
-H^{-1/4}ds_{1,5}62 + H^{3/4}ds_4^2 + g_sH^{-1/2}dz_1^2 + g_s^{-1}H^{1/2}dz_2^2
+H^{-1/4}ds_{1,5}^2 + H^{3/4}ds_4^2 + g_sH^{-1/2}dz_1^2 + g_s^{-1}H^{1/2}dz_2^2
 $$
 
 $$
