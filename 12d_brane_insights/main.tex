@@ -2,14 +2,22 @@
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage[margin=3cm]{geometry}
 \usepackage{hyperref}
+\usepackage{biblatex}
+
+\addbibresource{refs.bib}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{proposition}{Proposition}
 
+\title{EM Duality of Branes from Higher Dimensions}
+\author{Chang Cheng}
+\date{\today}
+
 
 \begin{document}
+\maketitle
 \tableofcontents
 
 \input{1_notes_on_EM_duality.tex}
@@ -18,4 +26,7 @@
 \input{A_DG_conventions.tex}
 \input{A_brane_catalog.tex}
 % \input{0_setup}
+
+\printbibliography
+
 \end{document}

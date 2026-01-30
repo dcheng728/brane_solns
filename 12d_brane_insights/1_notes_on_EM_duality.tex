@@ -1,48 +1,37 @@
 \section{IIA and 11d}
 
-An interesting thing to note is that despite F1 and NS5 are often thought of as being electromagnetic duals of each other in the type IIA theory, they are actually not dual to each other in 10d, as one can quickly verify.
+An important thing to note is that despite F1 and NS5 are often thought of as being electromagnetic duals of each other in the type IIA theory, they are actually not dual to each other in 10d, as one can quickly verify \footnote{ We have provided the brane solutions in section \ref{sec:10d IIA branes} for reference.}.
+This is not just a consequence of how we defined the form-field for the electric/magnetic ansatz, even if we just swap the configurations of $H_3$ for NS5 into that of F1, it would not satisfy the Einstein equation, one has to in addition perform exhange $e^{\Phi} \to e^{-\Phi}$ to support the NS5 metric.
+This can actually be seen from early formulation of the $p$-brane solutions \cite{Stelle:1998xg} which we summarize in section \ref{sec:general brane solns}: the electric and magnetic solutions in the presence of a dilaton have opposite dilaton profiles.
 
-\paragraph{F1}
+In the context of string theory, the dilaton is related to the modulus of the compactified dimension from a higher dimension. 
+In a higher dimension, the theory may be formulated without a dilaton, and the EM duality, will look more like actual dualities.
+
+For example, in 11d supergravity (\ref{sec:11d branes}) we have the M2 brane
 \begin{equation}
-ds_{(S)}^2 = H^{-1}(-dt^2+dx_1^2) + dx^mdx^m,\quad
-\frac{e^{\Phi}}{g_s} = H^{-1/2},\quad
-B_{01} = H^{-1}-1
+ds^2_{M2} = H^{-2/3}ds_{1,2}^2 + H^{1/3}ds_8^2,\quad
+(C_3)_{\mu_0 \mu_1 \mu_2} = \varepsilon_{\mu_0 \mu_1 \mu_2}(H^{-1}-1)
 \end{equation}
-
-\paragraph{NS5}
+Performing EM duality using this metric, we obtain
 \begin{equation}
-ds_{(S)}^2 = dx_\parallel^2 + H \cdot dx_\perp^2,\quad
-\frac{e^{\Phi}}{g_s} = H^{1/2},\quad
-H_3 = \star_4 dH
+(*_{11}dC_3)_{m_1m_2m_3m_4m_5m_6m_7} = \varepsilon_{m_1m_2m_3m_4m_5m_6m_7n}\partial_n H
 \end{equation}
-
-In 10d the Einstein and string frame metrics are different while the scalar and form fields are the same, so one can also ask the question of what metric are we using to take the duality? 
-
-However, in 11d, there is only one metric, so it makes sense to take electromagnetic duality, and indeed the form fields sourced by M2 and M5 are EM duals.
-
-\paragraph{M2}
+after decomposing the $\varepsilon_8$ into $\varepsilon_3 \varepsilon_5$, we see that this is precisely the form field configuration for the M5 brane
 \begin{equation}
-ds^2 = H^{-2/3}ds_{1,2}^2 + H^{1/3}ds_8^2,\quad
-(\mathcal C_3)_{\mu_0 \mu_1 \mu_2} = \varepsilon_{\mu_0 \mu_1 \mu_2}(H^{-1}-1)
+ds^2_{M5} = H^{-1/3}ds_{1,5}^2 + H^{2/3}ds_5^2,\quad
+(F_4)_{m_1 m_2 m_3 m_4} = \varepsilon_{m_1 m_2 m_3 m_4 n} \partial_n H.
 \end{equation}
+Then F1 and NS5 may be obtained as compactification of M2 and M5, and sure, we can call NS5 the dual of F1 in 10d, but of course this is nowhere from being a direct EM duality in 10d.
+To really make sense of the duality, one should go back to 11d.
 
-\begin{equation}
-(*_{11}d\mathcal{C}_3)_{m_1m_2m_3m_4m_5m_6m_7} = \varepsilon_{m_1m_2m_3m_4m_5m_6m_7n}\partial_n H
-\end{equation}
-
-To obtain the form field for the M2 brane, one decompose $\varepsilon_8 = \varepsilon_3 \varepsilon_5$.
-
-\paragraph{M5}
-\begin{equation}
-ds^2 = H^{-1/3}ds_{1,5}^2 + H^{2/3}ds_5^2,\quad
-(\mathcal F_4)_{m_1 m_2 m_3 m_4} = \varepsilon_{m_1 m_2 m_3 m_4 n} \partial_n H
-\end{equation}
+TODO: elucidate the inverse dilaton profile between F1 and NS5, and relate that to 11d duality. The fact that the circle felt by F1 is inverse to the circle feld by NS5 may have a clean explanation from 11d duality combined with wrapping on the circle.
 
 \section{IIB and 12d}
 
 We would like to ask the same question about type IIB.
-Interestingly, despite one often associate F1 and NS5 as EM duals of each other, their form fields $H_3$ configuration are not related by EM duality, in 10d.
-Furthermore, the F1 and NS5 have different dilaton profiles while EM duality does not act on the dilaton. 
+Despite one often associate F1 and NS5 as EM duals of each other, their form fields $H_3$ configuration are not related by EM duality, in 10d, and of course they have opposite dilaton profiles as well\footnote{The brane solutions are listed in \ref{sec:10d IIB branes}}.
 
-However, an SL(2,Z) duality transformation would indeed map the dilaton of F1 to that of NS5, so one would like to ask: we know that the 10d type IIB EM duality is intimately tied to SL(2,Z) from the worldvolume action of the D3 brane, could there be a similar story with other branes?
+To obtain the NS5 from F1 by EM duality, one actually has to perform an accompanying SL(2, Z) transformation to invert the dilaton.
+Similar situation is encountered on the D3 brane worldvolume \cite{Tseytlin:1996it}.
+
 
