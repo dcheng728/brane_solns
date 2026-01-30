@@ -1,8 +1,21 @@
 \documentclass{article}
-\usepackage{amsmath}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[margin=3cm]{geometry}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{proposition}{Proposition}
+
 
 \begin{document}
+\tableofcontents
+
 \input{1_notes_on_EM_duality.tex}
+
+\appendix
+\input{A_DG_conventions.tex}
 \input{A_brane_catalog.tex}
 % \input{0_setup}
 \end{document}

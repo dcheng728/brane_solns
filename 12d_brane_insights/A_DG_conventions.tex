@@ -1,0 +1,127 @@
+\section{Differential Geometry}
+
+\subsection{Conventions}
+We adopt the following conventions and normalizations for form fields
+
+\begin{align}
+F &\equiv \frac{1}{p!}F_{\mu_1...\mu_p} dx^{\mu_1}...dx^{\mu_p}\\
+F_{\mu_1...\mu_p} &\equiv F_{[\mu_1...\mu_p]}\\
+|F|^2 &\equiv \frac{1}{p!}F_{\mu_1...\mu_p} F^{\mu_1...\mu_p}=\frac{1}{p!}F^2\\
+(d F)_{\mu_1...\mu_{p+1}} &= (p+1)\partial_{[\mu_1} F_{\mu_2...\mu_{p+1}]}\\
+(F^{(p)} \wedge G^{(q)})_{\mu_1...\mu_p \nu_1 ... \nu_q}
+&=\frac{(p+q)!}{p!q!}F^{(p)}_{[\mu_1...\mu_p}  G^{(q)}_{\nu_1 ... \nu_q]}
+\end{align}
+We will use $\epsilon_{\mu_1 ... \mu_p}$ to denote the Levi-Civita tensor and $\varepsilon_{\mu_1 ... \mu_p}$ to denote the flat-space fully antisymmetrized symbol.
+
+
+\begin{equation}
+\epsilon_{\mu_1...\mu_D} = \sqrt{|g|}\varepsilon_{\mu_1...\mu_D},\quad
+\varepsilon_{0,1,...,(D-2),(D-1)} = 1,
+\end{equation}
+
+
+\begin{equation}
+\epsilon_{\mu_1...\mu_p \lambda_1 ...\lambda_{D-p}}
+\epsilon^{\nu_1...\nu_p \lambda_1 ...\lambda_{D-p}}
+=(-1)^{[t]} p!(D-p)!\delta^{\nu_1...\nu_p}_{\mu_1...\mu_p}
+\end{equation}
+
+
+\begin{equation}
+(*A)_{\mu_1...\mu_{D-p}} = \frac{1}{p!}
+\epsilon_{\mu_1...\mu_{D-p}}{}^{\nu_1...\nu_p} A_{\nu_1...\nu_p},
+\end{equation}
+
+\subsection{Useful forms identities}
+
+One can then show that
+\begin{equation}
+*(*A) = (-1)^{[t]}(-1)^{p(D-p)}A,
+\end{equation}
+\begin{equation}
+(*F)\wedge *(*F)=(-1)^{[t]}F\wedge *F,\quad
+|*F|^2 = (-1)^{[t]}|F|^2
+\end{equation}
+as well as
+\begin{equation}
+\frac{1}{(D-p-1)!}(*F)_{\mu ...}(*F)_\nu{}^{...}
+=(-1)^{[t]}\left[
+    \frac{1}{p!}F^2 g_{\mu\nu} - \frac{1}{(p-1)!}F_{\mu...}F_\nu{}^{...}
+\right]
+\end{equation}
+\begin{proof}
+\begin{equation}
+\begin{aligned}
+\frac{1}{(D-p-1)!}(*F)_{\mu ...}(*F)_\nu{}^{...}
+&=\frac{1}{(D-p-1)!}\frac{1}{p!p!}
+\epsilon_{\mu \mu_1...\mu_p \lambda_1...\lambda_{D-p-1}}
+\epsilon_{\nu} {}^{\nu_1...\nu_p} {}^{\lambda_1...\lambda_{D-p-1}}
+F^{\mu_1...\mu_p}F_{\nu_1...\nu_p}\\
+&=\frac{p+1}{p!}(-1)^{[t]} g_{\nu\rho} \delta^{[\rho \nu_1...\nu_p]}_{[\mu \mu_1...\mu_p]}F^{\mu_1...\mu_p}F_{\nu_1...\nu_p}
+\end{aligned}
+\end{equation}
+The term $\delta^{[\rho \nu_1...\nu_p]}_{[\mu \mu_1...\mu_p]}$
+has in total $(p+1)!(p+1)!$ terms and is thus normalized by such number. Within those terms, $(p+1)p!p!$ of which give 
+$\delta^{\rho}_{\mu} \delta^{\nu_1...\nu_p}_{\mu_1...\mu_p}$
+equivalent and $(p+1)(p)p!p!$ give $
+-\delta^{\rho}_{\mu_1}\delta^{\nu_1...\nu_p}_{ \mu ...\mu_p}$
+equivalent, hence the relation provided.
+\end{proof}
+As a corollary, one can show suppose $S_{MN}$ is defined by
+\begin{equation}
+S_{MN}\big|_{F}\equiv
+\frac{1}{2}\left[
+    \frac{1}{(n-1)!}F_{M...}F_N^{...}
+    -\frac{n-1}{D-2}\left(\frac{1}{n!}F^2\right)g_{MN}
+\right],
+\end{equation}
+then
+\begin{equation}
+S_{MN}|_{*F} = -(-1)^{[t]}S_{MN}|_{F}.
+\end{equation}
+
+
+\subsection{Useful gravity identities}
+
+Under dilatation, the Ricci tensor transforms as
+\begin{equation}
+R(\Lambda^2 g_{mn})
+=\Lambda^{-2}[R-2(d-1)\nabla^2\ln\Lambda - (d-2)(d-1)(\nabla \ln \Lambda)^2].
+\end{equation}
+For a brane-like metric
+\begin{equation}
+ds_D^2 = H^{a}ds_{d}^2 + H^bds_{D-2}^2,
+\end{equation}
+and $H\equiv H(r)$ with $r\equiv \sqrt{y^my^m}$ is a harmonic function in $(D-d)$-dimensions, usually taken to be
+\begin{equation}
+H = 1 + \frac{Q}{r^{\tilde{d}}},\quad \tilde{d} = D-d-2,
+\end{equation}
+The Ricci tensor is found to be
+\begin{equation}
+\begin{aligned}
+R_{\mu\nu}
+&=-\eta_{\mu\nu}(H')^2H^{a-b-2}\left[\frac{a(ad+b\tilde d-2)}{4}\right]\\
+R_{mn} 
+&= \frac{(H')^2}{4H^2}\left[-b(ad+b\tilde{d}-2)\delta_{mn}-\frac{y^m y^n}{r^2}\left[ad(a-b)-(ad+b\tilde{d})(b+2)\right]\right]\\
+&+\frac{H'}{rH}\frac{(ad+b\tilde{d})}{2}\left[-\delta_{mn} + \frac{y^m y^n}{r^2}(2+\tilde{d})\right].
+\end{aligned}
+\end{equation}
+Usually one adopts the ansatz that $A_{n-1} \propto H$, hence $F_n \propto H'$.
+Then the energy-momentum tensor will be exactly quadratic in $H'$ up to some powers of $H$.
+This demands
+\begin{equation}
+b=-ad/\tilde{d},
+\end{equation}
+and we can write down a simplified Ricci tensor
+\begin{equation}
+\begin{aligned}
+R_{\mu\nu} 
+&= \frac{a}{2}(H')^2H^{a-b-2} \eta_{\mu\nu}
+=\frac{a}{2}(H')^2H^{\frac{ad+(a-2)(D-d-2)}{(D-d-2)}} \eta_{\mu\nu},\\
+R_{mn}
+&=\frac{(H')^2}{4H^2}\left[2b\delta_{mn}-ad(a-b)\frac{y^my^n}{r^2}\right]
+=-\frac{ad}{2(D-d-2)}\frac{(H')^2}{H^2}\left[
+\delta_{mn}+\frac{a(D-2)}{2}\frac{y^m y^n}{r^2}
+\right].
+\end{aligned}
+\end{equation}

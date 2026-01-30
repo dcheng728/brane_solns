@@ -1,33 +1,68 @@
-\appendix{Catalog of branes}
+\section{Catalog of branes}
+
+\subsection{General formulation}
+It has been shown \cite{stelle} that, working in the Einstein frame, with $F_n$ an n-form and the action
+\begin{equation}
+S = \int d^Dx\sqrt{-g}\left[
+    R - \frac{1}{2}(\partial\phi)^2 - \frac{1}{2}e^{\alpha\phi}|F_n|^2
+\right],
+\end{equation}
+the equations of motion are
+\begin{align}
+R_{MN} 
+&= \frac{1}{2}\left(
+    \partial_M\phi\partial_N\phi + e^{\alpha\phi}S_{MN}\big|_F
+\right)\\
+d[e^{\alpha\phi}F] &=0\\
+\Box\phi&=\frac{\alpha}{2}e^{\alpha\phi}|F|^2
+\end{align}
+For $\Delta\equiv \alpha^2 +\frac{2 d \tilde{d}}{D-2}$, there exists the electric solution
+\begin{align}
+ds_D^2
+&=H^{-\frac{4\tilde d}{\Delta(D-2)}}ds_{d}^2+
+H^{\frac{4d}{\Delta(D-2)}}ds_{D-d}^2,\quad
+d = n-1\\
+F_{\mu_0\mu_1...\mu_{n-2},m}
+&=\frac{2}{\sqrt\Delta}\varepsilon_{\mu_0\mu_1...\mu_{n-2}}\partial_m (H^{-1})\\
+e^\phi
+&=H^{2\alpha/\Delta}
+\end{align}
+as well as the magnetic solution
+\begin{align}
+ds_D^2
+&=H^{-\frac{4\tilde d}{\Delta(D-2)}}ds_{d}^2+
+H^{\frac{4d}{\Delta(D-2)}}ds_{D-d}^2,\quad
+d = D-n-1\\
+F_{m_1...m_n}
+&= \frac{2}{\sqrt{\Delta}}\varepsilon_{m_1...m_n m}\partial_m H\\
+e^\phi &= H^{-2\alpha/\Delta}
+\end{align}
+In both electric and magentic solutions $F$ has ambiguity up to a sign, as can be seen from how it enters the equations of motion.
+
 
 \subsection{11d}
-
+The action for 11d supergravity is
 \begin{equation}
 2\kappa_{11}^2 S = 
 \int d^{11}x\sqrt{-g}\left[
-    R-\frac{1}{2}|\mathcal F_4|^2
+    R-\frac{1}{2}| F_4|^2
 \right]
--\frac{1}{6}\int \mathcal C_3 \wedge \mathcal F_4 \wedge \mathcal F_4
+-\frac{1}{6}\int  C_3 \wedge  F_4 \wedge  F_4
 \end{equation}
-
 It has brane solutions
-
 \paragraph{M2}
 \begin{equation}
 ds^2 = H^{-2/3}ds_{1,2}^2 + H^{1/3}ds_8^2,\quad
-(\mathcal C_3)_{\mu_0 \mu_1 \mu_2} = \varepsilon_{\mu_0 \mu_1 \mu_2}(H^{-1}-1)
+(C_3)_{\mu_0 \mu_1 \mu_2} = \varepsilon_{\mu_0 \mu_1 \mu_2}(H^{-1}-1)
 \end{equation}
 
 \paragraph{M5}
 \begin{equation}
 ds^2 = H^{-1/3}ds_{1,5}^2 + H^{2/3}ds_5^2,\quad
-(\mathcal F_4)_{m_1 m_2 m_3 m_4} = \varepsilon_{m_1 m_2 m_3 m_4 n} \partial_n H
+(F_4)_{m_1 m_2 m_3 m_4} = \varepsilon_{m_1 m_2 m_3 m_4 n} \partial_n H
 \end{equation}
 
 \subsection{10d IIA}
-
-We use the convention $g_s = 1$ by shifting $\Phi \to \Phi - \langle\Phi\rangle$ where $e^{\langle\Phi\rangle} = g_s$.
-
 The action in string frame is
 \begin{equation}
 2\kappa_{10}^2 S_{IIA} =
@@ -37,8 +72,11 @@ The action in string frame is
 \right]
 -\frac{1}{2}\int B_2 \wedge F_4 \wedge F_4
 \end{equation}
-
 where $H_3 = dB_2$, $F_2 = dC_1$, $F_4 = dC_3$, and $\tilde{F}_4 = F_4 - C_1 \wedge H_3$.
+
+We use the convention $g_s = 1$ by shifting $\Phi \to \Phi - \langle\Phi\rangle$ where $e^{\langle\Phi\rangle} = g_s$.
+The Einstein frame action is
+
 
 It has brane solutions
 
@@ -93,9 +131,8 @@ The action in string frame is
 \int d^{10}x\sqrt{-g}\left[
     e^{-2\Phi}\left(R+4|\partial\Phi|^2-\frac{1}{2}|H_3|^2\right)
     -\frac{1}{2}\left(|F_1|^2+|\tilde{F}_3|^2+\frac{1}{2}|\tilde{F}_5|^2\right)
-\right] + S_{CS}
+\right] + \frac{1}{2}\int C_4\wedge H_3\wedge F_3
 \end{equation}
-
 where $H_3 = dB_2$, $F_1 = dC_0$, $F_3 = dC_2$, $F_5 = dC_4$, $\tilde{F}_3 = F_3 - C_0 \wedge H_3$, $\tilde{F}_5 = F_5 - \frac{1}{2}C_2 \wedge H_3 + \frac{1}{2}B_2 \wedge F_3$ with self-duality $\tilde{F}_5 = *\tilde{F}_5$.
 
 In Einstein frame it looks like
