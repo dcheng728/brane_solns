@@ -76,7 +76,16 @@ where $H_3 = dB_2$, $F_2 = dC_1$, $F_4 = dC_3$, and $\tilde{F}_4 = F_4 - C_1 \we
 
 We use the convention $g_s = 1$ by shifting $\Phi \to \Phi - \langle\Phi\rangle$ where $e^{\langle\Phi\rangle} = g_s$.
 The Einstein frame action is
-
+\begin{equation}
+\begin{aligned}
+2\kappa_{10}^2 S_{IIA}
+&= \int d^{10}x\sqrt{-g}\Bigg[
+    R - \frac{1}{2}|\partial\Phi|^2 - \frac{1}{2}e^{-\Phi}|H_3|^2 \\
+    &\quad - \frac{1}{2}e^{3\Phi/2}|F_2|^2 - \frac{1}{4}e^{\Phi/2}|\tilde{F}_4|^2
+\Bigg]
+- \frac{1}{2}\int B_2 \wedge F_4 \wedge F_4
+\end{aligned}
+\end{equation}
 
 It has brane solutions
 
@@ -131,7 +140,7 @@ The action in string frame is
 \int d^{10}x\sqrt{-g}\left[
     e^{-2\Phi}\left(R+4|\partial\Phi|^2-\frac{1}{2}|H_3|^2\right)
     -\frac{1}{2}\left(|F_1|^2+|\tilde{F}_3|^2+\frac{1}{2}|\tilde{F}_5|^2\right)
-\right] + \frac{1}{2}\int C_4\wedge H_3\wedge F_3
+\right] - \frac{1}{2}\int C_4\wedge H_3\wedge F_3
 \end{equation}
 where $H_3 = dB_2$, $F_1 = dC_0$, $F_3 = dC_2$, $F_5 = dC_4$, $\tilde{F}_3 = F_3 - C_0 \wedge H_3$, $\tilde{F}_5 = F_5 - \frac{1}{2}C_2 \wedge H_3 + \frac{1}{2}B_2 \wedge F_3$ with self-duality $\tilde{F}_5 = *\tilde{F}_5$.
 
