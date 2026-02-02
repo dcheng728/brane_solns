@@ -44,5 +44,5 @@
       "tools": ["pdflatex"]
     }
   ],
-  "latex-workshop.latex.recipe.default": "pdflatex"
+  "latex-workshop.latex.recipe.default": "pdflatex ➞ biber ➞ pdflatex × 2"
 }
