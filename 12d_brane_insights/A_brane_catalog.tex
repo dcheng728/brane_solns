@@ -8,16 +8,17 @@ S = \int d^Dx\sqrt{-g}\left[
     R - \frac{1}{2}(\partial\phi)^2 - \frac{1}{2}e^{\alpha\phi}|F_n|^2
 \right],
 \end{equation}
-the equations of motion are
+the equations of motion, together with Bianchi identity (assuming $F = dA$) are
 \begin{align}
 R_{MN} 
 &= \frac{1}{2}\left(
     \partial_M\phi\partial_N\phi + e^{\alpha\phi}S_{MN}\big|_F
 \right)\\
-d[e^{\alpha\phi}F] &=0\\
+dF&=0\\
+d[e^{\alpha\phi}*_D F] &=0\\
 \Box\phi&=\frac{\alpha}{2}e^{\alpha\phi}|F|^2
-\end{align}
-For $\Delta\equiv \alpha^2 +\frac{2 d \tilde{d}}{D-2}$, there exists the electric solution
+\end{align} 
+For $\Delta\equiv \alpha^2 +\frac{2 d \tilde{d}}{D-2}$, there exists the electric solution, defined as the case where the potential has legs along the worldvolume directions,
 \begin{align}
 ds_D^2
 &=H^{-\frac{4\tilde d}{\Delta(D-2)}}ds_{d}^2+
@@ -28,7 +29,7 @@ F_{\mu_0\mu_1...\mu_{n-2},m}
 e^\phi
 &=H^{2\alpha/\Delta}
 \end{align}
-as well as the magnetic solution
+as well as the magnetic solution, defined as the case where the field strength has legs along the transverse directions,
 \begin{align}
 ds_D^2
 &=H^{-\frac{4\tilde d}{\Delta(D-2)}}ds_{d}^2+
@@ -39,6 +40,7 @@ F_{m_1...m_n}
 e^\phi &= H^{-2\alpha/\Delta}
 \end{align}
 In both electric and magentic solutions $F$ has ambiguity up to a sign, as can be seen from how it enters the equations of motion.
+In 11d supergravity, type IIA, and type IIA, one finds $\Delta = 4$ for all branes.
 
 
 \subsection{11d}
@@ -190,7 +192,7 @@ ds^2
 &= H^{-3/4}ds_{1,1}^2 + H^{1/4}ds_8^2,\\
 e^{\Phi}
 &= H^{1/2},\quad
-(C_3)_{\mu_0\mu_2 m} = \varepsilon_{\mu_0 \mu_1} \partial_m H^{-1}
+(F_3)_{\mu_0\mu_2 m} = \varepsilon_{\mu_0 \mu_1} \partial_m H^{-1}
 \end{align}
 
 
