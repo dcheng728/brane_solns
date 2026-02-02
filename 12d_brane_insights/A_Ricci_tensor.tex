@@ -1,0 +1,162 @@
+\section{Ricci Tensor with isometries}
+\label{sec:ricci tensor with isometries}
+The Ricci tensor can be expressed in terms of the metric as
+\begin{equation}
+\begin{aligned}
+R_{MN}
+&= \frac{1}{2}\partial_P [g^{PQ}(g_{MQ,N} + g_{NQ,M} - g_{MN,Q})]\\
+&-\frac{1}{2}\partial_N (g^{PQ}g_{PQ,M})\\
+&+\frac{1}{4}g^{SQ}[g_{MQ,N} + g_{NQ,M} - g_{MN,Q}]g^{PR}[g_{PR,S}]\\
+&-\frac{1}{4}g^{SQ}[g_{MQ,P} + g_{PQ,M} - g_{PM,Q}]g^{PR}[g_{SR,N} + g_{NR,S} - g_{SN,R}]
+\end{aligned}
+\end{equation}
+expanding out each term, 
+\begin{equation}
+\begin{aligned}
+R_{MN} &=
+\frac{1}{2}g^{PQ}{}_{,P}(g_{MQ,N} + g_{NQ,M} - g_{MN,Q})\\
+&+\frac{1}{2}g^{PQ}(g_{MQ,NP} + g_{NQ,MP} - g_{MN,QP})\\
+&-\frac{1}{2}g^{PQ}{}_{,N}g_{PQ,M}\\
+&-\frac{1}{2}g^{PQ}g_{PQ,MN}\\
+&+\frac{1}{4}g^{SQ}g^{PR}[g_{MQ,N}g_{PR,S} + g_{NQ,M}g_{PR,S} - g_{MN,Q}g_{PR,S}\\
+&- g_{MQ,P}g_{SR,N} - g_{MQ,P}g_{NR,S} + g_{MQ,P}g_{SN,R}\\
+&- g_{PQ,M}g_{SR,N} - g_{PQ,M}g_{NR,S} + g_{PQ,M}g_{SN,R}\\
+&+ g_{PM,Q}g_{SR,N} + g_{PM,Q}g_{NR,S} - g_{PM,Q}g_{SN,R}]
+\end{aligned}
+\end{equation}
+We can reorganize the quartic terms and noticing some cancellations,
+\begin{equation}
+\begin{aligned}
+\frac{1}{4}g^{SQ}g^{PR}[...]
+&=
+\frac{1}{4}g^{SQ}g^{PR}[
+g_{MQ,N}g_{PR,S} + g_{NQ,M}g_{PR,S} - g_{MN,Q}g_{PR,S}- g_{PQ,M}g_{SR,N}\\
+&\quad - g_{MQ,P}g_{SR,N}+ g_{MP,Q}g_{RS,N}\\
+&\quad - g_{MQ,P}g_{NR,S}- g_{MP,Q}g_{NS,R}\\
+&\quad +g_{MP,Q}g_{NR,S} + g_{MQ,P}g_{SN,R}\\
+&\quad -g_{PQ,M}g_{NR,S} + g_{QP,M}g_{NS,R}]\\
+&=
+\frac{1}{4}g^{SQ}g^{PR}[
+g_{MQ,N}g_{PR,S} + g_{NQ,M}g_{PR,S} - g_{MN,Q}g_{PR,S}- g_{PQ,M}g_{SR,N}\\
+&\quad - 2g_{MQ,P}g_{NR,S} +2g_{MP,Q}g_{NR,S}]
+\end{aligned}
+\end{equation}
+and thus obtain an expression
+\begin{equation}
+\begin{aligned}
+R_{MN}
+&= \frac{1}{2}g^{PQ}[g_{MQ,NP} + g_{NQ,MP} - g_{MN,QP} - g_{PQ,MN}]\\
+&+(\frac{1}{2}g^{PQ}{}_{,P} + \frac{1}{4}g^{SQ}g^{PR}g_{PR,S})[g_{MQ,N} + g_{NQ,M} - g_{MN,Q}]\\
+&-\frac{1}{2}g^{PQ}{}_{,N}g_{PQ,M}\\
+&+\frac{1}{4}g^{SQ}g^{PR}[-g_{PQ,M}g_{SR,N} - 2g_{MQ,P}g_{NR,S} +2g_{MP,Q}g_{NR,S}]\\
+\end{aligned}
+\end{equation}
+assuming that the metric is block diagonal and that only $\partial_m$ are nonvanishing, or other lower case indices, we have
+\begin{equation}
+\begin{aligned}
+R_{MN} &=
+-\frac{1}{2}g^{pq}g_{MN,pq}
+-L^qg_{MN,q}
++\frac{1}{2}g^{sq}g^{PR}g_{MP,q}g_{NR,s}\\
+&+\frac{1}{2}g^{pq}(g_{Mq,Np}+g_{Nq,Mp})-\frac{1}{2}g^{PQ}g_{PQ,MN}\\
+&+L^q(g_{Mq,N}+g_{Nq,M})
+-\frac{1}{2}g^{PQ}{}_{,N}g_{PQ,M}
+-\frac{1}{4}g^{SQ}g^{PR}g_{PQ,M}g_{SR,N}-\frac{1}{2}g^{pr}g^{sq}g_{Mq,p}g_{Nr,s}
+\end{aligned}
+\end{equation}
+with the last two lines nonvanishing only when $M,N$ are lower case indices and where we defined
+\begin{equation}
+L^q = \frac{1}{2}g^{pq}{}_{,p} + \frac{1}{4}g^{sq}g^{PR}g_{PR,s}.
+\end{equation}
+Now suppose we are in $D$ dimensional spacetime, we adopt a metric ansatz
+\begin{equation}
+ds_D^2 = e^A ds_d^2 + e^B ds_{D-d-2}^2 + e^C dz_1^2 + e^{-C} dz_2^2,
+\end{equation}
+and the coordinates are $(x^{\mu}, y^m, z_1, z_2)$ with $\mu = 0,...,d-1$ and $m = 1,...,D-d-2$.
+Assuming the functions only depend on $x^m$, we find
+\begin{align}
+L^q 
+&=
+\frac{1}{4}\left(
+    dA_{,p} + (D-d-4)B_{,p}
+\right)\delta^{pq}e^{-B}\\
+g_{mn,pq} 
+&= (B_{,p}B_{,q} + B_{,pq})e^{B}\delta_{mn}\\
+g_{\mu\nu,pq} 
+&= (A_{,p}A_{,q} + A_{,pq})e^{A}\eta_{\mu\nu}\\
+g_{z_1 z_1,pq} 
+&= (C_{,p}C_{,q} + C_{,pq})e^{C}\\
+g_{z_2 z_2,pq} 
+&= (C_{,p}C_{,q} - C_{,pq})e^{-C}
+\end{align}
+Hence
+\begin{align}
+R_{\mu\nu}
+&=-e^{A-B}\eta_{\mu\nu}\delta^{pq}\left[\frac{1}{2}A_{,pq} + \frac{1}{4}(dA_{,p}+(D-d-4)B_{,p})A_{,q}\right]\\
+R_{zz}
+&=\mp e^{-B\pm C}\delta^{pq}
+\left[
+    \frac{1}{2}C_{,pq}+\frac{1}{4}(dA_{,p}+(D-d-4)B_{,p})C_{,q}
+\right]
+\end{align}
+with $+$ for $z_1$ and $-$ for $z_2$.
+For $R_{mn}$ we first compute contribution from the 1st line which we denote $\hat{R}_{mn}$
+\begin{equation}
+\hat{R}_{mn} =
+-\delta_{mn}\delta^{pq}(\frac{1}{2}B_{,pq}+\frac{1}{4}(dA_{,p}+(D-d-4)B_{,p})B_{,q})
+\end{equation}
+we find
+\begin{align}
+\frac{1}{2}g^{pq}(g_{mq,np}+g_{nq,mp})
+&=B_{,mn}+B_{,m}B_{,n}\\
+-\frac{1}{2}g^{PQ}g_{PQ,mn}
+&=-\frac{1}{2}[d(A_{,mn}+A_{,m}A_{,n})+(D-d-2)(B_{,mn}+B_{,m}B_{,n}) + 2C_{,m}C_{,n}]\\
+L^q(g_{mq,n}+g_{nq,m})&=\frac{1}{4}(dA_{,p}+(D-d-4)B_{,p})(B_{,n}\delta^p_m+B_{,m}\delta^p_n)\\
+-\frac{1}{2}g^{PQ}{}_{,n}g_{PQ,m}
+&=\frac{1}{2}[dA_{,n}A_{,m}+(D-d-2)B_{,n}B_{,m}+2C_{,n}C_{,m}]\\
+-\frac{1}{4}g^{SQ}g^{PR}g_{PQ,m}g_{SR,n}-\frac{1}{2}g^{pr}g^{sq}g_{mq,p}g_{nr,s}
+&=-\frac{1}{4}\left[dA_{,m}A_{,n}+(D-d)B_{,m}B_{,n}+2C_{,m}C_{,n}\right]
+\end{align}
+The standard next step is to let e.g. $A = a\ln H$ for some harmonic function $H$, and the form field ansatz is that $F_n \sim dH$ which satisfies the Bianchi identity.
+Schematically, the Einstein equation reads
+\begin{eqnarray}
+R_{MN} = (FF)_{MN} - g_{MN}F^2
+\end{eqnarray}
+which means if $F \sim dH \sim H'$ the Ricci tensor needs to be proportional to $(H')^2$ to satisfy the Einstein equation.
+Looking at what we have obtain, we see
+\begin{equation}
+R_{mn} = (...) -\frac{1}{2}(d A_{,mn} + (D-d-4)B_{,mn})
+\end{equation}
+where $(...)$ denotes terms proportional to $(H')^2$.
+One can show that with $A = a\ln H$, we have 
+\footnote{Imposing $H'' + \frac{D-d-3}{r}H' = 0$ for harmonicity.}
+\begin{align}
+A_{,mn} 
+&= a\left[
+    \frac{H_{,mn}}{H} - \frac{H_{,m}H_{,n}}{H^2}
+\right]\\
+&= a\left[
+    \left(\frac{\delta_{mn}}{r} - (D-d-2)\frac{y^my^n}{r^3}\right)\frac{H'}{H}
+    -\frac{y^my^n}{r^2}\frac{(H')^2}{H^2}
+\right]
+\end{align}
+Substituting in $A = a\ln H, B = b\ln H$, we can expand
+\begin{equation}
+d A_{,mn} + (D-d-4)B_{,mn}
+=[da+(D-d-4)b]
+\left[\frac{\delta_{mn}}{r}-(D-d-2)\frac{y_my_n}{r^3}\right]\frac{H'}{H}
++\text{terms proportional to} (H')^2]
+\end{equation}
+which means we shall impose the relation
+\begin{equation}
+da+(D-d-4)b = 0
+\end{equation}
+This condition drastically simplifies the Ricci tensor components to
+\begin{align}
+R_{\mu\nu}
+&=\frac{a}{2}\eta_{\mu\nu}H^{a-b}\frac{(H')^2}{H^2}\\
+R_{zz}
+&=\pm\frac{c}{2}H^{-b\pm c}\frac{(H')^2}{H^2}\\
+R_{mn}
+&=\frac{(H')^2}{H^2}\left[\frac{b}{2}\delta_{mn} + \left(\frac{da(b-a)}{4} - \frac{c^2}{2}\right)\frac{y^m y^n}{r^2}\right]
+\end{align}
