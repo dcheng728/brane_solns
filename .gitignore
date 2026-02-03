@@ -3,4 +3,4 @@
 *.log
 *.pdf
 
-*/latex_outputs/*
+*/*/latex_outputs/*
