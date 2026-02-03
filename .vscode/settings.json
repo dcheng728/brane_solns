@@ -4,7 +4,7 @@
     "python-envs.defaultEnvManager": "ms-python.python:conda",
     "python-envs.defaultPackageManager": "ms-python.python:conda",
     "python-envs.pythonProjects": [],
-    "workbench.colorTheme": "Solarized Light",
+    "workbench.colorTheme": "Solarized Dark",
     "latex-workshop.latex.outDir": "%DIR%/latex_outputs",
     "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.synctex.afterBuild.enabled": true,
