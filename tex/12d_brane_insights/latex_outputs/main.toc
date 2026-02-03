@@ -1,0 +1,32 @@
+\contentsline {section}{\numberline {1}IIA and 11d}{1}{section.1}%
+\contentsline {paragraph}{Side note}{2}{section*.2}%
+\contentsline {section}{\numberline {2}IIB and 12d}{2}{section.2}%
+\contentsline {paragraph}{F1}{2}{section*.3}%
+\contentsline {paragraph}{D1}{2}{section*.4}%
+\contentsline {paragraph}{NS5}{3}{section*.5}%
+\contentsline {paragraph}{D5}{3}{section*.6}%
+\contentsline {subsection}{\numberline {2.1}Speculative work: Attempt to deriving the D1,F1,NS5,D5 uplifts in 12d}{3}{subsection.2.1}%
+\contentsline {section}{\numberline {A}Differential Geometry}{5}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Conventions}{5}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Useful forms identities}{5}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Useful gravity identities}{6}{subsection.A.3}%
+\contentsline {section}{\numberline {B}Catalog of branes}{6}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}General formulation}{6}{subsection.B.1}%
+\contentsline {subsection}{\numberline {B.2}11d}{7}{subsection.B.2}%
+\contentsline {paragraph}{M2}{7}{section*.7}%
+\contentsline {paragraph}{M5}{7}{section*.8}%
+\contentsline {subsection}{\numberline {B.3}10d IIA}{7}{subsection.B.3}%
+\contentsline {paragraph}{D0}{8}{section*.9}%
+\contentsline {paragraph}{F1}{8}{section*.10}%
+\contentsline {paragraph}{D2}{8}{section*.11}%
+\contentsline {paragraph}{D4}{8}{section*.12}%
+\contentsline {paragraph}{NS5}{8}{section*.13}%
+\contentsline {paragraph}{D6}{8}{section*.14}%
+\contentsline {subsection}{\numberline {B.4}10d IIB}{8}{subsection.B.4}%
+\contentsline {paragraph}{D(-1)}{8}{section*.15}%
+\contentsline {paragraph}{F1}{9}{section*.16}%
+\contentsline {paragraph}{D1}{9}{section*.17}%
+\contentsline {paragraph}{D3}{9}{section*.18}%
+\contentsline {paragraph}{NS5}{9}{section*.19}%
+\contentsline {paragraph}{D5}{9}{section*.20}%
+\contentsline {section}{\numberline {C}Ricci Tensor with isometries}{9}{appendix.C}%
