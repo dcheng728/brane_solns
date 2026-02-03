@@ -1,0 +1,58 @@
+\section{SL(2, Z) transformations of various fields}
+\subsection{Modular forms}
+A modular form of weight $(m, n)$ is a function $f(\tau, \bar{\tau})$ that transforms under an SL(2, Z) transformation as
+\begin{equation}
+f(\tau, \bar{\tau}) \to (c\tau + d)^m (c\bar{\tau} + d)^n f(\tau, \bar{\tau}).
+\end{equation}
+
+\subsection{IIB fields}
+
+We will denote the fields by
+\begin{equation}
+\tau \equiv C + ie^{-\Phi}
+\end{equation}
+for an SL(2, Z) transformation
+\begin{equation}
+\begin{pmatrix}
+a & b\\
+c & d
+\end{pmatrix}
+\in SL(2, Z),
+\end{equation}
+the axio-dilaton transforms as
+\begin{equation}
+\tau \to \frac{a\tau + b}{c\tau + d}.
+\end{equation}
+The dilaton transforms as
+\begin{equation}
+e^{-\Phi} \to \frac{e^{-\Phi}}{|c\tau + d|^2},\quad
+\end{equation}
+and the axion transforms as
+\begin{equation}
+C \to
+\frac{ac|\tau|^2 + (ad+bc)C +bd}{|c\tau+ d|^2}.
+\end{equation}
+
+\subsection{Metric}
+The string frame metric Weyl transforms as
+\begin{equation}
+g_{mn}\to |c\tau + d| g_{mn},\quad
+\sqrt{-g} \to |c\tau + d|^5 \sqrt{-g}.
+\end{equation}
+which means the Ricci scalar transforms as
+\begin{equation}
+\begin{aligned}
+R &\to R(|c\tau + d| g_{mn})\\
+&= |c\tau + d|^{-1} 
+\left[ R - 9\nabla^2 \ln|c\tau + d| - 18(\nabla \ln|c\tau + d|)^2 \right].
+\end{aligned}
+\end{equation}
+and modulo total derivatives, we have
+\begin{equation}
+\sqrt{-g}e^{-2\Phi} R
+\to \sqrt{-g}e^{-2\Phi}
+\left[
+    R-18\partial_m\ln|c\tau+d|\partial^m (\Phi + \ln |c\tau+d|)
+\right]
+\end{equation}
+which is not a modular form.
