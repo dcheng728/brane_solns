@@ -2,5 +2,7 @@
 *.aux
 *.log
 *.pdf
+*.blg
+*.synctex.gz
 
 */*/latex_outputs/*
