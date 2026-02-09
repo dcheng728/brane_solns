@@ -1,58 +1,79 @@
-\section{SL(2, Z) transformations of various fields}
+\section{String frame \texorpdfstring{$SL(2, \mathbb{R})$}{SL(2, R)}}
+
 \subsection{Modular forms}
-A modular form of weight $(m, n)$ is a function $f(\tau, \bar{\tau})$ that transforms under an SL(2, Z) transformation as
+For a function $F \to |c\tau+d|^k F$, we can construct a covariant derivative
 \begin{equation}
-f(\tau, \bar{\tau}) \to (c\tau + d)^m (c\bar{\tau} + d)^n f(\tau, \bar{\tau}).
+\hat{\partial}_m F \equiv \left[\partial_m - \frac{k}{2}\partial_m\Phi \right] F,
+\label{U(1)-covariant derivative}
 \end{equation}
-
-\subsection{IIB fields}
-
-We will denote the fields by
+which can equivalently be written as
 \begin{equation}
-\tau \equiv C + ie^{-\Phi}
+\hat{\partial}_m F = e^{k\phi/2}\,\partial_m \left(e^{-k\phi/2} F\right),\quad
+\phi\equiv \Phi - \Phi_0,
+\label{SL2R_completion_by_scaling}
 \end{equation}
-for an SL(2, Z) transformation
+for some constant $\Phi_0$ that can be understood as the constant part of $\Phi$. If the symmetry group were $SL(2, \mathbb{R})$, then one may set $\Phi_0 = 0$ via an appropriate $SL(2, \mathbb{R})$ transformation. However, this is not the case for $SL(2, \mathbb{Z})$, so we will keep $\Phi_0$ explicit and conventionally define $g_s \equiv e^{\Phi_0}$.
+
+\subsection{IIB fields under \texorpdfstring{$SL(2, \mathbb{R})$}{SL(2, R)}}
+For an $SL(2, \mathbb{R})$ transformation
 \begin{equation}
 \begin{pmatrix}
 a & b\\
 c & d
 \end{pmatrix}
-\in SL(2, Z),
+\in SL(2, \mathbb{R}),
 \end{equation}
-the axio-dilaton transforms as
+the axio-dilaton, defined as
+\begin{equation}
+\tau \equiv C + ie^{-\Phi},
+\end{equation}
+transforms as
 \begin{equation}
 \tau \to \frac{a\tau + b}{c\tau + d}.
 \end{equation}
-The dilaton transforms as
+The dilaton and axion individually transform as
 \begin{equation}
-e^{-\Phi} \to \frac{e^{-\Phi}}{|c\tau + d|^2},\quad
+e^{-\Phi} \to \frac{e^{-\Phi}}{|c\tau + d|^2},\qquad
+C \to \frac{ac|\tau|^2 + (ad+bc)C +bd}{|c\tau+ d|^2}.
 \end{equation}
-and the axion transforms as
+The string frame metric $G_{mn}$ transforms as
 \begin{equation}
-C \to
-\frac{ac|\tau|^2 + (ad+bc)C +bd}{|c\tau+ d|^2}.
+G_{mn}\to |c\tau + d|\, G_{mn},\qquad
+\sqrt{-G} \to |c\tau + d|^5 \sqrt{-G}.
+\label{eq:metric-sl2z}
 \end{equation}
 
-\subsection{Metric}
-The string frame metric Weyl transforms as
+\subsection{\texorpdfstring{$SL(2, \mathbb{R})$}{SL(2, R)} completion}
+From \eqref{eq:metric-sl2z}, the string frame metric carries $U(1)$ charge $k=1$ under $SL(2, \mathbb{R})$.
+Since the Ricci scalar $R$ contains derivatives acting on $G_{mn}$, it will not transform covariantly under $SL(2, \mathbb{R})$.
+However, we may still consider its $SL(2, \mathbb{R})$ completion $\hat{R}$ obtained by promoting every ordinary derivative inside $R$ to the $SL(2, \mathbb{R})$-covariant derivative defined in \eqref{U(1)-covariant derivative}.
+One finds
 \begin{equation}
-g_{mn}\to |c\tau + d| g_{mn},\quad
-\sqrt{-g} \to |c\tau + d|^5 \sqrt{-g}.
+\hat{R}(G_{mn},\Phi) = e^{-\phi/2}R(e^{-\phi/2}G_{mn}),\quad
+\hat{R} \to |c\tau + d|^{-1}\hat{R}.
 \end{equation}
-which means the Ricci scalar transforms as
+And up to a total derivative,
 \begin{equation}
-\begin{aligned}
-R &\to R(|c\tau + d| g_{mn})\\
-&= |c\tau + d|^{-1} 
-\left[ R - 9\nabla^2 \ln|c\tau + d| - 18(\nabla \ln|c\tau + d|)^2 \right].
-\end{aligned}
+\sqrt{-G}e^{-2\Phi}R(G_{mn})
+=\sqrt{-G}e^{-2\Phi}\left[\hat{R}(G_{mn},\Phi)-\frac{9}{2}(\partial\Phi)^2\right].
 \end{equation}
-and modulo total derivatives, we have
+The $\hat{R}$ term is $SL(2, \mathbb{R})$ covariant but the $-\frac{9}{2}(\partial\Phi)^2$ term is not; it is the $SL(2, \mathbb{R})$ completion of the axio-dilaton:
 \begin{equation}
-\sqrt{-g}e^{-2\Phi} R
-\to \sqrt{-g}e^{-2\Phi}
+\sqrt{-G}
 \left[
-    R-18\partial_m\ln|c\tau+d|\partial^m (\Phi + \ln |c\tau+d|)
+e^{-2\Phi}[R + (\partial\Phi)^2]
+-\frac{1}{2}(\partial C)^2
 \right]
+=
+\sqrt{-G}\left[e^{-2\Phi}\hat{R}(G_{mn},\Phi) - \frac{1}{2}|\partial\tau|^2\right].
+\label{string_frame_SL2R_covariant_action}
 \end{equation}
-which is not a modular form.
+As we have noted in \eqref{SL2R_completion_by_scaling}, the $SL(2, \mathbb{R})$ completion of a field carrying $U(1)$ charge can be achieved with an appropriate rescaling of the field.
+We may write $\hat{R}(G_{mn},\Phi) = e^{-\phi/2}R(g_{mn})$ where $g_{mn} = e^{-\phi/2}G_{mn}$ is the $SL(2, \mathbb{R})$ invariant metric. Rewriting \eqref{string_frame_SL2R_covariant_action} in terms of $g_{mn}$, we find precisely the Einstein frame action.
+
+% \section{Reduction on torus}
+% The compactification of a $D$-dimensional metric on a torus $T^2$ is given by
+% \begin{equation}
+% ds^2_D = e^{2\alpha\varphi}g_{mn}dx^m dx^n + e^{2\beta\varphi}G_{ij}(dy^i + A^i_m dx^m)(dy^j + A^j_n dx^n)
+% \end{equation}
+% The Ricci tensor is given by
