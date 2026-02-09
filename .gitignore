@@ -4,5 +4,7 @@
 *.pdf
 *.blg
 *.synctex.gz
+*.DS_Store
+
 
 */*/latex_outputs/*
