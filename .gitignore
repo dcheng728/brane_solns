@@ -6,5 +6,6 @@
 *.synctex.gz
 *.DS_Store
 
-
-*/*/latex_outputs/*
+# LaTeX build output directories
+**/latex_outputs/
+main.bbl
