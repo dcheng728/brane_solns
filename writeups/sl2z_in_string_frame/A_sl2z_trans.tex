@@ -1,4 +1,5 @@
-\section{String frame \texorpdfstring{$SL(2, \mathbb{R})$}{SL(2, R)}}
+\section{Useful Properties related to SL(2, R) covariance}
+\label{sec:sl2r_covariance}
 
 \subsection{Modular forms}
 For a function $F \to |c\tau+d|^k F$, we can construct a covariant derivative
@@ -36,6 +37,10 @@ The dilaton and axion individually transform as
 e^{-\Phi} \to \frac{e^{-\Phi}}{|c\tau + d|^2},\qquad
 C \to \frac{ac|\tau|^2 + (ad+bc)C +bd}{|c\tau+ d|^2}.
 \end{equation}
+The modulud $|\tau|^2$ transforms as
+\begin{equation}
+|\tau|^2 \to \frac{|a\tau + b|^2}{|c\tau + d|^2} = \frac{a^2|\tau|^2 + 2abC + b^2}{|c\tau + d|^2}.
+\end{equation}
 The string frame metric $G_{mn}$ transforms as
 \begin{equation}
 G_{mn}\to |c\tau + d|\, G_{mn},\qquad
@@ -50,26 +55,13 @@ However, we may still consider its $SL(2, \mathbb{R})$ completion $\hat{R}$ obta
 One finds
 \begin{equation}
 \hat{R}(G_{mn},\Phi) = e^{-\phi/2}R(e^{-\phi/2}G_{mn}),\quad
-\hat{R} \to |c\tau + d|^{-1}\hat{R}.
+\hat{R} \to |c\tau + d|^{-1}\hat{R},
 \end{equation}
-And up to a total derivative,
+and
 \begin{equation}
-\sqrt{-G}e^{-2\Phi}R(G_{mn})
-=\sqrt{-G}e^{-2\Phi}\left[\hat{R}(G_{mn},\Phi)-\frac{9}{2}(\partial\Phi)^2\right].
+\sqrt{-G}e^{-2\Phi}\hat{R}(G_{mn},\Phi)
+=\sqrt{-G}e^{-2\Phi}\left[R(G_{mn})+\frac{9}{2}(\partial\Phi)^2\right]+\partial(...).
 \end{equation}
-The $\hat{R}$ term is $SL(2, \mathbb{R})$ covariant but the $-\frac{9}{2}(\partial\Phi)^2$ term is not; it is the $SL(2, \mathbb{R})$ completion of the axio-dilaton:
-\begin{equation}
-\sqrt{-G}
-\left[
-e^{-2\Phi}[R + (\partial\Phi)^2]
--\frac{1}{2}(\partial C)^2
-\right]
-=
-\sqrt{-G}\left[e^{-2\Phi}\hat{R}(G_{mn},\Phi) - \frac{1}{2}|\partial\tau|^2\right].
-\label{string_frame_SL2R_covariant_action}
-\end{equation}
-As we have noted in \eqref{SL2R_completion_by_scaling}, the $SL(2, \mathbb{R})$ completion of a field carrying $U(1)$ charge can be achieved with an appropriate rescaling of the field.
-We may write $\hat{R}(G_{mn},\Phi) = e^{-\phi/2}R(g_{mn})$ where $g_{mn} = e^{-\phi/2}G_{mn}$ is the $SL(2, \mathbb{R})$ invariant metric. Rewriting \eqref{string_frame_SL2R_covariant_action} in terms of $g_{mn}$, we find precisely the Einstein frame action.
 
 % \section{Reduction on torus}
 % The compactification of a $D$-dimensional metric on a torus $T^2$ is given by

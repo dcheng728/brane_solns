@@ -3,7 +3,16 @@
 \usepackage{cancel}
 \usepackage[margin=3cm]{geometry}
 \usepackage{hyperref}
-\usepackage[sorting=none]{biblatex}
+% %%%%%%%%%%%%%%%%%%%%%%% biblatex set up
+\usepackage[
+  backend=biber,
+  style=numeric,
+  sorting=none,
+  giveninits=true,   % initials only
+  date=year,         % only the year
+  doi=false, url=false, isbn=false,  % do NOT print DOI/URL lines
+  maxbibnames=99, maxcitenames=3
+]{biblatex}
 
 \addbibresource{refs.bib}
 
@@ -12,7 +21,7 @@
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{proposition}{Proposition}
 
-\title{\texorpdfstring{$SL(2, \mathbb{Z})$}{SL(2, Z)} in String Frame}
+\title{Clarifying type IIB SL(2, R)}
 \author{Chang Cheng}
 \date{\today}
 
@@ -21,10 +30,12 @@
 \maketitle
 \tableofcontents
 
-% \input{1_.tex}
+\input{1_.tex}
 
-% \appendix
+\appendix
+\input{A_cayley_transform.tex}
 \input{A_sl2z_trans.tex}
+
 
 
 \printbibliography

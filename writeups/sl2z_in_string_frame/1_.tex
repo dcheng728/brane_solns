@@ -1,34 +1,295 @@
-\section{IIB}
-Although there are various conventions one may adopt in choosing the Einstein frame action, where the $SL(2, \mathbb{R})$ structure is manifest, there is only one string frame action.
-But in the string frame, the $SL(2, \mathbb{R})$ invariance is not manifest.
-The 11d to 10d reduction is often performed in the string frame, which elucidates the interpretation of the various fields in the higher dimension.
-If the type IIB action were to be a compactification of a higher dimensional theory, perhaps it would be related to the string frame action, but $SL(2, \mathbb{R})$ invariance should be manifest.
+\section{Introduction}
 
-The type IIB supergravity action in the string frame is
+There has been some confusion regarding the distinction between the SL(2, R) symmetry, and how the coupling $g_s$ appears in the type IIB supergravity in \cite{Cheng:2025efp}.
+Specifically, 
+\begin{itemize}
+    \item how did the SL(2, R) symmetry in classical type IIB emerge,
+    \item when does it act on the full dilaton $\Phi$ and when does it act on the fluctuation $\phi$,
+    \item how does the SL(2, R) symmetry act on the metrics of the various frames and on $g_s$? Is the type IIB supergravity action invariant under SL(2, R), and, once the higher-derivative corrections are included, SL(2, Z)?
+\end{itemize}
+This note aims to address these questions.
 
+% The type IIB string theory has an intriguing SL(2, Z) symmetry.
+% To underst
+
+% is often discussed in two contexts, 1) understanding the SL(2, Z) symmetry \cite{Hull:1994ys,Schwarz:1995dk} 2) deriving higher derivative corrections to the low-energy supergravity action, with an SL(2, R)  symmetry \cite{Green:1997tv,Liu:2022bfg}.
+% There is some tension between these two contexts: deriving higher derivative corrections motivates one to work with a metric that is asymptotically flat, this requires a redefinition of the metric where the string coupling $g_s$ explicitly shows up in the redefinition.
+% Since $g_s$ is not SL(2, R)-invariant, neither is the redefined metric.
+% Hence such effective action would not be in an SL(2, Z)-manifest form once quantum corrections are included.
+
+% It is perhaps useful to return to the beginning, when the SL(2, R) symmetry was first realised.
+% Historically, the SUGRA algebra came before the action, and the action was just there to reproduce the field equations and symmetries.
+
+% The SL(2, R) should act on the full dilaton, since the full dilaton is the actual coset representative of SL(2, R)/U(1).
+
+% (look at your notes)
+
+% In the discussion of type IIB SL(2, R) or SL(2, Z), many existing papers \cite{Schwarz:1995dk,Green:1997tv,Liu:2022bfg,ValeixoBento:2025emh} do not clarify whether such symmetry acts on $\tau \equiv C + i e^{-\Phi}$ or $\tau\equiv C + i e^{-\phi}$, where $\phi \equiv \Phi - \langle\Phi\rangle$.
+% This is of course not a problem if one can set $g_s\equiv e^{\langle\Phi\rangle}$ to 1, but this is not always the case, as we will discuss, when one would like to work with an asymptotically flat Einstein frame metric.
+
+% The existence of the type IIB supergravity had been suggested in Nahm's classification \cite{Nahm:1977tg}.
+% Following the construction of the 11d supergravity using the Noether method \cite{Cremmer:1978km},
+% It was soon realised that the type IIB supergravity in 10d admits an SL(2, R)/U(1) coset structure \cite{Green:1982tk,Schwarz:1983wa}, a key clue that led to the construction of the field equations of the type IIB supergravity \cite{Schwarz:1983qr,Howe:1983sra}.
+
+
+
+% Here we note a subtlety often neglected in the type IIB Einstein-frame action: the asymptotically-flat Einstein-frame metric is not SL(2, R)-invariant and neither is $g_s$.
+
+\section{Origin of SL(2, R)}
+
+The rigid internal symmetry of the linearised (free) type IIB supergravity had been known to be $\mathrm{SO}(2) \cong \mathrm{U}(1)$ \cite{Nahm:1977tg,Green:1982tk}.
+In the nonlinear supergravity, the symmetry group SO(9,1) is promoted to that of the diffeomorphisms, and the rigid supersymmetry is promoted to local supersymmetry.
+This means that the linearised field equations and superalgebra will receive corrections at $O(\kappa)$ and beyond, where $\kappa$ is the gravitational coupling appearing in the expansion $g_{mn} = \eta_{mn} + \kappa\, h_{mn}$.
+Once the full nonlinear field equations are obtained, the symmetries of the linearised theory may be broken and new symmetries may emerge.
+
+At the linearised level \cite{Green:1982tk}, the type IIB theory contains a single complex scalar $B$ carrying charge 2 under a rigid U(1).
+In the nonlinear theory, this scalar acquires self-interactions and couplings to gravity.
+The crucial observation of \cite{Schwarz:1983wa} was that a complex scalar coupled to gravity with supersymmetry parameterises the coset SU(1,1)/U(1), and that the theory accordingly possesses an SU(1,1) symmetry%
+\footnote{
+More precisely, the rigid U(1) acting on $B$ in the linearised theory is promoted to a nonlinearly realised SU(1,1) symmetry. This symmetry can be made linear by putting $B$ in a 2x2 matrix.
+The scalar manifold is then parameterised by the SU(1,1) matrix
+\begin{equation}
+\exp{
+\left[
+\kappa
+\begin{pmatrix}
+    0 & B \\ B^* & 0
+\end{pmatrix}
+\right]
+},
+\end{equation}
+where SU(1,1) acts on the left \cite{Schwarz:1983wa}. We note that skipped the step where an additional scalar was introduced with a compensating local U(1) symmetry, as described in \cite{Schwarz:1983wa}, by fixing the gauge $\varphi = 0$.
+}.
+To my knowledge, this constitutes the first appearance of the type IIB SL(2,$\mathbb{R}$) $\cong$ SU(1,1) symmetry.
+Shortly after, the full nonlinear field equations of type IIB supergravity were formulated \cite{Schwarz:1983qr,Howe:1983sra}, incorporating the SU(1,1)/U(1) scalar manifold and its SU(1,1) symmetry.
+
+In 1995, it had been argued that the type IIB supergravity field equations \cite{Schwarz:1983qr,Howe:1983sra} in the absence of the composite 5-form field strength \footnote{See eqs 53, 54 of \cite{Bergshoeff:1995as}} can be derived from a ``pseudoaction"
+\begin{equation}
+S_{IIB}
+=\frac{1}{2}\int d^{10}x \sqrt{-g}\left[
+    R(g) - 2\frac{\partial B\partial B^*}{(1-BB^*)^2}
+    -\frac{3}{4}G_3^*G_3
+\right].
+\label{SU(1,1) type IIB pseudoaction}
+\end{equation}
+Here $B$ is the complex scalar parameterising the SU(1,1)/U(1) coset, transforming under SU(1,1) as $B\to \frac{\alpha B+\beta}{\gamma B+\delta}$, where $\begin{pmatrix} \alpha & \beta \\ \gamma & \delta \end{pmatrix}\in \text{SU(1,1)}$, and $G_3$ is the complex 3-form field strength.
+We note that because the type IIB supergravity has no manifestly Lorentz-covariant action-principle formulation, its (pseudo)action bears less significance compared to that of the type IIA.
+
+It was also noted in \cite{Bergshoeff:1995as} 
+that if one makes the identifications
+\begin{equation}
+C+ie^{-\Phi}\equiv i\frac{1-B}{1+B},\quad
+G_3 = \sqrt{\frac{2}{3}}\frac{(H_3+iF_3)-B(H_3-iF_3)}{(1-BB^*)^{1/2}},\quad
+G_{mn}\equiv e^{-\Phi/2}g_{mn},
+\end{equation}
+then \eqref{SU(1,1) type IIB pseudoaction} can be written as
+\begin{equation}
+S_{IIB}=\frac{1}{2\kappa^2}\int d^{10}x\sqrt{-G}\left[
+    e^{-2\Phi}\left(R+4(\partial\Phi)^2-\frac{1}{2}H_3^2\right)
+    -(\partial C)^2 -\frac{1}{2}(F_3-CH_3)^2
+\right]
+\end{equation}
+and the rigid symmetry has become SL(2, R) \footnote{This is in fact an instance of the Cayley transform which we review in Appendix \ref{sec:cayley_transform}}.
+This formulation of the type IIB supergravity via such a (pseudo)action has become standard \cite{Schwarz:1995dk,Becker:2006dvp,Polchinski:1998rr,Ortin:2015hya}.
+For the sake of partially producing the type IIB field equations, there is also nothing fixing the constant appearing in front of the (pseudo)action, so we have put in $\kappa^2$ whose precise value is arbitrary.
+
+Historically, and in fact for the 13 years between \cite{Schwarz:1983qr,Howe:1983sra} and \cite{Bergshoeff:1995as}, the type IIB supergravity action was not given much interest because of the lack of a manifestly Lorentz-covariant action principle, and the fact that the field equations and symmetries can be derived without it. 
+Hence the constants appearing in the (pseudo)action were not fixed by any physical requirement, i.e. whether it contains $g_s$ or not.
+
+Regardless, the type IIB axio-dilaton parametrises an $\frac{SL(2, R)}{U(1)}$ coset. 
+This is a physical statement that does not depend on how one derives the classical field equations, hence is not weakened by the fact that the type IIB has no manifestly Lorentz-covariant action principle.
+This means that the SL(2, R) symmetry should act on the full dilaton $\Phi$ and not just the fluctuation $\phi \equiv \Phi - \langle\Phi\rangle$.
+Because the full dilaton is the coset representation.
+
+Sometimes confusions may arise because while in the modern convention $\phi$ is used to denote the fluctuation of the dilaton away from the vacuum \cite{ValeixoBento:2025emh}, in earlier papers \cite{Schwarz:1995dk} $\phi$ is used to denote the full dilaton. 
+
+As a quick way to identify which convention is being used and perform consistency checks one shall remember that SL(2, R) always acts on the full axio-dilaton ($\tau \equiv C + i e^{-\Phi}$ in our convention).
+This means that the string coupling $g_s \equiv e^{\langle\Phi\rangle}$ transforms as $g_s \to \frac{g_s}{|c\langle\tau\rangle + d|^2}$ under SL(2, R).
+When one claims to ``write the type IIB action in SL(2, R)-manifest form", it would be better to use the full dilaton $\Phi$ instead of the dilaton fluctuation $\phi$.
+
+This addresses the first two questions raised in the introduction.
+
+
+\section{Defining SL(2, R) without $g_s$ in string frame metric}
+
+After clarifying the origin of the SL(2, R) and how it acts, we now adopt the pseudoaction formulation of type IIB supergravity, and clarify some more subtleties related to SL(2, R)-invariance.
+
+The 2-derivative action for type IIB supergravity in the string frame makes no reference to $g_s$ and is given by
 
 \begin{equation}
 \begin{aligned}
 S_{IIB}
 &=S_{NSNS} + S_{RR} + S_{CS}\\
-&=\frac{1}{(2\pi)^7\alpha^{\prime 4}}
-\int d^{10}x \sqrt{-g}
+&=\frac{1}{2\kappa^2}
+\int d^{10}x \sqrt{-G}
 \Bigg[
 e^{-2\Phi}\left(R + 4(\partial\Phi)^2-\frac{1}{2}|H_3|^2\right)
 -\left(\frac{1}{2}(\partial C)^2+\frac{1}{2}|\tilde F_3|^2+\frac{1}{4}|\tilde{F}_5|^2\right)
 \Bigg]\\
-&\quad -\frac{1}{2(2\pi)^7\alpha^{\prime 4}}\int C_4\wedge H_3\wedge F_3
+&\quad -\frac{1}{4\kappa^2}\int C_4\wedge H_3\wedge F_3,
 \end{aligned}
 \label{string frame IIB action}
 \end{equation}
-with $(2\pi)^7\alpha^{\prime 4}=(2\pi)^7l_s^8=(2\pi)^7\alpha^{\prime 4}$, and
+with $2\kappa^2=(2\pi)^7l_s^8=(2\pi)^7\alpha^{\prime 4}$, and
 \begin{equation}
 F_p = dC_{p-1}, \quad 
 H_3 = dB_2, \quad
 \tilde F_3 = F_3 - C H_3,\quad
 \tilde F_5 = * \tilde F_5 = F_5 - \frac12 C_2\wedge H_3 + \frac12 B_2\wedge F_3.
 \end{equation}
-It is a quick computation to show that the string frame metric transforms under $SL(2, \mathbb{Z})$ as
+Up to a boundary term, it is invariant under the following transformations
 \begin{equation}
-g_{mn}\to |c\tau + d| g_{mn}.
+G_{mn}\to |c\tau+d|G_{mn},\quad
+\tau\equiv C + i e^{-\Phi} \to \frac{a\tau+b}{c\tau+d},\quad
+\begin{pmatrix}
+F_3\\H_3
+\end{pmatrix}
+\to
+\begin{pmatrix}
+a & b \\ c & d
+\end{pmatrix}
+\begin{pmatrix}
+F_3\\H_3
+\end{pmatrix},\quad
+F_5 \to F_5,
+\end{equation}
+for $\begin{pmatrix}
+a&b\\c&d
+\end{pmatrix}
+\in \text{SL(2,R)}$.
+This symmetry can be seen more clearly \footnote{
+    We review sl(2, R) covariant objects in Appendix \ref{sec:sl2r_covariance}.
+} when the action is written as
+\begin{equation}
+\begin{aligned}
+S_{IIB}
+&=
+\frac{1}{2\kappa^2}\int d^{10}x\sqrt{-G}
+\left[
+    e^{-2\Phi}\left(R+\frac{9}{2}(\partial\Phi)^2\right)
+    -\frac{1}{2}|\partial\tau|^2
+    -\frac{1}{2}\begin{pmatrix}
+        F_3 & H_3
+    \end{pmatrix}
+    \begin{pmatrix}
+        1 & -C \\ -C &|\tau|^2
+    \end{pmatrix}
+    \begin{pmatrix}
+        F_3 \\ H_3
+    \end{pmatrix}
+    -\frac{1}{4}|\tilde{F}_5|^2
+\right]\\
+&-\frac{1}{4\kappa^2}\int C_4 \wedge H_3\wedge F_3.
+\end{aligned}
+\end{equation}
+Such SL(2, R) thus also acts on solutions of \eqref{string frame IIB action} accordingly.
+
+
+\section{Einstein frame and introducing $g_s$}
+The scalar $\tau$ in \eqref{string frame IIB action} may admit a vacuum expectation value
+$\langle\tau\rangle \equiv \theta + \frac{i}{g_s}$
+that transforms under SL(2, R) accordingly:
+\begin{equation}
+\langle\tau\rangle\to \frac{a\langle\tau\rangle+b}{c\langle\tau\rangle+d}.
+\end{equation}
+The Einstein-Hilbert term of \eqref{string frame IIB action} can be put in canonical form by performing a Weyl transformation defined up to a constant factor.
+Such constant factor is uniquely fixed either by 1) demanding that the Einstein frame metric is SL(2, R)-invariant 2) demanding that the Einstein frame metric is asymptotically flat. We will take the first route by defining the Einstein frame metric by
+\begin{equation}
+g_{mn} \equiv e^{-\Phi/2}G_{mn}.
+\label{Einstein frame metric definition}
+\end{equation}
+In this approach because when $G_{mn}$ approaches $\eta_{mn}$ asymptotically, $g_{mn}$ is not, there is an implicit difference in length scale between the string and Einstein frame, which one must be careful with.
+Had we taken route 2) and defined $\tilde{g}_{mn} \equiv g_s^{1/2}e^{-\Phi/2}G_{mn}$, the length scale between the string frame and the Einstein frame would be the same, but the metric is not SL(2, R)-invariant:
+\begin{equation}
+\tilde{g}_{mn} \to |c\langle\tau\rangle + d| \tilde{g}_{mn}.
+\end{equation}
+But this can be cancelled by appropriate factors of $g_s$: while $R(\tilde{g}_{mn})$ will not be SL(2, R)-invariant $g_s^{-1/2}R(\tilde{g}_{mn})$ will be, as well as $\frac{1}{g_s^2}\sqrt{-\tilde{g}}R(\tilde{g}_{mn})$.
+
+So here we make one important clarification: when one defines the Einstein frame metric by $\tilde{g}_{mn} \equiv g_s^{1/2}e^{-\Phi/2}G_{mn}$, the Einstein metric $\tilde{g}_{mn}$ is not SL(2, R)-invariant and neither is $g_s$.
+The action is is only SL(2, R)-invariant when appropriate factors of $g_s$ are included.
+
+For the Einstein tensor, one quickly realises that $R^p{}_{mqn}(g_{mn}) = R^p{}_{mqn}(\tilde{g}_{mn})$ hence are both SL(2, R)-invariant. So $E_{3/2}(\tau,\bar{\tau})(t_8t_8R^4+\epsilon_{10}\epsilon_{10}R^4)$ is indeed SL(2, Z)-invariant.
+
+This answers the last question raised in the introduction: the type IIB supergravity action is truly invariant under SL(2, R), and, once the higher-derivative corrections are included, SL(2, Z), but one must be careful with the definition of the Einstein frame metric and the appearance of $g_s$.
+
+
+\section{SL(2, R)-invariant Einstein frame action}
+
+Finally, we write down the manifestly SL(2, R)-invariant Einstein frame action, in two conventions. As we have noted before one should use the full dilaton $\Phi$ because the full dilaton is the $\frac{SL(2, R)}{U(1)}$ coset representative, and the SL(2, R) acts on the full axio-dilaton $\tau$.
+
+Using the SL(2, R)-invariant Einstein frame metric $g_{mn} = e^{-\Phi/2}G_{mn}$, the action is
+
+\begin{equation}
+\begin{aligned}
+S_{IIB}
+&=\frac{1}{2\kappa^2} \int d^{10}x\sqrt{-g}\left[\left(R-\frac{1}{2}\frac{\partial\bar\tau\partial\tau}{\tau_2^2}\right)
+-\frac{1}{2}\left(
+e^{-\Phi}|H_3|^2+e^\Phi|\tilde{F}_3|^2
+\right)
+-\frac{1}{4}|\tilde F_5|^2
+\right]\\
+&-\frac{1}{4\kappa^2}\int C_4\wedge H_3\wedge F_3.
+\end{aligned}
+\end{equation}
+
+
+Using the asymptotically-flat Einstein frame metric $\tilde{g}_{mn} = g_s^{1/2}e^{-\Phi/2}G_{mn}$, the action is
+
+\begin{equation}
+\begin{aligned}
+S_{IIB}
+&=\frac{1}{2\kappa^2} \int d^{10}x\sqrt{-\tilde{g}}\left[
+\frac{1}{g_s^2}\left(R-\frac{1}{2}\frac{\partial\bar\tau\partial\tau}{\tau_2^2}\right)
+-\frac{1}{2 g_s}\left(
+e^{-\Phi}|H_3|^2+e^\Phi|\tilde{F}_3|^2
+\right)
+-\frac{1}{4}|\tilde F_5|^2
+\right]\\
+&-\frac{1}{4\kappa^2}\int C_4\wedge H_3\wedge F_3,
+\end{aligned}
+\end{equation}
+where the factors of $g_s$ are fixed by demanding that the action is SL(2, R)-invariant.
+
+\section{Side note: SL(2, R)-covariant 12d to 10d string-frame}
+Here we make a speculative side note.
+
+We note that the following dimensional reduction ansatz from 12d to 10d string frame metric is SL(2, R)-covariant:
+\begin{equation}
+ds_{12}^2 = e^{-\Phi/2}G_{mn}dx^mdx^n + M_{ij}dy^idy^j,\quad
+M_{ij} = \frac{1}{\tau_2}\begin{pmatrix}
+|\tau|^2 & C \\ C & 1
+\end{pmatrix}.
+\label{12d to 10d ansatz}
+\end{equation}
+It reduces  up to a boundary term, to the string frame axio-dilaton action
+\begin{equation}
+\sqrt{-\mathcal{G}}R(\mathcal{G}_{MN}) = \sqrt{-G}\left[e^{-2\Phi}\left(R(G) +4 (\partial\Phi)^2\right)-\frac{1}{2}(\partial C)^2\right],
+\end{equation}
+where $\mathcal{G}_{MN}$ is the 12d metric.
+
+Comparing to the 11d to 10d kaluza reduction ansatz, we note that at the vacuum it can be written as
+\begin{equation}
+\begin{aligned}
+ds_{11}^2 &= g_s^{-2/3} ds_{(S)10}^2 + g_s^{4/3}d\theta^2\\
+&= \left(\frac{l_s}{l_p}\right)^2 ds_{(S)10}^2 + \left(\frac{R}{l_p}\right)^2 d\theta^2,
+\end{aligned}
+\label{11d to 10d ansatz}
+\end{equation}
+
+We note that near the vaccuum, the 12d to 10d ansatz \eqref{12d to 10d ansatz} can be written as
+
+\begin{equation}
+ds_{12}^2 = g_s^{-1/2} ds_{(S)10}^2 + ds_{T_2}^2.
+\end{equation}
+
+where $ds_{T_2}^2$ is the metric of the torus with complex structure $\tau$ and volume 1. We see that volume of the torus is given by the 12d length scale $l_{12}$, and if we demand that the above equation takes the form analogous to \eqref{11d to 10d ansatz}
+
+\begin{equation}
+ds_{12}^2 = \left(\frac{l_s}{l_{12}}\right)^2 ds_{(S)10}^2 + \left(\frac{R}{l_{12}}\right)^2 ds_{T_2}^2,
+\end{equation}
+
+we find the following relations:
+
+\begin{equation}
+R = l_{12} = g_s^{1/4} l_s.
 \end{equation}
