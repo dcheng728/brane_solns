@@ -60,8 +60,10 @@ The on-shell degrees of freedom now contains two 4-forms, the self-duality const
 }. 
 In practice, one imposes the self-duality as an additional equation or follow the PST formalism \cite{Pasti:1996vs, DallAgata:1997gnw, DallAgata:1998ahf}, which allows one to derive the self-duality condition from an action, by introducing extra scalar fields along with gauge invariance.
 
-Although the two scalars and 2-form potentials of the type IIB multiplet have different NSNS/RR origins, they mix under an SL(2, R) symmetry, believed to be broken to SL(2, Z) when stringy effects are accounted for \cite{Schwarz:1995dk}.
-The action of the type IIB supergravity \cite{Schwarz:1983qr,Howe:1983sra} in string frame \cite{Becker:2006dvp,ValeixoBento:2025emh} is\footnote{
+Although the two scalars and 2-form potentials of the type IIB multiplet have different NSNS/RR origins, they mix under an SL(2, R) symmetry, believed to be broken to SL(2, Z) when stringy effects are accounted for \cite{Hull:1994ys,Schwarz:1995dk}.
+The action of the type IIB supergravity \cite{Schwarz:1983qr,Howe:1983sra,Bergshoeff:1995as} written in string frame metric $G_{mn}$ is 
+\cite{Becker:2006dvp,ValeixoBento:2025emh}
+\footnote{
 We will not follow the PST approach, and instead impose self-duality as an additional field equation.
 }
 \begin{equation}
@@ -69,7 +71,7 @@ We will not follow the PST approach, and instead impose self-duality as an addit
 S_{IIB}
 &=S_{NSNS} + S_{RR} + S_{CS}\\
 &=\frac{1}{2\kappa_{10}^2}
-\int d^{10}x \sqrt{-g^{(S)}}
+\int d^{10}x \sqrt{-G}
 \Bigg[
 e^{-2\Phi}\left(R + 4(\partial\Phi)^2-\frac{1}{2}|H_3|^2\right)
 -\left(\frac{1}{2}(\partial C)^2+\frac{1}{2}|\tilde F_3|^2+\frac{1}{4}|\tilde{F}_5|^2\right)
@@ -85,128 +87,124 @@ H_3 = dB_2, \quad
 \tilde F_3 = F_3 - C H_3,\quad
 \tilde F_5 = * \tilde F_5 = F_5 - \frac12 C_2\wedge H_3 + \frac12 B_2\wedge F_3.
 \end{equation}
+The standard procedure is to then define an Einstein frame metric \cite{Becker:2006dvp,Weigand:2018rez} and identify the SL(2, R) symmetry.
+This is in fact not necessary, as the presence of SL(2, R) is independent of the conformal frame choice.
+However, there are subtleties associated with the convention one chooses for the Einstein-frame metric and how SL(2, R) acts on the axio-dilaton, and writing down an SL(2, R)-invariant action.
+These subtleties are rarely discussed in the literature, which we will clarify here.
 
-The Einstein frame is defined as the conformal frame where the Einstein-Hilbert action appears in the canonical form, this only fixes the Einstein frame metric up to a conventional constant $\Phi_0$:
+We first note that \eqref{string frame IIB action} is invariant, up to a boundary term, under the SL(2, R) transformations
 \begin{equation}
-g_{mn}^{(S)} = e^{\frac{\Phi-\Phi_0}{2}}g^{(E)}_{mn}.
-\label{einstein frame and string frame relation}
+G_{mn}\to |c\tau+d|G_{mn},\quad
+\tau\equiv C + i e^{-\Phi} \to \frac{a\tau+b}{c\tau+d},\quad
+\begin{pmatrix}
+F_3\\H_3
+\end{pmatrix}
+\to
+\begin{pmatrix}
+a & b \\ c & d
+\end{pmatrix}
+\begin{pmatrix}
+F_3\\H_3
+\end{pmatrix},\quad
+F_5 \to F_5,
 \end{equation}
-Despite the choice for the constant $\Phi_0$ being conventional, it leaves implications on the length units used in the string and Einstein frame, which we will clarify here.
-The subtlety arising from the two conventions discussed also applies to the type IIA theory.
-
-\paragraph{Einstein frame ($g^{(S)}_{mn} = e^{\Phi/2} g_{mn}^{(E)}$)}
-
-In this convention the type IIB supergravity action is \cite{Polchinski:1998rr,Becker:2006dvp}
+for $\begin{pmatrix}
+a&b\\c&d
+\end{pmatrix}
+\in \text{SL(2,R)}$.
+This symmetry can be seen more clearly when the action \eqref{string frame IIB action} is written as
 \begin{equation}
 \begin{aligned}
-2\kappa_{10}^2S_{\mathrm{IIB}}
-&=\int d^{10}x\sqrt{-g}
-\Bigg[\left(R-\frac{\partial\bar\tau\partial\tau}{2\tau_2^2}\right)-\frac{1}{2}\left(e^{-\Phi}|H_3|^2+e^{\Phi}|\tilde F_3|^2\right)-\frac{1}{4}|\tilde F_5|^2\Bigg]\\
-&\quad-\frac{1}{2}\int C_4\wedge H_3\wedge F_3,
-\label{einstein frame}
+S_{IIB}
+&=
+\frac{1}{2\kappa^2}\int d^{10}x\sqrt{-G}
+\left[
+    e^{-2\Phi}\left(R+\frac{9}{2}(\partial\Phi)^2\right)
+    -\frac{1}{2}|\partial\tau|^2
+    -\frac{1}{2}\begin{pmatrix}
+        F_3 & H_3
+    \end{pmatrix}
+    \begin{pmatrix}
+        1 & -C \\ -C &|\tau|^2
+    \end{pmatrix}
+    \begin{pmatrix}
+        F_3 \\ H_3
+    \end{pmatrix}
+    -\frac{1}{4}|\tilde{F}_5|^2
+\right]\\
+&-\frac{1}{4\kappa^2}\int C_4 \wedge H_3\wedge F_3.
+\end{aligned}
+\label{string frame IIB action 2}
+\end{equation}
+In this form, every grouped term transform with some overall factor of $|c\tau+d|$.
+
+(TODO: Discuss the SL(2, R) acting on the full axil-dilaton)
+
+\subsection{Einstein frame and introducing $g_s$}
+The axio-dilaton $\tau$ may admit a vacuum expectation value that transforms under SL(2, R) as $\langle\tau\rangle\to \frac{a\langle\tau\rangle+b}{c\langle\tau\rangle+d}$, which means $g_s \equiv \langle e^{\Phi}\rangle$ also transforms under SL(2, R) as $g_s \to g_s |c\langle\tau\rangle + d|^2$.
+
+
+The Einstein-Hilbert term of \eqref{string frame IIB action} can be put in canonical form by performing a Weyl transformation defined up to a constant factor.
+When it comes to fixing such factor, there are two common routes in the literature, either by
+\begin{enumerate}
+    \item demanding that the Einstein frame metric is SL(2, R)-invariant, or
+    \item demanding that the Einstein frame metric is asymptotically flat.
+\end{enumerate}
+The SL(2, R)-invariant Einstein frame metric is given by
+\begin{equation}
+g_{mn} \equiv e^{-\Phi/2}G_{mn}.
+\label{Einstein frame metric definition}
+\end{equation}
+From string perturbation theory the string frame metric $G_{mn}$ is usually taken to be asymptotically flat, hence $g_{mn}$ is not.
+There is an implicit difference in length scale between the string and Einstein frame, which one must be careful with. (What is it? write it down)
+
+
+Had we taken route 2) and defined an asymptotically-flat Einstein frame metric $\tilde{g}_{mn} \equiv g_s^{1/2}e^{-\Phi/2}G_{mn}$, the length scale between the string frame and the Einstein frame would be the same, but the metric is not SL(2, R)-invariant:
+\begin{equation}
+\tilde{g}_{mn} \to |c\langle\tau\rangle + d| \tilde{g}_{mn}.
+\end{equation}
+However, appropriate factors of $g_s$ restore invariance: e.g.\ $g_s^{1/2}R(\tilde{g}_{mn})$ and $\frac{1}{g_s^2}\sqrt{-\tilde{g}}\,R(\tilde{g}_{mn})$ are both SL(2, R)-invariant.
+
+For the Einstein tensor, one quickly realises that $R^p{}_{mqn}(g_{mn}) = R^p{}_{mqn}(\tilde{g}_{mn})$.
+Hence a term such as $E_{3/2}(\tau,\bar{\tau})(t_8t_8R^4+\epsilon_{10}\epsilon_{10}R^4)$ is (this needs more clarification, because these contractions can involve the metric which may pick up SL(2, R) factors).
+
+\subsection{SL(2, R)-invariant Einstein frame action}
+
+Finally, we write down the manifestly SL(2, R)-invariant Einstein frame action, in two conventions. As we have noted before one should use the full dilaton $\Phi$ because the full dilaton is the $\frac{SL(2, R)}{U(1)}$ coset representative, and the SL(2, R) acts on the full axio-dilaton $\tau$.
+
+Using the SL(2, R)-invariant Einstein frame metric $g_{mn} = e^{-\Phi/2}G_{mn}$, the action is
+
+\begin{equation}
+\begin{aligned}
+S_{IIB}
+&=\frac{1}{2\kappa^2} \int d^{10}x\sqrt{-g}\left[\left(R-\frac{1}{2}\frac{\partial\bar\tau\partial\tau}{\tau_2^2}\right)
+-\frac{1}{2}\left(
+e^{-\Phi}|H_3|^2+e^\Phi|\tilde{F}_3|^2
+\right)
+-\frac{1}{4}|\tilde F_5|^2
+\right]\\
+&-\frac{1}{4\kappa^2}\int C_4\wedge H_3\wedge F_3.
 \end{aligned}
 \end{equation}
-where $\tau= \tau_1 + i\tau_2 \equiv C + ie^{-\Phi}$. 
-Crucially, the change between the Einstein and string frame \eqref{einstein frame and string frame relation} is not a transformation induced by certain diffeomorphism $x \to x'(x)$, but a redefinition of solely the metric field which implicitly introduces a shift in unit length. 
-We now illustrate this idea using examples of mass measured in the two frames.
 
-Suppose in the Einstein frame we have an asymptotically flat spacetime
-\begin{equation}
-g^{(E)}_{mn}\big|_{r\to\infty} =\eta_{mn} + h_{mn},\quad h_{mn}\sim \frac{1}{r},
-\end{equation}
-then the ADM mass is given by \cite{Arnowitt:1960es,Harmark:2004ch,Townsend:1997ku}
-\begin{equation}
-M^{(E)} = \frac{1}{2\kappa_{10}^2} \int_{S_\infty^8} dS n^i(\partial_j h^j{}_i - \partial_i h^j{}_j).
-\end{equation}
-In the string frame, the spacetime is only asymptotically flat up to a constant factor:
-\begin{equation}
-g^{(S)}_{mn}\big|_{r\to\infty} = g_s^{1/2}(\eta_{mn} + h_{mn}).
-\end{equation}
-To compute the string frame ADM mass, we perform a constant scaling $x^m \to g_s^{1/4}x^m$ to put the metric in an asymptotically flat form, which induces
-\begin{equation}
-\int_{S_\infty^8}dS \to \int_{S_\infty^8}dS,\quad
-n^i \to n^i,\quad
-(\partial_j h^j{}_i - \partial_i h^j{}_j) \to g_s^{-1/4} (\partial_j h^j{}_i - \partial_i h^j{}_j).
-\end{equation}
-Hence
-\begin{equation}
-M^{(S)} = g_s^{-1/4}M^{(E)}.
-\end{equation}
 
-% For spacetimes that are not asymptotically-flat, the same mass relation can be illustrated with e.g. the Komar mass 
-% \footnote{
-% Suppose the Einstein frame spacetime admits a timelike Killing vector $\partial_t$, the Komar mass \cite{Wald:1984rg} is defined as
-% \begin{equation}
-% M^{(E)} = (const) \int_{S_\infty^8} *dk^{(E)}
-% \end{equation}
-% where $k^{(E)}$ is the one-form associated with the vector $\partial_t$, normalized such that $|k^{(E)}|^2= -1$ asymptotically. 
-% In the string frame after accounting for the factor of $g_s^{1/2}$ in the metric and levi-civita tensor, and defining the appropriate normalization for $k^{(S)}$ such that $|k^{(S)}|^2=-1$ asymptotically, one again finds $M^{(S)}=g_s^{-1/4}M^{(E)}$.
-% }.
-
-Thus one should be careful when comparing masses and lengths between the string and Einstein frame \footnote{For extended discussions, see \cite{ValeixoBento:2025emh} as well as chapter 10 and section 15.2.2 of \cite{Ortin:2015hya}.}.
-Alternatively, one can choose to work in another convention otherwise known as the ``modified Einstein frame" \cite{Ortin:2015hya}.
-
-\paragraph{Modified Einstein frame ($g^{(S)}_{mn} = e^{\frac{\Phi-\langle\Phi\rangle}{2}} g_{mn}$)}
-
-Here, the type IIB action is
+Using the asymptotically-flat Einstein frame metric $\tilde{g}_{mn} = g_s^{1/2}e^{-\Phi/2}G_{mn}$, the action is
 
 \begin{equation}
 \begin{aligned}
-2\kappa_{10}^2 S_{IIB}
-&=\int d^{10}x\sqrt{-g}\left[
+S_{IIB}
+&=\frac{1}{2\kappa^2} \int d^{10}x\sqrt{-\tilde{g}}\left[
 \frac{1}{g_s^2}\left(R-\frac{1}{2}\frac{\partial\bar\tau\partial\tau}{\tau_2^2}\right)
 -\frac{1}{2 g_s}\left(
 e^{-\Phi}|H_3|^2+e^\Phi|\tilde{F}_3|^2
 \right)
 -\frac{1}{4}|\tilde F_5|^2
 \right]\\
-&-\frac{1}{2}\int C_4\wedge H_3\wedge F_3.
+&-\frac{1}{4\kappa^2}\int C_4\wedge H_3\wedge F_3,
 \end{aligned}
-\label{Modified Einstein frame}
 \end{equation}
-The benefit of setting $g^{(S)}_{mn} = e^{\frac{\Phi-\langle\Phi\rangle}{2}} g^{(E)}_{mn}$ is that the string and Einstein frame metrics agree at the vacuum, hence the unit length and mass will agree, but this is done at the cost of introducing $g_s$ into the action.
-In this review we follow the convention $g^{(S)}_{mn} = e^{\frac{\Phi-\langle\Phi\rangle}{2}} g^{(E)}_{mn}$.
-When we say Einstein frame action we are referring to \eqref{Modified Einstein frame}, and we will denote $g_{mn}^{(E)}$ with simply $g_{mn}$.
+where the factors of $g_s$ are fixed by demanding that the action is SL(2, R)-invariant.
 
-
-One observes \eqref{Modified Einstein frame} possesses an SL(2, R) symmetry
-\begin{equation}
-\tau\to\frac{a\tau+b}{c\tau+d},\quad
-\begin{pmatrix}
-C_2\\ B_2
-\end{pmatrix}\to
-\begin{pmatrix}
-a & b \\ c&d
-\end{pmatrix}
-\begin{pmatrix}
-C_2\\ B_2
-\end{pmatrix},\quad
-\begin{pmatrix}
-a & b \\ c&d
-\end{pmatrix}\in SL(2, R).
-\label{IIB SL(2, R) transformations}
-\end{equation}
-This symmetry can be made manifest, by writing the action \eqref{Modified Einstein frame} in the SL(2, R)-covariant form \cite{ValeixoBento:2025emh,Weigand:2018rez}
-\begin{equation}
-2\kappa_{10}^2
-S_{IIB}
-=\frac{1}{g_s^2}\int d^{10}x\sqrt{-g}\left(
-R - \frac{\partial_m\tau \partial^m\bar\tau}{2(\text{Im} \tau)^2} - \frac{g_s}{2}\frac{|G_3|^2}{\text{Im} \tau}
--\frac{g_s^2}{4}|\tilde F_5|^2
-\right)
--\frac{i}{4}\int \frac{1}{\text{Im} \tau}C_4\wedge G_3\wedge \bar G_3,
-\label{SL(2, R) maniest IIB action}
-\end{equation}
-% \begin{equation}
-% S_{IIB}
-% =\int d^{10}x\sqrt{-g}\left(
-% R - \frac{\partial_m\tau \partial^m\bar\tau}{2(\text{Im} \tau)^2} - \frac{1}{2}\frac{|G_3|^2}{\text{Im} \tau}
-% -\frac{1}{4}|\tilde F_5|^2
-% \right)
-% -\frac{i}{4}\int \frac{1}{\text{Im} \tau}C_4\wedge G_3\wedge \bar G_3,
-% \label{SL(2, R) maniest IIB action}
-% \end{equation}
-where $G_3 \equiv F_3-\tau H_3$.
 
 Although the scalars $\Phi, C$, and the form fields $C_2, B_2$ have different NSNS, RR origins in 10d, they transform into each other under SL(2, R). 
 This SL(2, R)-invariance will hold at the two-derivative level, as well as higher-derivative corrections with trivial dependence on $\tau$.
