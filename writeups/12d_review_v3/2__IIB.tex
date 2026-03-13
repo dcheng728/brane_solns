@@ -4,17 +4,22 @@ Early on, it was understood that to have a unitary, interacting theory of gravit
 The most notable theories with 32 supercharges are the 11d, type IIA, and type IIB supergravities. 
 These theories are believed to be the low-energy limits of the corresponding membrane and string theories \cite{Green:2012oqa}.
 
+{\color{orange}
+Einstein's theory of gravity is nonlinear with an infinite-dimensional diffeomorphism symmetry group.
+However, one can expand it to quadratic order around a flat spacetime with $g_{mn} = \eta_{mn} + \kappa h_{mn}$, where $\kappa$ is the gravitational coupling.
+Then the Einstein-Hilbert action becomes that of a free massless spin-2 field $h_{mn}$, with a rigid Poincare symmetry SO(d-1,1), as well as possibly a rigid R-symmetry acting on the supercharges.
+On-shell single-particle (free) states furnish representations of the little group SO(d-2), From this one can determine the theory's low-energy spectrum.
 
-The on-shell degrees of freedom of the 11d supergravity multiplet \cite{Nahm:1977tg,Cremmer1978} furnish representations of the little group SO(9), and consist of a gravitino, a graviton, and a 3-form potential.
-It is considered maximal\footnote{
-Maximal here means (1) the multiplet contains the highest number of supercharges: 32 (2) there is no consistent supergravity with spin $\le 2$ in any dimension higher than 10+1, as shown by \cite{Nahm:1977tg}.
-}. 
-The 11d supergravity multiplet can be given with SO(9) Dynkin labels as\footnote{Our convention for Dynkin Labels is given in Appendix \ref{sec:Dynkin Label Conventions}}
+The upper-bound of 32 supercharges implies that a supergravity theory can have at most 128 bosonic and 128 fermionic on-shell degrees of freedom.
+In 11d, they transform under irreducible representations of SO(9), and consists of a gravitino, a graviton, and a 3-form potential.
+The 11d supergravity multiplet can be given with SO(9) Dynkin labels as\footnote{Our convention for Dynkin Labels is given in Appendix \ref{sec:Dynkin Label Conventions}.}
 \begin{equation}
 G_{11} = [2000]_{SO(9)} + [0010]_{SO(9)} + [1001]_{SO(9)}.
 \label{11d SUGRA multiplet}
 \end{equation}
 To go to 10d, one decomposes SO(9) representations into those of SO(8)
+\footnote{
+Specifically, the decomposition is given by branching rules of the form
 \begin{equation}
 \begin{aligned}
 [2000]_{SO(9)} &= [2000]_{SO(8)} + [1000]_{SO(8)}+[0000]_{SO(8)}\\
@@ -22,7 +27,8 @@ To go to 10d, one decomposes SO(9) representations into those of SO(8)
 [1001]_{SO(9)} &= [1001]_{SO(8)} + [1010]_{SO(8)}+[0010]_{SO(8)}+[0001]_{SO(8)}.
 \end{aligned}
 \end{equation}
-Doing so one finds the type IIA multiplet in 10d (with SO(8) Dynkin labels)
+}
+and finds the type IIA multiplet in 10d (with SO(8) Dynkin labels)
 \begin{equation}
 \begin{aligned}
 G_{IIA} 
@@ -31,8 +37,9 @@ G_{IIA}
 \end{aligned}
 \label{IIA multiplet}
 \end{equation}
+}
 Remarkably, the type IIA multiplet \eqref{IIA multiplet} factorizes, as the product of two vector multiplets of different chirality in 10d.
-In this product, the bosonic fields are classified based on how they are obtained: the NSNS sector is that obtained by tensor product between two vectors, and the RR sector is that obtained by two spinors \cite{Polchinski:1998rr}.
+In this product, the bosonic fields are classified into NSNS and RR sectors: the NSNS sector is that obtained by tensor product between two vectors, and the RR sector is that obtained by two spinors \cite{Polchinski:1998rr}.
 We note that the NSNS/RR distinction is not apparent when the IIA multiplet is viewed as dimensionally reduced from 11d supergravity, but only becomes distinguished when viewed as 10d tensor products.
 This is related to how membranes live naturally in 11d \cite{Bergshoeff:1987cm}, while strings live in 10d \cite{Green:2012oqa}, and the NSNS/RR classification has a stringy origin \cite{Polchinski:1995mt}.
 
@@ -48,9 +55,9 @@ G_{IIB}
 Unlike the type IIA supergravity theory, the type IIB theory in 10 dimensions is not known to follow from dimensional reduction of another.
 This is the first puzzle of the type IIB theory: does it have a higher dimensional origin?
 
-For theories with 32 supercharges, we demand a 128 + 128 split between the bosonic and fermionic degrees of freedom.
-At the multiplet level, the type IIB theory only admits the 4-form potential with self-dual 5-form field strength.
-Had the full 4-form been included in the IIB multiplet, the 128+128 split would be violated.
+{\color{orange}
+Interestingly, the type IIB multiplet can only contain the components of the 4-form potential $C_4$ whose field strength is (anti)self-dual. 
+This is demanded by supersymmetry as had we included the full 4-form potential, the bosonic degrees of freedom would exceed 128.}
 This leads to the second major puzzle of the type IIB theory: 
 what is the dynamical mechanism behind self-duality of the 5-form field strength?
 This can not be imposed at the level of the action, e.g. via Lagrange multipliers\footnote{
@@ -60,8 +67,11 @@ The on-shell degrees of freedom now contains two 4-forms, the self-duality const
 }. 
 In practice, one imposes the self-duality as an additional equation or follow the PST formalism \cite{Pasti:1996vs, DallAgata:1997gnw, DallAgata:1998ahf}, which allows one to derive the self-duality condition from an action, by introducing extra scalar fields along with gauge invariance.
 
-Although the two scalars and 2-form potentials of the type IIB multiplet have different NSNS/RR origins, they mix under an SL(2, R) symmetry, believed to be broken to SL(2, Z) when stringy effects are accounted for \cite{Hull:1994ys,Schwarz:1995dk}.
-The action of the type IIB supergravity \cite{Schwarz:1983qr,Howe:1983sra,Bergshoeff:1995as} written in string frame metric $G_{mn}$ is 
+{\color{orange}
+We have been discussing the type IIB supergravity multiplet, which captures the massless spectrum of the quadratic (free) theory with SO(9, 1) symmetry, and an SO(2) $\cong$ U(1) rigid internal symmetry acting on the supercharges.
+The nonlinear (interacting) theory is obtained as by restoring an infinite number of terms of various order in $\kappa$, and promoting the rigid symmetries to be local. Doing so \cite{Green:1982tk,Schwarz:1983wa,Schwarz:1983qr,Howe:1983sra} one finds that the theory has a larger hidden global symmetry group SL(2, R), which when combined with the now localised U(1) symmetry, gives $\frac{SL(2, R)}{U(1)}$ as scalar manifold.
+
+The action of the type IIB supergravity \cite{Schwarz:1983qr,Howe:1983sra,Bergshoeff:1995as} with the string frame metric $G_{mn}$ can be written as 
 \cite{Becker:2006dvp,ValeixoBento:2025emh}
 \footnote{
 We will not follow the PST approach, and instead impose self-duality as an additional field equation.
@@ -70,29 +80,24 @@ We will not follow the PST approach, and instead impose self-duality as an addit
 \begin{aligned}
 S_{IIB}
 &=S_{NSNS} + S_{RR} + S_{CS}\\
-&=\frac{1}{2\kappa_{10}^2}
+&=\frac{1}{2\kappa^2}
 \int d^{10}x \sqrt{-G}
 \Bigg[
 e^{-2\Phi}\left(R + 4(\partial\Phi)^2-\frac{1}{2}|H_3|^2\right)
 -\left(\frac{1}{2}(\partial C)^2+\frac{1}{2}|\tilde F_3|^2+\frac{1}{4}|\tilde{F}_5|^2\right)
 \Bigg]\\
-&\quad -\frac{1}{4\kappa_{10}^2}\int C_4\wedge H_3\wedge F_3
+&\quad -\frac{1}{4\kappa^2}\int C_4\wedge H_3\wedge F_3
 \end{aligned}
 \label{string frame IIB action}
 \end{equation}
-with $2\kappa_{10}^2=(2\pi)^7l_s^8=(2\pi)^7\alpha^{\prime 4}$, and
+with $2\kappa^2=(2\pi)^7l_s^8=(2\pi)^7\alpha^{\prime 4}$, and
 \begin{equation}
 F_p = dC_{p-1}, \quad 
 H_3 = dB_2, \quad
 \tilde F_3 = F_3 - C H_3,\quad
 \tilde F_5 = * \tilde F_5 = F_5 - \frac12 C_2\wedge H_3 + \frac12 B_2\wedge F_3.
 \end{equation}
-The standard procedure is to then define an Einstein frame metric \cite{Becker:2006dvp,Weigand:2018rez} and identify the SL(2, R) symmetry.
-This is in fact not necessary, as the presence of SL(2, R) is independent of the conformal frame choice.
-However, there are subtleties associated with the convention one chooses for the Einstein-frame metric and how SL(2, R) acts on the axio-dilaton, and writing down an SL(2, R)-invariant action.
-These subtleties are rarely discussed in the literature, which we will clarify here.
-
-We first note that \eqref{string frame IIB action} is invariant, up to a boundary term, under the SL(2, R) transformations
+We note that \eqref{string frame IIB action} is invariant, up to a boundary term, under the SL(2, R) transformations
 \begin{equation}
 G_{mn}\to |c\tau+d|G_{mn},\quad
 \tau\equiv C + i e^{-\Phi} \to \frac{a\tau+b}{c\tau+d},\quad
@@ -100,52 +105,22 @@ G_{mn}\to |c\tau+d|G_{mn},\quad
 F_3\\H_3
 \end{pmatrix}
 \to
-\begin{pmatrix}
-a & b \\ c & d
-\end{pmatrix}
+\Lambda
 \begin{pmatrix}
 F_3\\H_3
 \end{pmatrix},\quad
 F_5 \to F_5,
+\label{string frame sl2r transformations}
 \end{equation}
-for $\begin{pmatrix}
+for $\Lambda = \begin{pmatrix}
 a&b\\c&d
 \end{pmatrix}
 \in \text{SL(2,R)}$.
-This symmetry can be seen more clearly when the action \eqref{string frame IIB action} is written as
-\begin{equation}
-\begin{aligned}
-S_{IIB}
-&=
-\frac{1}{2\kappa^2}\int d^{10}x\sqrt{-G}
-\left[
-    e^{-2\Phi}\left(R+\frac{9}{2}(\partial\Phi)^2\right)
-    -\frac{1}{2}|\partial\tau|^2
-    -\frac{1}{2}\begin{pmatrix}
-        F_3 & H_3
-    \end{pmatrix}
-    \begin{pmatrix}
-        1 & -C \\ -C &|\tau|^2
-    \end{pmatrix}
-    \begin{pmatrix}
-        F_3 \\ H_3
-    \end{pmatrix}
-    -\frac{1}{4}|\tilde{F}_5|^2
-\right]\\
-&-\frac{1}{4\kappa^2}\int C_4 \wedge H_3\wedge F_3.
-\end{aligned}
-\label{string frame IIB action 2}
-\end{equation}
-In this form, every grouped term transform with some overall factor of $|c\tau+d|$.
 
-(TODO: Discuss the SL(2, R) acting on the full axil-dilaton)
-
-\subsection{Einstein frame and introducing $g_s$}
-The axio-dilaton $\tau$ may admit a vacuum expectation value that transforms under SL(2, R) as $\langle\tau\rangle\to \frac{a\langle\tau\rangle+b}{c\langle\tau\rangle+d}$, which means $g_s \equiv \langle e^{\Phi}\rangle$ also transforms under SL(2, R) as $g_s \to g_s |c\langle\tau\rangle + d|^2$.
-
-
-The Einstein-Hilbert term of \eqref{string frame IIB action} can be put in canonical form by performing a Weyl transformation defined up to a constant factor.
-When it comes to fixing such factor, there are two common routes in the literature, either by
+The presence of SL(2, R) acting on the metric \eqref{string frame sl2r transformations} is a consequence of the fact that the string frame Einstein-Hilbert term couples to the dilaton.
+The standard procedure is to then define an Einstein frame metric \cite{Becker:2006dvp,Weigand:2018rez} where the Einstein-Hilbert action is canonical.
+This fixes the Einstein frame metric up to a conventional factor.
+When it comes to fixing such factor, two choices are common, either by
 \begin{enumerate}
     \item demanding that the Einstein frame metric is SL(2, R)-invariant, or
     \item demanding that the Einstein frame metric is asymptotically flat.
@@ -153,27 +128,11 @@ When it comes to fixing such factor, there are two common routes in the literatu
 The SL(2, R)-invariant Einstein frame metric is given by
 \begin{equation}
 g_{mn} \equiv e^{-\Phi/2}G_{mn}.
-\label{Einstein frame metric definition}
+\label{sl2r invariant Einstein frame metric}
 \end{equation}
-From string perturbation theory the string frame metric $G_{mn}$ is usually taken to be asymptotically flat, hence $g_{mn}$ is not.
-There is an implicit difference in length scale between the string and Einstein frame, which one must be careful with. (What is it? write it down)
-
-
-Had we taken route 2) and defined an asymptotically-flat Einstein frame metric $\tilde{g}_{mn} \equiv g_s^{1/2}e^{-\Phi/2}G_{mn}$, the length scale between the string frame and the Einstein frame would be the same, but the metric is not SL(2, R)-invariant:
-\begin{equation}
-\tilde{g}_{mn} \to |c\langle\tau\rangle + d| \tilde{g}_{mn}.
-\end{equation}
-However, appropriate factors of $g_s$ restore invariance: e.g.\ $g_s^{1/2}R(\tilde{g}_{mn})$ and $\frac{1}{g_s^2}\sqrt{-\tilde{g}}\,R(\tilde{g}_{mn})$ are both SL(2, R)-invariant.
-
-For the Einstein tensor, one quickly realises that $R^p{}_{mqn}(g_{mn}) = R^p{}_{mqn}(\tilde{g}_{mn})$.
-Hence a term such as $E_{3/2}(\tau,\bar{\tau})(t_8t_8R^4+\epsilon_{10}\epsilon_{10}R^4)$ is (this needs more clarification, because these contractions can involve the metric which may pick up SL(2, R) factors).
-
-\subsection{SL(2, R)-invariant Einstein frame action}
-
-Finally, we write down the manifestly SL(2, R)-invariant Einstein frame action, in two conventions. As we have noted before one should use the full dilaton $\Phi$ because the full dilaton is the $\frac{SL(2, R)}{U(1)}$ coset representative, and the SL(2, R) acts on the full axio-dilaton $\tau$.
-
-Using the SL(2, R)-invariant Einstein frame metric $g_{mn} = e^{-\Phi/2}G_{mn}$, the action is
-
+From string perturbation theory, the string frame metric $G_{mn}$ is taken to be asymptotically flat: $G_{mn} \to \eta_{mn}$, hence the SL(2, R)-invariant Einstein frame metric is not: $g_{mn} \to g_s^{1/2}\eta_{mn}$.
+There is an implicit difference in length scale between the string and Einstein frame $l_E = g_s^{1/4}l_s$, which one must be careful when comparing tensions computed in the Einstein and string frame.
+The action is given as
 \begin{equation}
 \begin{aligned}
 S_{IIB}
@@ -186,10 +145,13 @@ e^{-\Phi}|H_3|^2+e^\Phi|\tilde{F}_3|^2
 &-\frac{1}{4\kappa^2}\int C_4\wedge H_3\wedge F_3.
 \end{aligned}
 \end{equation}
-
-
-Using the asymptotically-flat Einstein frame metric $\tilde{g}_{mn} = g_s^{1/2}e^{-\Phi/2}G_{mn}$, the action is
-
+Had one chosen to taken route 2) and intend to work with an asymptotically-flat Einstein frame metric $\tilde{g}_{mn} \equiv g_s^{1/2}e^{-\Phi/2}G_{mn}$, there is no longer a difference in length scale between the two frames, but the metric is not SL(2, R)-invariant:
+\begin{equation}
+\tilde{g}_{mn} \to |c\langle\tau\rangle + d| \tilde{g}_{mn}.
+\end{equation}
+Hence to write down an SL(2, R)-invariant action, appropriate factors of $g_s$ must be included. For example, while $R(\tilde{g}_{mn})$ and $\sqrt{-\tilde{g}}\,R(\tilde{g}_{mn})$ are not SL(2, R)-invariant, 
+$g_s^{1/2}R(\tilde{g}_{mn})$ and $\frac{1}{g_s^2}\sqrt{-\tilde{g}}\,R(\tilde{g}_{mn})$ are invariant.
+Using the asymptotically-flat Einstein frame metric $\tilde{g}_{mn} = g_s^{1/2}e^{-\Phi/2}G_{mn}$, the type IIB action is
 \begin{equation}
 \begin{aligned}
 S_{IIB}
@@ -202,15 +164,16 @@ e^{-\Phi}|H_3|^2+e^\Phi|\tilde{F}_3|^2
 \right]\\
 &-\frac{1}{4\kappa^2}\int C_4\wedge H_3\wedge F_3,
 \end{aligned}
+\label{asymptotically flat einstein frame action}
 \end{equation}
 where the factors of $g_s$ are fixed by demanding that the action is SL(2, R)-invariant.
 
-
 Although the scalars $\Phi, C$, and the form fields $C_2, B_2$ have different NSNS, RR origins in 10d, they transform into each other under SL(2, R). 
 This SL(2, R)-invariance will hold at the two-derivative level, as well as higher-derivative corrections with trivial dependence on $\tau$.
-But as soon as any corrections to type IIB supergravity with non-trivial dependence on $\tau$ enter, the SL(2, R) symmetry will be broken\footnote{As a quick way to see this, suppose higher derivative corrections enter in the form $f(\tau,\bar\tau,...)$. Demanding that $f$ is invariant under SL(2, R) transformations on $\tau$ forces $f$ to be a constant.}. 
+But as soon as any corrections to type IIB supergravity with non-trivial dependence on $\tau$ enter, the SL(2, R) symmetry will be broken.
 Then as one includes the corrections that account for the string and brane-effects, the symmetry will also become SL(2, Z).
 This reflects the quantization of NSNS and RR charges in type IIB string theory.
+}
 
 As we have discussed earlier, the NSNS vs RR distinction is really a 10d one.
 Both the NSNS and RR fields in type IIA combine to form SO(9) multiplets.
