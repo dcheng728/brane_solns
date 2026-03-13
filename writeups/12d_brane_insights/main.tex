@@ -1,16 +1,15 @@
 \documentclass{article}
-\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx, amsmath, amsfonts, amssymb, amsthm, mathrsfs} % Required 
 \usepackage{cancel}
-\usepackage[margin=3cm]{geometry}
-\usepackage{hyperref}
-\usepackage[sorting=none]{biblatex}
+\usepackage[margin=1in]{geometry}
+\usepackage[setpagesize=false,pagebackref=false, 
+linktocpage, bookmarksopen=true, colorlinks=true, 
+linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{booktabs}
 
-\addbibresource{refs.bib}
+\usepackage{latexsym,amsmath,amssymb,theorem,epsfig}
+\usepackage[margin=1in]{geometry}
 
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
-\newtheorem{corollary}{Corollary}[theorem]
-\newtheorem{proposition}{Proposition}
 
 \title{EM Duality of Branes from Higher Dimensions}
 \author{Chang Cheng}
@@ -27,8 +26,8 @@
 \input{A_DG_conventions.tex}
 \input{A_brane_catalog.tex}
 \input{A_Ricci_tensor.tex}
-% \input{0_setup}
 
-\printbibliography
+\bibliographystyle{JHEP}
+\bibliography{references}
 
 \end{document}
