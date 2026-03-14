@@ -1,0 +1,6 @@
+name: brane_solns
+channels:
+  - defaults
+dependencies:
+  - python==3.13.0
+prefix: /Users/davidsoncheng/opt/anaconda3/envs/brane_solns
