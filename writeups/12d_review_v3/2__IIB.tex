@@ -68,8 +68,83 @@ The on-shell degrees of freedom now contains two 4-forms, the self-duality const
 In practice, one imposes the self-duality as an additional equation or follow the PST formalism \cite{Pasti:1996vs, DallAgata:1997gnw, DallAgata:1998ahf}, which allows one to derive the self-duality condition from an action, by introducing extra scalar fields along with gauge invariance.
 
 {\color{orange}
-We have been discussing the type IIB supergravity multiplet, which captures the massless spectrum of the quadratic (free) theory with SO(9, 1) symmetry, and an SO(2) $\cong$ U(1) rigid internal symmetry acting on the supercharges.
-The nonlinear (interacting) theory is obtained as by restoring an infinite number of terms of various order in $\kappa$, and promoting the rigid symmetries to be local. Doing so \cite{Green:1982tk,Schwarz:1983wa,Schwarz:1983qr,Howe:1983sra} one finds that the theory has a larger hidden global symmetry group SL(2, R), which when combined with the now localised U(1) symmetry, gives $\frac{SL(2, R)}{U(1)}$ as scalar manifold.
+We have been discussing the type IIB supergravity multiplet, which captures the massless spectrum of the quadratic (free) theory with SO(9, 1) symmetry, and an SO(2) $\cong$ U(1) rigid symmetry acting on the supercharges.
+The nonlinear (interacting) theory is obtained as by restoring an infinite number of terms of higher order in the gravitational coupling $\kappa$, and promoting the rigid symmetries to be local. Doing so \cite{Green:1982tk,Schwarz:1983wa,Schwarz:1983qr,Howe:1983sra} one finds that the theory has a larger hidden global symmetry group SL(2, R), which when combined with the now localised U(1) symmetry, gives $\frac{SL(2, R)}{U(1)}$ as scalar manifold.
+
+We briefly review the construction of this coset representative, which is important for discussion of the SL(2, R) symmetry, and the interplay between SL(2, Z) and U(1)-violation to come later.
+
+The coset representative of $\frac{SL(2, R)}{U(1)}$ is an SL(2, R) matrix $\mathcal{V}$ with a local U(1) symmetry. It is convenient to write $\mathcal{V}$ using the Iwasawa decomposition \cite{iwasawa1949} as
+\begin{equation}
+\mathcal{V} = 
+\begin{pmatrix}
+1 & \tau_1 \\
+0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+\sqrt{\tau_2} & 0\\
+0 & \frac{1}{\sqrt{\tau_2}}
+\end{pmatrix}
+\begin{pmatrix}
+\cos\theta & -\sin\theta\\
+\sin\theta & \cos\theta
+\end{pmatrix}.
+\end{equation}
+We can then gauge fix the local U(1) by setting $\theta = 0$, leaving a complex scalar $\tau = \tau_1 + i\tau_2$ that parameterise the coset $\frac{SL(2, R)}{U(1)}$ without redundancy.
+However, general SL(2, R) transformations will not preserve the gauge choice $\theta = 0$, and hence induce U(1) given by $\theta = - \arg{(c\tau+d)}$.
+That this is independent of the local U(1) transformation.
+
+From the SL(2, R) representative $\mathcal{V}$, one can construct an U(1)-invariant, symmetric metric on the scalar manifold $\mathcal{M} = \mathcal{V} \mathcal{V}^T  = \frac{1}{\tau_2}\begin{pmatrix}
+|\tau|^2 & \tau_1\\
+\tau_1 & 1
+\end{pmatrix}$, which transforms under SL(2, R) as $\mathcal{M} \to \Lambda \mathcal{M} \Lambda^T$, for $\Lambda = \begin{pmatrix}
+a&b\\c&d
+\end{pmatrix} \in SL(2, R)$.
+The Maurer-Cartan form $\mathcal{V}^{-1}d\mathcal{V}$ can be decomposed into the U(1) connection $Q$ and the vielbein $P$ as
+\begin{equation}
+\begin{aligned}
+\mathcal{V}^{-1}d\mathcal{V}
+&= P + Q\\
+&=\frac{1}{2}\left[
+    \frac{\partial \tau_1}{\tau_2} \cos 2\theta
+    -\frac{\partial \tau_2}{\tau_2} \sin 2\theta
+\right]\begin{pmatrix}
+    0&1\\
+    1&0
+\end{pmatrix}\\
+&+\frac{1}{2}\left[
+    \frac{\partial \tau_1}{\tau_2} \sin 2\theta
+    +\frac{\partial \tau_2}{\tau_2} \cos 2\theta
+\right]
+\begin{pmatrix}
+    1&0\\
+    0&-1
+\end{pmatrix}\\
+&+\left[\partial \theta - \frac{1}{2}\frac{\partial \tau_1}{\tau_2}\right]
+\begin{pmatrix}
+    0&-1\\
+    1&0
+\end{pmatrix}.
+\end{aligned}
+\end{equation}
+One finds that the components of the $\frac{SL(2, R)}{U(1)}$ vielbein transform as a SO(2) doublet with charge 2. We can complexify the 2d real algebra by performing a change of basis
+\begin{equation}
+P_1\begin{pmatrix}
+    0&1\\
+    1&0
+\end{pmatrix}+P_2\begin{pmatrix}
+    1&0\\
+    0&-1
+\end{pmatrix}\cong
+\begin{pmatrix}
+    iP_2&P_1\\
+    P_1&-iP_2
+\end{pmatrix}.
+\end{equation}
+Now the components of the vielbein $P$ is a single complex number $P = P_1 + iP_2 = e^{2i\theta}\frac{\partial \tau}{2 \tau_2}$ that carries charge $Q = 2$ under local U(1).
+This U(1) is independent of the global SL(2, R) transformation, and is a gauge redundancy reflecting the choice of the U(1) frame.
+Besides $P$, the other bosonic field that transforms under U(1) is the 3-form field strength $G_3 = e^{\Phi/2}(F_3 - \tau H_3)$, which carries charge 1 under U(1).
+When computing higher-derivative corrections, one wishes to keep track of the U(1) charge for possible U(1)-violation corrections, in that context it is convenient to work with the complexified vielbein $P$ and 3-form field strength $G_3$.
+It is important to distinguish this U(1) from the compensating U(1) to remove the redundant scalar $\theta$ in the coset representative $\mathcal{V}$. The compensating U(1) is an SL(2, Z) transformation, which the effective action should always be invariant under. For example, the a modular form $f(\tau, \bar\tau)$ also carries a U(1)-like charge under SL(2, Z) but it does not carry local U(1) charge, and hence may contributes to SL(2, Z) invariant but U(1)-violating corrections.
 
 The action of the type IIB supergravity \cite{Schwarz:1983qr,Howe:1983sra,Bergshoeff:1995as} with the string frame metric $G_{mn}$ can be written as 
 \cite{Becker:2006dvp,ValeixoBento:2025emh}
@@ -175,6 +250,7 @@ Then as one includes the corrections that account for the string and brane-effec
 This reflects the quantization of NSNS and RR charges in type IIB string theory.
 }
 
+{\color{red}
 As we have discussed earlier, the NSNS vs RR distinction is really a 10d one.
 Both the NSNS and RR fields in type IIA combine to form SO(9) multiplets.
 Analogously, the NSNS and RR fields in type IIB combine to form $SL(2, R)\times SO(8)$ multiplets, and it is natural to ask whether this could be a hint of a higher-dimensional origin?
@@ -188,3 +264,4 @@ We approach this review motivated by the 3 guiding questions introduced above:
     \item What is the underlying mechanism of $F_5 = *_{10}F_5$?
     \item What is the role and origin of SL(2, Z)?
 \end{enumerate}
+}
