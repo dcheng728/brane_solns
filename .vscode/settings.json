@@ -4,7 +4,7 @@
     "python-envs.defaultEnvManager": "ms-python.python:conda",
     "python-envs.defaultPackageManager": "ms-python.python:conda",
     "python-envs.pythonProjects": [],
-    "workbench.colorTheme": "Solarized Dark",
+    "workbench.colorTheme": "Solarized Light",
     "latex-workshop.latex.outDir": "%DIR%/latex_outputs",
     "latex-workshop.latex.rootFile.doNotPrompt": true,
     "latex-workshop.latex.rootFile.useSubFile": false,
@@ -41,5 +41,17 @@
             "tools": ["pdflatex"]
         }
     ],
-    "latex-workshop.latex.recipe.default": "lastUsed"
+    "latex-workshop.latex.recipe.default": "lastUsed",
+    "latex-workshop.latex.clean.method": "glob",
+    "latex-workshop.latex.clean.fileTypes": [
+        "%OUTDIR%/*.aux",
+        "%OUTDIR%/*.bbl",
+        "%OUTDIR%/*.blg",
+        "%OUTDIR%/*.log",
+        "%OUTDIR%/*.out",
+        "%OUTDIR%/*.synctex.gz",
+        "%OUTDIR%/*.toc",
+        "%OUTDIR%/*.fls",
+        "%OUTDIR%/*.fdb_latexmk"
+    ]
 }
