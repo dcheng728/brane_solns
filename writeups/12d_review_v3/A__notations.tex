@@ -1,0 +1,53 @@
+\section{Summary of notations and conventions}
+\subsection{Metrics}
+\begin{itemize}
+    \item $G_{mn}$: string frame metric
+    \item $g_{mn}$: SL(2, R)-invariant Einstein frame metric, related to the string frame metric by $g_{mn} = e^{-\Phi/2}G_{mn}$.
+    \item $\tilde{g}_{mn}$: asymptotically flat Einstein frame metric $\tilde{g}_{mn} = g_s^{1/2}g_{mn}$.
+    \item $\mathcal{M} = \frac{1}{\tau_2}\begin{pmatrix}
+        |\tau|^2 & \tau_1\\
+        \tau_1 & 1
+    \end{pmatrix}$
+    \item $\mathcal{G}_{MN}$: 12d effective metric $\mathcal{G}_{MN} = g_{mn} \oplus \mathcal{M}_{ij}$.
+\end{itemize}
+
+\subsection{Form fields}
+
+\begin{itemize}
+    \item $C_{(p)}$: RR p-form gauge potential, with field strength $F_{(p+1)} = dC_{(p)}$.
+    \item $B_{(p)}$: NSNS p-form gauge potential, with field strength $H_{(p+1)} = dB_{(p)}$.
+    \item $\tau = C_{(0)} + ie^{-\Phi}$: axio-dilaton, with $C_{(0)}$ the RR scalar and $\Phi$ the full dilaton with both background and fluctuation contributions.
+\end{itemize}
+
+\begin{itemize}
+    \item $P_m$ and $Q_m$: complexified vielbein and U(1) connection for the axio-dilaton.
+\end{itemize}
+
+\subsection{SL(2, R) or SL(2, Z) covariance}
+Letting $\Lambda = \begin{pmatrix}a & b\\
+c & d\end{pmatrix} \in SL(2, R)$ or $SL(2, Z)$, the fields transform as the following:
+\begin{itemize}
+    \item $\tau \to \frac{a\tau + b}{c\tau + d}$,
+    \item $(p,q)$ denotes (NSNS, RR) charges,
+    $\begin{pmatrix}B_{(2)}\\
+        C_{(2)}
+    \end{pmatrix} 
+    \to \begin{pmatrix}
+        d & c\\
+        b & a
+    \end{pmatrix}
+\begin{pmatrix}
+B_{(2)}\\
+C_{(2)}\end{pmatrix}$,
+    \item $P_m \to \frac{c\bar{\tau}+d}{c\tau+d} P_m$,
+    \item $G_{(3)} \to \left(\frac{c\bar{\tau}+d}{c\tau+d}\right)^{1/2} G_{(3)}$,
+    \item $f_w(\tau,\bar\tau) \to \left(\frac{c\bar{\tau}+d}{c\tau+d}\right)^{1/2} f_w(\tau,\bar\tau)$, where $f_w$ is a modular form of weight $w$.
+\end{itemize}
+
+\subsection{Local U(1) covariance}
+\begin{itemize}
+    \item $\tau \to \tau$,
+    \item $P_m \to e^{2i\theta} P_m$,
+    \item $G_{(3)} \to e^{i\theta} G_{(3)}$,
+    \item $f_w(\tau,\bar\tau) \to f_w(\tau,\bar\tau)$.
+\end{itemize}
