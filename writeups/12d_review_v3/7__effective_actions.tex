@@ -9,18 +9,15 @@ Then we discuss current understandings on 12d interpretations of SL(2, Z), and i
 We conclude by discussing a potential parallel, between type IIA and type IIB, where the D0 and D(-1) backgrounds are effectively accounted for by loops of higher-dimensional KK modes.
 
 \subsection{Recap: Perturbative String Theory and Higher-Derivative Supergravity}
-In principle, one can obtain the higher derivative supergravity effective actions through Feynman diagrams.
-In practice, they are obtained from string amplitudes. 
-We briefly recap how this is done.
+{\color{orange}
+The perturbative expansion of string amplitudes is organized by two parameters: $\alpha' = l_s^2$ controls the derivative expansion, and $g_s$ counts the genus of the string worldsheet in string path-integrals.
+An $n$-point amplitude is a summation over worldsheet path-integrals of genus $g$
+\begin{equation}
+    \mathcal A_n(\alpha') = \sum_{g=0}^\infty g_s^{2g-2+n} \mathcal A_n^{(g)}(\alpha').
+\end{equation}
+}
 
-There are two perturbative parameters in string theory: $\alpha',g_s$.
-\begin{itemize}
-    \item $\alpha'=l_s^2$ controls low-energy expansion. Small $\alpha'$ is the particle limit of string theory, where we enter field theory (supergravity) whose higher derivatives appear accompanied by $\alpha'$.
-    \item $g_s$ (string coupling) counts the genus of the string worldsheet in string path-integrals. Any given string amplitude is a summation over worldsheet path-integrals of all genus
-    \begin{equation}
-        \mathcal A_n(\alpha') = \sum_{g=0}^\infty g_s^{2g-2+n} \mathcal A_n^{(g)}(\alpha').
-    \end{equation}
-\end{itemize}
+
 The tree-level 4-point function in the type IIA and type IIB string theories is the Virasoro-Shapiro amplitude \cite{Green:2012oqa}, for the symmetric traceless massless modes in the NSNS sector of the string, they take the following form \cite{Green:1999pv}
 \begin{equation}
 \mathcal A_4
