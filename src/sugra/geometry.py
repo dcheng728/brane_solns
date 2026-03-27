@@ -7,7 +7,6 @@ harmonic function utilities, and warped product metric construction.
 
 import sympy as sp
 from functools import cached_property
-from itertools import combinations
 
 
 class Metric:
@@ -167,15 +166,128 @@ class Metric:
         key = (i, j, k) if j <= k else (i, k, j)
         return Gamma.get(key, sp.S(0))
 
+    def _detect_composite_functions(self):
+        """Detect composite function applications in metric components.
+
+        If metric components involve f(ξ(x1,...,xn)), returns helpers that
+        replace f(ξ) with plain symbols for fast polynomial Ricci arithmetic
+        and a chain-rule--aware derivative.  Returns None otherwise.
+        """
+        # Collect applied undefined functions (e.g. H(sqrt(Σyi²)))
+        func_apps = set()
+        for i in range(self._dim):
+            func_apps.update(self._matrix[i, i].atoms(sp.core.function.AppliedUndef))
+        if not func_apps:
+            return None
+
+        # Require a single shared composite argument that depends on coordinates
+        coord_set = set(self._coordinates)
+        args = {app.args[0] for app in func_apps
+                if len(app.args) == 1 and app.args[0].free_symbols & coord_set}
+        if len(args) != 1:
+            return None
+
+        xi = args.pop()                                # e.g. sqrt(Σyi²)
+        xi_sq = xi.base if isinstance(xi, sp.Pow) and xi.exp == sp.Rational(1, 2) else xi**2
+        r = sp.Dummy('r', positive=True)
+
+        # Abstract symbols for each function: f, f', f''
+        func_info = {}
+        for app in func_apps:
+            fc = app.func
+            if fc not in func_info:
+                nm = fc.__name__
+                func_info[fc] = (sp.Dummy(nm, positive=True),
+                                 sp.Dummy(nm + 'p'),
+                                 sp.Dummy(nm + 'pp'))
+
+        abstract_syms = {r}
+        for f, fp, fpp in func_info.values():
+            abstract_syms |= {f, fp, fpp}
+
+        # Pre-compute ∂ξ/∂xk (in abstract form, e.g. yk/r)
+        dxi = {}
+        for xk in self._coordinates:
+            d = sp.diff(xi, xk)
+            if d != 0:
+                dxi[xk] = d.subs(xi_sq, r**2).subs(xi, r)
+
+        # ── Substitution helpers ──────────────────────────────────────
+
+        def to_abstract(expr):
+            """f(ξ) → plain symbols, resolve Subs objects."""
+            out = expr.subs(xi_sq, r**2).subs(xi, r).doit()
+            for fc, (f, fp, fpp) in func_info.items():
+                fr = fc(r)
+                out = out.subs(sp.Derivative(fr, (r, 2)), fpp)
+                out = out.subs(sp.Derivative(fr, r), fp)
+                out = out.subs(fr, f)
+            return out
+
+        def to_original(expr):
+            """Plain symbols → f(ξ) form."""
+            out = expr
+            for fc, (f, fp, fpp) in func_info.items():
+                fr = fc(r)
+                out = out.subs(fpp, sp.Derivative(fr, (r, 2)))
+                out = out.subs(fp, sp.Derivative(fr, r))
+                out = out.subs(f, fr)
+            return out.subs(r**2, xi_sq).subs(r, xi)
+
+        # ── Chain-rule derivative ─────────────────────────────────────
+
+        # Per-coordinate rules: ∂s/∂xk for each abstract symbol s
+        chain_rules = {}
+        for xk, dxi_dxk in dxi.items():
+            rules = {r: dxi_dxk}
+            for fc, (f, fp, fpp) in func_info.items():
+                rules[f]  = fp  * dxi_dxk
+                rules[fp] = fpp * dxi_dxk
+            chain_rules[xk] = rules
+
+        def chain_diff(expr, xk):
+            """Differentiate expr (in abstract symbols) w.r.t. coordinate xk."""
+            if expr == 0:
+                return sp.S(0)
+            present = expr.free_symbols & abstract_syms
+            if not present and xk not in expr.free_symbols:
+                return sp.S(0)
+
+            # Direct partial holding abstract symbols constant
+            if present:
+                subs = {s: sp.Dummy() for s in present}
+                inv = {v: k for k, v in subs.items()}
+                direct = sp.diff(expr.subs(subs), xk).subs(inv)
+            else:
+                direct = sp.diff(expr, xk)
+
+            # Chain-rule contributions
+            if xk in chain_rules:
+                for s, ds_dxk in chain_rules[xk].items():
+                    if s in present:
+                        df_ds = sp.diff(expr, s)
+                        if df_ds != 0:
+                            direct += df_ds * ds_dxk
+            return direct
+
+        return {
+            'to_abstract': to_abstract,
+            'to_original': to_original,
+            'chain_diff': chain_diff,
+        }
+
     def ricci_tensor(self, simplify_func=None):
         """Compute the Ricci tensor R_{MN}.
 
         For diagonal metrics, R_{MN} is diagonal — only D components are computed.
+        When the metric involves composite functions like H(sqrt(Σyi²)), an
+        automatic abstraction layer replaces them with plain symbols so that
+        all intermediate algebra is polynomial-fast.
 
         Parameters
         ----------
         simplify_func : callable, optional
-            Applied to each final R_{MN} component. Default: None.
+            Applied to each R_{MN} component (e.g., sp.cancel). Default: None.
 
         Returns
         -------
@@ -183,36 +295,59 @@ class Metric:
             D x D matrix of Ricci tensor components.
         """
         Gamma = self.christoffel(simplify_func=simplify_func)
+
+        # If the metric contains composite functions like H(sqrt(Σyi²)),
+        # lift Christoffel symbols into an abstract polynomial representation,
+        # compute Ricci there, and restore at the end.
+        abstract = self._detect_composite_functions()
+        if abstract is not None:
+            to_abs, to_orig = abstract['to_abstract'], abstract['to_original']
+            diff_func = abstract['chain_diff']
+            Gamma = {k: to_abs(v) for k, v in Gamma.items()}
+            if simplify_func:
+                Gamma = {k: simplify_func(v) for k, v in Gamma.items() if v != 0}
+        else:
+            to_orig = None
+            diff_func = sp.diff
+
+        return self._ricci_loop(Gamma, diff_func, simplify_func, to_orig)
+
+    def _ricci_loop(self, Gamma, diff_func, simplify_func, post_func):
+        """Core Ricci tensor loop.
+
+        Parameters
+        ----------
+        Gamma : dict
+            Christoffel symbols (possibly in abstract form).
+        diff_func : callable(expr, x) -> expr
+            Differentiation function (sp.diff or chain-rule aware variant).
+        simplify_func : callable or None
+            Applied after each P-iteration and to each final component.
+        post_func : callable or None
+            Applied to each final component to restore original form.
+        """
         D = self._dim
         x = self._coordinates
-
         R = sp.zeros(D, D)
 
-        # For diagonal metrics, only compute diagonal entries
         index_pairs = [(i, i) for i in range(D)] if self._is_diagonal else \
             [(i, j) for i in range(D) for j in range(i, D)]
 
         for M, N in index_pairs:
             val = sp.S(0)
-
-            # R_{MN} = d_P Gamma^P_{MN} - d_N Gamma^P_{MP}
-            #        + Gamma^P_{PQ} Gamma^Q_{MN} - Gamma^P_{NQ} Gamma^Q_{MP}
-
             for P in range(D):
-                # Derivative terms — skip when Christoffel symbol is zero
+                # Derivative terms
                 G_PMN = self._get_christoffel(Gamma, P, M, N)
                 if G_PMN != 0:
-                    dG = sp.diff(G_PMN, x[P])
+                    dG = diff_func(G_PMN, x[P])
                     if dG != 0:
                         val += dG
-
                 G_PMP = self._get_christoffel(Gamma, P, M, P)
                 if G_PMP != 0:
-                    dG = sp.diff(G_PMP, x[N])
+                    dG = diff_func(G_PMP, x[N])
                     if dG != 0:
                         val -= dG
-
-                # Quadratic terms — skip zero products
+                # Quadratic terms
                 for Q in range(D):
                     G_PPQ = self._get_christoffel(Gamma, P, P, Q)
                     G_QMN = self._get_christoffel(Gamma, Q, M, N)
@@ -222,15 +357,16 @@ class Metric:
                     G_QMP = self._get_christoffel(Gamma, Q, M, P)
                     if G_PNQ != 0 and G_QMP != 0:
                         val -= G_PNQ * G_QMP
-
-                # Simplify after each P to prevent expression swell
                 if simplify_func and val != 0:
                     val = simplify_func(val)
 
+            if post_func is not None:
+                val = post_func(val)
+                if simplify_func:
+                    val = simplify_func(val)
             R[M, N] = val
             if M != N:
                 R[N, M] = val
-
         return R
 
     def ricci_scalar(self, simplify_func=None):
@@ -245,7 +381,6 @@ class Metric:
         if simplify_func:
             R = simplify_func(R)
         return R
-
 
 class HarmonicFunction:
     """Manages a harmonic function H(r) and substitution rules for brane ansatze.
@@ -401,23 +536,23 @@ class HarmonicFunction:
         return values
 
 
-def warped_product(warp_factors, block_dims, block_signatures, coordinates, H):
+def warped_product(warp_factors, block_dims, block_signatures, coordinates, H=None):
     """Build a warped product metric.
 
-    ds^2 = H^{a_1} ds_{d_1}^2 + H^{a_2} ds_{d_2}^2 + ...
+    ds^2 = w_1 ds_{d_1}^2 + w_2 ds_{d_2}^2 + ...
 
     Parameters
     ----------
-    warp_factors : list of sp.Rational or sp.Expr
-        Power of H for each block.
+    warp_factors : list of sp.Expr
+        Warp factor for each block (e.g., H**a, H**b).
     block_dims : list of int
         Dimension of each block.
     block_signatures : list of str
         'lorentzian' or 'euclidean' for each block.
     coordinates : list of sp.Symbol
         All D coordinates (must have sum(block_dims) entries).
-    H : sp.Expr
-        The warp function (e.g., a HarmonicFunction.H symbol or H(r) expression).
+    H : sp.Expr, optional
+        Unused; kept for backward compatibility.
 
     Returns
     -------
@@ -428,8 +563,7 @@ def warped_product(warp_factors, block_dims, block_signatures, coordinates, H):
     assert len(coordinates) == D
 
     diagonal = []
-    for a, d, sig in zip(warp_factors, block_dims, block_signatures):
-        warp = H ** a
+    for warp, d, sig in zip(warp_factors, block_dims, block_signatures):
         if sig == 'lorentzian':
             diagonal.append(-warp)  # time component
             for _ in range(d - 1):

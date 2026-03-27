@@ -1,22 +1,24 @@
 """
-Ricci tensor for a general (d, D-d) warped-product brane ansatz.
+4-form flux F₄ for the M2-brane ansatz and its norm |F₄|².
 
-  ds²_D = H^{a}(r) ds²_d  +  H^{b}(r) ds²_{D-d}
+  ds²₁₁ = H^{-2/3} ds²₃ + H^{1/3} ds²₈
+  (C₃)_{μ₀μ₁μ₂} = ε_{μ₀μ₁μ₂} (H⁻¹ - 1)
+  F₄ = dC₃  ⟹  F_{μ₀μ₁μ₂,m} = ε_{μ₀μ₁μ₂} ∂_m(H⁻¹)
 
-H(r) harmonic in the (D-d)-dimensional transverse space.
+Convention: |F|² = (1/p!) F_{M₁…Mₚ} F^{M₁…Mₚ}.
 """
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 import sympy as sp
-from sugra import HarmonicFunction, warped_product
+from sugra import HarmonicFunction, warped_product, FormField, form_norm_squared
 
 # ── Parameters (edit these) ───────────────────────────────────────────────────
 
 D = 11                         # total dimension
 d = 3                          # worldvolume dimension
-a = sp.Rational(-2,3)         # worldvolume warp: H^{a}
+a = sp.Rational(-2, 3)         # worldvolume warp: H^{a}
 b = sp.Rational(1, 3)          # transverse warp:  H^{b}
 
 D_perp = D - d
@@ -40,15 +42,32 @@ metric = warped_product(
     H                = H_func,
 )
 
+# ── 4-form ansatz: F_{μ₀μ₁μ₂, m} = ε_{μ₀μ₁μ₂} ∂_m(H⁻¹) ─────────────────
+
+wv_indices = list(range(d))            # (0, 1, 2)
+H_inv = 1 / H_func
+
+F4 = FormField(rank=4, dim=D)
+for k, ym in enumerate(y):
+    dH_inv = sp.diff(H_inv, ym)
+    if dH_inv != 0:
+        F4[tuple(wv_indices) + (d + k,)] = dH_inv
+
 # ── Compute & display ────────────────────────────────────────────────────────
 
 print(f"ds² = H^({a}) ds²_{d}  +  H^({b}) ds²_{D_perp}")
-print(f"H'' + {D_perp - 1}/r H' = 0")
+print(f"F_{{μ₀μ₁μ₂, m}} = ε_{{μ₀μ₁μ₂}} ∂_m(H⁻¹)")
 print()
 
-R = metric.ricci_tensor(simplify_func=sp.cancel)
+# Nonzero components
+for idx, val in F4.nonzero_components.items():
+    names = ','.join(str(coords[i]) for i in idx)
+    val_sub = hf.substitute(sp.cancel(val))
+    print(f"  F[{names}] = {val_sub}")
 
-for i in range(D):
-    expr = hf.substitute(sp.cancel(R[i, i]))
-    label = "wv" if i < d else "tr"
-    print(f"  R[{coords[i]},{coords[i]}]  ({label}) = {expr}")
+print()
+
+# |F₄|²
+F_sq = form_norm_squared(F4, metric)
+F_sq = hf.substitute(sp.cancel(F_sq))
+print(f"  |F₄|² = {F_sq}")
