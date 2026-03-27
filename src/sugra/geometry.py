@@ -182,7 +182,7 @@ class Metric:
         sp.Matrix
             D x D matrix of Ricci tensor components.
         """
-        Gamma = self.christoffel()
+        Gamma = self.christoffel(simplify_func=simplify_func)
         D = self._dim
         x = self._coordinates
 
@@ -196,28 +196,37 @@ class Metric:
             val = sp.S(0)
 
             # R_{MN} = d_P Gamma^P_{MN} - d_N Gamma^P_{MP}
-            #        + Gamma^P_{QP} Gamma^Q_{MN} - Gamma^P_{QN} Gamma^Q_{MP}
-            #
-            # Note: using the standard formula
-            # R_{MN} = d_P Gamma^P_{MN} - d_N Gamma^P_{MP}
             #        + Gamma^P_{PQ} Gamma^Q_{MN} - Gamma^P_{NQ} Gamma^Q_{MP}
 
             for P in range(D):
-                # Derivative terms
+                # Derivative terms — skip when Christoffel symbol is zero
                 G_PMN = self._get_christoffel(Gamma, P, M, N)
-                G_PMP = self._get_christoffel(Gamma, P, M, P)
-                val += sp.diff(G_PMN, x[P]) - sp.diff(G_PMP, x[N])
+                if G_PMN != 0:
+                    dG = sp.diff(G_PMN, x[P])
+                    if dG != 0:
+                        val += dG
 
-                # Quadratic terms
+                G_PMP = self._get_christoffel(Gamma, P, M, P)
+                if G_PMP != 0:
+                    dG = sp.diff(G_PMP, x[N])
+                    if dG != 0:
+                        val -= dG
+
+                # Quadratic terms — skip zero products
                 for Q in range(D):
                     G_PPQ = self._get_christoffel(Gamma, P, P, Q)
                     G_QMN = self._get_christoffel(Gamma, Q, M, N)
+                    if G_PPQ != 0 and G_QMN != 0:
+                        val += G_PPQ * G_QMN
                     G_PNQ = self._get_christoffel(Gamma, P, N, Q)
                     G_QMP = self._get_christoffel(Gamma, Q, M, P)
-                    val += G_PPQ * G_QMN - G_PNQ * G_QMP
+                    if G_PNQ != 0 and G_QMP != 0:
+                        val -= G_PNQ * G_QMP
 
-            if simplify_func:
-                val = simplify_func(val)
+                # Simplify after each P to prevent expression swell
+                if simplify_func and val != 0:
+                    val = simplify_func(val)
+
             R[M, N] = val
             if M != N:
                 R[N, M] = val
@@ -308,8 +317,16 @@ class HarmonicFunction:
         """
         result = expr
 
-        # Step 1: replace the radial expression with the r symbol
+        # Step 1: replace the radial expression and its square with r symbols.
+        # Must substitute sum(yi^2) = r^2 *before* sqrt(sum yi^2) = r, otherwise
+        # the sum-of-squares pattern lingers in denominators.
+        y_sq = sum(yi**2 for yi in self._y)
+        result = result.subs(y_sq, self.r**2)
         result = result.subs(self._r_expr, self.r)
+        # After the r substitutions SymPy may leave Subs(Derivative(H(...), ...))
+        # objects unevaluated (e.g. Subs(H'(_xi), _xi, r)).  .doit() resolves them
+        # into ordinary Derivative(H(r), r) forms that the next step can match.
+        result = result.doit()
 
         # Step 2: replace function evaluations with algebraic symbols
         H_func_r = sp.Function('H')(self.r)
@@ -320,7 +337,29 @@ class HarmonicFunction:
         result = result.subs(H_func_r_d1, self.Hp)
         result = result.subs(H_func_r, self.H)
 
-        # Step 3: impose harmonic condition
+        # Step 3: eliminate any remaining yi² using r² = sum(yi²).
+        # After .doit() the sum is fragmented into individual yi² terms with
+        # distributed coefficients, so a direct subs(y_sq, r²) misses them.
+        # Strategy: try eliminating each yi in turn via yi² = r² - Σ(others)²
+        # and pick the result with the fewest remaining transverse symbols.
+        # This preserves the "natural" variable for non-isotropic expressions
+        # (e.g. R[ya,ya] keeps ya) while fully simplifying isotropic ones.
+        if any(yi in result.free_symbols for yi in self._y):
+            best = result
+            best_count = sum(1 for yi in self._y if yi in result.free_symbols)
+            for yk in self._y:
+                others_sq = sum(yi**2 for yi in self._y if yi is not yk)
+                trial = result.subs(yk**2, self.r**2 - others_sq)
+                trial = sp.cancel(trial.expand())
+                count = sum(1 for yi in self._y if yi in trial.free_symbols)
+                if count < best_count:
+                    best = trial
+                    best_count = count
+                    if count == 0:
+                        break
+            result = best
+
+        # Step 4: impose harmonic condition
         result = result.subs(self.Hpp, -(self._d_perp - 1) / self.r * self.Hp)
 
         return result

@@ -263,6 +263,41 @@ class Solution:
 
         return fn
 
+    def ricci_tensor(self, simplify_func=None):
+        """Return the Ricci tensor R_{MN} as a SymPy Matrix.
+
+        This is the left-hand side of the Einstein equation:
+            R_{MN} = (1/2)(d_M phi d_N phi + e^{alpha phi} S_{MN}|_F)
+
+        Parameters
+        ----------
+        simplify_func : callable, optional
+            Applied to each component (e.g. sp.cancel).
+
+        Returns
+        -------
+        sp.Matrix  (D x D)
+        """
+        return self.metric.ricci_tensor(simplify_func=simplify_func)
+
+    def stress_energy_tensor(self):
+        """Return the RHS of the Einstein equation as a SymPy Matrix.
+
+        Computes:
+            T_{MN} = (1/2) d_M phi d_N phi  +  e^{alpha phi} S_{MN}|_F
+
+        where S_{MN}|_F is the trace-reversed stress-energy of each flux
+        (see form_stress_energy), consistently with the action
+
+            S = integral d^D x sqrt(-g) [R - 1/2 (d phi)^2
+                                           - 1/2 e^{alpha phi} |F_n|^2]
+
+        Returns
+        -------
+        sp.Matrix  (D x D)
+        """
+        return self._compute_stress_energy()
+
     def _compute_stress_energy(self):
         """Compute the total stress-energy T_{MN} from all fields.
 
@@ -326,8 +361,8 @@ class Solution:
         -------
         list of CheckResult
         """
-        R = self.metric.ricci_tensor(simplify_func=simplify_func)
-        T = self._compute_stress_energy()
+        R = self.ricci_tensor(simplify_func=simplify_func)
+        T = self.stress_energy_tensor()
         D = self.metric.dim
 
         symbol_values_fn = self._make_symbol_values_fn()

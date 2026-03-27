@@ -3,7 +3,6 @@
     "editor.wordWrap": "on",
     "python-envs.defaultEnvManager": "ms-python.python:conda",
     "python-envs.defaultPackageManager": "ms-python.python:conda",
-    "python-envs.pythonProjects": [],
     "workbench.colorTheme": "Solarized Light",
     "latex-workshop.latex.outDir": "%DIR%/latex_outputs",
     "latex-workshop.latex.rootFile.doNotPrompt": true,
