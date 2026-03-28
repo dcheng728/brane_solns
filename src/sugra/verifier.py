@@ -26,27 +26,15 @@ class Verifier:
         self._R = None
         self._T = None
 
-    # ── Formatting helpers ──────────────────────────────────────────────────
-
-    @staticmethod
-    def _sub(n):
-        t = str.maketrans('0123456789',
-                          '\u2080\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089')
-        return str(n).translate(t)
-
-    @staticmethod
-    def _sup(n):
-        t = str.maketrans('0123456789',
-                          '\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079')
-        return str(n).translate(t)
+    # -- Formatting helpers --------------------------------------------------
 
     @staticmethod
     def _header(width=56):
-        return '\u2550' * width
+        return '=' * width
 
     @staticmethod
     def _rule(width=56):
-        return '\u2500' * width
+        return '-' * width
 
     def _coord_label(self, i):
         return str(self.coords[i])
@@ -77,7 +65,7 @@ class Verifier:
 
         return result
 
-    # ── Display: action ─────────────────────────────────────────────────────
+    # -- Display: action -----------------------------------------------------
 
     def action_str(self):
         D = self.g.dim
@@ -86,18 +74,17 @@ class Verifier:
         if a == 0:
             coupling = ''
         elif a == 1:
-            coupling = 'e^\u03a6 '
+            coupling = 'e^Phi '
         elif a == -1:
-            coupling = 'e^(-\u03a6) '
+            coupling = 'e^(-Phi) '
         else:
-            coupling = f'e^({a}\u03a6) '
-        return (f"S = \u222b d{self._sup(D)}x \u221a(-g) \u00b7 "
-                f"[R - \u00bd(\u2202\u03a6)\u00b2 - \u00bd{coupling}|F{self._sub(n)}|\u00b2]")
+            coupling = f'e^({a} Phi) '
+        return f"S = int d^{D}x sqrt(-g) [R - 1/2 (dPhi)^2 - 1/2 {coupling}|F_{n}|^2]"
 
     def print_action(self):
         print(f"  {self.action_str()}")
 
-    # ── Display: metric ─────────────────────────────────────────────────────
+    # -- Display: metric -----------------------------------------------------
 
     def print_metric(self):
         g = self.g
@@ -114,7 +101,7 @@ class Verifier:
                     if val != 0:
                         print(f"    g[{x[i]},{x[j]}] = {self._display(val)}")
 
-    # ── Display: form field ─────────────────────────────────────────────────
+    # -- Display: form field -------------------------------------------------
 
     def _distinct_components(self):
         """Return one representative per distinct component value (up to sign)."""
@@ -136,18 +123,18 @@ class Verifier:
               f"{len(distinct)} distinct:")
         for idx, val in distinct.values():
             labels = ','.join(str(x[i]) for i in idx)
-            print(f"    F[{labels}] = {self._display(val)}")
+            print(f"    F[{labels}] = {val}")
 
-    # ── Display: dilaton ────────────────────────────────────────────────────
+    # -- Display: dilaton ----------------------------------------------------
 
     def print_dilaton(self):
         if self.Phi == 0:
-            print(f"  \u03a6 = 0 (no dilaton)")
+            print("  Phi = 0 (no dilaton)")
         else:
-            print(f"  \u03a6 = {self._display(self.Phi)}")
-        print(f"  \u03b1 = {self.alpha}")
+            print(f"  Phi = {self._display(self.Phi)}")
+        print(f"  alpha = {self.alpha}")
 
-    # ── Display: full ansatz ────────────────────────────────────────────────
+    # -- Display: full ansatz ------------------------------------------------
 
     def print_ansatz(self):
         self.print_metric()
@@ -156,7 +143,7 @@ class Verifier:
         print()
         self.print_dilaton()
 
-    # ── Compute ─────────────────────────────────────────────────────────────
+    # -- Compute -------------------------------------------------------------
 
     def compute(self):
         self._R = self.g.ricci_tensor(simplify_func=sp.cancel)
@@ -164,7 +151,7 @@ class Verifier:
             self.F, self.g, dilaton=self.Phi, dilaton_coupling=self.alpha
         )
 
-    # ── Display: component-wise results ─────────────────────────────────────
+    # -- Display: component-wise results -------------------------------------
 
     def print_results(self):
         if self._R is None:
@@ -183,15 +170,15 @@ class Verifier:
             ok = (diff == 0)
             if not ok:
                 all_ok = False
-            tag = "\u2713" if ok else "\u2717"
-            print(f"  {tag} {name}   R = {R_expr}")
-            print(f"    {pad} T = {T_expr}")
+            tag = "OK" if ok else "XX"
+            print(f"  [{tag}] {name}   R = {R_expr}")
+            print(f"        {pad} T = {T_expr}")
             if not ok:
-                print(f"    {pad} \u0394 = {diff}")
+                print(f"        {pad} D = {diff}")
 
         return all_ok
 
-    # ── Main entry point ────────────────────────────────────────────────────
+    # -- Main entry point ----------------------------------------------------
 
     def check(self):
         print()
@@ -211,8 +198,7 @@ class Verifier:
 
         print()
         print(f"  {self._rule()}")
-        verdict = ("\u2713 All components match." if all_ok
-                   else "\u2717 MISMATCH detected.")
+        verdict = "All components match." if all_ok else "MISMATCH detected."
         print(f"  {verdict}")
         print()
 
