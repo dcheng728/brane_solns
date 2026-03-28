@@ -61,7 +61,7 @@ run_agent() {
         claude -p "$prompt" \
             $model_flag \
             ${tools:+--allowedTools "$tools"} \
-            --output-file "$outfile" \
+            >"$outfile" \
             2>"$logfile"
 
         if [ $? -eq 0 ]; then
