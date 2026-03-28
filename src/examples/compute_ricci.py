@@ -14,10 +14,10 @@ from sugra import HarmonicFunction, warped_product
 
 # ── Parameters (edit these) ───────────────────────────────────────────────────
 
-D = 11                         # total dimension
-d = 3                          # worldvolume dimension
-a = sp.Rational(-2,3)         # worldvolume warp: H^{a}
-b = sp.Rational(1, 3)          # transverse warp:  H^{b}
+D = 12                         # total dimension
+d = 4                          # worldvolume dimension
+a = sp.Rational(-2,4)         # worldvolume warp: H^{a}
+b = sp.Rational(2, 6)          # transverse warp:  H^{b}
 
 D_perp = D - d
 
