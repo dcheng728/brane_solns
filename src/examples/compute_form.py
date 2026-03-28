@@ -62,33 +62,6 @@ F3 = exterior_derivative(C2, coords)
 dilaton_power = sp.Rational(1, 2)         # exponent in e^Phi = H^p
 Phi = dilaton_power * sp.log(H_func)      # Phi = p * ln H
 
-# ── Display ─────────────────────────────────────────────────────────────────
-
-print("F3 = dC2,  C_{01} = H^{-1}")
-print()
-
-for idx, val in F3.nonzero_components.items():
-    names = ','.join(str(coords[i]) for i in idx)
-    val_sub = hf.substitute(sp.cancel(val))
-    print(f"  F3[{names}] = {val_sub}")
-
-print()
-
-F_sq = form_norm_squared(F3, metric)
-F_sq = hf.substitute(sp.cancel(F_sq))
-print(f"  |F3|^2 = {F_sq}")
-
-# Dilaton gradient: partial_M Phi
-print()
-print(f"  Phi = {dilaton_power} * ln(H)")
-print()
-
-dPhi = [sp.diff(Phi, xi) for xi in coords]
-for i, val in enumerate(dPhi):
-    if val != 0:
-        val_sub = hf.substitute(sp.cancel(val))
-        print(f"  d_{{  {coords[i]}}} Phi = {val_sub}")
-
 # ── Stress-energy tensor T_{MN} ──────────────────────────────────────────────
 
 alpha = 1                                 # dilaton coupling
