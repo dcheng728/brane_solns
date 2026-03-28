@@ -14,8 +14,8 @@ from sugra import HarmonicFunction, warped_product
 
 # ── Parameters (edit these) ───────────────────────────────────────────────────
 
-a = sp.Symbol('a')
-b = sp.Symbol('b')
+a = sp.Rational(-3, 4)
+b = -sp.Rational(1, 3) * a #demanded for sensible solutions
 c = sp.Symbol('c')
 
 d_wv = 2                          # worldvolume dimension
@@ -29,7 +29,7 @@ wv_coords = list(sp.symbols(
 z1, z2 = sp.symbols('z1 z2', real=True)
 harmonic_coords = list(sp.symbols(f'y0:{d_harm}', real=True))
 
-coords = wv_coords + [z1, z2] + harmonic_coords
+coords = wv_coords + harmonic_coords
 D = len(coords)
 
 # ── Build Harmonic Function ──────────────────────────────────────────────────
@@ -43,11 +43,69 @@ H_func = sp.Function('H')(hf.r_expr)
 #
 
 metric = warped_product(
-    warp_factors     = [H_func**a, H_func**c, H_func**(-c), H_func**b],
-    block_dims       = [d_wv, 1, 1, d_harm],
-    block_signatures = ['lorentzian', 'euclidean', 'euclidean', 'euclidean'],
+    warp_factors     = [H_func**a, H_func**b],
+    block_dims       = [d_wv, d_harm],
+    block_signatures = ['lorentzian', 'euclidean'],
     coordinates      = coords,
 )
+
+# ── Helper: organize expression by H'/H powers ──────────────────────────────
+
+def format_ricci(expr, hf):
+    """Rewrite expr as sum of terms: (rational in a,b,c,...) * H'^n / H^m / r^k.
+
+    Separates each term so the prefactor contains no H or H',
+    and the H/H'/r dependence is a single monomial.
+    """
+    Hp, H, r = hf.Hp, hf.H, hf.r
+    expr = sp.cancel(expr)
+    # Decompose into additive terms
+    expr_expanded = sp.Add.make_args(sp.expand(expr))
+    # Group by (H' power, H power, r power) monomial
+    monomial_map = {}
+    for term in expr_expanded:
+        # Extract powers of Hp, H, r from this term
+        hp_exp = 0
+        h_exp = 0
+        r_exp = 0
+        coeff = term
+        # Extract H' power
+        powers = sp.Mul.make_args(coeff)
+        new_powers = []
+        for factor in powers:
+            base, exp = factor.as_base_exp()
+            if base == Hp:
+                hp_exp += exp
+            elif base == H:
+                h_exp += exp
+            elif base == r:
+                r_exp += exp
+            else:
+                new_powers.append(factor)
+        coeff = sp.Mul(*new_powers) if new_powers else sp.S(1)
+        key = (hp_exp, h_exp, r_exp)
+        monomial_map[key] = monomial_map.get(key, sp.S(0)) + coeff
+
+    terms = []
+    for key in sorted(monomial_map.keys(), key=lambda k: (-k[0], -k[1], -k[2])):
+        coeff = sp.cancel(monomial_map[key])
+        if coeff == 0:
+            continue
+        hp_exp, h_exp, r_exp = key
+        # Build the H'^n * H^m * r^k monomial string
+        parts = []
+        if hp_exp != 0:
+            parts.append(f"H'^({hp_exp})" if hp_exp != 1 else "H'")
+        if h_exp != 0:
+            parts.append(f"H^({h_exp})" if h_exp != 1 else "H")
+        if r_exp != 0:
+            parts.append(f"r^({r_exp})" if r_exp != 1 else "r")
+        monomial_str = ' * '.join(parts) if parts else ''
+        if monomial_str:
+            terms.append(f"({coeff}) * {monomial_str}")
+        else:
+            terms.append(f"({coeff})")
+    return '\n      + '.join(terms) if terms else '0'
 
 # ── Compute & display ────────────────────────────────────────────────────────
 
@@ -67,4 +125,6 @@ for i in range(D):
         label = "torus"
     else:
         label = "harm"
-    print(f"  R[{name},{name}]  ({label}) = {expr}")
+    print(f"  R[{name},{name}]  ({label}) =")
+    print(f"    {format_ricci(expr, hf)}")
+    print()
