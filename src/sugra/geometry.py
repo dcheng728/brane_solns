@@ -435,7 +435,10 @@ class HarmonicFunction:
         return self._r_expr
 
     def substitute(self, expr):
-        """Apply the full substitution chain to an expression.
+        """
+        CAUTION: This method should only be invoked at the last stage of cleaning up algebraic expressions. It is destructive to further differentiation.
+
+        Apply the full substitution chain to an expression.
 
         1. Replace sqrt(sum yi^2) -> r
         2. Replace H''(r) -> Hpp, H'(r) -> Hp, H(r) -> H
