@@ -105,12 +105,14 @@ class TestRicciFlat(unittest.TestCase):
 class TestHarmonicFunction(unittest.TestCase):
 
     def test_basic_creation(self):
-        hf = HarmonicFunction(transverse_dim=6)
+        y = list(sp.symbols('y0:6', real=True))
+        hf = HarmonicFunction(transverse_coords=y)
         self.assertEqual(hf.transverse_dim, 6)
         self.assertEqual(len(hf.transverse_coords), 6)
 
     def test_random_values_harmonic_condition(self):
-        hf = HarmonicFunction(transverse_dim=6)
+        y = list(sp.symbols('y0:6', real=True))
+        hf = HarmonicFunction(transverse_coords=y)
         for _ in range(10):
             vals = hf.random_values()
             hpp = vals[hf.Hpp]
@@ -120,7 +122,8 @@ class TestHarmonicFunction(unittest.TestCase):
             self.assertAlmostEqual(hpp, expected, places=12)
 
     def test_substitute_basic(self):
-        hf = HarmonicFunction(transverse_dim=3)
+        y = list(sp.symbols('y0:3', real=True))
+        hf = HarmonicFunction(transverse_coords=y)
         expr = hf.Hpp
         result = hf.substitute(expr)
         self.assertEqual(result, -2 / hf.r * hf.Hp)
@@ -207,9 +210,9 @@ class TestBraneRicci(unittest.TestCase):
         wv_names = ['t'] + [f'x{i}' for i in range(1, d)]
         wv_coords = list(sp.symbols(' '.join(wv_names), real=True))
 
-        hf = HarmonicFunction(transverse_dim=D_perp)
-        y = hf.transverse_coords
+        y = list(sp.symbols(f'y0:{D_perp}', real=True))
         coords = wv_coords + y
+        hf = HarmonicFunction(transverse_coords=y)
 
         H_func = sp.Function('H')(hf.r_expr)
 

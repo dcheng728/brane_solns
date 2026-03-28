@@ -394,20 +394,14 @@ class HarmonicFunction:
 
     Parameters
     ----------
-    transverse_dim : int
-        Dimension of the transverse space.
-    transverse_coords : list of sp.Symbol, optional
-        Explicit transverse coordinate symbols. If None, creates y0, y1, ...
+    transverse_coords : list of sp.Symbol
+        Transverse coordinate symbols. The transverse dimension is inferred
+        from the length of this list.
     """
 
-    def __init__(self, transverse_dim, transverse_coords=None):
-        self._d_perp = transverse_dim
-
-        if transverse_coords is None:
-            self._y = list(sp.symbols(f'y0:{transverse_dim}', real=True))
-        else:
-            self._y = list(transverse_coords)
-            assert len(self._y) == transverse_dim
+    def __init__(self, transverse_coords):
+        self._y = list(transverse_coords)
+        self._d_perp = len(self._y)
 
         # Radial coordinate
         self._r_expr = sp.sqrt(sum(yi**2 for yi in self._y))

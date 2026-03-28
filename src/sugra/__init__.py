@@ -16,17 +16,6 @@ from .forms import (
     form_contraction,
     form_stress_energy,
 )
-from .verify import (
-    Solution,
-    ScalarField,
-    FluxField,
-    VerificationReport,
-    CheckResult,
-    check_expression,
-    verify_symbolic,
-    verify_numerical,
-)
-
 __all__ = [
     # Geometry
     "Metric",
@@ -39,13 +28,4 @@ __all__ = [
     "form_norm_squared",
     "form_contraction",
     "form_stress_energy",
-    # Verification
-    "Solution",
-    "ScalarField",
-    "FluxField",
-    "VerificationReport",
-    "CheckResult",
-    "check_expression",
-    "verify_symbolic",
-    "verify_numerical",
 ]
