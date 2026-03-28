@@ -16,7 +16,7 @@ from sugra import HarmonicFunction, warped_product
 
 a = sp.Rational(-3, 4)
 b = -sp.Rational(1, 3) * a #demanded for sensible solutions
-c = sp.Symbol('c')
+c = sp.Rational(-1,2) #sp.Symbol('c')
 
 d_wv = 2                          # worldvolume dimension
 d_harm = 8                        # harmonic (transverse) dimension
@@ -134,17 +134,35 @@ for i in range(D):
     print()
 
 
-# -- Build test 4-form field strength──────────────────────────────────────
+# -- Build 4-form field strength ──────────────────────────────────────────
 #
-#   (C_3)_{012} = H^{-1}
-#   F_3 = dC_2  =>  (F_3)_{m,01} = -H^{-2} partial_m H * epsilon_{01}
-#   e^\Phi = H^{1/2}
+#   C_{t, x1, z1} = H^{-1}
+#   F_4 = dC_3  =>  F_{t, x1, z1, m} = partial_m(H^{-1})
 #
 
-from sugra import FormField, exterior_derivative, form_norm_squared, form_stress_energy
+from sugra import FormField, exterior_derivative, form_stress_energy
 
-C2 = FormField(rank=2, dim=D)
-wv_idx = tuple(range(d_wv))              # (0, 1)
-C2[wv_idx] = 1 / H_func                  # C_{01} = H^{-1}
+C3 = FormField(rank=3, dim=D)
+C3[(0, 1, 2)] = 1 / H_func               # C_{t, x1, z1} = H^{-1}
 
-F3 = exterior_derivative(C2, coords)
+F4 = exterior_derivative(C3, coords)
+
+# ── Compute & display T_{MN} ────────────────────────────────────────────────
+
+T = form_stress_energy(F4, metric)
+
+print("T_{MN} from F4 = dC3,  C_{t,x1,z1} = H^{-1}  (no dilaton)")
+print()
+
+for i in range(D):
+    expr = hf.substitute(sp.cancel(T[i, i]))
+    name = str(coords[i])
+    if i < d_wv:
+        label = "wv"
+    elif i < d_wv + 2:
+        label = "torus"
+    else:
+        label = "harm"
+    print(f"  T[{name},{name}]  ({label}) =")
+    print(f"    {format_ricci(expr, hf)}")
+    print()

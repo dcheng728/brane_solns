@@ -128,6 +128,15 @@ class FormField:
         """Return a deep copy."""
         return FormField(self.rank, self.dim, dict(self._components))
 
+    def __mul__(self, scalar):
+        return FormField(self.rank, self.dim, {k: scalar * v for k, v in self._components.items()})
+
+    def __rmul__(self, scalar):
+        return self.__mul__(scalar)
+
+    def __truediv__(self, scalar):
+        return FormField(self.rank, self.dim, {k: v / scalar for k, v in self._components.items()})
+
     def __neg__(self):
         return FormField(self.rank, self.dim, {k: -v for k, v in self._components.items()})
 
