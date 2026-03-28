@@ -101,10 +101,14 @@ def format_ricci(expr, hf):
         if r_exp != 0:
             parts.append(f"r^({r_exp})" if r_exp != 1 else "r")
         monomial_str = ' * '.join(parts) if parts else ''
+        import re
+        coeff_str = str(coeff)
+        # Replace x**n with x^(n) to avoid ambiguity like y7**2/8
+        coeff_str = re.sub(r'\*\*(\w+)', r'^(\1)', coeff_str)
         if monomial_str:
-            terms.append(f"({coeff}) * {monomial_str}")
+            terms.append(f"({coeff_str}) * {monomial_str}")
         else:
-            terms.append(f"({coeff})")
+            terms.append(f"({coeff_str})")
     return '\n      + '.join(terms) if terms else '0'
 
 # ── Compute & display ────────────────────────────────────────────────────────
