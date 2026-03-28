@@ -46,7 +46,7 @@ metric = warped_product(
 #   e^\Phi = H^{1/2}
 #
 
-from sugra import FormField, exterior_derivative, form_norm_squared, form_contraction
+from sugra import FormField, exterior_derivative, form_norm_squared, form_stress_energy
 
 C2 = FormField(rank=2, dim=D)
 wv_idx = tuple(range(d_wv))              # (0, 1)
@@ -90,47 +90,18 @@ for i, val in enumerate(dPhi):
         print(f"  d_{{  {coords[i]}}} Phi = {val_sub}")
 
 # ── Stress-energy tensor T_{MN} ──────────────────────────────────────────────
-#
-#   T_{MN} = 1/2 partial_M Phi partial_N Phi
-#          + 1/2 e^{alpha*Phi} (|FF_{MN}| - (n-1)/(D-2) |F^2| g_{MN})
-#
-#   where |FF_{MN}| = 1/(n-1)! F_{M...} F_N^{...}
-#         |F^2|     = 1/n!     F_{...}   F^{...}
-#
 
-alpha = 1#sp.Symbol('alpha')                # dilaton coupling
-n = F3.rank                               # form rank
-g = metric.matrix
+alpha = 1                                 # dilaton coupling
 
-# Dilaton prefactor
-e_alpha_Phi = sp.exp(alpha * Phi)         # e^{alpha * Phi} = H^{alpha * p}
-
-# Normalized form contraction: |FF_{MN}| = 1/(n-1)! F_{M P...} F_N^{P...}
-FF_MN = form_contraction(F3, metric) / sp.factorial(n - 1)
-
-# Normalized form norm squared: |F^2| = 1/n! F_{M...} F^{M...}
-F_sq = form_norm_squared(F3, metric)
-
-# Assemble T_{MN}
-T = sp.zeros(D, D)
-for M in range(D):
-    for N in range(M, D):
-        # Dilaton kinetic term
-        dilaton_term = sp.Rational(1, 2) * dPhi[M] * dPhi[N]
-        # Form field term
-        form_term = sp.Rational(1, 2) * e_alpha_Phi * (
-            FF_MN[M, N] - sp.Rational(n - 1, D - 2) * F_sq * g[M, N]
-        )
-        T[M, N] = dilaton_term + form_term
-        if M != N:
-            T[N, M] = T[M, N]
+T = form_stress_energy(F3, metric, dilaton=Phi, dilaton_coupling=alpha)
 
 # ── Display T_{MN} ──────────────────────────────────────────────────────────
 
+n = F3.rank
 print()
-print(f"T_{{MN}} = 1/2 d_M Phi d_N Phi + 1/(2(n-1)!) e^(alpha*Phi) "
-      f"[FF_{{MN}} - (n-1)/(n(D-2)) F^2 g_{{MN}}]")
-print(f"n = {n},  D = {D},  alpha = alpha,  Phi = {dilaton_power} ln(H)")
+print(f"T_{{MN}} = 1/2 d_M Phi d_N Phi + 1/2 e^(alpha*Phi) "
+      f"[|FF_{{MN}}| - (n-1)/(D-2) |F^2| g_{{MN}}]")
+print(f"n = {n},  D = {D},  alpha = {alpha},  Phi = {dilaton_power} ln(H)")
 print()
 
 for M in range(D):

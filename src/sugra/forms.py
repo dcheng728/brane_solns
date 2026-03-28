@@ -325,38 +325,66 @@ def form_contraction(form, metric):
     return result
 
 
-def form_stress_energy(form, metric):
-    """Compute the stress-energy tensor S_{MN} for a form field.
+def form_stress_energy(form, metric, dilaton=None, dilaton_coupling=None):
+    """Compute the stress-energy tensor T_{MN} for a form field with optional dilaton.
 
-    S_{MN} = (1/2) * [1/(n-1)! * F_{M...} F_N^{...} - (n-1)/(n*(D-2)) * |F|^2 * g_{MN}]
+    From hep-th/9701088 eq 2.2:
 
-    Convention from hep-th/9701088 eq 2.2b.
+        T_{MN} = (1/2) d_M Phi d_N Phi
+               + (1/2) e^{alpha*Phi} [ |FF_{MN}| - (n-1)/(D-2) |F^2| g_{MN} ]
+
+    where |FF_{MN}| = 1/(n-1)! F_{MP...} F_N^{P...}
+          |F^2|     = 1/n!     F_{...}   F^{...}
+
+    When dilaton is None, the scalar terms vanish and the prefactor is 1.
 
     Parameters
     ----------
     form : FormField
     metric : Metric
+        Must have .coordinates for dilaton gradient computation.
+    dilaton : sp.Expr or None, optional
+        Dilaton scalar Phi as a function of coordinates. Default: None.
+    dilaton_coupling : sp.Expr or None, optional
+        Coupling alpha in e^{alpha*Phi}. Default: 1 when dilaton is provided.
 
     Returns
     -------
     sp.Matrix
+        D x D stress-energy tensor.
     """
     n = form.rank
     D = metric.dim
     g = metric.matrix
 
-    FF_MN = form_contraction(form, metric)
+    # Dilaton setup
+    if dilaton is not None:
+        alpha = dilaton_coupling if dilaton_coupling is not None else sp.S(1)
+        e_alpha_Phi = sp.exp(alpha * dilaton)
+        dPhi = [sp.diff(dilaton, xi) for xi in metric.coordinates]
+    else:
+        e_alpha_Phi = sp.S(1)
+        dPhi = None
+
+    # Normalized form contraction: |FF_{MN}| = 1/(n-1)! F_{M...} F_N^{...}
+    FF_MN = form_contraction(form, metric) / sp.factorial(n - 1)
+
+    # Normalized form norm: |F^2| = 1/n! F_{...} F^{...}
     F_sq = form_norm_squared(form, metric)
 
-    S = sp.zeros(D, D)
+    T = sp.zeros(D, D)
     for M in range(D):
         for N in range(M, D):
-            val = sp.Rational(1, 2) * (
-                FF_MN[M, N] / sp.factorial(n - 1)
-                - sp.Rational(n - 1, n * (D - 2)) * F_sq * g[M, N]
+            val = sp.S(0)
+            # Dilaton kinetic term
+            if dPhi is not None:
+                val += sp.Rational(1, 2) * dPhi[M] * dPhi[N]
+            # Form field term
+            val += sp.Rational(1, 2) * e_alpha_Phi * (
+                FF_MN[M, N] - sp.Rational(n - 1, D - 2) * F_sq * g[M, N]
             )
-            S[M, N] = val
+            T[M, N] = val
             if M != N:
-                S[N, M] = val
+                T[N, M] = val
 
-    return S
+    return T
