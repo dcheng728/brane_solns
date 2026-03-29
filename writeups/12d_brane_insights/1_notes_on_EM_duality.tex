@@ -55,7 +55,7 @@ and \eqref{M5-brane} as
 \section{IIB and 12d}
 
 We would like to ask the same question about type IIB.
-Despite one often think of F1 and NS5, D1 and D5 as EM dual pairs, their form fields $H_3$ AND $F_3$ configuration are not related by EM duality, in 10d, and of course they have opposite dilaton profiles as well\footnote{The brane solutions are listed in \ref{sec:10d IIB branes}}.
+Despite one often think of F1 and NS5, D1 and D5 as EM dual pairs, their form fields $H_3$ and $F_3$ configuration are not related by EM duality, in 10d, and of course they have opposite dilaton profiles as well\footnote{The brane solutions are listed in \ref{sec:10d IIB branes}}.
 
 To obtain the NS5 from F1 by EM duality, one actually has to perform an accompanying SL(2, Z) transformation to invert the dilaton.
 Similar situation is encountered on the D3 brane worldvolume \cite{Tseytlin:1996it}.
@@ -106,8 +106,25 @@ ds^2
 &= \varepsilon_{m_1 m_2 m_3 m}\partial_m H
 \end{align}
 
-In 12d the SL(2, Z) transformation $e^\Phi \to e^{-\Phi}$ becomes $z_1 \to z_2, z_2 \to -z_1$, which indeed maps between the F1 and D1 and between the NS5 and D5 solutions.
+\paragraph{Caveat: How ``12d" is this uplift?}
+It is important to dicuss the nature of these uplifts.
+In any dimension, with a Einstein-Hilbert action couled to $n$-form field strength, the Einstein equations is $R_{MN} = S_{MN}$ where $S_{MN}$ is the trace-reversed stress energy tensor of the form field,
+\begin{equation}
+S_{MN} = \frac{1}{2}\left(\frac{1}{(n-1)!}F_{M...}F_{N}{}^{...} - \frac{n-1}{D-2}\frac{1}{n!}F^2g_{MN}\right).
+\label{trace-reversed stress-energy tensor}
+\end{equation}
+An important distinction between the form-field uplift ansatz and the usual Kaluza-Klein uplift (e.g. in IIA to 11d) is that not all DoFs of the higher-dimensional form field is turned on.
+This has important consequences on whether one may ``interpret" the uplifted solution as being in the higher dimensional theory.
+We note that, for the D1, F1, NS5, D5 uplifts above, they do NOT satisfy the 12d Einstein equation $R_{MN} = S_{MN}$.
+For example, for the F1 uplift given above, one can compute the $R_{\mu\nu}, R_{zz}, R_{mn}$, with the uplifted 12d metrics, but in order for say $R_{\mu\nu}$ to equare $S_{\mu\nu}$, one needs to compute $S_{\mu\nu}$ with $\mathcal{F}_4$ with $n=3$ instead of $n=4$, as well as $D=10$ instead of $D=12$, in \eqref{trace-reversed stress-energy tensor}.
+This is because the factors related to $n!, (n-1)!, D$ in the formula for the trace-reversed stress-energy tensor \eqref{trace-reversed stress-energy tensor} are present to discount the overcounting in trace-reversal as well as contracting the form field. But with the ansatze $\mathcal{F}_4 = F_3 \wedge dz_1$, $\mathcal{F}_4$ fundamentally has the DoFs of a 10d 3-form.
+So the notion of 12d form-field is much weaker than the notion of 12d gravity.
+Rather, the ``12d" uplift is more appropriately described as a repackaging of the 10d equations of motion.
+Again, this all have to do with the fact that not all DoFs of 12d form fields have a place in the 10d theory.
 
+\paragraph{Interpreting the Uplifts}
+
+In 12d the SL(2, Z) transformation $e^\Phi \to e^{-\Phi}$ becomes $z_1 \to z_2, z_2 \to -z_1$, which indeed maps between the F1 and D1 and between the NS5 and D5 solutions.
 There is a pattern here: the F1 uplift's form field configurations and that of the D5 uplift are very close to being related by EM duality in 12d, and so are the D1 and NS5 uplifts.
 
 Let us perform EM duality on the $\mathcal{F}_4$ configuration of F1.
