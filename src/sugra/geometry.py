@@ -330,8 +330,7 @@ class Metric:
         x = self._coordinates
         R = sp.zeros(D, D)
 
-        index_pairs = [(i, i) for i in range(D)] if self._is_diagonal else \
-            [(i, j) for i in range(D) for j in range(i, D)]
+        index_pairs = [(i, j) for i in range(D) for j in range(i, D)]
 
         for M, N in index_pairs:
             val = sp.S(0)

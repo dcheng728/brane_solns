@@ -1,7 +1,7 @@
 ---
 name: find-12d-form
 description: Search for form fields satisfying R_{MN} = T_{MN} for the 12d warped metric. Invoke when asked to search for 12d form field solutions.
-model: opus
+model: sonnet
 tools: Read,Write,Edit,Bash,Glob,Grep
 allow:
   - Write: agents/**
