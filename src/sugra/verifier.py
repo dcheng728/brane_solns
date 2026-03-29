@@ -3,7 +3,7 @@ Einstein equation verifier: R_{MN} = T_{MN}.
 """
 
 import sympy as sp
-from .forms import form_stress_energy
+from .forms import form_stress_energy, scalar_stress_energy
 
 
 class Verifier:
@@ -12,16 +12,17 @@ class Verifier:
     Parameters
     ----------
     soln : dict
-        Keys: metric, F, Phi, alpha, coords, hf
+        Keys: metric, forms, Phi, coords, hf
+        ``forms`` is a list of [FormField, alpha] pairs, e.g. [[F4, 0], [F5, 0]].
     """
 
     def __init__(self, soln):
         self.g      = soln['metric']
-        self.F      = soln['F']
+        self.forms  = [tuple(pair) for pair in soln['forms']]
         self.Phi    = soln['Phi']
-        self.alpha  = soln['alpha']
         self.coords = soln['coords']
         self.hf     = soln['hf']
+        self.D_trace = soln.get('D_trace', None)
 
         self._R = None
         self._T = None
@@ -67,19 +68,25 @@ class Verifier:
 
     # -- Display: action -----------------------------------------------------
 
+    @staticmethod
+    def _coupling_str(alpha):
+        if alpha == 0:
+            return ''
+        elif alpha == 1:
+            return 'e^Phi '
+        elif alpha == -1:
+            return 'e^(-Phi) '
+        else:
+            return f'e^({alpha} Phi) '
+
     def action_str(self):
         D = self.g.dim
-        n = self.F.rank
-        a = self.alpha
-        if a == 0:
-            coupling = ''
-        elif a == 1:
-            coupling = 'e^Phi '
-        elif a == -1:
-            coupling = 'e^(-Phi) '
-        else:
-            coupling = f'e^({a} Phi) '
-        return f"S = int d^{D}x sqrt(-g) [R - 1/2 (dPhi)^2 - 1/2 {coupling}|F_{n}|^2]"
+        form_terms = ' '.join(
+            f"- 1/2 {self._coupling_str(entry[1])}|F_{entry[0].rank}|^2"
+            for entry in self.forms
+        )
+        dilaton_term = '- 1/2 (dPhi)^2 ' if self.Phi != 0 else ''
+        return f"S = int d^{D}x sqrt(-g) [R {dilaton_term}{form_terms}]"
 
     def print_action(self):
         print(f"  {self.action_str()}")
@@ -101,29 +108,33 @@ class Verifier:
                     if val != 0:
                         print(f"    g[{x[i]},{x[j]}] = {self._display(val)}")
 
-    # -- Display: form field -------------------------------------------------
+    # -- Display: form fields ------------------------------------------------
 
-    def _distinct_components(self):
+    def _distinct_components(self, F):
         """Return one representative per distinct component value (up to sign)."""
-        comps = self.F.nonzero_components
         seen = {}
-        for idx, val in comps.items():
+        for idx, val in F.nonzero_components.items():
             display_val = self._display(val)
             canonical = sp.cancel(sp.Abs(display_val))
             if canonical not in seen:
                 seen[canonical] = (idx, display_val)
         return seen
 
-    def print_form(self):
-        comps = self.F.nonzero_components
-        distinct = self._distinct_components()
+    def print_forms(self):
         x = self.coords
-        print(f"  F ({self.F.rank}-form), "
-              f"{len(comps)} independent component(s), "
-              f"{len(distinct)} distinct:")
-        for idx, val in distinct.values():
-            labels = ','.join(str(x[i]) for i in idx)
-            print(f"    F[{labels}] = {val}")
+        for k, entry in enumerate(self.forms):
+            F, alpha = entry[0], entry[1]
+            n_eff = entry[2] if len(entry) > 2 else F.rank
+            comps = F.nonzero_components
+            distinct = self._distinct_components(F)
+            coupling = f", alpha={alpha}" if alpha != 0 else ""
+            neff_str = f", n_eff={n_eff}" if n_eff != F.rank else ""
+            print(f"  F{k+1} ({F.rank}-form{coupling}{neff_str}), "
+                  f"{len(comps)} independent component(s), "
+                  f"{len(distinct)} distinct:")
+            for idx, val in distinct.values():
+                labels = ','.join(str(x[i]) for i in idx)
+                print(f"    F[{labels}] = {val}")
 
     # -- Display: dilaton ----------------------------------------------------
 
@@ -132,14 +143,13 @@ class Verifier:
             print("  Phi = 0 (no dilaton)")
         else:
             print(f"  Phi = {self._display(self.Phi)}")
-        print(f"  alpha = {self.alpha}")
 
     # -- Display: full ansatz ------------------------------------------------
 
     def print_ansatz(self):
         self.print_metric()
         print()
-        self.print_form()
+        self.print_forms()
         print()
         self.print_dilaton()
 
@@ -147,9 +157,15 @@ class Verifier:
 
     def compute(self):
         self._R = self.g.ricci_tensor(simplify_func=sp.cancel)
-        self._T = form_stress_energy(
-            self.F, self.g, dilaton=self.Phi, dilaton_coupling=self.alpha
-        )
+        D = self.g.dim
+        self._T = sp.zeros(D, D)
+        for entry in self.forms:
+            F, alpha = entry[0], entry[1]
+            n_eff = entry[2] if len(entry) > 2 else None
+            self._T += form_stress_energy(F, self.g, dilaton=self.Phi, alpha=alpha,
+                                          D_trace=self.D_trace, n_eff=n_eff)
+        if self.Phi != 0:
+            self._T += scalar_stress_energy(self.Phi, self.g)
 
     # -- Display: component-wise results -------------------------------------
 

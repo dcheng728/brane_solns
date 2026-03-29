@@ -334,64 +334,93 @@ def form_contraction(form, metric):
     return result
 
 
-def form_stress_energy(form, metric, dilaton=None, dilaton_coupling=None):
-    """Compute the stress-energy tensor T_{MN} for a form field with optional dilaton.
+def form_stress_energy(form, metric, dilaton=None, alpha=0, D_trace=None, n_eff=None):
+    """Compute the form-field stress-energy tensor T^(form)_{MN}.
 
-    From hep-th/9701088 eq 2.2:
+        T^(form)_{MN} = (1/2) e^{alpha*Phi} [ FF_{MN} - (n_eff-1)/(D_trace-2) |F|^2 g_{MN} ]
 
-        T_{MN} = (1/2) d_M Phi d_N Phi
-               + (1/2) e^{alpha*Phi} [ |FF_{MN}| - (n-1)/(D-2) |F^2| g_{MN} ]
+    where FF_{MN} = 1/(n-1)! F_{MP...} F_N^{P...}
+          |F|^2   = 1/n!     F_{...}   F^{...}
 
-    where |FF_{MN}| = 1/(n-1)! F_{MP...} F_N^{P...}
-          |F^2|     = 1/n!     F_{...}   F^{...}
-
-    When dilaton is None, the scalar terms vanish and the prefactor is 1.
+    The contraction FF_{MN} and norm |F|^2 always use the actual form rank n.
+    Only the trace coefficient uses n_eff and D_trace.
 
     Parameters
     ----------
     form : FormField
     metric : Metric
-        Must have .coordinates for dilaton gradient computation.
     dilaton : sp.Expr or None, optional
-        Dilaton scalar Phi as a function of coordinates. Default: None.
-    dilaton_coupling : sp.Expr or None, optional
-        Coupling alpha in e^{alpha*Phi}. Default: 1 when dilaton is provided.
+        Dilaton Phi, used only in the e^{alpha*Phi} prefactor.
+    alpha : number or sp.Expr, optional
+        Dilaton coupling. Default: 0 (no coupling).
+    D_trace : int or None, optional
+        Dimension used in the trace coefficient.
+        Defaults to metric.dim if not specified.
+    n_eff : int or None, optional
+        Effective form rank used in the trace coefficient.
+        Defaults to form.rank if not specified.
 
     Returns
     -------
     sp.Matrix
-        D x D stress-energy tensor.
+        D x D form stress-energy tensor.
     """
     n = form.rank
     D = metric.dim
+    if D_trace is None:
+        D_trace = D
+    if n_eff is None:
+        n_eff = n
     g = metric.matrix
 
-    # Dilaton setup
-    if dilaton is not None:
-        alpha = dilaton_coupling if dilaton_coupling is not None else sp.S(1)
-        e_alpha_Phi = sp.exp(alpha * dilaton)
-        dPhi = [sp.diff(dilaton, xi) for xi in metric.coordinates]
+    if dilaton is not None and alpha != 0:
+        e_alpha_Phi = sp.exp(sp.sympify(alpha) * dilaton)
     else:
         e_alpha_Phi = sp.S(1)
-        dPhi = None
 
-    # Normalized form contraction: |FF_{MN}| = 1/(n-1)! F_{M...} F_N^{...}
+    # Normalized form contraction: FF_{MN} = 1/(n-1)! F_{MP...} F_N^{P...}
     FF_MN = form_contraction(form, metric) / sp.factorial(n - 1)
 
-    # Normalized form norm: |F^2| = 1/n! F_{...} F^{...}
+    # Normalized form norm: |F|^2 = 1/n! F_{...} F^{...}
     F_sq = form_norm_squared(form, metric)
 
     T = sp.zeros(D, D)
     for M in range(D):
         for N in range(M, D):
-            val = sp.S(0)
-            # Dilaton kinetic term
-            if dPhi is not None:
-                val += sp.Rational(1, 2) * dPhi[M] * dPhi[N]
-            # Form field term
-            val += sp.Rational(1, 2) * e_alpha_Phi * (
-                FF_MN[M, N] - sp.Rational(n - 1, D - 2) * F_sq * g[M, N]
+            val = sp.Rational(1, 2) * e_alpha_Phi * (
+                FF_MN[M, N] - sp.Rational(n_eff - 1, D_trace - 2) * F_sq * g[M, N]
             )
+            T[M, N] = val
+            if M != N:
+                T[N, M] = val
+
+    return T
+
+
+def scalar_stress_energy(dilaton, metric):
+    """Compute the dilaton kinetic stress-energy tensor T^(scalar)_{MN}.
+
+        T^(scalar)_{MN} = (1/2) d_M Phi d_N Phi
+
+    Parameters
+    ----------
+    dilaton : sp.Expr
+        Dilaton scalar Phi as a function of coordinates.
+    metric : Metric
+        Must have .coordinates.
+
+    Returns
+    -------
+    sp.Matrix
+        D x D scalar stress-energy tensor.
+    """
+    D = metric.dim
+    dPhi = [sp.diff(dilaton, xi) for xi in metric.coordinates]
+
+    T = sp.zeros(D, D)
+    for M in range(D):
+        for N in range(M, D):
+            val = sp.Rational(1, 2) * dPhi[M] * dPhi[N]
             T[M, N] = val
             if M != N:
                 T[N, M] = val

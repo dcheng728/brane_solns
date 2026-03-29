@@ -54,7 +54,7 @@ class TestVerifierF1(unittest.TestCase):
         Phi = R(-1, 2) * sp.log(H)
         alpha = R(-1, 1)
 
-        soln = dict(metric=metric, F=F, Phi=Phi, alpha=alpha, coords=coords, hf=hf)
+        soln = dict(metric=metric, forms=[(F, alpha)], Phi=Phi, coords=coords, hf=hf)
         self.assertTrue(Verifier(soln).check())
 
 
@@ -79,7 +79,7 @@ class TestVerifierD1(unittest.TestCase):
         Phi = R(1, 2) * sp.log(H)
         alpha = R(1, 1)
 
-        soln = dict(metric=metric, F=F, Phi=Phi, alpha=alpha, coords=coords, hf=hf)
+        soln = dict(metric=metric, forms=[(F, alpha)], Phi=Phi, coords=coords, hf=hf)
         self.assertTrue(Verifier(soln).check())
 
 
@@ -104,7 +104,7 @@ class TestVerifierD2(unittest.TestCase):
         Phi = R(1, 4) * sp.log(H)
         alpha = R(1, 2)
 
-        soln = dict(metric=metric, F=F, Phi=Phi, alpha=alpha, coords=coords, hf=hf)
+        soln = dict(metric=metric, forms=[(F, alpha)], Phi=Phi, coords=coords, hf=hf)
         self.assertTrue(Verifier(soln).check())
 
 
@@ -130,7 +130,7 @@ class TestVerifierD3(unittest.TestCase):
         Phi = sp.S(0)
         alpha = R(0, 1)
 
-        soln = dict(metric=metric, F=F, Phi=Phi, alpha=alpha, coords=coords, hf=hf)
+        soln = dict(metric=metric, forms=[(F, alpha)], Phi=Phi, coords=coords, hf=hf)
         self.assertTrue(Verifier(soln).check())
 
 
@@ -155,7 +155,7 @@ class TestVerifierD4(unittest.TestCase):
         Phi = R(-1, 4) * sp.log(H)
         alpha = R(-1, 2)
 
-        soln = dict(metric=metric, F=F, Phi=Phi, alpha=alpha, coords=coords, hf=hf)
+        soln = dict(metric=metric, forms=[(F, alpha)], Phi=Phi, coords=coords, hf=hf)
         self.assertTrue(Verifier(soln).check())
 
 
@@ -182,7 +182,7 @@ class TestVerifierD5(unittest.TestCase):
         Phi = R(-1, 2) * sp.log(H)
         alpha = R(-1, 1)
 
-        soln = dict(metric=metric, F=F, Phi=Phi, alpha=alpha, coords=coords, hf=hf)
+        soln = dict(metric=metric, forms=[(F, alpha)], Phi=Phi, coords=coords, hf=hf)
         self.assertTrue(Verifier(soln).check())
 
 
@@ -209,7 +209,7 @@ class TestVerifierNS5(unittest.TestCase):
         Phi = R(1, 2) * sp.log(H)
         alpha = R(1, 1)
 
-        soln = dict(metric=metric, F=F, Phi=Phi, alpha=alpha, coords=coords, hf=hf)
+        soln = dict(metric=metric, forms=[(F, alpha)], Phi=Phi, coords=coords, hf=hf)
         self.assertTrue(Verifier(soln).check())
 
 class TestVerifierM2(unittest.TestCase):
@@ -235,7 +235,7 @@ class TestVerifierM2(unittest.TestCase):
         Phi = 0
         alpha = 0
 
-        soln = dict(metric=metric, F=F, Phi=Phi, alpha=alpha, coords=coords, hf=hf)
+        soln = dict(metric=metric, forms=[(F, alpha)], Phi=Phi, coords=coords, hf=hf)
         self.assertTrue(Verifier(soln).check())
 
 class TestVerifierM5(unittest.TestCase):
@@ -262,7 +262,7 @@ class TestVerifierM5(unittest.TestCase):
         Phi = 0
         alpha = 0
 
-        soln = dict(metric=metric, F=F, Phi=Phi, alpha=alpha, coords=coords, hf=hf)
+        soln = dict(metric=metric, forms=[(F, alpha)], Phi=Phi, coords=coords, hf=hf)
         self.assertTrue(Verifier(soln).check())
 
 if __name__ == '__main__':

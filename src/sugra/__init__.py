@@ -15,6 +15,7 @@ from .forms import (
     form_norm_squared,
     form_contraction,
     form_stress_energy,
+    scalar_stress_energy,
 )
 from .verifier import Verifier
 __all__ = [
@@ -29,6 +30,7 @@ __all__ = [
     "form_norm_squared",
     "form_contraction",
     "form_stress_energy",
+    "scalar_stress_energy",
     # Verifier
     "Verifier",
 ]

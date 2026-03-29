@@ -45,7 +45,7 @@ def build_brane(d_wv, d_harm, a, b, dilaton_power, alpha, form_type='electric'):
 
     Phi = dilaton_power * sp.log(H_func)
 
-    return dict(metric=metric, F=F, Phi=Phi, alpha=alpha, coords=coords, hf=hf)
+    return dict(metric=metric, forms=[[F, alpha]], Phi=Phi, coords=coords, hf=hf)
 
 # ── Brane catalog ───────────────────────────────────────────────────────────
 #
