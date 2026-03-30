@@ -9,3 +9,6 @@ __pycache__
 # LaTeX build output directories
 **/latex_outputs/
 main.bbl
+
+# Paper source directories (arXiv downloads)
+papers_2_read/arXiv*/
