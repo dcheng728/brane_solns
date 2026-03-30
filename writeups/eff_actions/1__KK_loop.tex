@@ -30,8 +30,115 @@ For 4-point amplitudes in 10d, we may evaluate contributions from loops of the i
 e^{-\lambda \frac{|n+m\tau|^2}{R^2\tau_2^2}}
 P(s,t;\lambda),\quad
 P(s,t;\lambda)
-=\int_0^1d\rho_3 \int_0^{\rho_3}d\rho_2\int_0^{\rho_2} d\rho_1e^{-\tau M(s,t;\rho)},\\
+=\int_0^1d\rho_3 \int_0^{\rho_3}d\rho_2\int_0^{\rho_2} d\rho_1e^{-\lambda M(s,t;\rho)},\\
 M(s,t;\rho)=s\rho_1\rho_2+t\rho_2\rho_3+u\rho_1\rho_3 + t(\rho_1-\rho_2),\quad
 s+t+u=0.
 \end{aligned}
 \end{equation}
+
+The expression above corresponds to a single ordering of the external legs; the full amplitude sums over all 6 permutations of $(s,t,u)$.
+We evaluate this by: (1) expanding $P$ in powers of $\lambda$, (2) performing the $\lambda$ integral, (3) summing the lattice.
+
+\subsection{Low-energy expansion of $P$}
+Expand the exponential in powers of $\lambda$:
+\begin{equation}
+P(s,t;\lambda)
+=\sum_{k=0}^\infty \frac{(-\lambda)^k}{k!}
+\int_0^1 d\rho_3\int_0^{\rho_3}d\rho_2\int_0^{\rho_2}d\rho_1\; M^k.
+\end{equation}
+Each $\rho$ integral is a polynomial in $s,t,u$.
+The integrand $M$ is not symmetric in $(s,t,u)$ due to the $t(\rho_1-\rho_2)$ term, which reflects a particular ordering of external legs. After symmetrizing over all 6 permutations, the result at each order must be a symmetric polynomial in $s,t,u$, hence expressible in terms of the elementary symmetric polynomials
+\begin{equation}
+\sigma_1 = s+t+u = 0,\quad
+\sigma_2 = st+su+tu,\quad
+\sigma_3 = stu.
+\end{equation}
+Note the relations $s^2+t^2+u^2 = -2\sigma_2$ and $s^3+t^3+u^3 = 3\sigma_3 = 3\,stu$.
+The $k=1$ term is proportional to $\sigma_1 = s+t+u = 0$ and vanishes.
+Computing the symmetrized $\rho$ integrals order by order (verified by symbolic integration), we find
+\begin{equation}
+\overline{P}(s,t;\lambda)
+=\frac{1}{6}
+-\frac{\lambda^2}{2160}\sigma_2
++\frac{\lambda^3}{36288}\sigma_3
++\frac{\lambda^4}{1360800}\sigma_2^2
++O(\lambda^5).
+\end{equation}
+
+\subsection{Schwinger proper-time integral}
+Substituting back, we need integrals of the form
+\begin{equation}
+\int_0^\infty \frac{d\lambda}{\lambda^{3/2}}\lambda^k e^{-\lambda M_{m,n}^2}
+=\frac{\Gamma(k-\tfrac{1}{2})}{(M_{m,n}^2)^{k-1/2}},
+\end{equation}
+where we have extended the lower limit to 0, absorbing the UV cutoff $\Lambda^{-2}$ contributions into local counterterms.
+The relevant Gamma values are
+\begin{equation}
+\Gamma\!\left(\tfrac{3}{2}\right) = \frac{\sqrt\pi}{2},\quad
+\Gamma\!\left(\tfrac{5}{2}\right) = \frac{3\sqrt\pi}{4},\quad
+\Gamma\!\left(\tfrac{7}{2}\right) = \frac{15\sqrt\pi}{8}.
+\end{equation}
+The $k=0$ term gives $\frac{1}{6}\Gamma(-\frac{1}{2})(M_{m,n}^2)^{1/2}$. While finite for each $(m,n)$, the sum $\sum M_{m,n}$ diverges at large $(m,n)$; this UV divergence is absorbed by a local counterterm. At any rate, this term carries no momentum dependence and does not contribute to the higher-derivative effective action.
+For the remaining terms, we combine the $\overline{P}$ coefficients with the Gamma functions and convert $\sigma_k$ to power sums using $\sigma_2 = -\frac{1}{2}(s^2+t^2+u^2)$ and $\sigma_3 = \frac{1}{3}(s^3+t^3+u^3)$.
+For example, at $k=2$:
+\begin{equation}
+-\frac{\sigma_2}{2160}\cdot\frac{\Gamma(\tfrac{3}{2})}{(M^2)^{3/2}}
+=\frac{(s^2+t^2+u^2)}{2\cdot 2160}\cdot\frac{\sqrt\pi/2}{M^3}
+=\frac{\sqrt\pi}{8640}\frac{(s^2+t^2+u^2)}{M^3}.
+\end{equation}
+Similarly at $k=3$:
+\begin{equation}
+\frac{\sigma_3}{36288}\cdot\frac{\Gamma(\tfrac{5}{2})}{(M^2)^{5/2}}
+=\frac{(s^3+t^3+u^3)}{3\cdot 36288}\cdot\frac{3\sqrt\pi/4}{M^5}
+=\frac{\sqrt\pi}{145152}\frac{(s^3+t^3+u^3)}{M^5},
+\end{equation}
+and at $k=4$:
+\begin{equation}
+\frac{\sigma_2^2}{1360800}\cdot\frac{\Gamma(\tfrac{7}{2})}{(M^2)^{7/2}}
+=\frac{(s^2+t^2+u^2)^2}{4\cdot 1360800}\cdot\frac{15\sqrt\pi/8}{M^7}
+=\frac{\sqrt\pi}{2903040}\frac{(s^2+t^2+u^2)^2}{M^7}.
+\end{equation}
+Altogether:
+\begin{equation}
+\begin{aligned}
+\mathcal{A}_4
+&\propto \sum_{(m,n)\neq(0,0)} \Bigg[
+\frac{\sqrt{\pi}}{8640}\frac{(s^2+t^2+u^2)}{M_{m,n}^3}
++\frac{\sqrt{\pi}}{145152}\frac{(s^3+t^3+u^3)}{M_{m,n}^5}\\
+&\qquad\qquad\quad+\frac{\sqrt{\pi}}{2903040}\frac{(s^2+t^2+u^2)^2}{M_{m,n}^7}
++\cdots
+\Bigg].
+\end{aligned}
+\end{equation}
+
+\subsection{Lattice sum and Eisenstein series}
+The KK masses are $M_{m,n}^2 = |n+m\tau|^2/(R^2\tau_2^2)$, so
+\begin{equation}
+\frac{1}{(M_{m,n}^2)^{p+1/2}}
+=\frac{(R^2\tau_2^2)^{p+1/2}}{|n+m\tau|^{2p+1}}
+=\frac{R^{2p+1}\tau_2^{2p+1}}{|n+m\tau|^{2p+1}}.
+\end{equation}
+The lattice sum assembles into the non-holomorphic Eisenstein series
+\begin{equation}
+E_s(\tau,\bar\tau) = \sum_{(m,n)\neq(0,0)}\frac{\tau_2^s}{|n+m\tau|^{2s}},
+\end{equation}
+via
+\begin{equation}
+\sum_{(m,n)\neq(0,0)} \frac{1}{(M_{m,n}^2)^{p+1/2}}
+= R^{2p+1}\tau_2^{2p+1}\sum_{(m,n)\neq(0,0)}\frac{1}{|n+m\tau|^{2p+1}}
+= R^{2p+1}\tau_2^{p+1/2}\; E_{p+1/2}(\tau,\bar\tau),
+\end{equation}
+where in the last step we split $\tau_2^{2p+1} = \tau_2^{p+1/2}\cdot\tau_2^{p+1/2}$ and identify $\sum\tau_2^{p+1/2}/|n+m\tau|^{2p+1} = E_{p+1/2}$.
+Substituting $p=1,2,3$:
+\begin{equation}
+\boxed{
+\mathcal{A}_4
+\propto \sqrt\pi\Bigg[
+\frac{(R^2\tau_2)^{3/2}}{8640}\,E_{3/2}\,(s^2+t^2+u^2)
++\frac{(R^2\tau_2)^{5/2}}{145152}\,E_{5/2}\,(s^3+t^3+u^3)
++\frac{(R^2\tau_2)^{7/2}}{2903040}\,E_{7/2}\,(s^2+t^2+u^2)^2
++\cdots
+\Bigg].
+}
+\end{equation}
+The leading term $E_{3/2}(s^2+t^2+u^2)$ is the $R^4$ correction, the $E_{5/2}$ term is $D^4R^4$, and the $E_{7/2}$ term is $D^6R^4$.
