@@ -10,10 +10,10 @@ child type for each slot).
 """
 
 import itertools
-from .index import Index, IndexType
-from .tensor_head import TensorHead
-from .symmetry import TensorSymmetry
-from .expr import TensorAtom, TensorProduct, TensorSum
+from ..core.index import Index, IndexType
+from ..core.tensor_head import TensorHead
+from ..core.symmetry import TensorSymmetry
+from ..core.expr import TensorAtom, TensorProduct, TensorSum
 
 
 class IndexSplit:

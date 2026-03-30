@@ -9,11 +9,11 @@ No assumptions about block-diagonality — all cross-blocks are kept.
 
 import sympy as sp
 import itertools
-from .index import Index, IndexType, indices
-from .tensor_head import TensorHead
-from .symmetry import TensorSymmetry
-from .expr import TensorAtom, TensorProduct, TensorSum, ScalarExpr
-from .derivative import PartialDerivative
+from ..core.index import Index, IndexType, indices
+from ..core.tensor_head import TensorHead
+from ..core.symmetry import TensorSymmetry
+from ..core.expr import TensorAtom, TensorProduct, TensorSum, ScalarExpr
+from ..core.derivative import PartialDerivative
 
 
 class ScalarField:

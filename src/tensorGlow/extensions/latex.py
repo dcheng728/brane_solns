@@ -1,6 +1,6 @@
 """LaTeX output for tensor expressions."""
 
-from .expr import TensorAtom, TensorProduct, TensorSum, ScalarExpr
+from ..core.expr import TensorAtom, TensorProduct, TensorSum, ScalarExpr
 import sympy as sp
 
 
