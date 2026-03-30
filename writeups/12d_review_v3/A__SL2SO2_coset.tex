@@ -1,0 +1,67 @@
+\section{The construction of SL(2,R)/SO(2) coset}
+
+We briefly review the construction of the $\frac{SL(2, R)}{SO(2)}$ coset representative, which is important for discussion of the SL(2, R) symmetry, and the interplay between SL(2, Z) and U(1)-violation.
+
+The coset representative of $\frac{SL(2, R)}{SO(2)}$ is an SL(2, R) matrix $\mathcal{V}$ with a local SO(2) symmetry. 
+Generically, $\dim SL(2, R) = 3$ so $\mathcal{V}$ is parameterised by three real scalars: $\mathcal{V} = \mathcal{V}(\tau_1, \tau_2, \theta)$.
+It is convenient to separate the SO(2) factor, parameterised by $\theta$, using the Iwasawa decomposition \cite{iwasawa1949}
+\begin{equation}
+\mathcal{V} = 
+\begin{pmatrix}
+1 & 0 \\
+\tau_1 & 1
+\end{pmatrix}
+\begin{pmatrix}
+\frac{1}{\sqrt{\tau_2}} & 0\\
+0 & \sqrt{\tau_2}
+\end{pmatrix}
+\begin{pmatrix}
+\cos\theta & \sin\theta\\
+-\sin\theta & \cos\theta
+\end{pmatrix}.
+\label{Iwasawa-decomposition}
+\end{equation}
+In this representation, SL(2, R) acts on $\mathcal{V}$ from the left, with $\Lambda \equiv \begin{pmatrix}
+d&c\\b&a\end{pmatrix} \in SL(2, R)$.
+The representative $\mathcal{V}$ by itself is not physical due to the SO(2) gauge redundancy.
+However, one can construct $\mathcal{V}\mathcal{V}^T$ which transforms covariantly under SL(2, R) and removes the SO(2) factor and gives the physical metric for the scalar manifold, parameterised by $\tau_1, \tau_2$:
+\begin{equation}
+\mathcal{M} = \mathcal{V}\mathcal{V}^T = \frac{1}{\tau_2}\begin{pmatrix}
+1 & \tau_1\\
+\tau_1 & |\tau|^2
+\end{pmatrix}.
+\end{equation}
+
+
+To construct the kinetic term for the scalars, one builds the sl(2, R)-valued Maurer-Cartan 1-form $\mathcal{V}^{-1}\partial_m\mathcal{V}$, which decomposes into the non-compact and compact elements of the sl(2, R) algebra: $\mathcal{V}^{-1}\partial_m\mathcal{V} = P_m + Q_m$, where $P_m$ projects onto the non-compact generators and $Q_m$ is the SO(2) connection.
+The kinetic term for the scalars is then given by $tr P^m P_m$, with positive definite as ensured by tracing over non-compact elements of a Lie algebra.
+Computing $P, Q$, with $SO(2)\cong U(1)$ compexified via $e^{i\theta} = \cos\theta + i\sin\theta$, one finds
+\begin{equation}
+P = P_1\begin{pmatrix}
+    0&1\\1&0
+\end{pmatrix}+P_2\begin{pmatrix}
+    1&0\\0&-1
+\end{pmatrix},\quad
+P_1 + iP_2 = e^{2i\theta}\frac{\partial \tau}{2 \tau_2},\quad
+Q = \partial \theta - \frac{1}{2}\frac{\partial \tau_1}{\tau_2}.
+\end{equation}
+So the vielbein $P$ transforms covariantly local U(1) with charge 2, and that the kinetic term $\frac{|\partial \tau|^2}{2\tau_2^2}$ is U(1) invariant.
+This U(1) is independent of the global SL(2, R) transformation, and is a gauge redundancy reflecting the choice of the U(1) frame.
+
+The parameter $\theta$ here is the non-dynamical U(1) phase. 
+We can remove its presence in the action by picking a gauge $\theta = 0$, leaving two real scalars $\tau_1, \tau_2$ that parameterise the 2d coset $\frac{SL(2, R)}{U(1)}$ without redundancy.
+However, general SL(2, R) transformations do not preserve the $\theta = 0$ gauge, hence a compensating U(1) transformation given by $\theta = - \arg{(c\tau+d)}$ is induced when  acts on $\mathcal{V}$ from the left.
+This is independent of the local U(1) symmetry which may be violated, but part of the global SL(2, Z) symmetry which should always be preserved.
+
+This is another way to view the breaking of the U(1) symmetry: the original U(1) being the SO(2) factor in the SL(2, R), hence when SL(2, R) is broken to SL(2, Z), the U(1) is also broken.
+
+% From the SL(2, R) representative $\mathcal{V}$, one can construct an U(1)-invariant, symmetric metric on the scalar manifold $\mathcal{M} = \mathcal{V} \mathcal{V}^T  = \frac{1}{\tau_2}\begin{pmatrix}
+% |\tau|^2 & \tau_1\\
+% \tau_1 & 1
+% \end{pmatrix}$, which transforms under SL(2, R) as $\mathcal{M} \to \Lambda \mathcal{M} \Lambda^T$, for $\Lambda = \begin{pmatrix}
+% a&b\\c&d
+% \end{pmatrix} \in SL(2, R)$.
+
+Besides $P$, the other bosonic field that transforms under U(1) is the 3-form field strength $G_3 = e^{\Phi/2}(F_3 - \tau H_3)$, which carries charge 1 under U(1).
+When computing higher-derivative corrections, one wishes to keep track of the U(1) charge for possible U(1)-violation corrections, in that context it is convenient to work with the complexified vielbein $P$ and 3-form field strength $G_3$.
+It is important to distinguish this U(1) from the compensating U(1) to remove the redundant scalar $\theta$ in the coset representative $\mathcal{V}$. The compensating U(1) is an SL(2, Z) transformation, which the effective action should always be invariant under. For example, the modular form $f(\tau, \bar\tau)$ also carries a U(1)-like charge under SL(2, Z) but it does not carry local U(1) charge, and hence may contribute to SL(2, Z) invariant but U(1)-violating corrections.
