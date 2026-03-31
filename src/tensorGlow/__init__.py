@@ -13,7 +13,7 @@ from .core import (
 
 from .extensions import (
     IndexSplit,
-    BlockMetric, ScalarField,
+    ScalarField,
 )
 
 from .utils import (
@@ -33,7 +33,7 @@ __all__ = [
     'RiemannGeometry',
     # extensions
     'IndexSplit',
-    'BlockMetric', 'ScalarField',
+    'ScalarField',
     # utils
     'to_latex',
     'Problem',

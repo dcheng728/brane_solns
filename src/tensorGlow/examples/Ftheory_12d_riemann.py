@@ -11,16 +11,17 @@ axio-dilaton matrix on T^2.
 
 We split 12d -> 10d + T^2, with truncation d_a = 0 on all fields.
 
-BlockMetric computes everything from the defining formulas:
+RiemannGeometry computes everything from the defining formulas,
+then decomposes into blocks via index splitting:
   1. Christoffel symbol blocks  Gamma^A_{BC}
-  2. Riemann tensor blocks      R_{ABCD} (all lower)
+  2. Riemann tensor blocks      R^A_{BCD}
 """
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from tensorGlow import *
-from tensorGlow.core.expr import replace_index
+from tensorGlow.core.expr import replace_index, Apply
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -30,28 +31,23 @@ from tensorGlow.core.expr import replace_index
 L = IndexType('10d', dim=10, dummy_prefix='L')
 T = IndexType('T2', dim=2, dummy_prefix='T')
 
-
-# ═══════════════════════════════════════════════════════════════
-# Abstract metrics
-# ═══════════════════════════════════════════════════════════════
-
-g = MetricTensor(L, name='g')      # 10d Einstein-frame metric
-M = MetricTensor(T, name='M')      # T^2 axio-dilaton matrix
-
-
-# ═══════════════════════════════════════════════════════════════
-# 12d block metric with truncation d_a = 0
-# ═══════════════════════════════════════════════════════════════
-
 parent = IndexType('12d', dim=12, dummy_prefix='P')
 split = IndexSplit(parent, [L, T])
 
-bm = BlockMetric(
-    split,
-    blocks     = {(L, L): g,     (T, T): M},
-    inv_blocks = {(L, L): g.inv, (T, T): M.inv},
-    truncation = {T},
-)
+
+# ═══════════════════════════════════════════════════════════════
+# 12d metric with block-diagonal structure and truncation
+# ═══════════════════════════════════════════════════════════════
+
+G = MetricTensor(parent, name='G')
+
+geom = RiemannGeometry(G, parent)
+geom.split_indices(split)
+# Block-diagonal: cross-blocks vanish
+geom.set_metric_zero(L, T)
+geom.set_metric_zero(T, L)
+# Truncation: fields are T²-independent
+geom.set_partial_zero(T)
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -69,11 +65,10 @@ def _name_gen(start_names):
 
 
 def relabel(expr):
-    """Replace all canonical index names (_ca, _ra, _g0, ...) with
-    readable physics indices (m, n, p, q, ... for 10d; a, b, c, d, ... for T²).
+    """Replace all canonical index names with readable physics indices.
 
-    Free indices are assigned first (in order of appearance),
-    then dummies get subsequent names.
+    10d: m, n, p, q, ...
+    T²: a, b, c, d, ...
     """
     pools = {
         id(L): _name_gen('mnpqrstuvw'),
@@ -95,6 +90,9 @@ def relabel(expr):
         if isinstance(e, TensorAtom):
             for idx in e.indices:
                 assign(idx.name, idx.index_type)
+        elif isinstance(e, Apply):
+            assign(e.deriv_index.name, e.deriv_index.index_type)
+            visit(e.operand)
         elif isinstance(e, TensorProduct):
             for f in e.factors:
                 visit(f)
@@ -144,19 +142,27 @@ def _block_label(types, up_slots=(0,)):
 
 
 # ═══════════════════════════════════════════════════════════════
+# Free indices for the formulas (parent type)
+# ═══════════════════════════════════════════════════════════════
+
+A, B, C, D = (Index(n, parent, is_up=True) for n in ['A', 'B', 'C', 'D'])
+
+
+# ═══════════════════════════════════════════════════════════════
 # 1. Christoffel symbol blocks
 # ═══════════════════════════════════════════════════════════════
 
 print("=" * 64)
 print("CHRISTOFFEL BLOCKS  Gamma^A_{BC}")
-print("  from:  Gamma^A_{BC} = 1/2 g^{AD}(d_B g_{DC} + d_C g_{DB} - d_D g_{BC})")
+print("  from:  Gamma^A_{BC} = 1/2 G^{AD}(d_B G_{DC} + d_C G_{DB} - d_D G_{BC})")
 print("=" * 64)
 
-christoffel = bm.christoffel()
+christoffel_expr = geom.christoffel_formula(A, -B, -C)
+christoffel_blocks = geom.decompose(christoffel_expr)
 
-for (tA, tB, tC), expr in christoffel.items():
+for block_key, expr in sorted(christoffel_blocks.items(), key=lambda x: str(x[0])):
     if not _expr_is_zero(expr):
-        label = 'Gamma' + _block_label([tA, tB, tC], up_slots=(0,))
+        label = 'Gamma' + _block_label(list(block_key), up_slots=(0,))
         nice = relabel(expr)
         print(f"\n  {label}  =  {nice}")
 
@@ -164,22 +170,21 @@ print(f"\n  All other blocks  =  0")
 
 
 # ═══════════════════════════════════════════════════════════════
-# 2. Riemann tensor (all lower)
+# 2. Riemann tensor blocks
 # ═══════════════════════════════════════════════════════════════
 
 print("\n" + "=" * 64)
-print("RIEMANN BLOCKS  R_{ABCD}  (all lower, from defining formula)")
+print("RIEMANN BLOCKS  R^A_{BCD}")
 print("  R^A_{BCD} = d_C Gamma^A_{DB} - d_D Gamma^A_{CB}")
 print("            + Gamma^A_{CE} Gamma^E_{DB} - Gamma^A_{DE} Gamma^E_{CB}")
-print("  R_{ABCD} = g_{AE} R^E_{BCD}")
 print("=" * 64)
 
-riemann = bm.riemann(christoffel)
-riemann_low = bm.riemann_lower(riemann)
+riemann_expr = geom.riemann_formula(A, -B, -C, -D)
+riemann_blocks = geom.decompose(riemann_expr)
 
-for (tA, tB, tC, tD), expr in riemann_low.items():
+for block_key, expr in sorted(riemann_blocks.items(), key=lambda x: str(x[0])):
     if not _expr_is_zero(expr):
-        label = 'R' + _block_label([tA, tB, tC, tD], up_slots=())
+        label = 'R' + _block_label(list(block_key), up_slots=(0,))
         nice = relabel(expr)
         print(f"\n  {label}  =  {nice}")
 

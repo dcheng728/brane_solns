@@ -46,6 +46,9 @@ with Problem("Q4", "4-acceleration") as p:
 with Problem("Riemann tensor", "From Christoffels") as p:
     p.answer("R^a_{bcd}", geom.riemann_formula(a, -b, -c, -d))
 
+with Problem("Riemann tensor", "From Christoffels") as p:
+    p.answer("R_{abcd}", geom.riemann_formula(-a, -b, -c, -d))
+
 
 # Riemann symmetries
 with Problem("Riemann symmetries", "") as p:
