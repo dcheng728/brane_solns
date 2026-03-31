@@ -27,11 +27,17 @@ class RiemannGeometry:
     index_type : IndexType
     """
 
-    def __init__(self, metric, index_type):
+    def __init__(self, metric, index_type, coordinates=None, metric_components=None):
         self.metric = metric
         self.index_type = index_type
 
-        # Operators (new, first-class)
+        # Concrete coordinate evaluation (optional)
+        self._concrete = None
+        if coordinates is not None and metric_components is not None:
+            from .coordinates import Geometry
+            self._concrete = Geometry(coordinates, metric_components)
+
+        # Operators (first-class)
         self.partial = Partial(index_type)
 
         # Christoffel symbol: Gamma^a_{bc}, symmetric in (b,c)
@@ -248,6 +254,45 @@ class RiemannGeometry:
             g(a, c) * g(b, d) - g(a, d) * g(b, c)
         )
         return result
+
+
+    # ──────────────────────────────────────────────────────────────
+    # Concrete evaluation (when coordinates + metric are provided)
+    # ──────────────────────────────────────────────────────────────
+
+    def evaluate_christoffel(self):
+        """Evaluate Christoffel symbols with concrete coordinates.
+
+        Requires coordinates and metric_components passed to __init__.
+        """
+        if self._concrete is None:
+            raise ValueError("No coordinates defined. Pass coordinates= and "
+                             "metric_components= to RiemannGeometry.")
+        return self._concrete.christoffel()
+
+    def evaluate_riemann(self):
+        """Evaluate Riemann tensor with concrete coordinates."""
+        if self._concrete is None:
+            raise ValueError("No coordinates defined.")
+        return self._concrete.riemann()
+
+    def evaluate_ricci(self):
+        """Evaluate Ricci tensor with concrete coordinates."""
+        if self._concrete is None:
+            raise ValueError("No coordinates defined.")
+        return self._concrete.ricci()
+
+    def evaluate_ricci_scalar(self):
+        """Evaluate Ricci scalar with concrete coordinates."""
+        if self._concrete is None:
+            raise ValueError("No coordinates defined.")
+        return self._concrete.ricci_scalar()
+
+    def evaluate_geodesic(self):
+        """Evaluate geodesic equations with concrete coordinates."""
+        if self._concrete is None:
+            raise ValueError("No coordinates defined.")
+        return self._concrete.geodesic_equations()
 
 
 def _fresh_name(base, *existing_indices):
