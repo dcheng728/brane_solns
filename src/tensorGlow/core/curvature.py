@@ -13,7 +13,7 @@ import sympy as sp
 from .index import Index, indices
 from .tensor_head import TensorHead
 from .symmetry import TensorSymmetry
-from .expr import Tensor, Apply, Prod, Sum, Scalar
+from .expr import Tensor, Apply, Prod, Sum, Scalar, replace_index
 from .metric import MetricTensor
 from .operator import Partial, CovariantD
 from .derivative import PartialDerivative
@@ -231,41 +231,94 @@ class RiemannGeometry:
         return Gamma(a, -b_down, -c_down) * U(b_up) * U(c_up)
 
     def riemann_formula(self, a, b, c, d):
-        r"""The Riemann tensor from Christoffel symbols:
+        r"""The Riemann tensor from Christoffel symbols.
+
+        Always computes the canonical form first:
 
         .. math::
-            R^a{}_{bcd} = \partial_c \Gamma^a_{db}
-                        - \partial_d \Gamma^a_{cb}
-                        + \Gamma^a_{ce} \Gamma^e_{db}
-                        - \Gamma^a_{de} \Gamma^e_{cb}
+            R^{\alpha}{}_{\beta\gamma\delta}
+              = \partial_\gamma \Gamma^\alpha_{\delta\beta}
+              - \partial_\delta \Gamma^\alpha_{\gamma\beta}
+              + \Gamma^\alpha_{\gamma\epsilon} \Gamma^\epsilon_{\delta\beta}
+              - \Gamma^\alpha_{\delta\epsilon} \Gamma^\epsilon_{\gamma\beta}
+
+        then raises/lowers indices with the metric to match the
+        requested index structure.  This is necessary because Christoffel
+        symbols are not tensors — their slot positions in the definition
+        are fixed and cannot be raised/lowered.
 
         Parameters
         ----------
-        a : Index (contravariant, free)
-        b, c, d : Index (covariant, free)
+        a, b, c, d : Index
+            Free indices with any variance.  The result has the index
+            structure implied by the ``is_up`` flags.
 
         Returns
         -------
         TensorExpr
         """
-        e_name = _fresh_name('e', a, b, c, d)
-        e_up = Index(e_name, self.index_type, is_up=True)
+        user = [a, b, c, d]
+        canonical_up = [True, False, False, False]  # R^._{ . . . }
+
+        # Fresh internal names that won't collide with user names
+        used = {idx.name for idx in user}
+        internal_names = []
+        for base in ['_r', '_s', '_t', '_u']:
+            name = base
+            cnt = 0
+            while name in used:
+                name = f"{base}{cnt}"
+                cnt += 1
+            used.add(name)
+            internal_names.append(name)
+
+        i0_up   = Index(internal_names[0], self.index_type, is_up=True)
+        i1_down = Index(internal_names[1], self.index_type, is_up=False)
+        i2_down = Index(internal_names[2], self.index_type, is_up=False)
+        i3_down = Index(internal_names[3], self.index_type, is_up=False)
+
+        e_name = _fresh_name('e', *user, i0_up, i1_down, i2_down, i3_down)
+        e_up   = Index(e_name, self.index_type, is_up=True)
         e_down = Index(e_name, self.index_type, is_up=False)
 
         Gamma = self.Christoffel
         p = self.partial
 
-        # b, c, d are already covariant — use directly, no negation
-        # partial_c Gamma^a_{db}
-        term1 = p(c) * Gamma(a, d, b)
-        # partial_d Gamma^a_{cb}
-        term2 = p(d) * Gamma(a, c, b)
-        # Gamma^a_{ce} Gamma^e_{db}
-        term3 = Gamma(a, c, e_down) * Gamma(e_up, d, b)
-        # Gamma^a_{de} Gamma^e_{cb}
-        term4 = Gamma(a, d, e_down) * Gamma(e_up, c, b)
+        # R^{i0}_{i1 i2 i3}  (canonical form)
+        term1 = p(i2_down) * Gamma(i0_up, i3_down, i1_down)
+        term2 = p(i3_down) * Gamma(i0_up, i2_down, i1_down)
+        term3 = Gamma(i0_up, i2_down, e_down) * Gamma(e_up, i3_down, i1_down)
+        term4 = Gamma(i0_up, i3_down, e_down) * Gamma(e_up, i2_down, i1_down)
 
-        return term1 - term2 + term3 - term4
+        result = term1 - term2 + term3 - term4
+
+        # Adjust each slot to match the user's requested variance
+        g = self.metric
+        for slot in range(4):
+            iname = internal_names[slot]
+            want_up = user[slot].is_up
+            have_up = canonical_up[slot]
+
+            if want_up == have_up:
+                # Variance matches — rename internal index to user's name
+                result = replace_index(
+                    result,
+                    Index(iname, self.index_type, is_up=True),
+                    Index(user[slot].name, self.index_type, is_up=True))
+                result = replace_index(
+                    result,
+                    Index(iname, self.index_type, is_up=False),
+                    Index(user[slot].name, self.index_type, is_up=False))
+            elif have_up and not want_up:
+                # Canonical is up, user wants down → lower with g_{user, internal}
+                i_down = Index(iname, self.index_type, is_up=False)
+                result = g(user[slot], i_down) * result
+            else:
+                # Canonical is down, user wants up → raise with g^{user, internal}
+                i_up = Index(iname, self.index_type, is_up=True)
+                result = g.inv(user[slot], i_up) * result
+
+        return result
 
     def ricci_from_riemann(self, a, b):
         r"""Ricci tensor as contraction of Riemann:
