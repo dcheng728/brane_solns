@@ -63,6 +63,8 @@ class Expr:
                 return Prod(self.coeff * other_s, self.factors)
             if isinstance(self, Scalar):
                 return Scalar(self.expr * other_s)
+            if isinstance(self, Sum):
+                return Sum(tuple(t * other_s for t in self.terms))
             return Prod(other_s, (self,))
         if isinstance(other, Scalar):
             return self * other.expr

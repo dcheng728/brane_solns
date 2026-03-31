@@ -12,8 +12,10 @@ import itertools
 from ..core.index import Index, IndexType, indices
 from ..core.tensor_head import TensorHead
 from ..core.symmetry import TensorSymmetry
-from ..core.expr import TensorAtom, TensorProduct, TensorSum, ScalarExpr
+from ..core.expr import (TensorAtom, TensorProduct, TensorSum, ScalarExpr,
+                         replace_index)
 from ..core.derivative import PartialDerivative
+from ..core.metric import MetricTensor
 
 
 class ScalarField:
@@ -61,37 +63,34 @@ class BlockMetric:
     ----------
     split : IndexSplit
         The parent → children decomposition.
-    blocks : dict of (IndexType, IndexType) → TensorExpr or sp.Expr
+    blocks : dict of (IndexType, IndexType) → callable, MetricTensor, or sp.Expr
         Metric blocks. Keys are pairs of child types.
-        Values are tensorGlow expressions in child-space tensors,
-        with SymPy scalar coefficients that may involve ScalarFields.
-        For a scalar block (e.g. g_{zz}), use a plain SymPy expression.
+        Values are either:
+        - Callables ``(idx1, idx2) → TensorExpr`` (e.g. MetricTensor objects)
+        - SymPy scalars (for constant scalar blocks)
     inv_blocks : dict, optional
-        Inverse metric blocks. Same format. If not provided, the user
-        must supply them (automatic inversion is not yet implemented).
+        Inverse metric blocks. Same format. For MetricTensor blocks,
+        use ``metric.inv`` as the value.
     scalar_fields : list of ScalarField
         All scalar fields appearing in block coefficients.
     truncation : set of IndexType
-        Child types where partial derivatives vanish (e.g. the circle
-        direction in 11d → IIA where fields are z-independent).
+        Child types where partial derivatives vanish (e.g. the torus
+        direction in F-theory where fields are T²-independent).
     """
 
     def __init__(self, split, blocks, inv_blocks=None, scalar_fields=None,
                  truncation=None):
         self.split = split
         self.children = split.children
+
         self.blocks = {}
         for key, val in blocks.items():
-            if isinstance(val, (int, float, sp.Basic)):
-                val = ScalarExpr(sp.sympify(val))
-            self.blocks[key] = val
+            self.blocks[key] = _as_block_callable(val)
 
         if inv_blocks is not None:
             self.inv_blocks = {}
             for key, val in inv_blocks.items():
-                if isinstance(val, (int, float, sp.Basic)):
-                    val = ScalarExpr(sp.sympify(val))
-                self.inv_blocks[key] = val
+                self.inv_blocks[key] = _as_block_callable(val)
         else:
             self.inv_blocks = None
 
@@ -103,16 +102,25 @@ class BlockMetric:
         for child in self.children:
             self._partials[child] = PartialDerivative(child, f'partial_{child.name}')
 
-    def get_block(self, type_row, type_col):
-        """Get metric block g_{type_row, type_col}."""
-        return self.blocks.get((type_row, type_col), ScalarExpr(sp.S.Zero))
+        # Counter for unique dummy names in _get_gamma
+        self._dummy_counter = 0
 
-    def get_inv_block(self, type_row, type_col):
-        """Get inverse metric block g^{type_row, type_col}."""
+    def get_block(self, type_row, type_col, idx1, idx2):
+        """Get metric block g_{type_row, type_col}(idx1, idx2)."""
+        block_fn = self.blocks.get((type_row, type_col))
+        if block_fn is None:
+            return TensorProduct(0, ())
+        return block_fn(idx1, idx2)
+
+    def get_inv_block(self, type_row, type_col, idx1, idx2):
+        """Get inverse metric block g^{type_row, type_col}(idx1, idx2)."""
         if self.inv_blocks is None:
             raise ValueError("Inverse metric blocks not provided. "
                              "Pass inv_blocks to BlockMetric constructor.")
-        return self.inv_blocks.get((type_row, type_col), ScalarExpr(sp.S.Zero))
+        block_fn = self.inv_blocks.get((type_row, type_col))
+        if block_fn is None:
+            return TensorProduct(0, ())
+        return block_fn(idx1, idx2)
 
     def _differentiate(self, deriv_idx, expr):
         """Differentiate a block expression w.r.t. deriv_idx.
@@ -198,6 +206,9 @@ class BlockMetric:
             \Gamma^A_{BC} = \frac{1}{2} g^{AD}
             (\partial_B g_{DC} + \partial_C g_{DB} - \partial_D g_{BC})
 
+        Each block has canonical free indices: ``_ca`` (up), ``_cb`` (down),
+        ``_cc`` (down).  Internal dummies use ``_cd``.
+
         Returns
         -------
         dict : (type_A, type_B, type_C) → TensorExpr
@@ -208,29 +219,30 @@ class BlockMetric:
         for type_A, type_B, type_C in itertools.product(children, repeat=3):
             total = None
 
-            # Fresh indices for this block
-            a = _fresh_idx(type_A, 'a', is_up=True)
-            b = _fresh_idx(type_B, 'b', is_up=False)
-            c = _fresh_idx(type_C, 'c', is_up=False)
+            # Canonical free indices for this block
+            a = Index('_ca', type_A, is_up=True)
+            b = Index('_cb', type_B, is_up=False)
+            c = Index('_cc', type_C, is_up=False)
 
             for type_D in children:
-                d_down = _fresh_idx(type_D, 'd', is_up=False)
+                d_up = Index('_cd', type_D, is_up=True)
+                d_down = Index('_cd', type_D, is_up=False)
 
-                # g^{AD}
-                g_inv_AD = self.get_inv_block(type_A, type_D)
+                # g^{AD}(a, d_up)
+                g_inv_AD = self.get_inv_block(type_A, type_D, a, d_up)
                 if _is_zero(g_inv_AD):
                     continue
 
-                # partial_B(g_{DC})
-                g_DC = self.get_block(type_D, type_C)
+                # partial_B g_{DC}
+                g_DC = self.get_block(type_D, type_C, d_down, c)
                 term1 = self._differentiate(b, g_DC) if not _is_zero(g_DC) else None
 
-                # partial_C(g_{DB})
-                g_DB = self.get_block(type_D, type_B)
+                # partial_C g_{DB}
+                g_DB = self.get_block(type_D, type_B, d_down, b)
                 term2 = self._differentiate(c, g_DB) if not _is_zero(g_DB) else None
 
-                # partial_D(g_{BC})
-                g_BC = self.get_block(type_B, type_C)
+                # partial_D g_{BC}
+                g_BC = self.get_block(type_B, type_C, b, c)
                 term3 = self._differentiate(d_down, g_BC) if not _is_zero(g_BC) else None
 
                 # Combine: 1/2 * g^{AD} * (term1 + term2 - term3)
@@ -241,7 +253,178 @@ class BlockMetric:
                 contribution = sp.Rational(1, 2) * g_inv_AD * bracket
                 total = contribution if total is None else total + contribution
 
-            result[(type_A, type_B, type_C)] = total if total is not None else TensorProduct(0, ())
+            result[(type_A, type_B, type_C)] = (
+                total if total is not None else TensorProduct(0, ())
+            )
+
+        return result
+
+    def riemann(self, christoffel_blocks=None):
+        r"""Compute all Riemann tensor blocks :math:`R^A{}_{BCD}`.
+
+        .. math::
+            R^A{}_{BCD} = \partial_C \Gamma^A_{DB}
+                        - \partial_D \Gamma^A_{CB}
+                        + \Gamma^A_{CE} \Gamma^E_{DB}
+                        - \Gamma^A_{DE} \Gamma^E_{CB}
+
+        Parameters
+        ----------
+        christoffel_blocks : dict, optional
+            Pre-computed Christoffel blocks from :meth:`christoffel`.
+
+        Returns
+        -------
+        dict : (type_A, type_B, type_C, type_D) → TensorExpr
+            Free indices: ``_ra`` (up/A), ``_rb`` (down/B),
+            ``_rc`` (down/C), ``_rd`` (down/D).
+        """
+        if christoffel_blocks is None:
+            christoffel_blocks = self.christoffel()
+
+        self._dummy_counter = 0
+        result = {}
+        children = self.children
+
+        for type_A, type_B, type_C, type_D in itertools.product(children, repeat=4):
+            # Free indices for this Riemann block
+            a = Index('_ra', type_A, is_up=True)
+            b = Index('_rb', type_B, is_up=False)
+            c = Index('_rc', type_C, is_up=False)
+            d = Index('_rd', type_D, is_up=False)
+
+            total = None
+
+            # --- Term 1: +partial_c Gamma^a_{db} ---
+            gamma_ADB = self._get_gamma(christoffel_blocks,
+                                        type_A, type_D, type_B, a, d, b)
+            if not _is_zero(gamma_ADB):
+                term1 = self._differentiate(c, gamma_ADB)
+                if not _is_zero(term1):
+                    total = _add_exprs(total, term1)
+
+            # --- Term 2: -partial_d Gamma^a_{cb} ---
+            gamma_ACB = self._get_gamma(christoffel_blocks,
+                                        type_A, type_C, type_B, a, c, b)
+            if not _is_zero(gamma_ACB):
+                term2 = self._differentiate(d, gamma_ACB)
+                if not _is_zero(term2):
+                    total = _add_exprs(total, _neg(term2))
+
+            # --- Terms 3,4: Gamma*Gamma contractions ---
+            for type_E in children:
+                e_up = Index('_re', type_E, is_up=True)
+                e_down = Index('_re', type_E, is_up=False)
+
+                # +Gamma^a_{ce} Gamma^e_{db}
+                gamma_ACE = self._get_gamma(christoffel_blocks,
+                                            type_A, type_C, type_E,
+                                            a, c, e_down)
+                gamma_EDB = self._get_gamma(christoffel_blocks,
+                                            type_E, type_D, type_B,
+                                            e_up, d, b)
+                if not _is_zero(gamma_ACE) and not _is_zero(gamma_EDB):
+                    term3 = gamma_ACE * gamma_EDB
+                    total = _add_exprs(total, term3)
+
+                # -Gamma^a_{de} Gamma^e_{cb}
+                gamma_ADE = self._get_gamma(christoffel_blocks,
+                                            type_A, type_D, type_E,
+                                            a, d, e_down)
+                gamma_ECB = self._get_gamma(christoffel_blocks,
+                                            type_E, type_C, type_B,
+                                            e_up, c, b)
+                if not _is_zero(gamma_ADE) and not _is_zero(gamma_ECB):
+                    term4 = gamma_ADE * gamma_ECB
+                    total = _add_exprs(total, _neg(term4))
+
+            result[(type_A, type_B, type_C, type_D)] = (
+                total if total is not None else TensorProduct(0, ())
+            )
+
+        return result
+
+    def riemann_lower(self, riemann_blocks=None, christoffel_blocks=None):
+        r"""Compute all-lower Riemann tensor blocks :math:`R_{ABCD}`.
+
+        .. math::
+            R_{ABCD} = g_{AE} \, R^E{}_{BCD}
+
+        Parameters
+        ----------
+        riemann_blocks : dict, optional
+        christoffel_blocks : dict, optional
+
+        Returns
+        -------
+        dict : (type_A, type_B, type_C, type_D) → TensorExpr
+        """
+        if riemann_blocks is None:
+            riemann_blocks = self.riemann(christoffel_blocks)
+
+        result = {}
+        children = self.children
+
+        for type_A, type_B, type_C, type_D in itertools.product(children, repeat=4):
+            total = None
+
+            # Fresh index for the lowered slot
+            a_down = Index('_rla', type_A, is_up=False)
+
+            for type_E in children:
+                e_up = Index('_rle', type_E, is_up=True)
+                e_down = Index('_rle', type_E, is_up=False)
+
+                # g_{AE}(a_down, e_down)
+                g_AE = self.get_block(type_A, type_E, a_down, e_down)
+                if _is_zero(g_AE):
+                    continue
+
+                # R^E_{BCD}
+                r_block = riemann_blocks.get((type_E, type_B, type_C, type_D))
+                if r_block is None or _is_zero(r_block):
+                    continue
+
+                # Rename R's up-index _ra → e_up for contraction with g_{AE}
+                r_renamed = replace_index(
+                    r_block, Index('_ra', type_E, True), e_up)
+
+                contribution = g_AE * r_renamed
+                total = contribution if total is None else total + contribution
+
+            result[(type_A, type_B, type_C, type_D)] = (
+                total if total is not None else TensorProduct(0, ())
+            )
+
+        return result
+
+    def _get_gamma(self, blocks, tA, tB, tC, a, b, c):
+        """Retrieve a Christoffel block with specific free indices.
+
+        Renames the canonical free indices (_ca, _cb, _cc) to the requested
+        indices (a, b, c) and gives internal dummies unique names to prevent
+        clashes when blocks are multiplied in the Riemann formula.
+        """
+        block = blocks.get((tA, tB, tC))
+        if block is None or _is_zero(block):
+            return TensorProduct(0, ())
+
+        # Rename canonical free indices → requested indices
+        result = replace_index(block, Index('_ca', tA, True), a)
+        result = replace_index(result, Index('_cb', tB, False), b)
+        result = replace_index(result, Index('_cc', tC, False), c)
+
+        # Rename internal dummies to unique names
+        count = self._dummy_counter
+        self._dummy_counter += 1
+        new_name = f'_g{count}'
+        for child in self.children:
+            result = replace_index(result,
+                                   Index('_cd', child, True),
+                                   Index(new_name, child, True))
+            result = replace_index(result,
+                                   Index('_cd', child, False),
+                                   Index(new_name, child, False))
 
         return result
 
@@ -259,9 +442,15 @@ class BlockMetric:
 
 # ── Helpers ──────────────────────────────────────────────────────────────
 
-def _fresh_idx(index_type, base_name, is_up=True):
-    """Create a fresh Index on a given type."""
-    return Index(base_name, index_type, is_up)
+def _as_block_callable(val):
+    """Wrap a block value as a callable ``(idx1, idx2) → TensorExpr``."""
+    if callable(val):
+        return val
+    if isinstance(val, ScalarExpr):
+        s = val.expr
+        return lambda i, j: ScalarExpr(s)
+    scalar = sp.sympify(val)
+    return lambda i, j: ScalarExpr(scalar)
 
 
 def _is_zero(expr):
