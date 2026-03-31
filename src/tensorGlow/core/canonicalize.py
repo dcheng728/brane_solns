@@ -132,19 +132,42 @@ def canonicalize_product(product):
     g_arr[n_slots + 1] = n_slots + 1
     g_perm = Permutation(g_arr)
 
-    # ── Build v-list (one entry per atom) ────────────────────────────
-    # Each atom is its own tensor type with n=1.
-    # The BSGS generators are on (rank + 2) elements.
-    # canonicalize handles embedding into the full size.
+    # ── Build v-list, grouping identical TensorHeads ───────────────
+    # tensor_can expects (base, gens, n_tensors, sym) per type.
+    # n_tensors > 1 allows permuting identical tensors (commuting: sym=0).
+    # This is essential for detecting cancellations like S_{ab}A^{ab} = 0.
     v_args = []
-    for atom in product.atoms:
-        sym = atom.head.symmetry
-        v_args.append((sym.base, sym.generators, 1, 0))
+    groups = []  # list of (head, count, indices_per_group)
+    i = 0
+    atoms = product.atoms
+    while i < len(atoms):
+        head = atoms[i].head
+        count = 1
+        while i + count < len(atoms) and atoms[i + count].head is head:
+            count += 1
+        groups.append((head, count))
+        i += count
+
+    for head, count in groups:
+        sym = head.symmetry
+        v_args.append((sym.base, sym.generators, count, 0))
 
     # ── Call tensor_can ──────────────────────────────────────────────
+    # tensor_can expects msym as:
+    #   - a single int if all dummy pairs have the same metric symmetry
+    #   - a list (one per dummy index type) otherwise
+    # Since we typically have one index type, pass a single int.
+    if dummy_msym:
+        all_same = all(m == dummy_msym[0] for m in dummy_msym)
+        msym_arg = dummy_msym[0] if all_same else dummy_msym
+    else:
+        msym_arg = 0
+
     try:
-        canon = _canon_bp(g_perm, dummies_flat, dummy_msym, *v_args)
-    except Exception:
+        canon = _canon_bp(g_perm, dummies_flat, msym_arg, *v_args)
+    except Exception as e:
+        import warnings
+        warnings.warn(f"tensorGlow canonicalize fallback: {e}")
         return product  # fallback: return unchanged
 
     if canon == 0:
@@ -156,36 +179,50 @@ def canonicalize_product(product):
     # Extract sign
     sign = 1 if canon_list[n_slots] == n_slots else -1
 
-    # Build the inverse map: canonical position → slot position
-    # canon_list[slot] = canonical_position, so we need the inverse
-    inv_canon = [0] * n_slots
-    for slot in range(n_slots):
-        inv_canon[canon_list[slot]] = slot
+    # The canonical permutation maps: slot s in the output → canonical
+    # position canon_list[s].  We need to build the output indices.
+    #
+    # Strategy: assign canonical index names to each canonical position,
+    # then read off what index each output slot gets.
+    #
+    # For free indices: canonical position i (i < n_free) gets the i-th
+    # sorted free index (preserving the original name).
+    # For dummy pairs: canonical positions (n_free + 2k, n_free + 2k+1)
+    # get a fresh dummy pair with canonical name.
 
-    # Reconstruct: for each canonical position, which index goes there?
-    # The canonical ordering has free indices first, then dummies.
-    # We need to rebuild the index list for each atom.
+    sorted_free = [all_indices[s] for s in free_slots]
 
-    # Build the canonical index at each canonical position:
-    # Free positions: the sorted free index names
-    canon_indices = [None] * n_slots
-    for canon_pos, slot in enumerate(free_slots):
-        canon_indices[canon_pos] = all_indices[slot]
+    # Build canonical index at each canonical position
+    canon_pos_to_index = [None] * n_slots
 
+    # Free indices keep their names
+    for i, idx in enumerate(sorted_free):
+        canon_pos_to_index[i] = idx
+
+    # Dummy pairs get canonical names
+    used_names = set(idx.name for idx in sorted_free)
     for pair_idx, (slot_up, slot_down) in enumerate(dummy_pairs):
+        itype = all_indices[slot_up].index_type
+        prefix = itype.dummy_prefix
+        counter = 0
+        dname = f"{prefix}_{counter}"
+        while dname in used_names:
+            counter += 1
+            dname = f"{prefix}_{counter}"
+        used_names.add(dname)
+
         canon_up = n_free + 2 * pair_idx
         canon_down = n_free + 2 * pair_idx + 1
-        canon_indices[canon_up] = all_indices[slot_up]
-        canon_indices[canon_down] = all_indices[slot_down]
+        canon_pos_to_index[canon_up] = Index(dname, itype, is_up=True)
+        canon_pos_to_index[canon_down] = Index(dname, itype, is_up=False)
 
-    # Now: the canonical permutation tells us that slot s should hold
-    # the index that was at canonical position canon_list[s].
-    # So new_index_at_slot[s] = canon_indices[canon_list[s]]
+    # Now: output slot s should hold the index at canonical position
+    # canon_list[s].
     new_all_indices = [None] * n_slots
     for s in range(n_slots):
-        new_all_indices[s] = canon_indices[canon_list[s]]
+        new_all_indices[s] = canon_pos_to_index[canon_list[s]]
 
-    # Rebuild atoms
+    # Rebuild atoms (each atom keeps its original slot range)
     new_atoms = []
     offset = 0
     for atom in product.atoms:
@@ -194,7 +231,23 @@ def canonicalize_product(product):
         new_atoms.append(TensorAtom(atom.head, new_idx))
         offset += rank
 
-    return TensorProduct(product.coeff * sign, tuple(new_atoms))
+    # Sort atoms within each group of identical heads for canonical order
+    final_atoms = list(new_atoms)
+    i = 0
+    while i < len(final_atoms):
+        head = final_atoms[i].head
+        j = i + 1
+        while j < len(final_atoms) and final_atoms[j].head is head:
+            j += 1
+        if j - i > 1:
+            group = final_atoms[i:j]
+            group.sort(key=lambda a: tuple(
+                (idx.name, idx.is_up) for idx in a.indices
+            ))
+            final_atoms[i:j] = group
+        i = j
+
+    return TensorProduct(product.coeff * sign, tuple(final_atoms))
 
 
 def rename_dummies(product, existing_names=None):

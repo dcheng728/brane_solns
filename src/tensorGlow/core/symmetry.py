@@ -38,8 +38,9 @@ class TensorSymmetry:
     @classmethod
     def no_symmetry(cls, rank):
         """No index symmetry."""
-        # Identity permutation on 2*rank + 2 slots (tensor_can convention)
-        size = 2 * rank + 2 if rank > 0 else 2
+        # Identity permutation on rank + 2 elements (tensor_can convention:
+        # rank index slots + 2 sign indicators)
+        size = rank + 2 if rank > 0 else 2
         base = []
         generators = [Permutation(size - 1)]  # identity
         return cls(base, generators, rank)

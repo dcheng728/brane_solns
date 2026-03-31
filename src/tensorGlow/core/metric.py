@@ -4,7 +4,7 @@ import sympy as sp
 from .index import Index, IndexType
 from .tensor_head import TensorHead
 from .symmetry import TensorSymmetry
-from .expr import TensorAtom, TensorProduct, TensorSum
+from .expr import TensorAtom, TensorProduct, TensorSum, ScalarExpr
 
 
 class MetricTensor:
@@ -45,7 +45,10 @@ class MetricTensor:
         return self.inv_head(i, j)
 
     def delta(self, i, j):
-        """Kronecker delta."""
+        """Kronecker delta. Self-contraction delta^a_a returns dim."""
+        if i.matches(j):
+            dim = self.index_type.dim
+            return ScalarExpr(sp.sympify(dim) if dim is not None else sp.Symbol('D'))
         return self.delta_head(i, j)
 
     def raise_index(self, expr, idx_to_raise, dummy_name=None):
@@ -154,12 +157,16 @@ def _contract_metrics_product(product, metric):
     while changed:
         changed = False
         for i, atom in enumerate(atoms):
-            if atom.head is not metric.head and atom.head is not metric.inv_head:
+            is_metric_like = (atom.head is metric.head
+                              or atom.head is metric.inv_head
+                              or atom.head is metric.delta_head)
+            if not is_metric_like:
                 continue
 
-            # This atom is a metric or inverse metric
+            # This atom is a metric, inverse metric, or delta
             m_idx0, m_idx1 = atom.indices
             is_inverse = (atom.head is metric.inv_head)
+            is_delta = (atom.head is metric.delta_head)
 
             # Try to find another atom that contracts with one of the metric's indices
             for j, other in enumerate(atoms):
@@ -168,15 +175,13 @@ def _contract_metrics_product(product, metric):
                 for s, o_idx in enumerate(other.indices):
                     # Check if metric index 0 contracts with this
                     if m_idx0.matches(o_idx):
-                        # Replace o_idx with the other metric index (m_idx1), flipped
-                        new_idx = Index(m_idx1.name, m_idx1.index_type,
-                                        not m_idx1.is_up if is_inverse == m_idx1.is_up
-                                        else m_idx1.is_up)
-                        # Actually: if metric is g_{ab} and contracts g_{ab} T^{a...}
-                        # then a_down matches a_up, and we replace a_up with b_down.
-                        # The replacement index keeps the OTHER metric index's name
-                        # but flips variance to match what was there.
-                        new_idx = _compute_replacement(m_idx1, o_idx)
+                        if is_delta:
+                            # delta^a_b T^{b...} = T^{a...}: surviving index
+                            # keeps m_idx1's name with o_idx's variance
+                            new_idx = Index(m_idx1.name, m_idx1.index_type,
+                                            o_idx.is_up)
+                        else:
+                            new_idx = _compute_replacement(m_idx1, o_idx)
                         new_other_indices = list(other.indices)
                         new_other_indices[s] = new_idx
                         atoms[j] = TensorAtom(other.head, tuple(new_other_indices))
@@ -184,7 +189,11 @@ def _contract_metrics_product(product, metric):
                         changed = True
                         break
                     if m_idx1.matches(o_idx):
-                        new_idx = _compute_replacement(m_idx0, o_idx)
+                        if is_delta:
+                            new_idx = Index(m_idx0.name, m_idx0.index_type,
+                                            o_idx.is_up)
+                        else:
+                            new_idx = _compute_replacement(m_idx0, o_idx)
                         new_other_indices = list(other.indices)
                         new_other_indices[s] = new_idx
                         atoms[j] = TensorAtom(other.head, tuple(new_other_indices))
