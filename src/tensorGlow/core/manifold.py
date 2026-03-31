@@ -6,7 +6,7 @@ class Operator():
         self.name = name
         self.manifold = manifold
 
-    def __str__(self):
+    def __repr__(self):
         return f"{self.name}"
 
 class Manifold:
