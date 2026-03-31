@@ -21,7 +21,7 @@ import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from tensorGlow import *
-from tensorGlow.core.expr import replace_index, Apply
+from tensorGlow.core.expr import Apply, Tensor, Prod, Sum, Scalar
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -64,6 +64,39 @@ def _name_gen(start_names):
         i += 1
 
 
+def _rename_idx(idx, rename_map):
+    """Rename a single index if it's in the map."""
+    key = (idx.name, idx.index_type)
+    if key in rename_map:
+        return Index(rename_map[key], idx.index_type, idx.is_up)
+    return idx
+
+
+def _bulk_rename(expr, rename_map):
+    """Rename all indices in one pass using rename_map: (name, IndexType) → new_name."""
+    if isinstance(expr, Scalar):
+        return expr
+
+    if isinstance(expr, Tensor):
+        new_indices = tuple(_rename_idx(idx, rename_map) for idx in expr.indices)
+        return Tensor(expr.head, new_indices)
+
+    if isinstance(expr, Apply):
+        new_di = _rename_idx(expr.deriv_index, rename_map)
+        new_operand = _bulk_rename(expr.operand, rename_map)
+        return Apply(expr.op, new_di, new_operand)
+
+    if isinstance(expr, Prod):
+        new_factors = tuple(_bulk_rename(f, rename_map) for f in expr.factors)
+        return Prod(expr.coeff, new_factors)
+
+    if isinstance(expr, Sum):
+        new_terms = tuple(_bulk_rename(t, rename_map) for t in expr.terms)
+        return Sum(new_terms)
+
+    return expr
+
+
 def relabel(expr):
     """Replace all canonical index names with readable physics indices.
 
@@ -102,17 +135,14 @@ def relabel(expr):
 
     visit(expr)
 
-    # 3. Apply all renames
-    result = expr
+    # 3. Build rename map: (old_name, IndexType) → new_name
+    rename_map = {}
     for (name, type_id), new_name in assigned.items():
         itype = L if type_id == id(L) else T
-        result = replace_index(result,
-                               Index(name, itype, True),
-                               Index(new_name, itype, True))
-        result = replace_index(result,
-                               Index(name, itype, False),
-                               Index(new_name, itype, False))
-    return result
+        rename_map[(name, itype)] = new_name
+
+    # 4. Apply all renames in a single pass (avoids sequential collision)
+    return _bulk_rename(expr, rename_map)
 
 
 def _expr_is_zero(expr):
@@ -145,7 +175,8 @@ def _block_label(types, up_slots=(0,)):
 # Free indices for the formulas (parent type)
 # ═══════════════════════════════════════════════════════════════
 
-A, B, C, D = (Index(n, parent, is_up=True) for n in ['A', 'B', 'C', 'D'])
+A, B, C, D = (Index(n, parent, is_up=False) for n in ['A', 'B', 'C', 'D'])
+A_up = Index('A', parent, is_up=True)
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -157,7 +188,7 @@ print("CHRISTOFFEL BLOCKS  Gamma^A_{BC}")
 print("  from:  Gamma^A_{BC} = 1/2 G^{AD}(d_B G_{DC} + d_C G_{DB} - d_D G_{BC})")
 print("=" * 64)
 
-christoffel_expr = geom.christoffel_formula(A, -B, -C)
+christoffel_expr = geom.christoffel_formula(A_up, -B, -C)
 christoffel_blocks = geom.decompose(christoffel_expr)
 
 for block_key, expr in sorted(christoffel_blocks.items(), key=lambda x: str(x[0])):
@@ -174,17 +205,18 @@ print(f"\n  All other blocks  =  0")
 # ═══════════════════════════════════════════════════════════════
 
 print("\n" + "=" * 64)
-print("RIEMANN BLOCKS  R^A_{BCD}")
-print("  R^A_{BCD} = d_C Gamma^A_{DB} - d_D Gamma^A_{CB}")
-print("            + Gamma^A_{CE} Gamma^E_{DB} - Gamma^A_{DE} Gamma^E_{CB}")
+print("RIEMANN BLOCKS  R_{ABCD}")
+print("  R_{ABCD} = G_{AE} R^E_{BCD}")
+print("           = G_{AE} (d_C Gamma^E_{DB} - d_D Gamma^E_{CB}")
+print("                    + Gamma^E_{CF} Gamma^F_{DB} - Gamma^E_{DF} Gamma^F_{CB})")
 print("=" * 64)
 
-riemann_expr = geom.riemann_formula(A, -B, -C, -D)
+riemann_expr = geom.riemann_formula(-A, -B, -C, -D)
 riemann_blocks = geom.decompose(riemann_expr)
 
 for block_key, expr in sorted(riemann_blocks.items(), key=lambda x: str(x[0])):
     if not _expr_is_zero(expr):
-        label = 'R' + _block_label(list(block_key), up_slots=(0,))
+        label = 'R' + _block_label(list(block_key), up_slots=())
         nice = relabel(expr)
         print(f"\n  {label}  =  {nice}")
 
