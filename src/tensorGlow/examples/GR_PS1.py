@@ -1,8 +1,6 @@
 """
-GR Problem Sheet 1 — Tensor Manipulations (Section A)
+GR Problem Sheet 1 -- Section A: Tensor Manipulations
 Claudia de Rham, Imperial College, 2024
-
-Solved symbolically using tensorGlow.
 """
 
 import sys, os
@@ -12,122 +10,55 @@ import sympy as sp
 from tensorGlow import *
 
 
-# ═══════════════════════════════════════════════════════════════════════
-# Setup: 4d Minkowski spacetime
-# ═══════════════════════════════════════════════════════════════════════
-
-L = IndexType('Lorentz', dim=4, dummy_prefix='L')
-mu, nu, rho, sigma = indices('mu nu rho sigma', L)
-a, b, c, d = indices('a b c d', L)
-g = MetricTensor(L, name='eta')
-
-
-# ═══════════════════════════════════════════════════════════════════════
-# Q3. Matrix multiplication in index notation
-# ═══════════════════════════════════════════════════════════════════════
-
-print("=" * 60)
-print("Q3. Matrix multiplication in index notation")
-print("=" * 60)
-
-# Use a general IndexType for n-dimensional matrices
-Mat = IndexType('Mat', dim=sp.Symbol('n'), dummy_prefix='k')
-i, j, k, l = indices('i j k l', Mat)
-
-A = TensorHead('A', [Mat, Mat])
-B = TensorHead('B', [Mat, Mat])
-C = TensorHead('C', [Mat, Mat])
-D = TensorHead('D', [Mat, Mat])
-
-# (1) A = B(C + D)  →  A_{ij} = B_{ik}(C_{kj} + D_{kj})
-print("\n(1) A = B(C + D)")
-expr1 = B(-i, -k) * (C(k, -j) + D(k, -j))
-print(f"    A_{{ij}} = {expr1}")
-
-# (2) A = BCD  →  A_{ij} = B_{ik} C_{kl} D_{lj}
-print("\n(2) A = BCD")
-expr2 = B(-i, -k) * C(k, -l) * D(l, -j)
-print(f"    A_{{ij}} = {expr2}")
-
-
-# ═══════════════════════════════════════════════════════════════════════
-# Q5. Kronecker delta contractions
-# ═══════════════════════════════════════════════════════════════════════
-
-print("\n" + "=" * 60)
-print("Q5. Kronecker delta contractions")
-print("=" * 60)
-
-N = IndexType('N', dim=sp.Symbol('n'), dummy_prefix='L')
+n = sp.Symbol('n')
+N = IndexType('N', dim=n, dummy_prefix='L')
 a, b, c, d = indices('a b c d', N)
-gN = MetricTensor(N, name='delta')
-
-# delta^a_a = n  (self-contraction resolves automatically)
-print(f"\n  delta^a_a = {gN.delta(a, -a)}")
-
-# delta^a_b delta^b_a: contract deltas, then the trace resolves
-expr_dd = gN.delta(a, -b) * gN.delta(b, -a)
-print(f"  delta^a_b delta^b_a = {gN.contract_metrics(expr_dd)}")
-
-# delta^a_b delta^b_c delta^c_d = delta^a_d
-expr_ddd = gN.delta(a, -b) * gN.delta(b, -c) * gN.delta(c, -d)
-print(f"  delta^a_b delta^b_c delta^c_d = {gN.contract_metrics(expr_ddd)}")
 
 
-# ═══════════════════════════════════════════════════════════════════════
-# Q6. Dummy index relabeling
-# (Z_abc + Z_cab + Z_bca) X^a X^b X^c = 3 Z_abc X^a X^b X^c
-# ═══════════════════════════════════════════════════════════════════════
+with Problem("Q3", "Matrix multiplication in index notation") as p:
+    Mat = IndexType('Mat', dim=n, dummy_prefix='k')
+    i, j, k, l = indices('i j k l', Mat)
+    B = TensorHead('B', [Mat, Mat])
+    C = TensorHead('C', [Mat, Mat])
+    D = TensorHead('D', [Mat, Mat])
 
-print("\n" + "=" * 60)
-print("Q6. Dummy index relabeling")
-print("=" * 60)
-
-L6 = IndexType('L', dim=sp.Symbol('n'), dummy_prefix='L')
-a, b, c = indices('a b c', L6)
-Z = TensorHead('Z', [L6, L6, L6])
-X = TensorHead('X', [L6])
-
-t1 = Z(-a, -b, -c) * X(a) * X(b) * X(c)
-t2 = Z(-c, -a, -b) * X(a) * X(b) * X(c)
-t3 = Z(-b, -c, -a) * X(a) * X(b) * X(c)
-
-# Canonicalize each term — they should all become identical
-c1 = t1.canon_bp()
-c2 = t2.canon_bp()
-c3 = t3.canon_bp()
-
-print(f"\n  Z_abc X^a X^b X^c  canonicalizes to:  {c1}")
-print(f"  Z_cab X^a X^b X^c  canonicalizes to:  {c2}")
-print(f"  Z_bca X^a X^b X^c  canonicalizes to:  {c3}")
-print(f"\n  All three identical? {c1.atoms == c2.atoms == c3.atoms and c1.coeff == c2.coeff == c3.coeff}")
-
-# Sum collects to 3x
-total = (t1 + t2 + t3).canon_bp()
-print(f"  Sum = {total}")
-print("  => Coefficient is 3, confirming the identity.")
+    p.step("A = B(C + D)",
+           "A_{ij}", B(-i, -k) * (C(k, -j) + D(k, -j)))
+    p.step("A = BCD",
+           "A_{ij}", B(-i, -k) * C(k, -l) * D(l, -j))
 
 
-# ═══════════════════════════════════════════════════════════════════════
-# Q7. S_{ab} A^{ab} = 0  (symmetric × antisymmetric contraction)
-# ═══════════════════════════════════════════════════════════════════════
+with Problem("Q5", "Kronecker delta contractions") as p:
+    g = MetricTensor(N, name='delta')
 
-print("\n" + "=" * 60)
-print("Q7. Symmetric × antisymmetric contraction vanishes")
-print("=" * 60)
+    p.step("Trace",
+           "delta^a_a", g.delta(a, -a))
+    p.step("Double contraction",
+           "delta^a_b delta^b_a",
+           g.contract_metrics(g.delta(a, -b) * g.delta(b, -a)))
+    p.step("Triple contraction",
+           "delta^a_b delta^b_c delta^c_d",
+           g.contract_metrics(g.delta(a, -b) * g.delta(b, -c) * g.delta(c, -d)))
 
-L7 = IndexType('L', dim=sp.Symbol('n'), dummy_prefix='L')
-a, b = indices('a b', L7)
 
-S = TensorHead('S', [L7, L7], TensorSymmetry.fully_symmetric(2))
-A = TensorHead('A', [L7, L7], TensorSymmetry.fully_antisymmetric(2))
+with Problem("Q6", "Dummy index relabeling") as p:
+    Z = TensorHead('Z', [N, N, N])
+    X = TensorHead('X', [N])
 
-result = (S(-a, -b) * A(a, b)).canon_bp()
-print(f"\n  S_{{ab}} A^{{ab}} = {result}")
-print("  => Vanishes identically, as expected.")
+    t1 = (Z(-a, -b, -c) * X(a) * X(b) * X(c)).canon_bp()
+    t2 = (Z(-c, -a, -b) * X(a) * X(b) * X(c)).canon_bp()
+    t3 = (Z(-b, -c, -a) * X(a) * X(b) * X(c)).canon_bp()
 
-# Also verify: A^{ba} = g^{bc} g^{ad} A_{cd}
-# Since g is symmetric and A is antisymmetric, A^{ab} = -A^{ba}
-expr_swap = A(b, a).canon_bp()
-print(f"\n  A^{{ba}} canonicalizes to: {expr_swap}")
-print("  => Picks up a minus sign (antisymmetry).")
+    p.step("Canonicalize Z_{abc} X^a X^b X^c", rhs=t1)
+    p.step("Canonicalize Z_{cab} X^a X^b X^c", rhs=t2)
+    p.step("Canonicalize Z_{bca} X^a X^b X^c", rhs=t3)
+    p.answer("(Z_{abc} + Z_{cab} + Z_{bca}) X^a X^b X^c",
+             (t1 + t2 + t3).canon_bp())
+
+
+with Problem("Q7", "Symmetric x antisymmetric contraction") as p:
+    S = TensorHead('S', [N, N], TensorSymmetry.fully_symmetric(2))
+    A = TensorHead('A', [N, N], TensorSymmetry.fully_antisymmetric(2))
+
+    p.step("Antisymmetry", "A^{ba}", A(b, a).canon_bp())
+    p.answer("S_{ab} A^{ab}", (S(-a, -b) * A(a, b)).canon_bp())

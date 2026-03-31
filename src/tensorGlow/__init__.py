@@ -14,7 +14,11 @@ from .core import (
 from .extensions import (
     IndexSplit,
     BlockMetric, ScalarField,
+)
+
+from .utils import (
     to_latex,
+    Problem,
 )
 
 __all__ = [
@@ -30,5 +34,7 @@ __all__ = [
     # extensions
     'IndexSplit',
     'BlockMetric', 'ScalarField',
+    # utils
     'to_latex',
+    'Problem',
 ]

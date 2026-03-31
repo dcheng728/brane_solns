@@ -269,16 +269,18 @@ class CovDerivative:
             return self._deriv_heads[tensor_head]
 
         itypes = [self.index_type] + list(tensor_head.index_types)
-        name = f'D{tensor_head.name}'
-        # D_a T_{bc...} has no special symmetry in general
+        name = f'D({tensor_head.name})'
         d_head = TensorHead(name, itypes, TensorSymmetry.no_symmetry(len(itypes)))
+        d_head._deriv_info = ('D', tensor_head.name, 1)
         self._deriv_heads[tensor_head] = d_head
         return d_head
 
     def _get_partial_head(self):
         """Get the partial derivative head for scalars."""
-        return TensorHead('partial', [self.index_type],
-                          TensorSymmetry.no_symmetry(1))
+        h = TensorHead('D', [self.index_type],
+                        TensorSymmetry.no_symmetry(1))
+        h._deriv_info = ('D', '', 1)
+        return h
 
 
 class PartialDerivative:
@@ -297,6 +299,7 @@ class PartialDerivative:
         self.index_type = index_type
         self.name = name
         self._deriv_heads = {}
+        self.n_deriv_indices = 1  # how many leading indices are derivative indices
 
     def __call__(self, deriv_idx, expr):
         """Apply partial_{deriv_idx} to expr."""
@@ -338,15 +341,19 @@ class PartialDerivative:
             return self._deriv_heads[tensor_head]
         itypes = [self.index_type] + list(tensor_head.index_types)
         d_head = TensorHead(
-            f'd{tensor_head.name}', itypes,
+            f'partial({tensor_head.name})', itypes,
             TensorSymmetry.no_symmetry(len(itypes))
         )
+        # Mark as derivative head so repr can separate derivative/operand indices
+        d_head._deriv_info = (self.name, tensor_head.name, 1)  # (op_name, operand_name, n_deriv_indices)
         self._deriv_heads[tensor_head] = d_head
         return d_head
 
     def _get_deriv_head_scalar(self):
-        return TensorHead('d', [self.index_type],
-                          TensorSymmetry.no_symmetry(1))
+        h = TensorHead('partial', [self.index_type],
+                        TensorSymmetry.no_symmetry(1))
+        h._deriv_info = ('partial', '', 1)
+        return h
 
 
 def _fresh_dummy(index_type, used):

@@ -1,8 +1,8 @@
 """Curvature tensors derived from a metric.
 
-Provides RiemannGeometry: a convenient container that declares Christoffel
-symbols, Riemann, Ricci, scalar curvature, Weyl, and Einstein tensors with
-their correct symmetries and inter-relations.
+Provides RiemannGeometry: declares Christoffel, Riemann, Ricci, Weyl,
+scalar curvature, Einstein — both as named TensorHeads and as defining
+formulas expressed in tensorGlow's abstract index notation.
 """
 
 import sympy as sp
@@ -11,45 +11,41 @@ from .tensor_head import TensorHead
 from .symmetry import TensorSymmetry
 from .expr import TensorAtom, TensorProduct, TensorSum
 from .metric import MetricTensor
-from .derivative import CovDerivative
+from .derivative import CovDerivative, PartialDerivative
+from .operator import Partial, CovariantD
+from .derivative import PartialDerivative
 
 
 class RiemannGeometry:
     """Curvature tensor hierarchy for a given metric.
 
-    Creates all standard curvature objects with correct symmetries:
-    Christoffel, Riemann, Ricci, Weyl, scalar curvature, Einstein.
+    Declares all standard curvature objects with correct symmetries,
+    and provides the defining formulas as abstract tensor expressions.
 
     Parameters
     ----------
     metric : MetricTensor
     index_type : IndexType
-
-    Attributes
-    ----------
-    Christoffel : TensorHead  — Gamma^a_{bc}, symmetric in (b,c)
-    Riemann : TensorHead      — R^a_{bcd}, Riemann symmetry
-    Ricci : TensorHead         — R_{ab}, symmetric
-    RicciScalar : TensorHead   — R (scalar, rank 0)
-    Weyl : TensorHead          — C_{abcd}, Riemann symmetry + trace-free
-    Einstein : TensorHead      — G_{ab}, symmetric
-    D : CovDerivative          — Levi-Civita covariant derivative
     """
 
     def __init__(self, metric, index_type):
         self.metric = metric
         self.index_type = index_type
 
+        # Operators (new, first-class)
+        self.partial = Partial(index_type)
+        self.D = CovariantD(index_type, metric)
+
+        # Legacy derivative (for formula computation — uses flattened TensorHead)
+        self._partial_legacy = PartialDerivative(index_type, name='partial')
+
         # Christoffel symbol: Gamma^a_{bc}, symmetric in (b,c)
-        # No full symmetry — only the lower pair is symmetric.
-        # For now, declare no_symmetry(3) and rely on user convention.
         self.Christoffel = TensorHead(
             'Gamma', [index_type] * 3,
             TensorSymmetry.no_symmetry(3)
         )
 
-        # Riemann tensor: R^a_{bcd} or R_{abcd}
-        # We declare it with all-covariant Riemann symmetry
+        # Riemann tensor: R_{abcd} with Riemann symmetry
         self.Riemann = TensorHead(
             'R', [index_type] * 4,
             TensorSymmetry.riemann()
@@ -67,7 +63,7 @@ class RiemannGeometry:
             TensorSymmetry.no_symmetry(0)
         )
 
-        # Weyl tensor: C_{abcd}, same symmetries as Riemann (+ trace-free)
+        # Weyl tensor: C_{abcd}, Riemann symmetry
         self.Weyl = TensorHead(
             'C', [index_type] * 4,
             TensorSymmetry.riemann()
@@ -79,22 +75,123 @@ class RiemannGeometry:
             TensorSymmetry.fully_symmetric(2)
         )
 
-        # Covariant derivative (Levi-Civita)
-        self.D = CovDerivative(index_type, metric, name='D')
+        # Wire up Riemann for commutator
         self.D.set_riemann(self.Riemann)
 
+    # ──────────────────────────────────────────────────────────────
+    # Defining formulas as abstract tensor expressions
+    # ──────────────────────────────────────────────────────────────
+
+    def christoffel_formula(self, c, a, b):
+        r"""The Christoffel symbol from the metric:
+
+        .. math::
+            \Gamma^c_{ab} = \frac{1}{2} g^{cd}
+            (\partial_a g_{db} + \partial_b g_{ad} - \partial_d g_{ab})
+
+        Parameters
+        ----------
+        c : Index (contravariant, free)
+        a, b : Index (covariant, free)
+
+        Returns
+        -------
+        TensorExpr
+        """
+        d_name = _fresh_name('d', c, a, b)
+        d_up = Index(d_name, self.index_type, is_up=True)
+        d_down = Index(d_name, self.index_type, is_up=False)
+
+        g = self.metric
+        d = self._partial_legacy
+
+        # partial_a g_{db}
+        term1 = d(-a, g(-d_down, -b))
+        # partial_b g_{ad}
+        term2 = d(-b, g(-a, -d_down))
+        # partial_d g_{ab}
+        term3 = d(-d_down, g(-a, -b))
+
+        return sp.Rational(1, 2) * g.inv(c, d_up) * (term1 + term2 - term3)
+
+    def geodesic_equation(self, a, U):
+        r"""The geodesic equation:
+
+        .. math::
+            \frac{D U^a}{D\tau} = U^b \nabla_b U^a = 0
+
+        Equivalently:
+        .. math::
+            \ddot{x}^a + \Gamma^a_{bc} \dot{x}^b \dot{x}^c = 0
+
+        Parameters
+        ----------
+        a : Index (contravariant, free)
+        U : TensorHead (rank-1, the tangent vector / 4-velocity)
+
+        Returns
+        -------
+        TensorExpr : the acceleration (should vanish for geodesics)
+        """
+        b_name = _fresh_name('b', a)
+        c_name = _fresh_name('c', a, Index(b_name, self.index_type))
+        b_up = Index(b_name, self.index_type, is_up=True)
+        b_down = Index(b_name, self.index_type, is_up=False)
+        c_up = Index(c_name, self.index_type, is_up=True)
+        c_down = Index(c_name, self.index_type, is_up=False)
+
+        Gamma = self.Christoffel
+
+        # Gamma^a_{bc} U^b U^c
+        return Gamma(a, -b_down, -c_down) * U(b_up) * U(c_up)
+
+    def riemann_formula(self, a, b, c, d):
+        r"""The Riemann tensor from Christoffel symbols:
+
+        .. math::
+            R^a{}_{bcd} = \partial_c \Gamma^a_{db}
+                        - \partial_d \Gamma^a_{cb}
+                        + \Gamma^a_{ce} \Gamma^e_{db}
+                        - \Gamma^a_{de} \Gamma^e_{cb}
+
+        Parameters
+        ----------
+        a : Index (contravariant, free)
+        b, c, d : Index (covariant, free)
+
+        Returns
+        -------
+        TensorExpr
+        """
+        e_name = _fresh_name('e', a, b, c, d)
+        e_up = Index(e_name, self.index_type, is_up=True)
+        e_down = Index(e_name, self.index_type, is_up=False)
+
+        Gamma = self.Christoffel
+        dd = self._partial_legacy
+
+        # partial_c Gamma^a_{db}
+        term1 = dd(-c, Gamma(a, -d, -b))
+        # partial_d Gamma^a_{cb}
+        term2 = dd(-d, Gamma(a, -c, -b))
+        # Gamma^a_{ce} Gamma^e_{db}
+        term3 = Gamma(a, -c, -e_down) * Gamma(e_up, -d, -b)
+        # Gamma^a_{de} Gamma^e_{cb}
+        term4 = Gamma(a, -d, -e_down) * Gamma(e_up, -c, -b)
+
+        return term1 - term2 + term3 - term4
+
     def ricci_from_riemann(self, a, b):
-        """Return Ric_{ab} = R^c_{acb} as a substitution expression.
+        r"""Ricci tensor as contraction of Riemann:
+
+        .. math::
+            \text{Ric}_{ab} = R^c{}_{acb}
 
         Parameters
         ----------
         a, b : Index (covariant)
-
-        Returns
-        -------
-        TensorProduct: contraction of Riemann
         """
-        dummy = _fresh('c', a, b, self.index_type)
+        dummy = _fresh_name('c', a, b)
         c_up = Index(dummy, self.index_type, is_up=True)
         c_down = Index(dummy, self.index_type, is_up=False)
         return TensorProduct.from_atom(
@@ -102,41 +199,36 @@ class RiemannGeometry:
         )
 
     def scalar_from_ricci(self):
-        """Return R = g^{ab} Ric_{ab}.
+        r"""Ricci scalar:
 
-        Returns
-        -------
-        TensorProduct: contraction of metric inverse with Ricci
+        .. math::
+            R = g^{ab} \text{Ric}_{ab}
         """
         a_up = Index('a', self.index_type, is_up=True)
         a_down = Index('a', self.index_type, is_up=False)
         b_up = Index('b', self.index_type, is_up=True)
         b_down = Index('b', self.index_type, is_up=False)
-
         return (self.metric.inv_head(a_up, b_up)
                 * self.Ricci(a_down, b_down))
 
     def einstein_from_ricci(self, a, b):
-        """Return G_{ab} = Ric_{ab} - (1/2) R g_{ab}.
+        r"""Einstein tensor:
 
-        Parameters
-        ----------
-        a, b : Index (covariant)
+        .. math::
+            G_{ab} = \text{Ric}_{ab} - \frac{1}{2} R \, g_{ab}
         """
         ric_term = self.Ricci(a, b)
         scalar_term = sp.Rational(-1, 2) * self.RicciScalar() * self.metric(a, b)
         return ric_term + scalar_term
 
     def weyl_decomposition(self, a, b, c, d):
-        """Express Weyl in terms of Riemann, Ricci, scalar curvature.
+        r"""Weyl tensor in terms of Riemann, Ricci, scalar curvature:
 
-        C_{abcd} = R_{abcd}
-                 - 2/(D-2) (g_{a[c} Ric_{d]b} - g_{b[c} Ric_{d]a})
-                 + 2/((D-1)(D-2)) R g_{a[c} g_{d]b}
-
-        Parameters
-        ----------
-        a, b, c, d : Index (all covariant)
+        .. math::
+            C_{abcd} = R_{abcd}
+                     - \frac{2}{D-2} (g_{a[c} \text{Ric}_{d]b}
+                       - g_{b[c} \text{Ric}_{d]a})
+                     + \frac{2}{(D-1)(D-2)} R \, g_{a[c} g_{d]b}
         """
         D = self.index_type.dim
         if D is None:
@@ -148,28 +240,22 @@ class RiemannGeometry:
         Rsc = self.RicciScalar
 
         result = R(a, b, c, d)
-
-        # -2/(D-2) * (g_{ac} Ric_{db} - g_{ad} Ric_{cb}
-        #            - g_{bc} Ric_{da} + g_{bd} Ric_{ca})
         factor1 = sp.Rational(-1, 1) / (D - 2)
         result = result + factor1 * (
             g(a, c) * Ric(d, b) - g(a, d) * Ric(c, b)
             - g(b, c) * Ric(d, a) + g(b, d) * Ric(c, a)
         )
-
-        # + 2/((D-1)(D-2)) * R * (g_{ac} g_{bd} - g_{ad} g_{bc})
         factor2 = sp.Rational(2, 1) / ((D - 1) * (D - 2))
         result = result + factor2 * Rsc() * (
             g(a, c) * g(b, d) - g(a, d) * g(b, c)
         )
-
         return result
 
 
-def _fresh(base, idx_a, idx_b, index_type):
+def _fresh_name(base, *existing_indices):
     """Pick a name not clashing with existing indices."""
     used = set()
-    for i in [idx_a, idx_b]:
+    for i in existing_indices:
         if isinstance(i, Index):
             used.add(i.name)
     name = base

@@ -138,6 +138,16 @@ class TensorAtom:
         self.indices = tuple(indices)
 
     def __repr__(self):
+        # Derivative heads: show as op_name(deriv_indices, operand(operand_indices))
+        info = getattr(self.head, '_deriv_info', None)
+        if info is not None:
+            op_name, operand_name, n_deriv = info
+            deriv_idx = ', '.join(repr(i) for i in self.indices[:n_deriv])
+            if operand_name:
+                operand_idx = ', '.join(repr(i) for i in self.indices[n_deriv:])
+                return f"{op_name}_{{{deriv_idx}}}({operand_name}({operand_idx}))"
+            else:
+                return f"{op_name}({deriv_idx})"
         idx_str = ', '.join(repr(i) for i in self.indices)
         return f"{self.head.name}({idx_str})"
 
@@ -253,8 +263,12 @@ class TensorSum(TensorExpr):
             elif isinstance(t, TensorProduct):
                 if t.coeff != 0:
                     flat.append(t)
+            elif isinstance(t, TensorExpr):
+                # Accept any TensorExpr (OperatorExpr, _ScaledOperator, etc.)
+                if not (hasattr(t, 'coeff') and t.coeff == 0):
+                    flat.append(t)
             else:
-                raise TypeError(f"TensorSum expects TensorProduct terms, got {type(t)}")
+                raise TypeError(f"TensorSum expects TensorExpr terms, got {type(t)}")
         self.terms = tuple(flat)
 
     @property

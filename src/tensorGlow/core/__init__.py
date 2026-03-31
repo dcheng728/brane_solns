@@ -7,6 +7,7 @@ from .expr import TensorExpr, TensorAtom, TensorProduct, TensorSum, ScalarExpr
 from .utils import fresh_dummy_name, reset_dummy_counters, perm_sign
 from .metric import MetricTensor
 from .derivative import CovDerivative, DerivativeAtom, PartialDerivative
+from .operator import Operator, Partial, CovariantD, OperatorExpr
 from .curvature import RiemannGeometry
 from .canonicalize import canonicalize_expr, canonicalize_product, rename_dummies
 
