@@ -1,2 +1,2 @@
 from .display import Problem
-from .latex import to_latex
+from .io import to_console, to_latex

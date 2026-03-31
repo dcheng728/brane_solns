@@ -66,9 +66,9 @@ class TensorHead:
                 )
 
         # Import here to avoid circular dependency
-        from .expr import TensorAtom, TensorProduct
-        atom = TensorAtom(self, tuple(indices))
-        return TensorProduct.from_atom(atom)
+        from .expr import Tensor, Prod
+        t = Tensor(self, tuple(indices))
+        return Prod(1, (t,))
 
     def __repr__(self):
         return f"TensorHead({self.name!r}, rank={self.rank})"

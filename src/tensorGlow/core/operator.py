@@ -1,461 +1,377 @@
-"""Tensor operators: partial derivative, covariant derivative.
+"""Operator algebra for tensorGlow.
 
-An operator acts on a tensor expression and produces a new tensor
-expression with one additional index. Operator applications are
-first-class nodes in the expression tree, preserving the structural
-distinction between the derivative index and the operand indices.
+Operators act on expressions via multiplication: op * expr = Apply(op, expr).
+An operator with a fixed index is a BoundOperator.
 
-    partial_a(Gamma(c, -d, -b))   is an OperatorExpr, not a flat TensorAtom
-    D_a(V(b))                      likewise
+    partial(-a) * g(-b, -c)  →  Apply(partial, -a, g(-b,-c))
+    D(-a) * V(b)             →  Apply(D, -a, V(b))
 
-Operators support:
-- Nesting: partial_a(partial_b(g(-c, -d)))
-- Leibniz rule: partial_a(V(b) * W(c)) = partial_a(V(b))*W(c) + V(b)*partial_a(W(c))
-- Metric compatibility: D_a(g(-b, -c)) = 0
+Operators compose:
+    partial(-a) * partial(-b) * g(-c,-d)
+    = partial_a(partial_b(g_{cd}))
+
+Operator definitions:
+    partial  — primitive, commuting
+    D        — defined as partial + connection (computed, not hardcoded)
 """
 
+import sympy as sp
 from .index import Index
-from .expr import TensorExpr, TensorAtom, TensorProduct, TensorSum, ScalarExpr
+from .expr import Expr, Tensor, Apply, Prod, Sum, Scalar
 
 
-class OperatorExpr(TensorExpr):
-    """Application of a derivative operator to a tensor expression.
-
-    Attributes
-    ----------
-    operator : Operator
-        The operator being applied (partial or D).
-    deriv_index : Index
-        The derivative index (covariant).
-    operand : TensorExpr
-        The expression being differentiated.
-    """
-
-    def __init__(self, operator, deriv_index, operand):
-        self.operator = operator
-        self.deriv_index = deriv_index if not deriv_index.is_up else -deriv_index
-        self.operand = operand
-
-    @property
-    def free_indices(self):
-        return (self.deriv_index,) + self.operand.free_indices
-
-    def __repr__(self):
-        return f"{self.operator.name}_{{{self.deriv_index}}}({self.operand})"
-
-    def __eq__(self, other):
-        if not isinstance(other, OperatorExpr):
-            return NotImplemented
-        return (self.operator is other.operator
-                and self.deriv_index == other.deriv_index
-                and self.operand == other.operand)
-
-    def __hash__(self):
-        return hash((id(self.operator), self.deriv_index, self.operand))
-
-    def __neg__(self):
-        return _ScaledOperator(-1, self)
-
-    def __mul__(self, other):
-        import sympy as sp
-        if isinstance(other, (int, float, sp.Basic)):
-            return _ScaledOperator(sp.sympify(other), self)
-        if isinstance(other, TensorExpr):
-            return _ProductWithOperator(self, other)
-        return NotImplemented
-
-    def __rmul__(self, other):
-        import sympy as sp
-        if isinstance(other, (int, float, sp.Basic)):
-            return _ScaledOperator(sp.sympify(other), self)
-        if isinstance(other, TensorExpr):
-            return _ProductWithOperator(self, other)
-        return NotImplemented
-
-    def __add__(self, other):
-        left = self._to_sum()
-        if isinstance(other, OperatorExpr):
-            right = other._to_sum()
-        elif isinstance(other, (_ScaledOperator, _ProductWithOperator)):
-            right = other._to_sum()
-        elif isinstance(other, TensorExpr):
-            right = other._to_sum()
-        else:
-            return NotImplemented
-        return TensorSum(left.terms + right.terms)
-
-    def __radd__(self, other):
-        if isinstance(other, TensorExpr):
-            return other.__add__(self)
-        return NotImplemented
-
-    def __sub__(self, other):
-        return self + (-other)
-
-    def expand_leibniz(self):
-        """Expand the Leibniz rule if the operand is a product.
-
-        partial_a(f * T1 * T2) = (partial_a f) * T1 * T2
-                                + f * partial_a(T1) * T2
-                                + f * T1 * partial_a(T2)
-
-        Returns self unchanged if the operand is a single atom.
-        """
-        op = self.operand
-        if isinstance(op, TensorSum):
-            # Linearity: distribute over sum
-            return TensorSum(tuple(
-                OperatorExpr(self.operator, self.deriv_index, t).expand_leibniz()
-                for t in op.terms
-            ))
-        if isinstance(op, TensorProduct) and len(op.atoms) > 1:
-            return self.operator._leibniz(self.deriv_index, op)
-        return self
-
-    def _to_sum(self):
-        # Wrap in a TensorProduct with coeff=1 so it can participate in sums
-        # This is a workaround — OperatorExpr in sums needs more thought
-        return TensorSum((self._as_product(),))
-
-    def _as_product(self):
-        """Wrap this OperatorExpr into the product framework for algebra."""
-        # For now, OperatorExpr participates in sums by being wrapped
-        return _OperatorProduct(self)
-
-
-class _OperatorProduct(TensorProduct):
-    """A TensorProduct wrapper around an OperatorExpr for algebra compatibility."""
-
-    def __init__(self, op_expr):
-        self._op_expr = op_expr
-        super().__init__(1, ())
-
-    @property
-    def free_indices(self):
-        return self._op_expr.free_indices
-
-    def __repr__(self):
-        return repr(self._op_expr)
-
+# ═════════════════════════════════════════════════════════════════════
+# Operator base
+# ═════════════════════════════════════════════════════════════════════
 
 class Operator:
-    """Base class for tensor derivative operators.
+    """A derivative operator on a given index type.
 
-    Subclasses: Partial, CovariantDerivative.
+    Calling with an index returns a BoundOperator:
+        partial(-a)  →  BoundOperator(partial, -a)
+
+    The BoundOperator applies to expressions via *:
+        partial(-a) * expr  →  Apply(partial, -a, expr)
     """
 
     def __init__(self, name, index_type):
         self.name = name
         self.index_type = index_type
 
-    def __call__(self, deriv_index, expr):
-        """Apply the operator to an expression.
+    def __call__(self, index):
+        """Bind the operator to a specific index."""
+        if not isinstance(index, Index):
+            raise TypeError(f"Operator expects an Index, got {type(index)}")
+        return BoundOperator(self, index)
 
-        Parameters
-        ----------
-        deriv_index : Index
-        expr : TensorExpr
+    def _on_apply(self, deriv_index, operand):
+        """Hook for subclasses to intercept application.
 
-        Returns
-        -------
-        OperatorExpr, TensorExpr, or 0
-        """
-        if deriv_index.is_up:
-            deriv_index = -deriv_index
-
-        if isinstance(expr, TensorSum):
-            # Linearity
-            return TensorSum(tuple(self(deriv_index, t) for t in expr.terms))
-
-        if isinstance(expr, ScalarExpr):
-            return self._on_scalar(deriv_index, expr)
-
-        if isinstance(expr, TensorProduct):
-            if len(expr.atoms) == 0:
-                return TensorProduct(0, ())
-            if len(expr.atoms) == 1 and expr.coeff == 1:
-                result = self._on_atom(deriv_index, expr.atoms[0])
-                if result is not None:
-                    return result
-                return OperatorExpr(self, deriv_index, expr)
-            # Multi-atom or nontrivial coefficient: Leibniz
-            return self._leibniz(deriv_index, expr)
-
-        if isinstance(expr, OperatorExpr):
-            # Nesting: op1(op2(T))
-            return OperatorExpr(self, deriv_index, expr)
-
-        return OperatorExpr(self, deriv_index, expr)
-
-    def _on_atom(self, deriv_index, atom):
-        """Override in subclasses for special rules (e.g. metric compatibility).
-
-        Return None to fall through to generic OperatorExpr.
+        Return None to use the default Apply node.
+        Return an Expr to override (e.g. D(g) = 0).
         """
         return None
 
-    def _on_scalar(self, deriv_index, scalar_expr):
-        """Derivative of a pure scalar."""
-        return OperatorExpr(self, deriv_index, scalar_expr)
+    def _leibniz(self, deriv_index, prod):
+        """Expand Leibniz rule on a Prod.
 
-    def _leibniz(self, deriv_index, product):
-        """Expand via Leibniz rule."""
+        D_a(coeff * f1 * f2 * ...) = partial_a(coeff * f1 * f2 * ...)
+                                   + connection terms for free indices of the whole product.
+
+        The partial_a part uses Leibniz: partial_a(f1*f2) = partial_a(f1)*f2 + f1*partial_a(f2).
+        Connection terms are added by _on_apply for the free indices of the whole expression.
+
+        For a plain Partial operator, there are no connection terms, so this just does Leibniz.
+        """
         terms = []
-        coeff = product.coeff
-        atoms = product.atoms
+        coeff = prod.coeff
+        factors = prod.factors
 
-        # Derivative of coefficient (if nontrivial)
-        if coeff != 1 and coeff != 0:
-            # For now, treat coefficient as constant (no chain rule on SymPy exprs)
-            # The BlockMetric handles scalar field chain rule separately
-            pass
-
-        # Leibniz on tensor factors
-        for i in range(len(atoms)):
-            atom_i = atoms[i]
-            d_atom_i = self._on_atom(deriv_index, atom_i)
-            if d_atom_i is not None and _is_zero(d_atom_i):
-                continue  # e.g. D(g) = 0
-            if d_atom_i is None:
-                d_atom_i = OperatorExpr(self, deriv_index,
-                                        TensorProduct(1, (atom_i,)))
-            other = atoms[:i] + atoms[i+1:]
-            if isinstance(d_atom_i, OperatorExpr):
-                # Wrap: d_atom_i * other_atoms
-                if other:
-                    other_prod = TensorProduct(coeff, other)
-                    terms.append(_ProductWithOperator(d_atom_i, other_prod))
-                else:
-                    terms.append(d_atom_i if coeff == 1
-                                 else _ScaledOperator(coeff, d_atom_i))
+        # Leibniz with partial only (not the full operator)
+        for i in range(len(factors)):
+            fi = factors[i]
+            # Apply the PARTIAL part only to each factor
+            partial_applied = Apply(Partial(self.index_type) if not isinstance(self, Partial) else self,
+                                    deriv_index, Prod(1, (fi,)))
+            other = factors[:i] + factors[i+1:]
+            if other:
+                other_prod = Prod(coeff, other)
+                terms.append(partial_applied * other_prod)
             else:
-                # d_atom_i is already a TensorProduct or similar
-                new_atoms = (d_atom_i.atoms if isinstance(d_atom_i, TensorProduct)
-                             else (d_atom_i,))
-                terms.append(TensorProduct(coeff, new_atoms + other))
+                terms.append(coeff * partial_applied if coeff != 1 else partial_applied)
+
+        # Connection terms for the FREE indices of the whole product
+        if not isinstance(self, Partial) and hasattr(self, 'christoffel') and self.christoffel is not None:
+            from .expr import replace_index
+            free = prod.free_indices
+            used = set(i.name for i in free)
+            used.add(deriv_index.name)
+            if hasattr(prod, 'all_indices'):
+                used.update(i.name for i in prod.all_indices)
+
+            Gamma = self.christoffel
+            for idx_k in free:
+                sigma_name = _fresh_dummy(idx_k.index_type, used)
+                used.add(sigma_name)
+                sigma_up = Index(sigma_name, idx_k.index_type, is_up=True)
+                sigma_down = Index(sigma_name, idx_k.index_type, is_up=False)
+
+                replaced = replace_index(prod, idx_k,
+                                         sigma_up if idx_k.is_up else sigma_down)
+
+                if idx_k.is_up:
+                    gamma = Tensor(Gamma, (idx_k, deriv_index, sigma_down))
+                    terms.append(gamma * replaced)
+                else:
+                    gamma = Tensor(Gamma, (sigma_up, deriv_index, idx_k))
+                    terms.append(sp.S.NegativeOne * gamma * replaced)
 
         if not terms:
-            return TensorProduct(0, ())
+            return Prod(0, ())
         if len(terms) == 1:
             return terms[0]
-        return TensorSum(tuple(terms))
+        return Sum(tuple(terms))
 
+    def __repr__(self):
+        return self.name
+
+
+# ═════════════════════════════════════════════════════════════════════
+# BoundOperator
+# ═════════════════════════════════════════════════════════════════════
+
+class BoundOperator(Expr):
+    """An operator with its index fixed, ready to apply via *.
+
+    BoundOperator * Expr → Apply(op, index, Expr)
+    BoundOperator * BoundOperator * Expr → nested Apply
+    """
+
+    def __init__(self, op, index):
+        self.op = op
+        self.index = index if not index.is_up else -index
+
+    @property
+    def free_indices(self):
+        # A bound operator by itself has one free index (the derivative index)
+        return (self.index,)
+
+    def __mul__(self, other):
+        """Apply the operator to an expression."""
+        import sympy as sp
+        if isinstance(other, (int, float, sp.Basic)):
+            # op * scalar: treat as op applied to scalar
+            return _apply_op(self.op, self.index, Scalar(sp.sympify(other)))
+        if isinstance(other, BoundOperator):
+            # op1 * op2 → ComposedBound(op1, op2)
+            return ComposedBound((self, other))
+        if isinstance(other, ComposedBound):
+            return ComposedBound((self,) + other.bound_ops)
+        if isinstance(other, Expr):
+            return _apply_op(self.op, self.index, other)
+        return NotImplemented
+
+    def __rmul__(self, other):
+        """scalar * BoundOperator or Expr * BoundOperator.
+
+        Expr * BoundOperator = composition: "first apply op, then multiply by Expr".
+        So (Expr * BoundOp) * target = Expr * (BoundOp * target).
+        """
+        import sympy as sp
+        if isinstance(other, (int, float, sp.Basic)):
+            return ScaledBound(sp.sympify(other), self)
+        if isinstance(other, Expr):
+            return ComposedAction(other, self)
+        return NotImplemented
+
+    def __repr__(self):
+        return f"{self.op.name}({self.index})"
+
+
+class ScaledBound:
+    """coeff * BoundOperator — applies as coeff * op(expr)."""
+
+    def __init__(self, coeff, bound_op):
+        import sympy as sp
+        self.coeff = sp.sympify(coeff)
+        self.bound_op = bound_op
+
+    def __mul__(self, other):
+        if isinstance(other, Expr):
+            result = _apply_op(self.bound_op.op, self.bound_op.index, other)
+            return self.coeff * result
+        return NotImplemented
+
+    def __repr__(self):
+        return f"{self.coeff}*{self.bound_op}"
+
+
+class ComposedAction:
+    """An Expr composed with a BoundOperator.
+
+    (Expr * BoundOp) * target = Expr * (BoundOp * target)
+
+    This means "first apply the operator, then multiply by the expression."
+    """
+
+    def __init__(self, expr, bound_op):
+        self.expr = expr
+        self.bound_op = bound_op
+
+    def __mul__(self, other):
+        """Apply: first the bound operator, then multiply by self.expr."""
+        if isinstance(other, BoundOperator):
+            # Compose further: (E * op1) * op2 = E * (op1 composed with op2)
+            return ComposedAction(self.expr, ComposedBound((self.bound_op, other))
+                                  if isinstance(self.bound_op, BoundOperator)
+                                  else ComposedBound(self.bound_op.bound_ops + (other,)))
+        if isinstance(other, ComposedAction):
+            # (E1 * op1) * (E2 * op2) — chain
+            return ComposedAction(self.expr * other.expr,
+                                  ComposedBound((self.bound_op, other.bound_op))
+                                  if isinstance(self.bound_op, BoundOperator)
+                                  else self.bound_op)
+        if isinstance(other, Expr):
+            # Apply: first bound_op to other, then multiply by self.expr
+            if isinstance(self.bound_op, BoundOperator):
+                applied = _apply_op(self.bound_op.op, self.bound_op.index, other)
+            elif isinstance(self.bound_op, ComposedBound):
+                applied = self.bound_op * other
+            else:
+                applied = other
+            return self.expr * applied
+        return NotImplemented
+
+    def __repr__(self):
+        return f"{self.expr}*{self.bound_op}"
+
+
+class ComposedBound:
+    """A chain of bound operators waiting for an operand.
+
+    partial(-a) * partial(-b)  →  ComposedBound([bound_a, bound_b])
+    ComposedBound * expr       →  Apply(a, Apply(b, expr))
+    """
+
+    def __init__(self, bound_ops):
+        self.bound_ops = tuple(bound_ops)
+
+    def __mul__(self, other):
+        if isinstance(other, BoundOperator):
+            return ComposedBound(self.bound_ops + (other,))
+        if isinstance(other, ComposedBound):
+            return ComposedBound(self.bound_ops + other.bound_ops)
+        if isinstance(other, Expr):
+            # Apply from right to left: op1 * op2 * expr = op1(op2(expr))
+            result = other
+            for bound in reversed(self.bound_ops):
+                result = _apply_op(bound.op, bound.index, result)
+            return result
+        return NotImplemented
+
+    def __repr__(self):
+        return ' * '.join(repr(b) for b in self.bound_ops)
+
+
+# ═════════════════════════════════════════════════════════════════════
+# Concrete operators
+# ═════════════════════════════════════════════════════════════════════
 
 class Partial(Operator):
-    """Partial derivative operator.
-
-    No connection, no metric compatibility.
-    Partials commute: partial_a(partial_b(T)) = partial_b(partial_a(T)).
-
-    Parameters
-    ----------
-    index_type : IndexType
-    """
+    """Partial derivative. Commuting, no connection."""
 
     def __init__(self, index_type):
         super().__init__('partial', index_type)
 
 
 class CovariantD(Operator):
-    """Covariant derivative (Levi-Civita connection).
+    """Covariant derivative (Levi-Civita), defined from partial + Christoffel.
 
-    Satisfies metric compatibility: D_a(g_{bc}) = 0.
-    Commutator produces Riemann: [D_a, D_b] V^c = R^c_{dab} V^d.
+    D_c T^{a1...}_{b1...} = partial_c T^{a1...}_{b1...}
+                           + Gamma^{ak}_{c sigma} T^{...sigma...}_{...}  (for each upper index)
+                           - Gamma^{sigma}_{c bk} T^{...}_{...sigma...}  (for each lower index)
 
-    Parameters
-    ----------
-    index_type : IndexType
-    metric : MetricTensor
+    Metric compatibility D_a(g_{bc}) = 0 is NOT hardcoded — it is a consequence
+    of the Christoffel formula. To verify it, expand D(g) and substitute Gamma.
     """
 
-    def __init__(self, index_type, metric=None):
+    def __init__(self, index_type, metric=None, christoffel=None, partial_op=None):
         super().__init__('D', index_type)
         self.metric = metric
+        self.christoffel = christoffel  # TensorHead for Gamma^a_{bc}
+        self.partial_op = partial_op or Partial(index_type)
         self._riemann = None
 
-    def _on_atom(self, deriv_index, atom):
-        """Metric compatibility: D_a(g_{bc}) = 0."""
-        if self.metric is not None:
-            if (atom.head is self.metric.head
-                    or atom.head is self.metric.inv_head):
-                return TensorProduct(0, ())
-        return None  # fall through to generic
+    def set_christoffel(self, christoffel_head):
+        self.christoffel = christoffel_head
 
     def set_riemann(self, riemann_head):
         self._riemann = riemann_head
 
-    def commutator(self, idx_a, idx_b, expr):
-        """Compute [D_a, D_b] applied to a single-atom expression.
+    def _on_apply(self, deriv_index, operand):
+        """Expand D_c(expr) = partial_c(expr) + Gamma connection terms.
 
-        For V^c: [D_a, D_b] V^c = R^c_{dab} V^d
-        For W_c: [D_a, D_b] W_c = -R^d_{cab} W_d
+        Works on any expression by inspecting its FREE indices only.
+        For each free upper index: +Gamma^{idx}_{c sigma} * expr[idx -> sigma]
+        For each free lower index: -Gamma^{sigma}_{c idx} * expr[idx -> sigma]
+
+        Dummy (contracted) indices are NOT touched — this is the correct
+        definition of the covariant derivative on a tensor of any rank.
         """
-        if not isinstance(expr, TensorProduct) or len(expr.atoms) != 1:
-            raise ValueError("commutator currently supports single-atom expressions")
+        from .expr import replace_index
 
-        atom = expr.atoms[0]
-        tensor_indices = atom.indices
+        if self.christoffel is None:
+            return None
 
-        if idx_a.is_up:
-            idx_a = -idx_a
-        if idx_b.is_up:
-            idx_b = -idx_b
+        free = operand.free_indices
+        if not free:
+            return self.partial_op(deriv_index) * operand
 
-        if self._riemann is None:
-            raise ValueError("Need a Riemann tensor. Call set_riemann().")
+        used = set(i.name for i in free)
+        used.add(deriv_index.name)
+        # Also collect dummy names to avoid clashes
+        if hasattr(operand, 'all_indices'):
+            used.update(i.name for i in operand.all_indices)
 
         terms = []
-        used_names = set(i.name for i in tensor_indices)
-        used_names.add(idx_a.name)
-        used_names.add(idx_b.name)
 
-        for k, idx_k in enumerate(tensor_indices):
-            dummy_name = _fresh_dummy(idx_k.index_type, used_names)
-            used_names.add(dummy_name)
+        # Term 1: partial_c(expr)
+        terms.append(self.partial_op(deriv_index) * operand)
+
+        # Connection terms for each FREE index only
+        Gamma = self.christoffel
+        for idx_k in free:
+            sigma_name = _fresh_dummy(idx_k.index_type, used)
+            used.add(sigma_name)
+            sigma_up = Index(sigma_name, idx_k.index_type, is_up=True)
+            sigma_down = Index(sigma_name, idx_k.index_type, is_up=False)
+
+            replaced = replace_index(operand, idx_k,
+                                     sigma_up if idx_k.is_up else sigma_down)
 
             if idx_k.is_up:
-                dummy_down = Index(dummy_name, idx_k.index_type, is_up=False)
-                dummy_up = Index(dummy_name, idx_k.index_type, is_up=True)
-                r_atom = TensorAtom(self._riemann,
-                                    (idx_k, dummy_down, idx_a, idx_b))
-                new_t_indices = list(tensor_indices)
-                new_t_indices[k] = dummy_up
-                t_atom = TensorAtom(atom.head, tuple(new_t_indices))
-                terms.append(TensorProduct(expr.coeff, (r_atom, t_atom)))
+                gamma = Tensor(Gamma, (idx_k, deriv_index, sigma_down))
+                terms.append(gamma * replaced)
             else:
-                dummy_up = Index(dummy_name, idx_k.index_type, is_up=True)
-                dummy_down = Index(dummy_name, idx_k.index_type, is_up=False)
-                r_atom = TensorAtom(self._riemann,
-                                    (dummy_up, idx_k, idx_a, idx_b))
-                new_t_indices = list(tensor_indices)
-                new_t_indices[k] = dummy_down
-                t_atom = TensorAtom(atom.head, tuple(new_t_indices))
-                terms.append(TensorProduct(-expr.coeff, (r_atom, t_atom)))
+                gamma = Tensor(Gamma, (sigma_up, deriv_index, idx_k))
+                terms.append(sp.S.NegativeOne * gamma * replaced)
 
-        if not terms:
-            return TensorProduct(0, ())
         if len(terms) == 1:
             return terms[0]
-        return TensorSum(tuple(terms))
+        return Sum(tuple(terms))
 
 
-# ── Display helpers for products involving OperatorExpr ───────────────
+# ═════════════════════════════════════════════════════════════════════
+# Application logic
+# ═════════════════════════════════════════════════════════════════════
 
-class _ProductWithOperator(TensorExpr):
-    """Represents op_expr * other_product for display in sums."""
+def _apply_op(op, deriv_index, expr):
+    """Apply operator to expression, respecting special rules."""
+    # Linearity over Sum
+    if isinstance(expr, Sum):
+        return Sum(tuple(_apply_op(op, deriv_index, t) for t in expr.terms))
 
-    def __init__(self, op_expr, other):
-        self.op_expr = op_expr
-        self.other = other
+    # Leibniz over multi-factor Prod
+    if isinstance(expr, Prod) and len(expr.factors) > 1:
+        return op._leibniz(deriv_index, expr)
 
-    @property
-    def free_indices(self):
-        return self.op_expr.free_indices + (self.other.free_indices if hasattr(self.other, 'free_indices') else ())
+    # Check for operator-specific expansion (e.g. D = partial + Gamma)
+    result = op._on_apply(deriv_index, expr)
+    if result is not None:
+        return result
 
-    def __repr__(self):
-        return f"{self.op_expr}*{self.other}"
-
-    def __neg__(self):
-        return _ProductWithOperator(self.op_expr, -self.other)
-
-    def __add__(self, other):
-        left = self._to_sum()
-        if hasattr(other, '_to_sum'):
-            right = other._to_sum()
-        else:
-            return NotImplemented
-        return TensorSum(left.terms + right.terms)
-
-    def __radd__(self, other):
-        if hasattr(other, '_to_sum'):
-            return other.__add__(self)
-        return NotImplemented
-
-    def __sub__(self, other):
-        return self + (-other)
-
-    @property
-    def coeff(self):
-        return getattr(self.other, 'coeff', 1)
-
-    @property
-    def atoms(self):
-        return getattr(self.other, 'atoms', ())
-
-    def _to_sum(self):
-        return TensorSum((self,))
+    # Default: create Apply node
+    return Apply(op, deriv_index, expr)
 
 
-class _ScaledOperator(TensorExpr):
-    """Represents coeff * OperatorExpr."""
-
-    def __init__(self, coeff, op_expr):
-        import sympy as sp
-        self._coeff = sp.sympify(coeff)
-        self.op_expr = op_expr
-
-    @property
-    def free_indices(self):
-        return self.op_expr.free_indices
-
-    def __repr__(self):
-        if self._coeff == 1:
-            return repr(self.op_expr)
-        if self._coeff == -1:
-            return f"-{self.op_expr}"
-        return f"{self._coeff}*{self.op_expr}"
-
-    def __neg__(self):
-        return _ScaledOperator(-self._coeff, self.op_expr)
-
-    def __add__(self, other):
-        left = self._to_sum()
-        if hasattr(other, '_to_sum'):
-            right = other._to_sum()
-        else:
-            return NotImplemented
-        return TensorSum(left.terms + right.terms)
-
-    def __radd__(self, other):
-        if hasattr(other, '_to_sum'):
-            return other.__add__(self)
-        return NotImplemented
-
-    def __sub__(self, other):
-        return self + (-other)
-
-    def __mul__(self, other):
-        import sympy as sp
-        if isinstance(other, (int, float, sp.Basic)):
-            return _ScaledOperator(self._coeff * sp.sympify(other), self.op_expr)
-        if isinstance(other, TensorExpr):
-            return _ProductWithOperator(self.op_expr, other) if self._coeff == 1 else _ProductWithOperator(self.op_expr, self._coeff * other)
-        return NotImplemented
-
-    def __rmul__(self, other):
-        import sympy as sp
-        if isinstance(other, (int, float, sp.Basic)):
-            return _ScaledOperator(self._coeff * sp.sympify(other), self.op_expr)
-        return NotImplemented
-
-    @property
-    def coeff(self):
-        return self._coeff
-
-    @property
-    def atoms(self):
-        return ()
-
-    def _to_sum(self):
-        return TensorSum((self,))
-
-
-# ── Helpers ──────────────────────────────────────────────────────────
+# ═════════════════════════════════════════════════════════════════════
+# Helpers
+# ═════════════════════════════════════════════════════════════════════
 
 def _is_zero(expr):
-    if isinstance(expr, TensorProduct) and expr.coeff == 0:
+    if isinstance(expr, Prod) and expr.coeff == 0:
         return True
-    if isinstance(expr, ScalarExpr) and expr.expr == 0:
+    if isinstance(expr, Scalar) and expr.expr == 0:
         return True
     return False
 

@@ -28,7 +28,7 @@ class MetricTensor:
             TensorSymmetry.fully_symmetric(2)
         )
         self.inv_head = TensorHead(
-            name + '_inv', [index_type, index_type],
+            name, [index_type, index_type],
             TensorSymmetry.fully_symmetric(2)
         )
         self.delta_head = TensorHead(

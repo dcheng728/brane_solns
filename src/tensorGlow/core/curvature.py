@@ -9,9 +9,8 @@ import sympy as sp
 from .index import Index, indices
 from .tensor_head import TensorHead
 from .symmetry import TensorSymmetry
-from .expr import TensorAtom, TensorProduct, TensorSum
+from .expr import Tensor, Prod, Sum, Scalar
 from .metric import MetricTensor
-from .derivative import CovDerivative, PartialDerivative
 from .operator import Partial, CovariantD
 from .derivative import PartialDerivative
 
@@ -34,16 +33,17 @@ class RiemannGeometry:
 
         # Operators (new, first-class)
         self.partial = Partial(index_type)
-        self.D = CovariantD(index_type, metric)
-
-        # Legacy derivative (for formula computation — uses flattened TensorHead)
-        self._partial_legacy = PartialDerivative(index_type, name='partial')
 
         # Christoffel symbol: Gamma^a_{bc}, symmetric in (b,c)
         self.Christoffel = TensorHead(
             'Gamma', [index_type] * 3,
             TensorSymmetry.no_symmetry(3)
         )
+
+        # Covariant derivative: defined from partial + Christoffel
+        self.D = CovariantD(index_type, metric,
+                            christoffel=self.Christoffel,
+                            partial_op=self.partial)
 
         # Riemann tensor: R_{abcd} with Riemann symmetry
         self.Riemann = TensorHead(
@@ -103,14 +103,14 @@ class RiemannGeometry:
         d_down = Index(d_name, self.index_type, is_up=False)
 
         g = self.metric
-        d = self._partial_legacy
+        p = self.partial
 
         # partial_a g_{db}
-        term1 = d(-a, g(-d_down, -b))
+        term1 = p(a) * g(d_down, b)
         # partial_b g_{ad}
-        term2 = d(-b, g(-a, -d_down))
+        term2 = p(b) * g(a, d_down)
         # partial_d g_{ab}
-        term3 = d(-d_down, g(-a, -b))
+        term3 = p(d_down) * g(a, b)
 
         return sp.Rational(1, 2) * g.inv(c, d_up) * (term1 + term2 - term3)
 
@@ -168,12 +168,12 @@ class RiemannGeometry:
         e_down = Index(e_name, self.index_type, is_up=False)
 
         Gamma = self.Christoffel
-        dd = self._partial_legacy
+        p = self.partial
 
         # partial_c Gamma^a_{db}
-        term1 = dd(-c, Gamma(a, -d, -b))
+        term1 = p(-c) * Gamma(a, -d, -b)
         # partial_d Gamma^a_{cb}
-        term2 = dd(-d, Gamma(a, -c, -b))
+        term2 = p(-d) * Gamma(a, -c, -b)
         # Gamma^a_{ce} Gamma^e_{db}
         term3 = Gamma(a, -c, -e_down) * Gamma(e_up, -d, -b)
         # Gamma^a_{de} Gamma^e_{cb}
@@ -194,9 +194,7 @@ class RiemannGeometry:
         dummy = _fresh_name('c', a, b)
         c_up = Index(dummy, self.index_type, is_up=True)
         c_down = Index(dummy, self.index_type, is_up=False)
-        return TensorProduct.from_atom(
-            TensorAtom(self.Riemann, (c_up, a, c_down, b))
-        )
+        return Prod(1, (Tensor(self.Riemann, (c_up, a, c_down, b)),))
 
     def scalar_from_ricci(self):
         r"""Ricci scalar:
