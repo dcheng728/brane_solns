@@ -259,3 +259,130 @@ for block_key, expr in sorted(riemann_blocks.items(), key=lambda x: str(x[0])):
 
 print(f"\n  Others  =  0, or related by R_{{ABCD}} = -R_{{BACD}} = -R_{{ABDC}} = R_{{CDAB}}")
 print()
+
+
+# ═══════════════════════════════════════════════════════════════
+# 3. Evaluate: substitute Gamma → Christoffel formula
+# ═══════════════════════════════════════════════════════════════
+#
+# Replace each abstract Gamma(i,j,k) in a Riemann block with the
+# corresponding decomposed Christoffel expression (in terms of G,
+# G_inv, and partial(G)).  Zero blocks kill the entire product term.
+
+_sub_counter = [0]
+
+def _collect_names(expr):
+    """Collect all index names appearing in an expression."""
+    names = set()
+    if isinstance(expr, Tensor):
+        for idx in expr.indices:
+            names.add(idx.name)
+    elif isinstance(expr, Apply):
+        names.add(expr.deriv_index.name)
+        names |= _collect_names(expr.operand)
+    elif isinstance(expr, Prod):
+        for f in expr.factors:
+            names |= _collect_names(f)
+    elif isinstance(expr, Sum):
+        for t in expr.terms:
+            names |= _collect_names(t)
+    return names
+
+
+def _sub_gamma(gamma_tensor, christoffel_blocks, christoffel_free):
+    """Replace a single Gamma(i,j,k) atom with its Christoffel block.
+
+    Parameters
+    ----------
+    gamma_tensor : Tensor
+        A Gamma atom with child-typed indices.
+    christoffel_blocks : dict
+        block_key → Expr from geom.decompose(christoffel_expr).
+    christoffel_free : tuple of str
+        Free index names in the Christoffel blocks (e.g. ('A','B','C')).
+    """
+    indices = gamma_tensor.indices
+    block_key = tuple(idx.index_type for idx in indices)
+    block = christoffel_blocks.get(block_key)
+    if block is None or _expr_is_zero(block):
+        return Prod(0, ())
+
+    # Rename: map block's free indices → Gamma atom's index names,
+    #         and block's internal dummies → fresh unique names.
+    all_names = _collect_names(block)
+    dummy_names = all_names - set(christoffel_free)
+
+    count = _sub_counter[0]
+    _sub_counter[0] += 1
+
+    rename_map = {}
+    # Free indices: A → gamma_indices[0].name, etc.
+    for fname, idx in zip(christoffel_free, indices):
+        for child in split.children:
+            rename_map[(fname, child)] = idx.name
+    # Dummies: rename to unique names to avoid clashes across products
+    for dname in dummy_names:
+        for child in split.children:
+            rename_map[(dname, child)] = f'_x{count}_{dname}'
+
+    return _bulk_rename(block, rename_map)
+
+
+def sub_christoffel(expr, christoffel_blocks, gamma_head,
+                    christoffel_free=('A', 'B', 'C')):
+    """Substitute all Gamma atoms in expr with Christoffel block expressions.
+
+    Returns an expression in terms of G, G_inv, and partial(G) only.
+    """
+    if isinstance(expr, Sum):
+        return Sum(tuple(
+            sub_christoffel(t, christoffel_blocks, gamma_head, christoffel_free)
+            for t in expr.terms))
+
+    if not isinstance(expr, Prod):
+        return expr
+
+    coeff = expr.coeff
+    remaining = []
+    gamma_subs = []
+
+    for factor in expr.factors:
+        if isinstance(factor, Tensor) and factor.head is gamma_head:
+            sub = _sub_gamma(factor, christoffel_blocks, christoffel_free)
+            if _expr_is_zero(sub):
+                return Prod(0, ())
+            gamma_subs.append(sub)
+        else:
+            remaining.append(factor)
+
+    # Multiply: non-gamma factors * substituted gammas
+    result = Prod(coeff, tuple(remaining)) if remaining else Prod(coeff, ())
+    for sub in gamma_subs:
+        result = result * sub
+    return result
+
+
+# ── Evaluate R_{abcd} ────────────────────────────────────────
+
+print("\n" + "=" * 64)
+print("EVALUATING R_{abcd}  (substituting Gamma -> Christoffel)")
+print("=" * 64)
+
+R_abcd_key = (T, T, T, T)
+R_abcd_raw = riemann_blocks.get(R_abcd_key, Prod(0, ()))
+
+if not _expr_is_zero(R_abcd_raw):
+    R_abcd_eval = sub_christoffel(R_abcd_raw, christoffel_blocks, geom.Christoffel)
+    print(f"\n  raw:")
+    print(f"    R_{{abcd}}  =  {relabel(R_abcd_eval)}")
+
+    # Contract away the metric lowering/raising factors
+    R_abcd_simpl = G.contract_metrics(R_abcd_eval)
+    if isinstance(R_abcd_simpl, Sum):
+        R_abcd_simpl = R_abcd_simpl.collect()
+    print(f"\n  after metric contraction:")
+    print(f"    R_{{abcd}}  =  {relabel(R_abcd_simpl)}")
+else:
+    print(f"\n  R_{{abcd}}  =  0")
+
+print()

@@ -37,15 +37,18 @@ class MetricTensor:
         )
 
     def __call__(self, i, j):
-        """g(a, b) or g(-a, -b)."""
-        return self.head(i, j)
-
-    def inv(self, i, j):
-        """Inverse metric g^{ab}."""
-        return self.inv_head(i, j)
-
-    def delta(self, i, j):
-        """Kronecker delta. Self-contraction delta^a_a returns dim."""
+        """Dispatch on index variance:
+        - g(-a, -b)  → covariant metric $g_{\mu\nu}$
+        - g(a, b)    → inverse metric $g^{\mu\nu}$
+        - g(a, -b) or g(-a, b) → Kronecker delta $\delta^\mu{}_\nu$
+        """
+        both_down = not i.is_up and not j.is_up
+        both_up = i.is_up and j.is_up
+        if both_down:
+            return self.head(i, j)
+        if both_up:
+            return self.inv_head(i, j)
+        # Mixed: one up, one down → Kronecker delta
         if i.matches(j):
             dim = self.index_type.dim
             return ScalarExpr(sp.sympify(dim) if dim is not None else sp.Symbol('D'))
