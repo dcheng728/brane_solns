@@ -154,6 +154,43 @@ def _expr_is_zero(expr):
     return False
 
 
+# ── Symmetry filters: pick one canonical rep per equivalence class ──
+
+_type_rank = {id(L): 0, id(T): 1}
+
+def _tkey(types):
+    """Sortable tuple for a block key."""
+    return tuple(_type_rank[id(t)] for t in types)
+
+
+def _christoffel_is_canonical(key):
+    """Gamma^A_{BC} is symmetric in (B, C).  Keep B <= C."""
+    _, tB, tC = key
+    return _type_rank[id(tB)] <= _type_rank[id(tC)]
+
+
+def _riemann_is_canonical(key):
+    """R_{ABCD} has antisym in (A,B), antisym in (C,D), pair sym (AB)↔(CD).
+
+    Two blocks are "the same component" if related by any of the 8
+    Riemann symmetry permutations (regardless of sign).  Pick the
+    lex-smallest block-key in the orbit as the canonical representative.
+    """
+    t1, t2, t3, t4 = key
+    variants = [
+        (t1, t2, t3, t4),      # identity
+        (t2, t1, t3, t4),      # swap first pair
+        (t1, t2, t4, t3),      # swap second pair
+        (t2, t1, t4, t3),      # swap both pairs
+        (t3, t4, t1, t2),      # pair exchange
+        (t4, t3, t1, t2),      # pair exchange + swap first
+        (t3, t4, t2, t1),      # pair exchange + swap second
+        (t4, t3, t2, t1),      # pair exchange + swap both
+    ]
+    canon = min(variants, key=_tkey)
+    return key == canon
+
+
 def _block_label(types, up_slots=(0,)):
     """Build an index label like R^{m}_{a n p} from child types."""
     L_gen = _name_gen('mnpq')
@@ -192,12 +229,12 @@ christoffel_expr = geom.christoffel_formula(A_up, -B, -C)
 christoffel_blocks = geom.decompose(christoffel_expr)
 
 for block_key, expr in sorted(christoffel_blocks.items(), key=lambda x: str(x[0])):
-    if not _expr_is_zero(expr):
+    if not _expr_is_zero(expr) and _christoffel_is_canonical(block_key):
         label = 'Gamma' + _block_label(list(block_key), up_slots=(0,))
         nice = relabel(expr)
         print(f"\n  {label}  =  {nice}")
 
-print(f"\n  All other blocks  =  0")
+print(f"\n  All other blocks  =  0  (or related by Gamma^A_{{BC}} = Gamma^A_{{CB}})")
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -215,10 +252,10 @@ riemann_expr = geom.riemann_formula(-A, -B, -C, -D)
 riemann_blocks = geom.decompose(riemann_expr)
 
 for block_key, expr in sorted(riemann_blocks.items(), key=lambda x: str(x[0])):
-    if not _expr_is_zero(expr):
+    if not _expr_is_zero(expr) and _riemann_is_canonical(block_key):
         label = 'R' + _block_label(list(block_key), up_slots=())
         nice = relabel(expr)
         print(f"\n  {label}  =  {nice}")
 
-print(f"\n  Odd T^2 index count  =>  0  (block-diagonal + truncation)")
+print(f"\n  Others  =  0, or related by R_{{ABCD}} = -R_{{BACD}} = -R_{{ABDC}} = R_{{CDAB}}")
 print()
