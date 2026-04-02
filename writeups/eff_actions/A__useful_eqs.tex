@@ -1,0 +1,79 @@
+
+
+\section{Useful formulae}
+
+Reference: 1506.06756, 0812.3138
+
+\begin{equation}
+\mathcal{G}_{MN}
+= \begin{pmatrix}
+    g_{mn} & 0 & 0 \\
+    0 & \frac{1}{\tau_2} & \frac{\tau_1}{\tau_2} \\
+    0 & \frac{\tau_1}{\tau_2} & \frac{|\tau|^2}{\tau_2}
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+(\nabla \mathcal{P})_{mn}{}^{pq} \equiv 
+\delta_{[m}^{[p} \nabla_{n]}\mathcal{P}^{q]}
+\end{equation}
+has the same symmetries as the Riemann tensor.
+
+\begin{align}
+\nabla_m\tau_1 &= -2\tau_2 Q_\mu, &
+\nabla_m\tau_2 &= -\tau_2 (\mathcal{P}_m + \bar{\mathcal{P}}_m), &
+Q_m &= \frac{i}{2}(\mathcal{P}_m - \bar{\mathcal{P}}_m)
+\end{align}
+
+\begin{equation}
+\mathcal{P}_m = \frac{i}{2\tau_2} \nabla_m \tau, \quad
+\bar{\mathcal{P}}_m = -\frac{i}{2\tau_2} \nabla_m \bar{\tau}
+\end{equation}
+
+\begin{equation}
+D_m \mathcal{P}_n = \nabla_m \mathcal{P}_n - 2i Q_m \mathcal{P}_n,\quad
+D_m \bar{\mathcal{P}}_n = \nabla_m \bar{\mathcal{P}}_n + 2i Q_m \bar{\mathcal{P}}_n
+\end{equation}
+
+\begin{equation}
+G_3 \equiv \frac{1}{\sqrt{\tau_2}} (F_3 - \tau H_3)
+\end{equation}
+
+\begin{align}
+	t_8 t_8 \left\{ ABCD \right\} := (t_8)^{a_1 \ldots a_8} (t_8)^{b_1 \ldots b_8} A_{a_1 a_2 b_1 b_2} B_{a_3 a_4 b_3 b_4} C_{a_5 a_6 b_5 b_6} D_{a_7 a_8 b_7 b_8} \,,
+\end{align}
+
+\begin{align}
+t_{abcdefgh} M_1^{ab} M_2^{cd} M_3^{ef} M_4^{gh} &= -2\left(\operatorname{tr}M_1 M_2 \operatorname{tr}M_3 M_4 + \operatorname{tr}M_1 M_3 \operatorname{tr}M_2 M_4 + \operatorname{tr}M_1 M_4 \operatorname{tr}M_2 M_3\right) \notag \\
+&\quad + 8\left(\operatorname{tr}M_1 M_2 M_3 M_4 + \operatorname{tr}M_1 M_3 M_2 M_4 + \operatorname{tr}M_1 M_3 M_4 M_2\right), \label{eq:A1}
+\end{align}
+
+\begin{align}
+t_8 t_8 R^4 &= 3 \times 2^7 \Biggl\{
+R_{abef} R^{fg}{}_{cd} R^{dahe} R_{gh}{}^{bc}
++ \frac{1}{2} R_{abef} R^{fgbc} R_{cdgh} R^{heda} \notag \\
+&\quad - \frac{1}{2} R_{abef} R^{efbc} R_{cdgh} R^{dagh}
+- \frac{1}{4} R_{abef} R^{ef}{}_{cd} R^{dagh} R_{gh}{}^{bc} \notag \\
+&\quad + \frac{1}{16} R_{abef} R^{abgh} R_{ghcd} R^{cdef}
++ \frac{1}{32} (R_{abcd} R^{abcd})^2
+\Biggr\}. \label{eq:A2}
+\end{align}
+Another useful identity is
+
+\begin{align}
+t_8 t_8 R^2 S^2 &= 4 R_{abcd} R_{abcd} S_{efgh} S_{efgh}
++ 16 R_{abcd} R_{abef} S_{cdgh} S_{efgh} \\
+&\quad + 8 R_{abcd} R_{efgh} S_{abcd} S_{efgh}
++ 8 R_{abcd} R_{efgh} S_{abef} S_{cdgh} \\
+&\quad - 64 R_{abcd} R_{abce} S_{dfgh} S_{efgh}
+- 32 R_{abcd} R_{abef} S_{cegh} S_{dfgh} \\
+&\quad - 64 R_{abcd} R_{aefg} S_{bhfg} S_{cdeh}
+- 64 R_{abcd} R_{efgh} S_{abce} S_{dfgh} \\
+&\quad - 64 R_{abcd} R_{aefg} S_{bhcd} S_{ehfg}
++ 128 R_{abcd} R_{aecf} S_{bgdh} S_{egfh} \\
+&\quad + 256 R_{abcd} R_{aefg} S_{bhcf} S_{dgeh}
++ 128 R_{abcd} R_{aecf} S_{bgfh} S_{dheg} \\
+&\quad + 64 R_{abcd} R_{efgh} S_{aecg} S_{bfdh}, 
+\label{eq:t8R2S2}
+\end{align}
+
