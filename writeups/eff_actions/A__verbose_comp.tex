@@ -9,7 +9,7 @@ We would like to compute $t_8t_8 R^2 DP D\bar{P}$, using \eqref{eq:t8R2S2}, with
 \right)
 \end{equation}
 
-Using Cadabra, one finds that $t_8 t_8 R^2 DP D\bar{P}$ is the sum of the following terms
+Using Cadabra, one finds that $t_8 t_8 R^2 DP D\bar{P}$ is the sum of the following terms (we have used $P$ to denote the 4-index object $DP$)
 
 \newcommand{\Pbar}{\bar{P}}
 \begin{align}
@@ -185,13 +185,80 @@ Using Cadabra, one finds that $t_8 t_8 R^2 DP D\bar{P}$ is the sum of the follow
 \end{align}
 
 Examining the terms by categorizing them by the contraction structure between $P$ and $\Pbar$.
+For each term the shared dummy indices (those appearing in both $P$ and $\Pbar$) are identified;
+their number and slot positions determine the category.
+Recall: $P$ and $\Pbar$ are antisymmetric under $1\leftrightarrow 2$ and under $3\leftrightarrow 4$ only.
 
-\subsection{$P\cdot \Pbar$}
-This is only T1.
+\subsection{$P\cdot \Pbar$ (all 4 indices contracted)}
+Only T1, give
 
-\subsection{$P_{abm_1m_2}\Pbar_{ab n_1 n_2}$}
-T4, T6, 
+\begin{equation}
+100 (R\cdot R) |P\cdot \bar{P}|^2
+\end{equation}
 
-\subsection{$P_{ab c m_1}\Pbar_{abc n_1 }$}
+\subsection{$P_{abm_1m_2}\Pbar_{ab n_1 n_2}$ (2 indices contracted, forming a complete antisymmetric pair in both)}
 
-\subsection{$P_{a m_1 m_2 m_3}\Pbar_{a n_1 n_2 n_3}$}
+Contribution from T2=T3, T5, T7=T13, T18, T20, T21
+
+One can show that they contribute
+
+\begin{align}
+200(
+    &+P_{m_1 m_2 p_1 p_2} \bar{P}_{m_1 m_2 q_1 q_2}
+    R_{n_1 n_2 p_1 p_2} R_{n_1 n_2 q_1 q_2}\\
+    &-2P_{m_1 m_2 p_1 p_2} \bar{P}_{m_1 m_2 q_1 q_2}
+    R_{n_1 n_2 p_1 q_2} R_{n_1 n_2 q_1 p_2}\\
+    &+P_{p_1 p_2 m_1 m_2} \bar{P}_{q_1 q_2 m_1 m_2}
+    R_{n_1 n_2 p_1 p_2} R_{n_1 n_2 q_1 q_2}\\
+    &-2P_{p_1 p_2 m_1 m_2} \bar{P}_{q_1 q_2 m_1 m_2}
+    R_{n_1 n_2 p_1 q_2} R_{n_1 n_2 q_1 p_2}\\
+    &+16 P_{p_1 m_1 m_2 p_2}\bar{P}_{q_1 m_1 m_2q_2}(R_{n_1 p_1 n_2 p_2}R_{n_1 q_1 n_2 q_2}+R_{n_1 p_1 n_2 q_2}R_{n_1 q_1 n_2 p_2}
+)
+\end{align}
+
+\subsection{$P_{abc m_1}\Pbar_{abc n_1}$ (3 indices contracted)}
+
+T4, T6, T15, T27
+
+One can show that they contribute
+
+\begin{equation}
+-1600(P_{m_1m_2m_3 p}\bar{P}_{m_1 m_2 m_3 q})(R_{n_1 n_2 n_3 p}R_{n_1 n_2 n_3 q})
+\end{equation}
+
+\subsection{$P_{a m_1 m_2 m_3}\Pbar_{a n_1 n_2 n_3}$ (1 index contracted)}
+
+\textbf{T10, T12, T16, T17, T19, T24, T26, T28.}
+
+The single shared index and its slot positions in $(P, \Pbar)$ for each term:
+\begin{itemize}
+  \item T10: $m_4$ at $(P\text{:slot\,4},\,\Pbar\text{:slot\,3})$
+  \item T12: $m_4$ at $(P\text{:slot\,4},\,\Pbar\text{:slot\,3})$
+  \item T16: $m_2$ at $(P\text{:slot\,2},\,\Pbar\text{:slot\,1})$
+  \item T17: $m_2$ at $(P\text{:slot\,2},\,\Pbar\text{:slot\,1})$
+  \item T19: $m_2$ at $(P\text{:slot\,2},\,\Pbar\text{:slot\,1})$
+  \item T24: $m_4$ at $(P\text{:slot\,4},\,\Pbar\text{:slot\,3})$
+  \item T26: $m_4$ at $(P\text{:slot\,4},\,\Pbar\text{:slot\,3})$
+  \item T28: $m_2$ at $(P\text{:slot\,2},\,\Pbar\text{:slot\,1})$
+\end{itemize}
+In all cases the single shared index sits in the \emph{second} slot of one antisymmetric pair
+in $P$ and the \emph{first} slot of the corresponding pair in $\Pbar$; using antisymmetry
+one can always bring it to slot~1 of $P$ at the cost of a sign:
+$P_{*a**} = -P_{a***}$, giving a uniform factor of $(-1)$.
+
+\subsection{$P_{m_1 m_2 m_3 m_4}\Pbar_{n_1 n_2 n_3 n_4}$ (0 indices contracted)}
+
+T8, T9, T11, T14, T22, T23, T25.
+
+One can show that this section reduces to 
+
+\begin{align}
+&200 (P \cdot R)(\Pbar \cdot R)\\
+&+ 200 P_{1234}\Pbar_{1'2'3'4'}
+(R_{123'4'}R_{1'2'34}
+-2R_{1234'}R_{1'2'3'4}
+-2R_{123'4}R_{1'2'34'}
+-2R_{12'34}R_{1'23'4'}
+-2R_{1'234}R_{12'3'4'}\\
+&+8R_{1'23'4}R_{12'34'})
+\end{align}
