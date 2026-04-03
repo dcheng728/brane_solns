@@ -189,12 +189,44 @@ For each term the shared dummy indices (those appearing in both $P$ and $\Pbar$)
 their number and slot positions determine the category.
 Recall: $P$ and $\Pbar$ are antisymmetric under $1\leftrightarrow 2$ and under $3\leftrightarrow 4$ only.
 
-\subsection{$P\cdot \Pbar$ (all 4 indices contracted)}
-Only T1, give
+\subsection{$P_{m_1 m_2 m_3 m_4}\Pbar_{n_1 n_2 n_3 n_4}$ (0 indices contracted)}
 
-\begin{equation}
-100 (R\cdot R) |P\cdot \bar{P}|^2
-\end{equation}
+T8, T9, T11, T14, T22, T23, T25.
+
+One can show that this section reduces to 
+
+\begin{align}
+&200 (P \cdot R)(\Pbar \cdot R)\\
+&+ 200 P_{1234}\Pbar_{1'2'3'4'}
+(R_{123'4'}R_{1'2'34}
+-2R_{1234'}R_{1'2'3'4}
+-2R_{123'4}R_{1'2'34'}
+-2R_{12'34}R_{1'23'4'}
+-2R_{1'234}R_{12'3'4'}\\
+&+8R_{1'23'4}R_{12'34'})
+\end{align}
+
+
+\subsection{$P_{a m_1 m_2 m_3}\Pbar_{a n_1 n_2 n_3}$ (1 index contracted)}
+
+\textbf{T10, T12, T16, T17, T19, T24, T26, T28.}
+
+The single shared index and its slot positions in $(P, \Pbar)$ for each term:
+\begin{itemize}
+  \item T10: $m_4$ at $(P\text{:slot\,4},\,\Pbar\text{:slot\,3})$
+  \item T12: $m_4$ at $(P\text{:slot\,4},\,\Pbar\text{:slot\,3})$
+  \item T16: $m_2$ at $(P\text{:slot\,2},\,\Pbar\text{:slot\,1})$
+  \item T17: $m_2$ at $(P\text{:slot\,2},\,\Pbar\text{:slot\,1})$
+  \item T19: $m_2$ at $(P\text{:slot\,2},\,\Pbar\text{:slot\,1})$
+  \item T24: $m_4$ at $(P\text{:slot\,4},\,\Pbar\text{:slot\,3})$
+  \item T26: $m_4$ at $(P\text{:slot\,4},\,\Pbar\text{:slot\,3})$
+  \item T28: $m_2$ at $(P\text{:slot\,2},\,\Pbar\text{:slot\,1})$
+\end{itemize}
+In all cases the single shared index sits in the \emph{second} slot of one antisymmetric pair
+in $P$ and the \emph{first} slot of the corresponding pair in $\Pbar$; using antisymmetry
+one can always bring it to slot~1 of $P$ at the cost of a sign:
+$P_{*a**} = -P_{a***}$, giving a uniform factor of $(-1)$.
+
 
 \subsection{$P_{abm_1m_2}\Pbar_{ab n_1 n_2}$ (2 indices contracted, forming a complete antisymmetric pair in both)}
 
@@ -218,9 +250,10 @@ One can show that they contribute
 
 And one finds that the terms except for the last one with factor of 16 give 
 
-\begin{equation}
-{}P_{{m_{1}} {m_{2}}} \bar{P}\,_{{m_{6}} {m_{3}}} R_{{m_{1}} {m_{3}} {m_{4}} {m_{5}}} R_{{m_{2}} {m_{6}} {m_{4}} {m_{5}}}+P_{{m_{1}} {m_{2}}} \bar{P}\,_{{m_{5}} {m_{6}}} R_{{m_{1}} {m_{2}} {m_{3}} {m_{4}}} R_{{m_{5}} {m_{6}} {m_{3}} {m_{4}}}-\,P_{{m_{1}} {m_{2}}} \bar{P}\,_{{m_{3}} {m_{6}}} R_{{m_{1}} {m_{3}} {m_{4}} {m_{5}}} R_{{m_{2}} {m_{6}} {m_{4}} {m_{5}}}
-\end{equation}
+\begin{align}
+200(&+P_{{m_{1}} {m_{2}}} \bar{P}\,_{{m_{5}} {m_{6}}} R_{{m_{1}} {m_{2}} {m_{3}} {m_{4}}} R_{{m_{5}} {m_{6}} {m_{3}} {m_{4}}}\\
+&-2P_{{m_{1}} {m_{2}}} \bar{P}\,_{{m_{5}} {m_{6}}} R_{{m_{1}} {m_{5}} {m_{4}} {m_{3}}} R_{{m_{2}} {m_{6}} {m_{4}} {m_{3}}})
+\end{align}
 
 \subsection{$P_{abc m_1}\Pbar_{abc n_1}$ (3 indices contracted)}
 
@@ -232,39 +265,18 @@ One can show that they contribute
 -1600(P_{m_1m_2m_3 p}\bar{P}_{m_1 m_2 m_3 q})(R_{n_1 n_2 n_3 p}R_{n_1 n_2 n_3 q})
 \end{equation}
 
-\subsection{$P_{a m_1 m_2 m_3}\Pbar_{a n_1 n_2 n_3}$ (1 index contracted)}
 
-\textbf{T10, T12, T16, T17, T19, T24, T26, T28.}
-
-The single shared index and its slot positions in $(P, \Pbar)$ for each term:
-\begin{itemize}
-  \item T10: $m_4$ at $(P\text{:slot\,4},\,\Pbar\text{:slot\,3})$
-  \item T12: $m_4$ at $(P\text{:slot\,4},\,\Pbar\text{:slot\,3})$
-  \item T16: $m_2$ at $(P\text{:slot\,2},\,\Pbar\text{:slot\,1})$
-  \item T17: $m_2$ at $(P\text{:slot\,2},\,\Pbar\text{:slot\,1})$
-  \item T19: $m_2$ at $(P\text{:slot\,2},\,\Pbar\text{:slot\,1})$
-  \item T24: $m_4$ at $(P\text{:slot\,4},\,\Pbar\text{:slot\,3})$
-  \item T26: $m_4$ at $(P\text{:slot\,4},\,\Pbar\text{:slot\,3})$
-  \item T28: $m_2$ at $(P\text{:slot\,2},\,\Pbar\text{:slot\,1})$
-\end{itemize}
-In all cases the single shared index sits in the \emph{second} slot of one antisymmetric pair
-in $P$ and the \emph{first} slot of the corresponding pair in $\Pbar$; using antisymmetry
-one can always bring it to slot~1 of $P$ at the cost of a sign:
-$P_{*a**} = -P_{a***}$, giving a uniform factor of $(-1)$.
-
-\subsection{$P_{m_1 m_2 m_3 m_4}\Pbar_{n_1 n_2 n_3 n_4}$ (0 indices contracted)}
-
-T8, T9, T11, T14, T22, T23, T25.
-
-One can show that this section reduces to 
+\subsection{$P\cdot \Pbar$ (all 4 indices contracted)}
+Only T1, give
 
 \begin{align}
-&200 (P \cdot R)(\Pbar \cdot R)\\
-&+ 200 P_{1234}\Pbar_{1'2'3'4'}
-(R_{123'4'}R_{1'2'34}
--2R_{1234'}R_{1'2'3'4}
--2R_{123'4}R_{1'2'34'}
--2R_{12'34}R_{1'23'4'}
--2R_{1'234}R_{12'3'4'}\\
-&+8R_{1'23'4}R_{12'34'})
+&100 (R\cdot R) |P\cdot \bar{P}|^2\\
+&=100(R_{abcd}R^{abcd} \frac{(d-2)}{4}D^m P^n D_m\bar{P}_n +\frac{1}{4}(D_m P^m)^2)\\
+&=200(R_{abcd}R^{abcd}D^m P^n D_m\bar{P}_n)
 \end{align}
+where we have substituted the eqm $D_m P^m=0$ and $d=10$ in the last step.
+To match this with eq B.1 of 1506.06756 we shall multiply $\frac{192}{200}$.
+
+
+
+
