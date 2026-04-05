@@ -18,112 +18,27 @@ Using Cadabra, one finds that
   &=\\
   &+4\,\bar{K}\,_{m n} K^{m n} R_{r s t u} R^{r s t u}\\
   &------------------------------------------------\\
-  &+32\,\bar{K}\,_{s u} K_{m n} R_{r}\,^{s}\,_{t}\,^{u} R^{r m t n}
-  -32\,\bar{K}\,_{u n} K_{m}\,^{n} R_{r s t}\,^{u} R^{r s t m}
-  +96\,\bar{K}\,_{u t} K_{m n} R_{r}\,^{n}\,_{s}\,^{t} R^{r m s u}
-  -16\,\bar{K}\,_{u t} K_{m n} R_{r s}\,^{n t} R^{r s m u}\\
-  &------------------------------------------------\\
-  &+32\,\bar{K}\,_{r t} K_{m n} \bar{P}\,^{s} P^{r} R_{s}\,^{m n t}
-  -32\,\bar{K}\,_{s n} K_{m}\,^{n} \bar{P}\,^{t} P^{r} R_{r}\,^{s}\,_{t}\,^{m}
-  -32\,\bar{K}\,_{s t} K_{m n} \bar{P}\,^{m} P^{r} R_{r}\,^{s n t}
-  +16\,\bar{K}\,_{s t} K_{m n} \bar{P}\,_{r} P^{r} R^{m s n t}\\
-  &-32\,\bar{K}\,_{s t} K_{m n} \bar{P}\,^{r} P^{m} R_{r}\,^{s n t}
-  -32\,\bar{K}\,_{t n} K_{m}\,^{n} \bar{P}\,^{s} P^{r} R_{r}\,^{m}\,_{s}\,^{t}
-  +32\,\bar{K}\,_{t s} K_{m n} \bar{P}\,^{t} P^{r} R_{r}\,^{m n s}\\
-  &------------------------------------------------\\
-  &+16\,\bar{K}\,_{m n} K^{m n} \bar{P}\,_{r} \bar{P}\,_{s} P^{r} P^{s}
-  +16\,\bar{K}\,_{m n} K^{m n} \bar{P}\,_{s} \bar{P}\,^{s} P_{r} P^{r}
-  -16\,\bar{K}\,_{r s} K_{m n} \bar{P}\,^{m} \bar{P}\,^{n} P^{r} P^{s}
-  +32\,\bar{K}\,_{r s} K_{m n} \bar{P}\,^{n} \bar{P}\,^{s} P^{m} P^{r}
-  -16\,\bar{K}\,_{r s} K_{m n} \bar{P}\,^{r} \bar{P}\,^{s} P^{m} P^{n}\\
+  &+32\,\bar{K}\,^{m n} K^{r s} R_{m}\,^{t}\,_{n}\,^{u} R_{r t s u}
+  -32\,\bar{K}\,^{m n} K_{m}\,^{r} R_{n}\,^{s t u} R_{r s t u}
+  +96\,\bar{K}\,^{m n} K^{r s} R_{m}\,^{t}\,_{r}\,^{u} R_{n t s u}
+  -16\,\bar{K}\,^{m n} K^{r s} R_{m r}\,^{t u} R_{n s t u}\\
   &================================================\\
   &\hat{t}_{8} \hat{t}_8\hat{R}^4 \\
   &= \\
-  &+192\,\bar{K}\,^{m n} K_{m n} R_{r s t u} R^{r s t u}\\
+  &+4\,\bar{K}\,^{m n} K_{m n} R_{r s t u} R^{r s t u}\\
   &------------------------------------------------\\
-  &-1536\,\bar{K}\,^{m u} K_{m}\,^{n} R_{n r s t} R_{u}\,^{r s t}
-  +1536\,\bar{K}\,^{s u} K^{m n} R_{m}\,^{r}\,_{s}\,^{t} R_{n t u r}
-  +1536\,\bar{K}\,^{t u} K^{m n} R_{m}\,^{r}\,_{n}\,^{s} R_{t r u s}\\
-  &------------------------------------------------\\
-  &-3072\,\bar{K}\,^{m t} K_{m}\,^{n} \bar{P}\,^{s} P^{r} R_{s r t n}
-  +3072\,\bar{K}\,^{r t} K^{m n} \bar{P}\,^{s} P_{r} R_{s m t n}
-  -3072\,\bar{K}\,^{s t} K^{m n} \bar{P}\,^{r} P_{m} R_{r s n t}
-  -1536\,\bar{K}\,^{s t} K^{m n} \bar{P}\,^{r} P_{r} R_{m s n t}\\
-  &+3072\,\bar{K}\,_{t}\,^{s} K^{m n} \bar{P}\,^{t} P^{r} R_{s m n r}
-  -3072\,\bar{K}\,^{t s} K_{m}\,^{n} \bar{P}\,^{m} P^{r} R_{n s t r}\\
-  &------------------------------------------------\\
-  &-3072\,\bar{K}\,_{m}\,^{r} K^{m n} \bar{P}\,_{s} \bar{P}\,^{s} P_{n} P_{r}
-  -768\,\bar{K}\,^{m n} K_{m n} \bar{P}\,^{r} \bar{P}\,^{s} P_{r} P_{s}
-  +1536\,\bar{K}\,^{m n} K_{m n} \bar{P}\,_{s} \bar{P}\,^{s} P_{r} P^{r}
-  +7680\,\bar{K}\,_{r s} K^{m n} \bar{P}\,^{r} \bar{P}\,^{s} P_{m} P_{n}\\
-  &+1536\,\bar{K}\,^{r s} K_{m n} \bar{P}\,^{m} \bar{P}\,^{n} P_{r} P_{s}
-  +6144\,\bar{K}\,_{s m} K^{m n} \bar{P}\,^{r} \bar{P}\,^{s} P_{n} P_{r}
-  -3072\,\bar{K}\,_{s n} K_{m}\,^{n} \bar{P}\,^{m} \bar{P}\,^{s} P_{r} P^{r}
-  -3072\,\bar{K}\,_{s}\,^{r} K_{m}\,^{n} \bar{P}\,^{m} \bar{P}\,^{s} P_{n} P_{r}\\
-  &================================================\\
-  &+576\,\bar{P}\,^{m} \bar{P}\,^{n} \bar{P}\,^{r} \bar{P}\,^{s} P_{m} P_{n} P_{r} P_{s}
-  -2304\,\bar{P}\,^{m} \bar{P}\,^{n} \bar{P}\,_{s} \bar{P}\,^{s} P_{m} P_{n} P_{r} P^{r}
-  +4608\,\bar{P}\,_{r} \bar{P}\,^{r} \bar{P}\,_{s} \bar{P}\,^{s} P_{m} P^{m} P_{n} P^{n}\\
-  &+1536\,\bar{K}\,_{r s} \bar{K}\,^{r s} K_{m n} K^{m n}\\
-  &------------------------------------------------\\
-  &+480\,\bar{P}\,^{m} \bar{P}\,^{n} P_{m} P_{n} R_{r s t u} R^{r s t u}
-  -3072\,\bar{P}\,^{m} \bar{P}\,^{u} P_{m} P^{n} R_{n r s t} R_{u}\,^{r s t}
-  +768\,\bar{P}\,^{n} \bar{P}\,^{u} P_{m} P^{m} R_{n}\,^{r s t} R_{u r s t}
-  +1536\,\bar{P}\,^{t} \bar{P}\,^{u} P^{m} P^{n} R_{m r n s} R_{t}\,^{r}\,_{u}\,^{s}\\
-  &+1536\,\bar{P}\,^{r} \bar{P}\,^{u} P^{m} P^{n} R_{r}\,^{s}\,_{m}\,^{t} R_{u t n s}
-  -192\,\bar{P}\,_{u} \bar{P}\,^{u} P_{m} P^{m} R_{n r s t} R^{n r s t}
-  +768\,\bar{P}\,_{u} \bar{P}\,^{u} P^{m} P^{n} R_{m}\,^{r s t} R_{n r s t}\\
+  &+32\,\bar{K}\,^{m n} K^{r s} R_{m}\,^{t}\,_{n}\,^{u} R_{r t s u}
+  -32\,\bar{K}\,^{m n} K_{m}\,^{r} R_{n}\,^{s t u} R_{r s t u}
+  +32\,\bar{K}\,^{m n} K^{r s} R_{m}\,^{t}\,_{r}\,^{u} R_{n u s t}\\
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   &================================================\\
-  &\hat{\epsilon}_{12} \hat{\epsilon}_{12}\hat{R}^4 \\
+  &-\hat{\epsilon}_{12} \hat{\epsilon}_{12}\hat{R}^4 \\
   &= \\
-  &-192\,\bar{K}\,^{m n} K_{m n} R_{r s t u} R^{r s t u}\\
-  &+1536\,\bar{K}\,^{m u} K_{m}\,^{n} R_{n r s t} R_{u}\,^{r s t}
-  +768\,\bar{K}\,^{r u} K^{m n} R_{m r}\,^{s t} R_{n u s t}
-  +1536\,\bar{K}\,^{s u} K^{m n} R_{m}\,^{r}\,_{s}\,^{t} R_{n r u t}
-  -1536\,\bar{K}\,^{t u} K^{m n} R_{m}\,^{r}\,_{n}\,^{s} R_{t r u s}\\
-  &+64\,\bar{P}\,^{m} P_{m} R_{n r}\,^{s t} R^{n r u v} R_{u v s t}
-  -256\,\bar{P}\,^{m} P_{m} R_{n}\,^{r}\,_{s}\,^{t} R^{n u s v} R_{u t v r}
-  -768\,\bar{P}\,^{t} P^{m} R_{m n}\,^{r s} R_{t}\,^{n u v} R_{u v r s}\\
-  &+3072\,\bar{P}\,^{t} P^{m} R_{m}\,^{n}\,_{r}\,^{s} R_{t}\,^{u r v} R_{u s v n}
-  +1536\,\bar{P}\,^{n} P^{m} R_{n}\,^{r}\,_{m}\,^{s} R_{r}\,^{t u v} R_{s t u v}\\
-  &-3072\,\bar{K}\,^{m s} K_{m}\,^{n} \bar{P}\,_{t} P_{r} R_{s}\,^{r}\,_{n}\,^{t}
-  -3072\,\bar{K}\,^{m s} K_{m}\,^{n} \bar{P}\,_{t} P_{r} R_{s}\,^{t}\,_{n}\,^{r}
-  -3072\,\bar{K}\,^{r s} K^{m n} \bar{P}\,_{t} P_{r} R_{m s n}\,^{t}
-  +3072\,\bar{K}\,^{r s} K^{m n} \bar{P}\,^{t} P_{m} R_{n r s t}\\
-  &+3072\,\bar{K}\,^{s t} K^{m n} \bar{P}\,_{m} P^{r} R_{n s t r}
-  +1536\,\bar{K}\,^{s t} K^{m n} \bar{P}\,_{r} P^{r} R_{m s n t}
-  -3072\,\bar{K}\,^{t s} K^{m n} \bar{P}\,_{t} P_{r} R_{m s n}\,^{r}\\
-  &-192\,\bar{P}\,^{m} \bar{P}\,_{n} P_{m} P^{n} R_{r s t u} R^{r s t u}
-  -384\,\bar{P}\,^{m} \bar{P}\,^{n} P_{m} P_{n} R_{r s t u} R^{r s t u}
-  +3072\,\bar{P}\,^{m} \bar{P}\,^{u} P_{m} P^{n} R_{n r s t} R_{u}\,^{r s t}
-  -1536\,\bar{P}\,^{m} \bar{P}\,^{u} P_{m} P_{n} R^{n r s t} R_{r u s t}\\
-  &-1536\,\bar{P}\,^{m} \bar{P}\,^{u} P_{m} P^{n} R_{n}\,^{r s t} R_{u r s t}
-  -3072\,\bar{P}\,^{t} \bar{P}\,^{u} P^{m} P^{n} R_{m r n s} R_{t}\,^{r}\,_{u}\,^{s}
-  +3072\,\bar{P}\,^{t} \bar{P}\,_{u} P^{m} P_{n} R_{m r s}\,^{n} R_{t}\,^{r s u}
-  +1536\,\bar{P}\,^{r} \bar{P}\,_{u} P^{m} P_{n} R_{r m}\,^{s t} R_{s t}\,^{n u}\\
-  &+3072\,\bar{P}\,^{r} \bar{P}\,_{u} P^{m} P_{n} R_{r}\,^{s}\,_{m}\,^{t} R_{s}\,^{n}\,_{t}\,^{u}
-  +1536\,\bar{P}\,^{r} \bar{P}\,^{u} P^{m} P^{n} R_{r m}\,^{s t} R_{u n s t}
-  -3072\,\bar{P}\,^{r} \bar{P}\,^{u} P^{m} P^{n} R_{r}\,^{s}\,_{m}\,^{t} R_{s n t u}
-  -3072\,\bar{P}\,^{r} \bar{P}\,^{u} P^{m} P^{n} R_{r}\,^{s}\,_{m}\,^{t} R_{s u t n}\\
-  &+3072\,\bar{P}\,^{r} \bar{P}\,^{u} P^{m} P^{n} R_{r}\,^{s}\,_{m}\,^{t} R_{u s n t}
-  -1536\,\bar{P}\,_{u} \bar{P}\,^{u} P^{m} P^{n} R_{m}\,^{r s t} R_{n r s t}
-  -1536\,\bar{P}\,_{u} \bar{P}\,^{u} P^{m} P^{n} R_{m}\,^{r s t} R_{r n s t}\\
-  &+768\,\bar{K}\,^{m n} K_{m n} \bar{P}\,_{r} \bar{P}\,_{s} P^{r} P^{s}
-  +1536\,\bar{K}\,^{m n} K_{m n} \bar{P}\,_{s} \bar{P}\,^{s} P_{r} P^{r}
-  -3072\,\bar{K}\,^{m r} K_{m}\,^{n} \bar{P}\,_{s} \bar{P}\,^{s} P_{n} P_{r}
-  -3072\,\bar{K}\,^{m s} K_{m}\,^{n} \bar{P}\,_{n} \bar{P}\,_{s} P_{r} P^{r}\\
-  &-1536\,\bar{K}\,^{r s} K^{m n} \bar{P}\,_{m} \bar{P}\,_{n} P_{r} P_{s}
-  +1536\,\bar{K}\,^{r s} K^{m n} \bar{P}\,_{n} \bar{P}\,_{s} P_{m} P_{r}
-  -1536\,\bar{K}\,^{r s} K^{m n} \bar{P}\,_{r} \bar{P}\,_{s} P_{m} P_{n}
-  +1536\,\bar{K}\,^{s r} K^{m n} \bar{P}\,_{n} \bar{P}\,_{s} P_{m} P_{r}\\
-  &+6144\,\bar{P}\,^{m} \bar{P}\,_{s} \bar{P}\,_{t} P_{m} P_{n} P_{r} R^{n s r t}
-  -1536\,\bar{P}\,^{m} \bar{P}\,^{s} \bar{P}\,_{t} P_{m} P^{n} P_{r} R_{n s}\,^{r t}
-  +3072\,\bar{P}\,^{m} \bar{P}\,^{s} \bar{P}\,^{t} P_{m} P^{n} P^{r} R_{s n r t}\\
-  &+1280\,\bar{P}\,^{m} \bar{P}\,_{n} \bar{P}\,_{r} \bar{P}\,_{s} P_{m} P^{n} P^{r} P^{s}
-  -3072\,\bar{P}\,^{m} \bar{P}\,_{n} \bar{P}\,_{s} \bar{P}\,^{s} P_{m} P^{n} P_{r} P^{r}
-  -1536\,\bar{P}\,^{m} \bar{P}\,^{n} \bar{P}\,_{r} \bar{P}\,_{s} P_{m} P_{n} P^{r} P^{s}
-  +1536\,\bar{P}\,_{n} \bar{P}\,_{r} \bar{P}\,_{s} \bar{P}\,^{s} P_{m} P^{m} P^{n} P^{r}
+  &+4\,\bar{K}\,^{m n} K_{m n} R_{r s t u} R^{r s t u}\\
+  &+32\,\bar{K}\,^{m n} K^{r s} R_{m}\,^{t}\,_{n}\,^{u} R_{r t s u}
+  -32\,\bar{K}\,^{m n} K_{m}\,^{r} R_{n}\,^{s t u} R_{r s t u}
+  -32\,\bar{K}\,^{m n} K^{r s} R_{m}\,^{t}\,_{r}\,^{u} R_{n t s u}
+  -16\,\bar{K}\,^{m n} K^{r s} R_{m r}\,^{t u} R_{n s t u}
 \end{aligned}
 \end{equation}
 
