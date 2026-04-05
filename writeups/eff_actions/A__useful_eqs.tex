@@ -19,11 +19,12 @@ Reference: 1506.06756, 0812.3138
 \end{equation}
 has the same symmetries as the Riemann tensor.
 
-\begin{align}
-\nabla_m\tau_1 &= -2\tau_2 Q_\mu, &
-\nabla_m\tau_2 &= -\tau_2 (\mathcal{P}_m + \bar{\mathcal{P}}_m), &
-Q_m &= \frac{i}{2}(\mathcal{P}_m - \bar{\mathcal{P}}_m)
-\end{align}
+\begin{equation}
+\nabla_m\tau_1 = -2\tau_2 Q_m, \quad
+\nabla_m\tau_2 = -\tau_2 (\mathcal{P}_m + \bar{\mathcal{P}}_m), \quad
+Q_m = \frac{i}{2}(\mathcal{P}_m - \bar{\mathcal{P}}_m)
+=-\frac{\nabla_m\tau_1}{2\tau_2}
+\end{equation}
 
 \begin{equation}
 \mathcal{P}_m = \frac{i}{2\tau_2} \nabla_m \tau, \quad
@@ -31,8 +32,15 @@ Q_m &= \frac{i}{2}(\mathcal{P}_m - \bar{\mathcal{P}}_m)
 \end{equation}
 
 \begin{equation}
-D_m \mathcal{P}_n = \nabla_m \mathcal{P}_n - 2i Q_m \mathcal{P}_n,\quad
-D_m \bar{\mathcal{P}}_n = \nabla_m \bar{\mathcal{P}}_n + 2i Q_m \bar{\mathcal{P}}_n
+D_m \mathcal{P}_n
+= \nabla_m \mathcal{P}_n - 2i Q_m \mathcal{P}_n
+= 2\mathcal{P}_m \mathcal{P}_n + \frac{i}{2\tau_2} \nabla_m \nabla_n \tau
+\end{equation}
+
+\begin{equation}
+D_m \bar{\mathcal{P}}_n
+= \nabla_m \bar{\mathcal{P}}_n + 2i Q_m \bar{\mathcal{P}}_n
+= 2\bar{\mathcal{P}}_m \bar{\mathcal{P}}_n - \frac{i}{2\tau_2} \nabla_m \nabla_n \bar{\tau}
 \end{equation}
 
 \begin{equation}
