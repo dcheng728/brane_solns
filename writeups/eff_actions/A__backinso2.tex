@@ -12,10 +12,20 @@ So here is the strategy:
 
 \begin{align}
 L_{\text{4-pt}}^{(3)}&=\alpha\, f_{0}(\tau,\bar{\tau})\biggl\{\left(t_{8}t_{8}-\tfrac{1}{4}\epsilon_{8}\epsilon_{8}\right)\biggl[R^4+6R^{2}\left(4|DP|^{2}+|\nabla G_{3}|^{2}\right)+24|DP|^{2}|\nabla G_{3}|^{2}\\[0.4em]
-&\quad+12R\left(DP(\nabla\overline{G}_{3})^{2}+\overline{DP}(\nabla{G}_{3})^{2}\right)\biggr] O_{1}\left((|DP|^{2})^{2}\right)+O_{2}\left((|\nabla G_{3}|^{2})^{2}\right)
+&\quad+12R\left(DP(\nabla\overline{G}_{3})^{2}+\overline{DP}(\nabla{G}_{3})^{2}\right)\biggr] +O_{1}\left((|DP|^{2})^{2}\right)+O_{2}\left((|\nabla G_{3}|^{2})^{2}\right)
 \biggr\}
 \label{eq:PTaction}
 \end{align}
+
+Here $O_1$ is meant to represent $1536 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)$.
+First note that, in complex coordinates, the only component of the 12d Riemann tensor that contains terms of the form $DP$ is $R_{mznz} = \frac{1}{2}D_m P_n$.
+In complex coordinates we have $g_{z\bar{z}} = \tfrac12$, and $g^{z\bar{z}} = 2$, so we can in fact write
+\begin{equation}
+1536 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s) = 1536 R_{mznz} R_{m'z n' z} R_{r\bar{z}s\bar{z}} R_{r'\bar{z}s'\bar{z}} g^{mm'} g^{nn'} g^{rr'} g^{ss'} (g^{z\bar{z}})^4.
+\end{equation}
+
+
+Let us evaluate it and determine it purely in terms of $\tau_1, \tau_2$
 
 First of all, given $G_3 = \frac{1}{\sqrt{\tau_2}}(F_3-\tau H_3)$, we have that $DG_3 = \nabla G_3 - iQ G_3$, which can be evaluated to
 
@@ -148,47 +158,26 @@ And we evaluate that $a$ for rows and $b$ for columns, we have
 \end{pmatrix}
 \end{equation}
 
-and we also find
+The components of $R_{manb}$ are
 \begin{equation}
 \begin{aligned}
-&\Gamma^a{}_{cn}\Gamma^c{}_{bm}\\
-&=\frac{1}{4\tau_2^4}\begin{pmatrix}
-    \tau_2^2\,\nabla_m\tau_1\,\nabla_n\tau_1 + \tau_1\tau_2(\nabla_m\tau_2\,\nabla_n\tau_1 - \nabla_m\tau_1\,\nabla_n\tau_2) + \tau_2^2\,\nabla_m\tau_2\,\nabla_n\tau_2 & |\tau|^2\tau_2(\nabla_m\tau_2\,\nabla_n\tau_1 - \nabla_m\tau_1\,\nabla_n\tau_2) \\
-    \tau_2(\nabla_m\tau_1\,\nabla_n\tau_2 - \nabla_m\tau_2\,\nabla_n\tau_1) & \tau_2^2\,\nabla_m\tau_1\,\nabla_n\tau_1 + \tau_1\tau_2(\nabla_m\tau_1\,\nabla_n\tau_2 - \nabla_m\tau_2\,\nabla_n\tau_1) + \tau_2^2\,\nabla_m\tau_2\,\nabla_n\tau_2
-\end{pmatrix}
+R_{m1n1} &= \frac{1}{2\tau_2^2}\nabla_m\nabla_n\tau_2 + \frac{1}{4\tau_2^3}\nabla_m\tau_1\,\nabla_n\tau_1 - \frac{3}{4\tau_2^3}\nabla_m\tau_2\,\nabla_n\tau_2\\
+R_{m1n2} &= -\frac{1}{2\tau_2}\nabla_m\nabla_n\tau_1 + \frac{\tau_1}{2\tau_2^2}\nabla_m\nabla_n\tau_2 + \frac{\tau_1}{4\tau_2^3}\nabla_m\tau_1\,\nabla_n\tau_1 + \frac{3}{4\tau_2^2}\nabla_m\tau_1\,\nabla_n\tau_2 + \frac{1}{4\tau_2^2}\nabla_m\tau_2\,\nabla_n\tau_1 - \frac{3\tau_1}{4\tau_2^3}\nabla_m\tau_2\,\nabla_n\tau_2\\
+R_{m2n2} &= -\frac{\tau_1}{\tau_2}\nabla_m\nabla_n\tau_1 + \frac{\tau_1^2-\tau_2^2}{2\tau_2^2}\nabla_m\nabla_n\tau_2 + \frac{\tau_1^2-3\tau_2^2}{4\tau_2^3}\nabla_m\tau_1\,\nabla_n\tau_1 + \frac{2\tau_1}{\tau_2^2}\nabla_{(m}\tau_1\,\nabla_{n)}\tau_2 + \frac{\tau_2^2-3\tau_1^2}{4\tau_2^3}\nabla_m\tau_2\,\nabla_n\tau_2
 \end{aligned}
 \end{equation}
-From this we can compute $\Gamma_{acn}\Gamma^{c}{}_{bm} = g_{ad}\Gamma^d{}_{cn}\Gamma^c{}_{bm}$:
-\begin{equation}
-\begin{aligned}
-&\Gamma_{acn}\Gamma^{c}{}_{bm}\\
-&=\frac{1}{4\tau_2^3}\begin{pmatrix}
-    \nabla_m\tau_1\,\nabla_n\tau_1 + \nabla_m\tau_2\,\nabla_n\tau_2 & \tau_1(\nabla_m\tau_1\,\nabla_n\tau_1 + \nabla_m\tau_2\,\nabla_n\tau_2) + \tau_2(\nabla_m\tau_2\,\nabla_n\tau_1 - \nabla_m\tau_1\,\nabla_n\tau_2) \\
-    \tau_1(\nabla_m\tau_1\,\nabla_n\tau_1 + \nabla_m\tau_2\,\nabla_n\tau_2) + \tau_2(\nabla_m\tau_1\,\nabla_n\tau_2 - \nabla_m\tau_2\,\nabla_n\tau_1) & |\tau|^2(\nabla_m\tau_1\,\nabla_n\tau_1 + \nabla_m\tau_2\,\nabla_n\tau_2)
-\end{pmatrix}
-\end{aligned}
-\end{equation}
-We can also evaluate $\nabla_n \Gamma^a{}_{bm}$:
-\begin{equation}
-\begin{aligned}
-g_{ad}\nabla_n\Gamma^{d}{}_{bm}
-= \;&\frac{1}{2\tau_2^2}\begin{pmatrix}
-    -\nabla_n\nabla_m\tau_2 & \tau_2\nabla_n\nabla_m\tau_1 - \tau_1\nabla_n\nabla_m\tau_2 \\
-    \tau_2\nabla_n\nabla_m\tau_1 - \tau_1\nabla_n\nabla_m\tau_2 & 2\tau_1\tau_2\nabla_n\nabla_m\tau_1 + (\tau_2^2-\tau_1^2)\nabla_n\nabla_m\tau_2
-\end{pmatrix}\\[6pt]
-+\;&\frac{1}{2\tau_2^3}\begin{pmatrix}
-    -\nabla_m\tau_1\,\nabla_n\tau_1 + \nabla_m\tau_2\,\nabla_n\tau_2 & -\tau_1\nabla_m\tau_1\,\nabla_n\tau_1 - 2\tau_2\nabla_m\tau_2\,\nabla_n\tau_1 + \tau_1\nabla_m\tau_2\,\nabla_n\tau_2 \\
-    -\tau_1\nabla_m\tau_1\,\nabla_n\tau_1 - 2\tau_2\nabla_m\tau_1\,\nabla_n\tau_2 + \tau_1\nabla_m\tau_2\,\nabla_n\tau_2 & (\tau_2^2{-}\tau_1^2)\nabla_m\tau_1\,\nabla_n\tau_1 - 2\tau_1\tau_2(\nabla_m\tau_1\,\nabla_n\tau_2{+}\nabla_m\tau_2\,\nabla_n\tau_1) + (\tau_1^2{-}\tau_2^2)\nabla_m\tau_2\,\nabla_n\tau_2
-\end{pmatrix}
-\end{aligned}
-\end{equation}
-and we find $R_{ambn} = - \nabla_n\Gamma^a{}_{bm} - \Gamma^a{}_{cn}\Gamma^c{}_{bm}$:
+cleaning up
+\begin{align}
+R_{1m1n} &= \phantom{-\frac{\tau_1}{\tau_2}\nabla_m\nabla_n\tau_1 +{}} \frac{1}{2\tau_2^2}\nabla_m\nabla_n\tau_2 &+& \frac{1}{4\tau_2^3}\nabla_m\tau_1\nabla_n\tau_1 &&& -\frac{3}{4\tau_2^3}\nabla_m\tau_2\nabla_n\tau_2 \\[6pt]
+R_{1m2n} &= -\frac{1}{2\tau_2}\nabla_m\nabla_n\tau_1 + \frac{\tau_1}{2\tau_2^2}\nabla_m\nabla_n\tau_2 &+& \frac{\tau_1}{4\tau_2^3}\nabla_m\tau_1\nabla_n\tau_1 &+\frac{1}{4\tau_2^2}\nabla_m\tau_1\nabla_n\tau_2 +\frac{3}{4\tau_2^2}\nabla_m\tau_2\nabla_n\tau_1& &-\frac{3\tau_1}{4\tau_2^3}\nabla_m\tau_2\nabla_n\tau_2 \\[6pt]
+R_{2m1n} &= -\frac{1}{2\tau_2}\nabla_m\nabla_n\tau_1 + \frac{\tau_1}{2\tau_2^2}\nabla_m\nabla_n\tau_2 &+& \frac{\tau_1}{4\tau_2^3}\nabla_m\tau_1\nabla_n\tau_1 &+\frac{3}{4\tau_2^2}\nabla_m\tau_1\nabla_n\tau_2 +\frac{1}{4\tau_2^2}\nabla_m\tau_2\nabla_n\tau_1& &-\frac{3\tau_1}{4\tau_2^3}\nabla_m\tau_2\nabla_n\tau_2 \\[6pt]
+R_{2m2n} &= -\frac{\tau_1}{\tau_2}\nabla_m\nabla_n\tau_1 + \frac{\tau_1^2-\tau_2^2}{2\tau_2^2}\nabla_m\nabla_n\tau_2 &+& \frac{\tau_1^2-3\tau_2^2}{4\tau_2^3}\nabla_m\tau_1\nabla_n\tau_1 &+\frac{\tau_1}{\tau_2^2}\nabla_m\tau_1\nabla_n\tau_2 +\frac{\tau_1}{\tau_2^2}\nabla_m\tau_2\nabla_n\tau_1& &+\frac{\tau_2^2-3\tau_1^2}{4\tau_2^3}\nabla_m\tau_2\nabla_n\tau_2
+\end{align}
 
-\begin{equation}
-\begin{aligned}
-R_{10,m,10,n} &= \frac{1}{2\tau_2^2}\nabla_n\nabla_m\tau_2 + \frac{1}{4\tau_2^3}\nabla_m\tau_1\,\nabla_n\tau_1 - \frac{3}{4\tau_2^3}\nabla_m\tau_2\,\nabla_n\tau_2 \\[4pt]
-R_{10,m,11,n} &= -\frac{1}{2\tau_2}\nabla_n\nabla_m\tau_1 + \frac{\tau_1}{2\tau_2^2}\nabla_n\nabla_m\tau_2 + \frac{\tau_1}{4\tau_2^3}\nabla_m\tau_1\,\nabla_n\tau_1 + \frac{1}{4\tau_2^2}\nabla_m\tau_1\,\nabla_n\tau_2 + \frac{3}{4\tau_2^2}\nabla_m\tau_2\,\nabla_n\tau_1 - \frac{3\tau_1}{4\tau_2^3}\nabla_m\tau_2\,\nabla_n\tau_2 \\[4pt]
-R_{11,m,10,n} &= -\frac{1}{2\tau_2}\nabla_n\nabla_m\tau_1 + \frac{\tau_1}{2\tau_2^2}\nabla_n\nabla_m\tau_2 + \frac{\tau_1}{4\tau_2^3}\nabla_m\tau_1\,\nabla_n\tau_1 + \frac{3}{4\tau_2^2}\nabla_m\tau_1\,\nabla_n\tau_2 + \frac{1}{4\tau_2^2}\nabla_m\tau_2\,\nabla_n\tau_1 - \frac{3\tau_1}{4\tau_2^3}\nabla_m\tau_2\,\nabla_n\tau_2 \\[4pt]
-R_{11,m,11,n} &= -\frac{\tau_1}{\tau_2}\nabla_n\nabla_m\tau_1 + \frac{\tau_1^2-\tau_2^2}{2\tau_2^2}\nabla_n\nabla_m\tau_2 + \frac{\tau_1^2-3\tau_2^2}{4\tau_2^3}\nabla_m\tau_1\,\nabla_n\tau_1 + \frac{\tau_1}{\tau_2^2}(\nabla_m\tau_1\,\nabla_n\tau_2 + \nabla_m\tau_2\,\nabla_n\tau_1) + \frac{\tau_2^2-3\tau_1^2}{4\tau_2^3}\nabla_m\tau_2\,\nabla_n\tau_2
-\end{aligned}
-\end{equation}
+We find the trace is $g^{ab} R_{ambn} = -\frac{1}{2\tau_2^2}(\nabla_m \tau_1 \nabla_n \tau_1 + \nabla_m \tau_2 \nabla_n\tau_2)$.
+
+The antisymmetric part is $\frac{1}{2}(R_{1m2n} - R_{2m1n})
+= -\frac{1}{4\tau_2^2}(\nabla_m\tau_1 \nabla_n\tau_2 - \nabla_m\tau_2 \nabla_n\tau_1)
+$.
+
+The symmetric traceless part is given by $S_{ambn} \equiv \frac{R_{ambn} + R_{bman}}{2} - \frac{g^{cd}R_{cmdn}}{2} g_{ab}$, which evaluates to
