@@ -1,0 +1,98 @@
+\section{Back to SO(2)}
+The complete 4-point effective action is already known, but it is commonly written in U(1) covariant form, which makes the 2x2 torus metric a little obscure, so we may try to put it back to SO(2) form.
+
+So here is the strategy:
+\begin{itemize}
+    \item write everything in the known 4-pt effective action in SO(2) rather than U(1), as in with $F_3, H_4, \tau_1, \tau_2$ rather than $G_3, \mathcal{P}_m, Q_m$; We don't need to use $C, e^{-\Phi}$ because we are already familiar with the metric with $\tau_1, \tau_2$ in SO(2) form.
+    \item substitute in metric on the 2x2 torus $M^{ab}$ for $\tau_1, \tau_2$. Note that $M^{11} = \frac{|\tau|^2}{\tau_2}, M^{12} = -\frac{\tau_1}{\tau_2}, M^{22} = \frac{1}{\tau_2}$.
+    \item see if there is a 12d interpretation
+\end{itemize}
+
+
+
+\begin{align}
+L_{\text{4-pt}}^{(3)}&=\alpha\, f_{0}(\tau,\bar{\tau})\biggl\{\left(t_{8}t_{8}-\tfrac{1}{4}\epsilon_{8}\epsilon_{8}\right)\biggl[R^4+6R^{2}\left(4|DP|^{2}+|\nabla G_{3}|^{2}\right)+24|DP|^{2}|\nabla G_{3}|^{2}\\[0.4em]
+&\quad+12R\left(DP(\nabla\overline{G}_{3})^{2}+\overline{DP}(\nabla{G}_{3})^{2}\right)\biggr] O_{1}\left((|DP|^{2})^{2}\right)+O_{2}\left((|\nabla G_{3}|^{2})^{2}\right)
+\biggr\}
+\label{eq:PTaction}
+\end{align}
+
+First of all, given $G_3 = \frac{1}{\sqrt{\tau_2}}(F_3-\tau H_3)$, we have that $DG_3 = \nabla G_3 - iQ G_3$, which can be evaluated to
+
+\begin{align}
+D_m G_3 &= \mathcal{P}_m G_3 + \frac{\nabla_m(F_3 - \tau H_3)}{\sqrt{\tau_2}} \nonumber\
+&= \mathcal{P}_m G_3 + \frac{1}{\sqrt{\tau_2}}\bigl(\nabla_m F_3 - \tau\,\nabla_m H_3 + 2i\tau_2\,\mathcal{P}_m H_3\bigr)
+\end{align}
+
+as well as
+
+
+% just give me the simplest thing that works:
+
+
+```latex
+\begin{align}
+|D_m G_{3,npq}|^2
+&= \frac{(\nabla_m F_{3,npq}-\tau\,\nabla_m H_{3,npq})(\nabla_{m'}F_{3,n'p'q'}-\bar{\tau}\,\nabla_{m'}H_{3,n'p'q'})}{\tau_2} \nonumber\\
+&\quad+ \frac{\mathcal{P}_m\bar{G}_{3,npq}(\nabla_{m'}F_{3,n'p'q'}-\bar{\tau}\,\nabla_{m'}H_{3,n'p'q'})
++ \bar{\mathcal{P}}_{m'}G_{3,n'p'q'}(\nabla_m F_{3,npq}-\tau\,\nabla_m H_{3,npq})}{\sqrt{\tau_2}} \nonumber\\
+&\quad+ \mathcal{P}_m\bar{\mathcal{P}}_{m'}\,\bar{G}_{3,npq}\,G_{3,n'p'q'} \nonumber\\[0.4em]
+&= \frac{(\nabla_m F_{3,npq}-\tau_1\nabla_m H_{3,npq})(\nabla_{m'}F_{3,n'p'q'}-\tau_1\nabla_{m'}H_{3,n'p'q'})
++\tau_2^2\,\nabla_m H_{3,npq}\,\nabla_{m'}H_{3,n'p'q'}}{\tau_2} \nonumber\\
+&\quad+ \frac{\mathcal{P}_m\bar{G}_{3,npq}(\nabla_{m'}F_{3,n'p'q'}-\bar{\tau}\,\nabla_{m'}H_{3,n'p'q'})
++\bar{\mathcal{P}}_{m'}G_{3,n'p'q'}(\nabla_m F_{3,npq}-\tau\,\nabla_m H_{3,npq})}{\sqrt{\tau_2}} \nonumber\\
+&\quad+ \mathcal{P}_m\bar{\mathcal{P}}_{m'}\,\bar{G}_{3,npq}\,G_{3,n'p'q'} \nonumber\\[0.4em]
+&= \frac{1}{\tau_2}\biggl[
+\Bigl(\nabla_m F_{3,npq} - \tau_1\nabla_m H_{3,npq}
+- \frac{(F_3-\tau_1 H_3)_{npq}\,\nabla_m\tau_2 + \tau_2\,H_{3,npq}\,\nabla_m\tau_1}{2\tau_2}\Bigr) \nonumber\\
+&\qquad\quad\times
+\Bigl(\nabla_{m'}F_{3,n'p'q'} - \tau_1\nabla_{m'}H_{3,n'p'q'}
+- \frac{(F_3-\tau_1 H_3)_{n'p'q'}\,\nabla_{m'}\tau_2 + \tau_2\,H_{3,n'p'q'}\,\nabla_{m'}\tau_1}{2\tau_2}\Bigr) \nonumber\\
+&\qquad+
+\Bigl(\tau_2\,\nabla_m H_{3,npq}
+- \frac{(F_3-\tau_1 H_3)_{npq}\,\nabla_m\tau_1 - \tau_2\,H_{3,npq}\,\nabla_m\tau_2}{2\tau_2}\Bigr) \nonumber\\
+&\qquad\quad\times
+\Bigl(\tau_2\,\nabla_{m'}H_{3,n'p'q'}
+- \frac{(F_3-\tau_1 H_3)_{n'p'q'}\,\nabla_{m'}\tau_1 - \tau_2\,H_{3,n'p'q'}\,\nabla_{m'}\tau_2}{2\tau_2}\Bigr)\\
+&= \frac{1}{\tau_2}\,\nabla_m F_{3,npq}\,\nabla_{m'} F_{3,n'p'q'}
+  - \frac{\tau_1}{\tau_2}\bigl(\nabla_m F_{3,npq}\,\nabla_{m'} H_{3,n'p'q'}
+  + \nabla_m H_{3,npq}\,\nabla_{m'} F_{3,n'p'q'}\bigr)
+  + \frac{|\tau|^2}{\tau_2}\,\nabla_m H_{3,npq}\,\nabla_{m'} H_{3,n'p'q'}
+\nonumber\\
+%%% --- cross terms: (flux derivative) x (nabla tau) ---
+&\quad - \frac{1}{2\tau_2^2}\bigl(
+  \nabla_m F_{3,npq}\,(F_3{-}\tau_1 H_3)_{n'p'q'}\,\nabla_{m'}\tau_2
+  + (F_3{-}\tau_1 H_3)_{npq}\,\nabla_m\tau_2\,\nabla_{m'} F_{3,n'p'q'}\bigr)
+\nonumber\\
+&\quad - \frac{1}{2\tau_2}\bigl(
+  \nabla_m F_{3,npq}\,H_{3,n'p'q'}\,\nabla_{m'}\tau_1
+  + H_{3,npq}\,\nabla_m\tau_1\,\nabla_{m'} F_{3,n'p'q'}\bigr)
+\nonumber\\
+&\quad + \frac{\tau_1}{2\tau_2^2}\bigl(
+  \nabla_m H_{3,npq}\,(F_3{-}\tau_1 H_3)_{n'p'q'}\,\nabla_{m'}\tau_2
+  + (F_3{-}\tau_1 H_3)_{npq}\,\nabla_m\tau_2\,\nabla_{m'} H_{3,n'p'q'}\bigr)
+\nonumber\\
+&\quad + \frac{\tau_1}{2\tau_2}\bigl(
+  \nabla_m H_{3,npq}\,H_{3,n'p'q'}\,\nabla_{m'}\tau_1
+  + H_{3,npq}\,\nabla_m\tau_1\,\nabla_{m'} H_{3,n'p'q'}\bigr)
+\nonumber\\
+&\quad - \frac{1}{2\tau_2}\bigl(
+  \nabla_m H_{3,npq}\,(F_3{-}\tau_1 H_3)_{n'p'q'}\,\nabla_{m'}\tau_1
+  + (F_3{-}\tau_1 H_3)_{npq}\,\nabla_m\tau_1\,\nabla_{m'} H_{3,n'p'q'}\bigr)
+\nonumber\\
+&\quad + \frac{1}{2}\bigl(
+  \nabla_m H_{3,npq}\,H_{3,n'p'q'}\,\nabla_{m'}\tau_2
+  + H_{3,npq}\,\nabla_m\tau_2\,\nabla_{m'} H_{3,n'p'q'}\bigr)
+\nonumber\\
+%%% --- (nabla tau)^2 terms ---
+&\quad + \frac{(F_3{-}\tau_1 H_3)_{npq}\,(F_3{-}\tau_1 H_3)_{n'p'q'}}{4\tau_2^3}
+  \bigl(\nabla_m\tau_1\,\nabla_{m'}\tau_1 + \nabla_m\tau_2\,\nabla_{m'}\tau_2\bigr)
+\nonumber\\
+&\quad + \frac{H_{3,npq}\,H_{3,n'p'q'}}{4\tau_2}
+  \bigl(\nabla_m\tau_1\,\nabla_{m'}\tau_1 + \nabla_m\tau_2\,\nabla_{m'}\tau_2\bigr)
+\nonumber\\
+&\quad + \frac{F_{3,npq}\,H_{3,n'p'q'} - H_{3,npq}\,F_{3,n'p'q'}}{4\tau_2^2}
+  \bigl(\nabla_m\tau_2\,\nabla_{m'}\tau_1 - \nabla_m\tau_1\,\nabla_{m'}\tau_2\bigr)
+\biggr]
+\end{align}
+```
