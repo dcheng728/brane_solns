@@ -1,0 +1,225 @@
+\section{Back to SO(2)}
+
+
+
+The complete 4-point effective action is known, but it is commonly written in U(1) covariant form, which makes the 2x2 torus metric a little obscure.
+In particular, in real torus coordinates the 3-form doublet is written as $F_4 = H_3 \wedge dy_1 + F_3 \wedge dy_2$. But in complex coordinates they are written as $G_3 = \frac{1}{\sqrt{\tau_2}}(F_3 - \tau H_3)$, which makes the 12d structure harder to spot.
+So we may try to put known effective actions in real coordinates, take U(1) to SO(2).
+
+So here is the strategy:
+\begin{itemize}
+    \item write everything in the known 4-pt effective action in SO(2) rather than U(1), as in with $F_3, H_3, \tau_1, \tau_2$ rather than $G_3, \mathcal{P}_m, Q_m$.
+    \item In the type IIB effective action, there will be terms of $\tau_1, \tau_2$, they should be substituted for $g^{ab}$.
+    \item First derivatives on $\tau_1, \tau_2$ should correspond to 12d Christoffel symbols
+    \item Second derivatives and products of first derivatives should correspond to 12d Riemann tensors.
+    \item see if things are cleaner
+\end{itemize}
+
+
+\subsection{Riemannn tensor}
+
+Given this metric, with the 2x2 torus having indices 10, 11, we compute all nonvanishing components of the Riemann tensor
+
+\begin{equation}
+\mathcal{G}_{MN}
+= \begin{pmatrix}
+    g_{mn} & 0 & 0 \\
+    0 & \frac{1}{\tau_2} & \frac{\tau_1}{\tau_2} \\
+    0 & \frac{\tau_1}{\tau_2} & \frac{|\tau|^2}{\tau_2}
+\end{pmatrix},\quad
+g_{ab} = \frac{1}{\tau_2}\begin{pmatrix}
+    1 & \tau_1 \\
+    \tau_1 & |\tau|^2
+\end{pmatrix}.
+\end{equation}
+From this 12d metric, one finds that the nonvanishing components of the Riemann tensor are $\hat{\Gamma}^p{}_{mn} = \Gamma^p{}_{mn}$, $\hat{\Gamma}^a{}_{bm} = \frac{1}{2}g^{ac}g_{bc,m}$, $\hat{\Gamma}^m{}_{ab} = - \frac{1}{2}g^{mp}g_{ab,p}$.
+And we evaluate that $a$ for rows and $b$ for columns, we have
+\begin{equation}
+\Gamma^a{}_{bm}
+=\frac{1}{2 \tau_2^2}\begin{pmatrix}
+    -\tfrac12 \nabla_m|\tau|^2 & |\tau|^2\nabla_m\tau_1 - \tau_1 \nabla_m|\tau|^2 \\
+    \nabla_m\tau_1 & \tfrac12 \nabla_m|\tau|^2
+\end{pmatrix}
+\end{equation}
+\begin{equation}
+\Gamma_{abm}
+= \frac{1}{2\tau_2}\begin{pmatrix}
+    -\nabla_m\ln\tau_2
+    & \nabla_m\tau_1 - \tau_1\nabla_m\ln\tau_2 \\
+    \nabla_m\tau_1 - \tau_1\nabla_m\ln\tau_2 & \nabla_m|\tau|^2 - |\tau|^2\nabla_m\ln\tau_2
+\end{pmatrix}
+=\frac{1}{2}g_{ab,m}
+\end{equation}
+\begin{equation}
+\Gamma^m{}_{ab} = -\frac{1}{2\tau_2}\begin{pmatrix}
+    -\nabla^m\ln\tau_2 & \nabla^m\tau_1 - \tau_1\nabla^m\ln\tau_2 \\
+    \nabla^m\tau_1-\tau_1\nabla^m\ln\tau_2 & \nabla^m|\tau|^2 - |\tau|^2\nabla^m\ln\tau_2
+\end{pmatrix}.
+\end{equation}
+The components of $R_{manb}$ are given by
+
+\medskip
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{c|cccccc}
+\toprule
+$R_{ambn}$ 
+  & $\nabla_m\nabla_n\tau_1$ 
+  & $\nabla_m\nabla_n\tau_2$ 
+  & $(\nabla_m\tau_1)(\nabla_n\tau_1)$ 
+  & $\nabla_m\tau_1\nabla_n\tau_2$ 
+  & $\nabla_m\tau_2\nabla_n\tau_1$ 
+  & $(\nabla_m\tau_2)(\nabla_n\tau_2)$ \\
+\midrule
+$R_{1m1n}$ & $0$ & $\frac{1}{2\tau_2^2}$ & $\frac{1}{4\tau_2^3}$ & $0$ & $0$ & $-\frac{3}{4\tau_2^3}$ \\
+$R_{1m2n}$ & $-\frac{1}{2\tau_2}$ & $\frac{\tau_1}{2\tau_2^2}$ & $\frac{\tau_1}{4\tau_2^3}$ & $\frac{1}{4\tau_2^2}$ & $\frac{3}{4\tau_2^2}$ & $-\frac{3\tau_1}{4\tau_2^3}$ \\
+$R_{2m1n}$ & $-\frac{1}{2\tau_2}$ & $\frac{\tau_1}{2\tau_2^2}$ & $\frac{\tau_1}{4\tau_2^3}$ & $\frac{3}{4\tau_2^2}$ & $\frac{1}{4\tau_2^2}$ & $-\frac{3\tau_1}{4\tau_2^3}$ \\
+$R_{2m2n}$ & $-\frac{\tau_1}{\tau_2}$ & $\frac{\tau_1^2-\tau_2^2}{2\tau_2^2}$ & $\frac{\tau_1^2-3\tau_2^2}{4\tau_2^3}$ & $\frac{\tau_1}{\tau_2^2}$ & $\frac{\tau_1}{\tau_2^2}$ & $\frac{\tau_2^2-3\tau_1^2}{4\tau_2^3}$ \\
+\bottomrule
+\end{tabular}
+
+We further find the trace is $g^{ab} R_{ambn} = -\frac{1}{2\tau_2^2}(\nabla_m \tau_1 \nabla_n \tau_1 + \nabla_m \tau_2 \nabla_n\tau_2)$.
+
+The antisymmetric part is $\frac{1}{2}(R_{1m2n} - R_{2m1n})
+= -\frac{1}{4\tau_2^2}(\nabla_m\tau_1 \nabla_n\tau_2 - \nabla_m\tau_2 \nabla_n\tau_1)
+$.
+
+We find
+$$
+R_{mn12} = \frac{1}{2\tau_2^2}[\nabla_m\tau_2\nabla_n\tau_1-\nabla_m\tau_1\nabla_n\tau_2]
+$$
+
+One can then go on to compute that
+$$
+R_{1212} = \frac{1}{4\tau_2^2}|\nabla \tau|^2
+$$
+which does not have any spacetime indices.
+
+\subsection{Known effective action}
+
+Ref: \cite{Policastro:2008hg,Minasian:2015bxa,Liu:2025uqu} 
+
+\begin{align}
+\frac{L_{\text{4-pt}}^{(3)}}{\alpha\, f_{0}(\tau,\bar{\tau})}
+&=\left(t_{8}t_{8}-\tfrac{1}{4}\epsilon_{8}\epsilon_{8}\right)\biggl[R^4+6R^{2}\left(4|DP|^{2}+|\nabla G_{3}|^{2}\right)+24|DP|^{2}|\nabla G_{3}|^{2}\\[0.4em]
+&\quad+12R\left(DP(\nabla\overline{G}_{3})^{2}+\overline{DP}(\nabla{G}_{3})^{2}\right)\biggr] +O_{1}\left((|DP|^{2})^{2}\right)+O_{2}\left((|\nabla G_{3}|^{2})^{2}\right)
+\label{eq:PTaction}
+\end{align}
+
+Here $O_1$ is meant to represent $1536 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)$.
+Interestingly, it is known that $O_1$ can not be written in a $t_8t_8$ structure, but can be obtained from $\hat{t}_8\hat{t}_8 \hat{R}^4$ \cite{Minasian:2015bxa}.
+This had been one of the arguments for the 12d uplift of the effective action in the form $\hat{t}_8\hat{t}_8 \hat{R}^4$.
+
+We note that there is a beautiful structure in \eqref{eq:PTaction}.
+First, let us separate the gravity + scalar sector can be written as
+\begin{equation}
+L_{\text{gravity+scalar}} = (t_8t_8 - \frac{1}{4}\epsilon_8\epsilon_8)
+(R^4 + 24 R^2 |DP|^2) + 1536 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)
+\end{equation}
+The 3-form sector can be written as
+\begin{equation}
+L_{\text{3-form}} = (t_8t_8 - \frac{1}{4}\epsilon_8\epsilon_8)
+(6 R^2 |\nabla G_3|^2 + 12 R DP (\nabla \bar{G}_3)^2 + 12 R \bar{DP} (\nabla G_3)^2 + 24 |DP|^2 |\nabla G_3|^2) + O_2((|\nabla G_3|^2)^2).
+\end{equation}
+which factorizes into
+\begin{equation}
+L_{\text{3-form}} = (t_8t_8 - \frac{1}{4}\epsilon_8\epsilon_8)
+6(R \nabla G_3 + 2 DP \nabla \bar{G}_3)
+(R \nabla \bar{G}_3 + 2 D \bar{P} \nabla G_3) + O_2((|\nabla G_3|^2)^2).
+\end{equation}
+
+We see the structure of $|R \nabla G_3 + 2DP \nabla \bar{G}_3|^2$.
+In 12d perspective, $DP$ represents 2nd derivatives and squared first derivatives of $\tau$, hence belongs to components of 12d Riemann tensor.
+So schematically it's of the form $(\hat{R} F_4)^2$, where $F_4$ is the 12d uplift of $H_3, F_3$.
+So one may ask, can we uplift the entire 3-form 4-point sector into a cleaner 12d structure, perhaps something like $\hat{R}^2 (\nabla F_4)^2$?
+
+Let us begin
+
+\subsection{$R^2|DP|^2$}
+One can show that 
+\begin{equation}
+D_m\bar{P}_n D_r P_s = \frac{1}{4}(g^{ab}g^{cd} - \epsilon^{ab}\epsilon^{cd})R_{amcn}R_{brds}
+\end{equation}
+So that for the four-index tensor $(DP)_{mpnq} \equiv g_{[m[n} D_{p]} P_{q]}$ antisymmetrized in $mp$, and $nq$ with overall normalization 1. 
+We have
+% (note that $D_p P_q$ by definition is symmetric in $pq$)
+\begin{equation}
+|DP|^2_{m'p'n'q' mpnq} = g_{m'n'}g_{mn} \frac{1}{4}(g^{ab}g^{cd} - \epsilon^{ab}\epsilon^{cd})R_{a p' c q'}R_{b p d q}
+\end{equation}
+antisymmetrized in $[m'p']$, $[n'q']$, $[mp]$, $[nq]$ with normalization 1.
+and the overall contribution is
+\begin{equation}
+24R^2 (t_8t_8-\tfrac14\epsilon_8\epsilon_8)(g^{ab}g^{cd} - \epsilon^{ab}\epsilon^{cd}) g_{m'n'}g_{mn}R_{a p' c q'}R_{b p d q}
+\quad \in \hat{R}^4
+\end{equation}
+
+\subsection{$R^2|\nabla G_3|^2$}
+One can show that with $F_4 = H_3 \wedge dy_1 + F_3 \wedge dy_2$, we have
+\begin{equation}
+\nabla_m \bar{G}_{3,nrs} \nabla_{m'} G_{3,n'r's'}
+= \hat{\nabla}_m F_{4,nrs a} \hat{\nabla}_{m'} F_{4,n'r's' b} g^{ab}
+\end{equation}
+So the overall contribution is
+\begin{equation}
+6 R^2(t_8t_8 - \tfrac14 \epsilon_8\epsilon_8)  \nabla (F_4)_a \nabla (F_4)_b g^{ab}
+\quad \in \hat{R^2} (\nabla F_4)^2
+\end{equation}
+
+\subsection{$\text{Re}[R DP (D\bar{G}_3)^2]$}
+One can show that together they give the overall contribution
+\begin{equation}
+12R(t_8t_8-\tfrac14 \epsilon_8 \epsilon_8)(g^{ac}g^{bd} - \epsilon^{ac}\epsilon^{bd})g_{m' n'}R_{ambn}\hat{\nabla}_r(F_4)_{pquc},\hat{\nabla}_s(F_4)_{p'q'u'd}
+\quad \in \hat{R}^2 (\nabla F_4)^2
+\end{equation}
+antisymmetrized in $[mp]$, $[nq]$, $[m'p']$, $[n'q']$ with normalization 1.
+We wrote out the indices of the latter terms to make the contraction structure more clear.
+
+\subsection{$|DP|^2|\nabla G_3|^2$}
+One can show that together they give the overall contribution
+\begin{equation}
+24(t_8t_8 - \tfrac14 \epsilon_8 \epsilon_8) g_{m'n'}g_{mn} \frac{1}{4}(g^{ab}g^{cd} - \epsilon^{ab}\epsilon^{cd})R_{a p' c q'}R_{b p d q}
+(\nabla F_4)_a (\nabla F_4)_b g^{ab}
+\quad \in \hat{R}^4 (\nabla F_4)^2
+\end{equation}
+antisymmetrized in $[mp]$, $[nq]$, $[m'p']$, $[n'q']$ with normalization 1.
+Again we wrote out some indices explicitly to make the contraction structure more clear.
+
+\section{Comments}
+It is straightforward to see that the known 4-point eight derivative effective actions uplift to 12d $\hat{R}^4$ and $\hat{R}^2 (\nabla F_4)^2$ structures.
+What is interesting, however, is that the uplift structures not contain the metric on the torus $g^{ab}$, but also the Levi-Civita tensor on the torus $\epsilon^{ab}$.
+Perhaps it is worth investigating the structure of
+\begin{equation}
+(t_8t_8 - \tfrac14 \epsilon_8 \epsilon_8)(g^{ab}g^{cd} - \epsilon^{ab}\epsilon^{cd})
+\end{equation}
+which we have seen contracts the 12d Riemann tensor and 4-form derivatives, have a more elegant structure, if some vanishing terms have been removed/added.
+Afterall, there is no reason to expect the 12d uplift takes the form $\hat{t}_8\hat{t}_8 \hat{R}^4$, as has been proposed in \cite{Minasian:2015bxa}.
+Upon closer inspection, when one expands $\hat{t}_8\hat{t}_8 \hat{R}^4$, one finds many terms that are not present in the known 10d effective action, and many terms in the known 10d effective action that do not appear in the expansion of $\hat{t}_8\hat{t}_8 \hat{R}^4$.
+
+There is also no reason for the 12d effective action, if it exists, to take on the form $\hat{t}_8\hat{t}_8 \hat{R}^4$, though it may be a good starting point to reproduce 10d $t_8t_8 R^4$.
+Afterall, $t_8t_8 R^4$ is just a way to repackage 6 linearly-independent ways to contract 4 Riemann tensors.
+Had we written out the 6 terms it's not even that complicated, but the benefit of $t_8t_8$ is that it makes the fact that 10d closed string amplitudes can be obtained as the tensor product of open string amplitudes manifest.
+But in 12d, there is no open strings, and there is no $\mathcal{N} = 4$ SYM.
+
+
+% However, such structure contraction structure may not be the ultimate answer, as if one actually expands the $\hat{t}_8\hat{t}_8 \hat{R}^4$ structure, one finds many terms that are not present in the known 10d effective action. 
+
+% For example, let us consider the $t_8t_8 (R^4 + 24 R^2 |DP|^2)$ sector in \eqref{eq:PTaction}.
+% This is the only 4-point sector that has a clean uplift to 12d (besides $O_1$).
+% Upon evaluating $\hat{t}_8\hat{t}_8 \hat{R}^4$ one finds $t_8t_8 R^4$ plus a lot of gravity + scalar couplings (see eq B.10 of \cite{Minasian:2015bxa}), upon inspection only very few match the known 10d $t_8t_8 R^2 |DP|^2$ sector. Worse, there are many terms in $t_8t_8 R^2 |DP|^2$ that do not appear in the expansion of $\hat{t}_8\hat{t}_8 \hat{R}^4$.
+
+
+
+% First note that, in complex coordinates, the only component of the 12d Riemann tensor that contains terms of the form $DP$ is $R_{mznz} = \frac{1}{2}D_m P_n$.
+% In complex coordinates we have $g_{z\bar{z}} = \tfrac12$, and $g^{z\bar{z}} = 2$, so we can in fact write
+% \begin{equation}
+% 1536 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s) = 1536 R_{mznz} R_{m'z n' z} R_{r\bar{z}s\bar{z}} R_{r'\bar{z}s'\bar{z}} g^{mm'} g^{nn'} g^{rr'} g^{ss'} (g^{z\bar{z}})^4.
+% \end{equation}
+
+
+% Let us evaluate it and determine it purely in terms of $\tau_1, \tau_2$
+
+% First of all, given $G_3 = \frac{1}{\sqrt{\tau_2}}(F_3-\tau H_3)$, we have that $DG_3 = \nabla G_3 - iQ G_3$, which can be evaluated to
+
+% We find that $D_{m'}\bar{G}_{3,n'r's'}D_{m}G_{3,nrs} = \hat{\nabla}_{m'}(F_4)_{n'r's'a} \hat{\nabla}_{m}(F_4)_{nrs b} g^{ab}$.
+
+
+% just give me the simplest thing that works:
