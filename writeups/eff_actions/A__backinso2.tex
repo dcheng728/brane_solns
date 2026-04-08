@@ -1,4 +1,7 @@
 \section{Back to SO(2)}
+
+
+
 The complete 4-point effective action is already known, but it is commonly written in U(1) covariant form, which makes the 2x2 torus metric a little obscure, so we may try to put it back to SO(2) form.
 
 So here is the strategy:
@@ -9,6 +12,88 @@ So here is the strategy:
 \end{itemize}
 
 
+\subsection{Riemannn tensor}
+
+Given this metric, with the 2x2 torus having indices 10, 11, we compute all nonvanishing components of the Riemann tensor
+
+\begin{equation}
+\mathcal{G}_{MN}
+= \begin{pmatrix}
+    g_{mn} & 0 & 0 \\
+    0 & \frac{1}{\tau_2} & \frac{\tau_1}{\tau_2} \\
+    0 & \frac{\tau_1}{\tau_2} & \frac{|\tau|^2}{\tau_2}
+\end{pmatrix}
+\end{equation}
+
+We have that
+\begin{equation}
+g_{ab} = \frac{1}{\tau_2}\begin{pmatrix}
+    1 & \tau_1 \\
+    \tau_1 & |\tau|^2
+\end{pmatrix}
+\end{equation}
+
+From this 12d metric, one immediately finds that the nonvanishing components of the Riemann tensor are $\hat{\Gamma}^p_{mn} = \Gamma^p{}_{mn}$, $\hat{\Gamma}^a{}_{bm} = \frac{1}{2}g^{ac}g_{bc,m}$, $\hat{\Gamma}^m{}_{ab} = - \frac{1}{2}g^{mp}g_{ab,p}$.
+And we evaluate that $a$ for rows and $b$ for columns, we have
+\begin{equation}
+\Gamma^a{}_{bm}
+=\frac{1}{2 \tau_2^2}\begin{pmatrix}
+    -\tfrac12 \nabla_m|\tau|^2 & |\tau|^2\nabla_m\tau_1 - \tau_1 \nabla_m|\tau|^2 \\
+    \nabla_m\tau_1 & \tfrac12 \nabla_m|\tau|^2
+\end{pmatrix}
+\end{equation}
+\begin{equation}
+\Gamma_{abm}
+= \frac{1}{2\tau_2}\begin{pmatrix}
+    -\nabla_m\ln\tau_2
+    & \nabla_m\tau_1 - \tau_1\nabla_m\ln\tau_2 \\
+    \nabla_m\tau_1 - \tau_1\nabla_m\ln\tau_2 & \nabla_m|\tau|^2 - |\tau|^2\nabla_m\ln\tau_2
+\end{pmatrix}
+=\frac{1}{2}g_{ab,m}
+\end{equation}
+\begin{equation}
+\Gamma^m{}_{ab} = -\frac{1}{2\tau_2}\begin{pmatrix}
+    -\nabla^m\ln\tau_2 & \nabla^m\tau_1 - \tau_1\nabla^m\ln\tau_2 \\
+    \nabla^m\tau_1-\tau_1\nabla^m\ln\tau_2 & \nabla^m|\tau|^2 - |\tau|^2\nabla^m\ln\tau_2
+\end{pmatrix}
+\end{equation}
+
+The components of $R_{manb}$ are
+\begin{equation}
+\begin{aligned}
+R_{m1n1} &= \frac{1}{2\tau_2^2}\nabla_m\nabla_n\tau_2 + \frac{1}{4\tau_2^3}\nabla_m\tau_1\,\nabla_n\tau_1 - \frac{3}{4\tau_2^3}\nabla_m\tau_2\,\nabla_n\tau_2\\
+R_{m1n2} &= -\frac{1}{2\tau_2}\nabla_m\nabla_n\tau_1 + \frac{\tau_1}{2\tau_2^2}\nabla_m\nabla_n\tau_2 + \frac{\tau_1}{4\tau_2^3}\nabla_m\tau_1\,\nabla_n\tau_1 + \frac{3}{4\tau_2^2}\nabla_m\tau_1\,\nabla_n\tau_2 + \frac{1}{4\tau_2^2}\nabla_m\tau_2\,\nabla_n\tau_1 - \frac{3\tau_1}{4\tau_2^3}\nabla_m\tau_2\,\nabla_n\tau_2\\
+R_{m2n2} &= -\frac{\tau_1}{\tau_2}\nabla_m\nabla_n\tau_1 + \frac{\tau_1^2-\tau_2^2}{2\tau_2^2}\nabla_m\nabla_n\tau_2 + \frac{\tau_1^2-3\tau_2^2}{4\tau_2^3}\nabla_m\tau_1\,\nabla_n\tau_1 + \frac{2\tau_1}{\tau_2^2}\nabla_{(m}\tau_1\,\nabla_{n)}\tau_2 + \frac{\tau_2^2-3\tau_1^2}{4\tau_2^3}\nabla_m\tau_2\,\nabla_n\tau_2
+\end{aligned}
+\end{equation}
+cleaning up
+\begin{align}
+R_{1m1n} &= \phantom{-\frac{\tau_1}{\tau_2}\nabla_m\nabla_n\tau_1 +{}} \frac{1}{2\tau_2^2}\nabla_m\nabla_n\tau_2 &+& \frac{1}{4\tau_2^3}\nabla_m\tau_1\nabla_n\tau_1 &&& -\frac{3}{4\tau_2^3}\nabla_m\tau_2\nabla_n\tau_2 \\[6pt]
+R_{1m2n} &= -\frac{1}{2\tau_2}\nabla_m\nabla_n\tau_1 + \frac{\tau_1}{2\tau_2^2}\nabla_m\nabla_n\tau_2 &+& \frac{\tau_1}{4\tau_2^3}\nabla_m\tau_1\nabla_n\tau_1 &+\frac{1}{4\tau_2^2}\nabla_m\tau_1\nabla_n\tau_2 +\frac{3}{4\tau_2^2}\nabla_m\tau_2\nabla_n\tau_1& &-\frac{3\tau_1}{4\tau_2^3}\nabla_m\tau_2\nabla_n\tau_2 \\[6pt]
+R_{2m1n} &= -\frac{1}{2\tau_2}\nabla_m\nabla_n\tau_1 + \frac{\tau_1}{2\tau_2^2}\nabla_m\nabla_n\tau_2 &+& \frac{\tau_1}{4\tau_2^3}\nabla_m\tau_1\nabla_n\tau_1 &+\frac{3}{4\tau_2^2}\nabla_m\tau_1\nabla_n\tau_2 +\frac{1}{4\tau_2^2}\nabla_m\tau_2\nabla_n\tau_1& &-\frac{3\tau_1}{4\tau_2^3}\nabla_m\tau_2\nabla_n\tau_2 \\[6pt]
+R_{2m2n} &= -\frac{\tau_1}{\tau_2}\nabla_m\nabla_n\tau_1 + \frac{\tau_1^2-\tau_2^2}{2\tau_2^2}\nabla_m\nabla_n\tau_2 &+& \frac{\tau_1^2-3\tau_2^2}{4\tau_2^3}\nabla_m\tau_1\nabla_n\tau_1 &+\frac{\tau_1}{\tau_2^2}\nabla_m\tau_1\nabla_n\tau_2 +\frac{\tau_1}{\tau_2^2}\nabla_m\tau_2\nabla_n\tau_1& &+\frac{\tau_2^2-3\tau_1^2}{4\tau_2^3}\nabla_m\tau_2\nabla_n\tau_2
+\end{align}
+
+We find the trace is $g^{ab} R_{ambn} = -\frac{1}{2\tau_2^2}(\nabla_m \tau_1 \nabla_n \tau_1 + \nabla_m \tau_2 \nabla_n\tau_2)$.
+
+The antisymmetric part is $\frac{1}{2}(R_{1m2n} - R_{2m1n})
+= -\frac{1}{4\tau_2^2}(\nabla_m\tau_1 \nabla_n\tau_2 - \nabla_m\tau_2 \nabla_n\tau_1)
+$.
+
+The symmetric traceless part is given by $S_{ambn} \equiv \frac{R_{ambn} + R_{bman}}{2} - \frac{g^{cd}R_{cmdn}}{2} g_{ab}$, which evaluates to
+
+We find
+$$
+R_{mn12} = \frac{1}{2\tau_2^2}[\nabla_m\tau_2\nabla_n\tau_1-\nabla_m\tau_1\nabla_n\tau_2]
+$$
+
+One can then go on to compute that
+$$
+R_{1212} = \frac{1}{4\tau_2^2}|\nabla \tau|^2
+$$
+which does not have any spacetime indices.
+
+\subsection{Known effective action}
 
 \begin{align}
 L_{\text{4-pt}}^{(3)}&=\alpha\, f_{0}(\tau,\bar{\tau})\biggl\{\left(t_{8}t_{8}-\tfrac{1}{4}\epsilon_{8}\epsilon_{8}\right)\biggl[R^4+6R^{2}\left(4|DP|^{2}+|\nabla G_{3}|^{2}\right)+24|DP|^{2}|\nabla G_{3}|^{2}\\[0.4em]
@@ -112,72 +197,3 @@ The first line contains no derivatives on $\tau$, and it organizes cleanly into
 M^{11}dHdH + M^{12}(dFdH + dHdF) + M^{22}dFdF
 \end{equation}
 
-\subsection{Riemannn tensor}
-
-Given this metric, with the 2x2 torus having indices 10, 11, we compute all nonvanishing components of the Riemann tensor
-
-\begin{equation}
-\mathcal{G}_{MN}
-= \begin{pmatrix}
-    g_{mn} & 0 & 0 \\
-    0 & \frac{1}{\tau_2} & \frac{\tau_1}{\tau_2} \\
-    0 & \frac{\tau_1}{\tau_2} & \frac{|\tau|^2}{\tau_2}
-\end{pmatrix}
-\end{equation}
-
-We have that
-\begin{equation}
-g_{ab} = \frac{1}{\tau_2}\begin{pmatrix}
-    1 & \tau_1 \\
-    \tau_1 & |\tau|^2
-\end{pmatrix}
-\end{equation}
-
-From this 12d metric, one immediately finds that the nonvanishing components of the Riemann tensor are $\hat{\Gamma}^p_{mn} = \Gamma^p{}_{mn}$, $\hat{\Gamma}^a{}_{bm} = \frac{1}{2}g^{ac}g_{bc,m}$, $\hat{\Gamma}^m{}_{ab} = - \frac{1}{2}g^{mp}g_{ab,p}$.
-And we evaluate that $a$ for rows and $b$ for columns, we have
-\begin{equation}
-\Gamma^a{}_{bm}
-=\frac{1}{2 \tau_2^2}\begin{pmatrix}
-    -\tfrac12 \nabla_m|\tau|^2 & |\tau|^2\nabla_m\tau_1 - \tau_1 \nabla_m|\tau|^2 \\
-    \nabla_m\tau_1 & \tfrac12 \nabla_m|\tau|^2
-\end{pmatrix}
-\end{equation}
-\begin{equation}
-\Gamma_{abm}
-= \frac{1}{2\tau_2}\begin{pmatrix}
-    -\nabla_m\ln\tau_2
-    & \nabla_m\tau_1 - \tau_1\nabla_m\ln\tau_2 \\
-    \nabla_m\tau_1 - \tau_1\nabla_m\ln\tau_2 & \nabla_m|\tau|^2 - |\tau|^2\nabla_m\ln\tau_2
-\end{pmatrix}
-=\frac{1}{2}g_{ab,m}
-\end{equation}
-\begin{equation}
-\Gamma^m{}_{ab} = -\frac{1}{2\tau_2}\begin{pmatrix}
-    -\nabla^m\ln\tau_2 & \nabla^m\tau_1 - \tau_1\nabla^m\ln\tau_2 \\
-    \nabla^m\tau_1-\tau_1\nabla^m\ln\tau_2 & \nabla^m|\tau|^2 - |\tau|^2\nabla^m\ln\tau_2
-\end{pmatrix}
-\end{equation}
-
-The components of $R_{manb}$ are
-\begin{equation}
-\begin{aligned}
-R_{m1n1} &= \frac{1}{2\tau_2^2}\nabla_m\nabla_n\tau_2 + \frac{1}{4\tau_2^3}\nabla_m\tau_1\,\nabla_n\tau_1 - \frac{3}{4\tau_2^3}\nabla_m\tau_2\,\nabla_n\tau_2\\
-R_{m1n2} &= -\frac{1}{2\tau_2}\nabla_m\nabla_n\tau_1 + \frac{\tau_1}{2\tau_2^2}\nabla_m\nabla_n\tau_2 + \frac{\tau_1}{4\tau_2^3}\nabla_m\tau_1\,\nabla_n\tau_1 + \frac{3}{4\tau_2^2}\nabla_m\tau_1\,\nabla_n\tau_2 + \frac{1}{4\tau_2^2}\nabla_m\tau_2\,\nabla_n\tau_1 - \frac{3\tau_1}{4\tau_2^3}\nabla_m\tau_2\,\nabla_n\tau_2\\
-R_{m2n2} &= -\frac{\tau_1}{\tau_2}\nabla_m\nabla_n\tau_1 + \frac{\tau_1^2-\tau_2^2}{2\tau_2^2}\nabla_m\nabla_n\tau_2 + \frac{\tau_1^2-3\tau_2^2}{4\tau_2^3}\nabla_m\tau_1\,\nabla_n\tau_1 + \frac{2\tau_1}{\tau_2^2}\nabla_{(m}\tau_1\,\nabla_{n)}\tau_2 + \frac{\tau_2^2-3\tau_1^2}{4\tau_2^3}\nabla_m\tau_2\,\nabla_n\tau_2
-\end{aligned}
-\end{equation}
-cleaning up
-\begin{align}
-R_{1m1n} &= \phantom{-\frac{\tau_1}{\tau_2}\nabla_m\nabla_n\tau_1 +{}} \frac{1}{2\tau_2^2}\nabla_m\nabla_n\tau_2 &+& \frac{1}{4\tau_2^3}\nabla_m\tau_1\nabla_n\tau_1 &&& -\frac{3}{4\tau_2^3}\nabla_m\tau_2\nabla_n\tau_2 \\[6pt]
-R_{1m2n} &= -\frac{1}{2\tau_2}\nabla_m\nabla_n\tau_1 + \frac{\tau_1}{2\tau_2^2}\nabla_m\nabla_n\tau_2 &+& \frac{\tau_1}{4\tau_2^3}\nabla_m\tau_1\nabla_n\tau_1 &+\frac{1}{4\tau_2^2}\nabla_m\tau_1\nabla_n\tau_2 +\frac{3}{4\tau_2^2}\nabla_m\tau_2\nabla_n\tau_1& &-\frac{3\tau_1}{4\tau_2^3}\nabla_m\tau_2\nabla_n\tau_2 \\[6pt]
-R_{2m1n} &= -\frac{1}{2\tau_2}\nabla_m\nabla_n\tau_1 + \frac{\tau_1}{2\tau_2^2}\nabla_m\nabla_n\tau_2 &+& \frac{\tau_1}{4\tau_2^3}\nabla_m\tau_1\nabla_n\tau_1 &+\frac{3}{4\tau_2^2}\nabla_m\tau_1\nabla_n\tau_2 +\frac{1}{4\tau_2^2}\nabla_m\tau_2\nabla_n\tau_1& &-\frac{3\tau_1}{4\tau_2^3}\nabla_m\tau_2\nabla_n\tau_2 \\[6pt]
-R_{2m2n} &= -\frac{\tau_1}{\tau_2}\nabla_m\nabla_n\tau_1 + \frac{\tau_1^2-\tau_2^2}{2\tau_2^2}\nabla_m\nabla_n\tau_2 &+& \frac{\tau_1^2-3\tau_2^2}{4\tau_2^3}\nabla_m\tau_1\nabla_n\tau_1 &+\frac{\tau_1}{\tau_2^2}\nabla_m\tau_1\nabla_n\tau_2 +\frac{\tau_1}{\tau_2^2}\nabla_m\tau_2\nabla_n\tau_1& &+\frac{\tau_2^2-3\tau_1^2}{4\tau_2^3}\nabla_m\tau_2\nabla_n\tau_2
-\end{align}
-
-We find the trace is $g^{ab} R_{ambn} = -\frac{1}{2\tau_2^2}(\nabla_m \tau_1 \nabla_n \tau_1 + \nabla_m \tau_2 \nabla_n\tau_2)$.
-
-The antisymmetric part is $\frac{1}{2}(R_{1m2n} - R_{2m1n})
-= -\frac{1}{4\tau_2^2}(\nabla_m\tau_1 \nabla_n\tau_2 - \nabla_m\tau_2 \nabla_n\tau_1)
-$.
-
-The symmetric traceless part is given by $S_{ambn} \equiv \frac{R_{ambn} + R_{bman}}{2} - \frac{g^{cd}R_{cmdn}}{2} g_{ab}$, which evaluates to
