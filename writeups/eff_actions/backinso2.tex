@@ -12,11 +12,11 @@ So here is the strategy:
     \item In the type IIB effective action, there will be terms of $\tau_1, \tau_2$, they should be substituted for $g^{ab}$.
     \item First derivatives on $\tau_1, \tau_2$ should correspond to 12d Christoffel symbols
     \item Second derivatives and products of first derivatives should correspond to 12d Riemann tensors.
-    \item see if things are cleaner
+    \item Determine whether the result admits a cleaner 12d interpretation.
 \end{itemize}
 
 
-\subsection{Riemannn tensor}
+\subsection{Riemann tensor}
 
 Given this metric, with the 2x2 torus having indices 10, 11, we compute all nonvanishing components of the Riemann tensor
 
@@ -32,8 +32,8 @@ g_{ab} = \frac{1}{\tau_2}\begin{pmatrix}
     \tau_1 & |\tau|^2
 \end{pmatrix}.
 \end{equation}
-From this 12d metric, one finds that the nonvanishing components of the Riemann tensor are $\hat{\Gamma}^p{}_{mn} = \Gamma^p{}_{mn}$, $\hat{\Gamma}^a{}_{bm} = \frac{1}{2}g^{ac}g_{bc,m}$, $\hat{\Gamma}^m{}_{ab} = - \frac{1}{2}g^{mp}g_{ab,p}$.
-And we evaluate that $a$ for rows and $b$ for columns, we have
+From this 12d metric, one finds that the nonvanishing Christoffel symbols are $\hat{\Gamma}^p{}_{mn} = \Gamma^p{}_{mn}$, $\hat{\Gamma}^a{}_{bm} = \frac{1}{2}g^{ac}g_{bc,m}$, $\hat{\Gamma}^m{}_{ab} = - \frac{1}{2}g^{mp}g_{ab,p}$.
+With $a$ indexing rows and $b$ columns:
 \begin{equation}
 \Gamma^a{}_{bm}
 =\frac{1}{2 \tau_2^2}\begin{pmatrix}
@@ -110,7 +110,7 @@ Interestingly, it is known that $O_1$ can not be written in a $t_8t_8$ structure
 This had been one of the arguments for the 12d uplift of the effective action in the form $\hat{t}_8\hat{t}_8 \hat{R}^4$.
 
 We note that there is a beautiful structure in \eqref{eq:PTaction}.
-First, let us separate the gravity + scalar sector can be written as
+First, the gravity + scalar sector can be written as
 \begin{equation}
 L_{\text{gravity+scalar}} = (t_8t_8 - \frac{1}{4}\epsilon_8\epsilon_8)
 (R^4 + 24 R^2 |DP|^2) + 1536 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)
@@ -161,13 +161,13 @@ One can show that with $F_4 = H_3 \wedge dy_1 + F_3 \wedge dy_2$, we have
 So the overall contribution is
 \begin{equation}
 6 R^2(t_8t_8 - \tfrac14 \epsilon_8\epsilon_8)  \nabla (F_4)_a \nabla (F_4)_b g^{ab}
-\quad \in \hat{R^2} (\nabla F_4)^2
+\quad \in \hat{R}^2 (\nabla F_4)^2
 \end{equation}
 
 \subsection{$\text{Re}[R DP (D\bar{G}_3)^2]$}
 One can show that together they give the overall contribution
 \begin{equation}
-12R(t_8t_8-\tfrac14 \epsilon_8 \epsilon_8)(g^{ac}g^{bd} - \epsilon^{ac}\epsilon^{bd})g_{m' n'}R_{ambn}\hat{\nabla}_r(F_4)_{pquc},\hat{\nabla}_s(F_4)_{p'q'u'd}
+12R(t_8t_8-\tfrac14 \epsilon_8 \epsilon_8)(g^{ac}g^{bd} - \epsilon^{ac}\epsilon^{bd})g_{m' n'}R_{ambn}\hat{\nabla}_r(F_4)_{pquc}\,\hat{\nabla}_s(F_4)_{p'q'u'd}
 \quad \in \hat{R}^2 (\nabla F_4)^2
 \end{equation}
 antisymmetrized in $[mp]$, $[nq]$, $[m'p']$, $[n'q']$ with normalization 1.
@@ -177,27 +177,28 @@ We wrote out the indices of the latter terms to make the contraction structure m
 One can show that together they give the overall contribution
 \begin{equation}
 24(t_8t_8 - \tfrac14 \epsilon_8 \epsilon_8) g_{m'n'}g_{mn} \frac{1}{4}(g^{ab}g^{cd} - \epsilon^{ab}\epsilon^{cd})R_{a p' c q'}R_{b p d q}
-(\nabla F_4)_a (\nabla F_4)_b g^{ab}
-\quad \in \hat{R}^4 (\nabla F_4)^2
+\,\hat{\nabla}(F_4)_e \,\hat{\nabla}(F_4)_f\, g^{ef}
+\quad \in \hat{R}^2 (\nabla F_4)^2
 \end{equation}
 antisymmetrized in $[mp]$, $[nq]$, $[m'p']$, $[n'q']$ with normalization 1.
 Again we wrote out some indices explicitly to make the contraction structure more clear.
 
 \section{Comments}
 It is straightforward to see that the known 4-point eight derivative effective actions uplift to 12d $\hat{R}^4$ and $\hat{R}^2 (\nabla F_4)^2$ structures.
-What is interesting, however, is that the uplift structures not contain the metric on the torus $g^{ab}$, but also the Levi-Civita tensor on the torus $\epsilon^{ab}$.
+What is interesting, however, is that the uplift structures contain not only the metric on the torus $g^{ab}$, but also the Levi-Civita tensor on the torus $\epsilon^{ab}$.
 Perhaps it is worth investigating the structure of
 \begin{equation}
 (t_8t_8 - \tfrac14 \epsilon_8 \epsilon_8)(g^{ab}g^{cd} - \epsilon^{ab}\epsilon^{cd})
 \end{equation}
-which we have seen contracts the 12d Riemann tensor and 4-form derivatives, have a more elegant structure, if some vanishing terms have been removed/added.
+which we have seen contracts the 12d Riemann tensor and 4-form derivatives, and whether it may have a more elegant form, possibly after adding or removing terms that vanish on the IIB locus.
 Afterall, there is no reason to expect the 12d uplift takes the form $\hat{t}_8\hat{t}_8 \hat{R}^4$, as has been proposed in \cite{Minasian:2015bxa}.
-Upon closer inspection, when one expands $\hat{t}_8\hat{t}_8 \hat{R}^4$, one finds many terms that are not present in the known 10d effective action, and many terms in the known 10d effective action that do not appear in the expansion of $\hat{t}_8\hat{t}_8 \hat{R}^4$.
+Upon closer inspection \footnote{Checked with Cadabra, also see eq B.10 of \cite{Minasian:2015bxa}.}, when one expands $\hat{t}_8\hat{t}_8 \hat{R}^4$, one finds many terms that are not present in the known 10d effective action, and many terms in the known 10d effective action that do not appear in the expansion of $\hat{t}_8\hat{t}_8 \hat{R}^4$.
 
 There is also no reason for the 12d effective action, if it exists, to take on the form $\hat{t}_8\hat{t}_8 \hat{R}^4$, though it may be a good starting point to reproduce 10d $t_8t_8 R^4$.
 Afterall, $t_8t_8 R^4$ is just a way to repackage 6 linearly-independent ways to contract 4 Riemann tensors.
+In component form it looks roughly like $(g^{mn})^8$, hence has 16 indices.
 Had we written out the 6 terms it's not even that complicated, but the benefit of $t_8t_8$ is that it makes the fact that 10d closed string amplitudes can be obtained as the tensor product of open string amplitudes manifest.
-But in 12d, there is no open strings, and there is no $\mathcal{N} = 4$ SYM.
+But in 12d, there are no open strings, and there is no $\mathcal{N} = 4$ SYM.
 
 
 % However, such structure contraction structure may not be the ultimate answer, as if one actually expands the $\hat{t}_8\hat{t}_8 \hat{R}^4$ structure, one finds many terms that are not present in the known 10d effective action. 
