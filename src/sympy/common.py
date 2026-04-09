@@ -4,20 +4,23 @@ from itertools import product as iterprod
 
 # 1. Set up the fundamental variables (indices) and functions
 
-# Define indices as coordinates
-m,n,r,s = sp.symbols('m n r s', real=True)
-indices = [m, n, r, s]
+# Define indices — change this one line to add/remove external coordinates
+INDEX_LABELS = ['m', 'n', 'r', 's', 'p', 'q'] # add more if needed
 
-# Define functions
-tau1 = sp.Function('tau_1', real=True)(m, n, r, s)
-tau2 = sp.Function('tau_2', real=True, positive=True)(m, n, r, s)
+indices = list(sp.symbols(' '.join(INDEX_LABELS), real=True))
+index_names = dict(zip(indices, INDEX_LABELS))
+# make each index available as a module-level variable (m, n, r, s, ...)
+for _idx, _label in zip(indices, INDEX_LABELS):
+    globals()[_label] = _idx
+
+# Define functions (depend on all indices)
+tau1 = sp.Function('tau_1', real=True)(*indices)
+tau2 = sp.Function('tau_2', real=True, positive=True)(*indices)
 tau = tau1 + sp.I*tau2
 taub = tau1 - sp.I*tau2
 
-H3 = sp.Function('H3', real=True)(m, n, r, s)
-F3 = sp.Function('F3', real=True)(m, n, r, s)
-
-index_names = {m: 'm', n: 'n', r: 'r', s: 's'}
+H3 = sp.Function('H3', real=True)(*indices)
+F3 = sp.Function('F3', real=True)(*indices)
 funcs = [tau1, tau2, H3, F3]
 func_names = {tau1: r'\tau_{1}', tau2: r'\tau_{2}', H3: r'H_{3}', F3: r'F_{3}'}
 
@@ -123,10 +126,18 @@ for index in indices:
 
 
 # Also define the Riemann tensors, as expressions of the symbols, because one should not need to take derivatives of the Riemann tensor
-# One can show that R_{ambn} = -g_{ac}(\nabla_n \Gamma^c{}_{mb} + \Gamma^c{}_{nd}\Gamma^d{}_{mb})
-R_ambn = {} # Gives R_{ambn} for indices m, n
+Rd_mnab = {} # For indices m,n this gives R_{mnab} as 2x2 matrix in a,b
 for mu, nu in iterprod(indices, indices):
-    R_ambn[(mu, nu)] = sp.simplify( (-g_func) * (sp.diff(Gamma_a_mb[mu], nu) + Gamma_a_mb[nu] * Gamma_a_mb[mu]) )
+    Rd_mnab[(mu, nu)] = sp.simplify( Gamma_mab[mu] * Gamma_a_mb[nu] - Gamma_a_mb[nu].T * Gamma_mab[mu].T)
+
+# One can show that R_{ambn} = -g_{ac}(\nabla_n \Gamma^c{}_{mb} + \Gamma^c{}_{nd}\Gamma^d{}_{mb})
+Rd_ambn = {} # Gives R_{ambn} for indices m, n
+for mu, nu in iterprod(indices, indices):
+    Rd_ambn[(mu, nu)] = sp.simplify( (-g_func) * (sp.diff(Gamma_a_mb[mu], nu) + Gamma_a_mb[nu] * Gamma_a_mb[mu]) )
+
+Ru_ambn = {} # For indices m,n this gives R^a{}_m{}^b{}_n as 2x2 matrix in a,b
+for mu, nu in iterprod(indices, indices):
+    Ru_ambn[(mu, nu)] = sp.simplify( ginv_func * Rd_ambn[(mu, nu)] * ginv_func )
 
 Rd_ambn_sym = {} # symbols for e.g. R_{1m1n} with key (1, m, 1, n)
 Ru_ambn_sym = {} # symbols for e.g. R^2{}_m{}^1{}_n with key (2, m, 1, n)
