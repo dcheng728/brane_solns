@@ -2,59 +2,148 @@
 
 \section{Useful formulae}
 
-Reference: \cite{Policastro:2008hg,Minasian:2015bxa}
-
+\subsection{12d Gravity}
+Written in Einstein frame, and real torus coordinates, with convention $(p,q)$ denoting (NSNS, RR) charges, the 12d metric is
 \begin{equation}
-\mathcal{G}_{MN}
+\hat{g}_{MN}
 = \begin{pmatrix}
     g_{mn} & 0 & 0 \\
     0 & \frac{1}{\tau_2} & \frac{\tau_1}{\tau_2} \\
     0 & \frac{\tau_1}{\tau_2} & \frac{|\tau|^2}{\tau_2}
+\end{pmatrix},\quad
+\hat{g}_{ab}
+= \frac{1}{\tau_2}
+\begin{pmatrix}
+    1 & \tau_1 \\
+    \tau_1 & |\tau|^2    
 \end{pmatrix}
 \end{equation}
+From this 12d metric, one finds that the nonvanishing Christoffel symbols are $\hat{\Gamma}^p{}_{mn} = \Gamma^p{}_{mn}$, $\hat{\Gamma}^a{}_{bm} = \frac{1}{2}g^{ac}g_{bc,m}$, $\hat{\Gamma}^m{}_{ab} = - \frac{1}{2}g^{mp}g_{ab,p}$.
+With $a$ indexing rows and $b$ columns:
+\begin{equation}
+\begin{aligned}
+\Gamma^a{}_{bm}
+&=\frac{1}{2 \tau_2^2}\begin{pmatrix}
+    -\tfrac12 \nabla_m|\tau|^2 & |\tau|^2\nabla_m\tau_1 - \tau_1 \nabla_m|\tau|^2 \\
+    \nabla_m\tau_1 & \tfrac12 \nabla_m|\tau|^2
+\end{pmatrix}\\
+\Gamma_{abm}=-\Gamma^m{}_{ab}
+&= \frac{1}{2\tau_2}\begin{pmatrix}
+    -\nabla_m\ln\tau_2
+    & \nabla_m\tau_1 - \tau_1\nabla_m\ln\tau_2 \\
+    \nabla_m\tau_1 - \tau_1\nabla_m\ln\tau_2 & \nabla_m|\tau|^2 - |\tau|^2\nabla_m\ln\tau_2
+\end{pmatrix}
+=\frac{1}{2}g_{ab,m}
+\end{aligned}
+\end{equation}
+The components of $R_{manb}$ are given by
 
+\medskip
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{c|cccccc}
+\toprule
+$R_{ambn}$ 
+  & $\nabla_m\nabla_n\tau_1$ 
+  & $\nabla_m\nabla_n\tau_2$ 
+  & $(\nabla_m\tau_1)(\nabla_n\tau_1)$ 
+  & $\nabla_m\tau_1\nabla_n\tau_2$ 
+  & $\nabla_m\tau_2\nabla_n\tau_1$ 
+  & $(\nabla_m\tau_2)(\nabla_n\tau_2)$ \\
+\midrule
+$R_{1m1n}$ & $0$ & $\frac{1}{2\tau_2^2}$ & $\frac{1}{4\tau_2^3}$ & $0$ & $0$ & $-\frac{3}{4\tau_2^3}$ \\
+$R_{1m2n}$ & $-\frac{1}{2\tau_2}$ & $\frac{\tau_1}{2\tau_2^2}$ & $\frac{\tau_1}{4\tau_2^3}$ & $\frac{1}{4\tau_2^2}$ & $\frac{3}{4\tau_2^2}$ & $-\frac{3\tau_1}{4\tau_2^3}$ \\
+$R_{2m1n}$ & $-\frac{1}{2\tau_2}$ & $\frac{\tau_1}{2\tau_2^2}$ & $\frac{\tau_1}{4\tau_2^3}$ & $\frac{3}{4\tau_2^2}$ & $\frac{1}{4\tau_2^2}$ & $-\frac{3\tau_1}{4\tau_2^3}$ \\
+$R_{2m2n}$ & $-\frac{\tau_1}{\tau_2}$ & $\frac{\tau_1^2-\tau_2^2}{2\tau_2^2}$ & $\frac{\tau_1^2-3\tau_2^2}{4\tau_2^3}$ & $\frac{\tau_1}{\tau_2^2}$ & $\frac{\tau_1}{\tau_2^2}$ & $\frac{\tau_2^2-3\tau_1^2}{4\tau_2^3}$ \\
+\bottomrule
+\end{tabular}
+\medskip
+
+% \renewcommand{\arraystretch}{1.8}
+% \begin{tabular}{c|ccccc}
+% \toprule
+% $g^{mn}R_{ambn}$
+%   & $\Delta\tau_1$
+%   & $\Delta\tau_2$
+%   & $(\nabla\tau_1)^2$
+%   & $\nabla\tau_1\!\cdot\!\nabla\tau_2$
+%   & $(\nabla\tau_2)^2$ \\
+% \midrule
+% $g^{mn}R_{1m1n}$ & $0$ & $\frac{1}{2\tau_2^2}$ & $\frac{1}{4\tau_2^3}$ & $0$ & $-\frac{3}{4\tau_2^3}$ \\[4pt]
+% $g^{mn}R_{1m2n}$ & $-\frac{1}{2\tau_2}$ & $\frac{\tau_1}{2\tau_2^2}$ & $\frac{\tau_1}{4\tau_2^3}$ & $\frac{1}{\tau_2^2}$ & $-\frac{3\tau_1}{4\tau_2^3}$ \\[4pt]
+% $g^{mn}R_{2m1n}$ & $-\frac{1}{2\tau_2}$ & $\frac{\tau_1}{2\tau_2^2}$ & $\frac{\tau_1}{4\tau_2^3}$ & $\frac{1}{\tau_2^2}$ & $-\frac{3\tau_1}{4\tau_2^3}$ \\[4pt]
+% $g^{mn}R_{2m2n}$ & $-\frac{\tau_1}{\tau_2}$ & $\frac{\tau_1^2-\tau_2^2}{2\tau_2^2}$ & $\frac{\tau_1^2-3\tau_2^2}{4\tau_2^3}$ & $\frac{2\tau_1}{\tau_2^2}$ & $\frac{\tau_2^2-3\tau_1^2}{4\tau_2^3}$ \\
+% \bottomrule
+% \end{tabular}
+
+We further find the trace is $g^{ab} R_{ambn} = -\frac{1}{2\tau_2^2}(\nabla_m \tau_1 \nabla_n \tau_1 + \nabla_m \tau_2 \nabla_n\tau_2)$.
+The antisymmetric part is $\frac{1}{2}(R_{1m2n} - R_{2m1n})
+= -\frac{1}{4\tau_2^2}(\nabla_m\tau_1 \nabla_n\tau_2 - \nabla_m\tau_2 \nabla_n\tau_1)
+$.
+We find
+$$
+R_{mn12} = \frac{1}{2\tau_2^2}[\nabla_m\tau_2\nabla_n\tau_1-\nabla_m\tau_1\nabla_n\tau_2]
+$$
+One can then go on to compute that
+$$
+R_{1212} = \frac{1}{4\tau_2^2}|\nabla \tau|^2.
+$$
+We note that generically $R_{ambn}$, $R_{1212}$ and $R_{mn12}$ are independent of each other, but here we see $R_{1212}$ and $R_{mn12}$ can both be obtained from linear combinations of $R_{ambn}$.
+So the 12d Riemann tensors only provide 4 independent degrees of freedom for second order derivatives of $\tau$, while in total there are 6 independent degrees of freedom for second order derivatives of $\tau$, as given in the columns of the above table.
+
+
+\subsection{IIB useful equations}
+
+Reference: \cite{Policastro:2008hg,Minasian:2015bxa}
+
+The rank-4 tensor $DP$ is defined by
 \begin{equation}
 (\nabla \mathcal{P})_{mn}{}^{pq} \equiv 
 \delta_{[m}^{[p} \nabla_{n]}\mathcal{P}^{q]}
 \end{equation}
-has the same symmetries as the Riemann tensor.
-
+which has the same symmetries as the Riemann tensor.
+The $U(1)$ connection and one-form are defined by
 \begin{equation}
-\nabla_m\tau_1 = -2\tau_2 Q_m, \quad
-\nabla_m\tau_2 = -\tau_2 (\mathcal{P}_m + \bar{\mathcal{P}}_m), \quad
-Q_m = \frac{i}{2}(\mathcal{P}_m - \bar{\mathcal{P}}_m)
-=-\frac{\nabla_m\tau_1}{2\tau_2}
+Q_m =-\frac{\nabla_m\tau_1}{2\tau_2},\quad
+P_m = \frac{i}{2\tau_2} \nabla_m \tau,
 \end{equation}
-
+From here one can compute
 \begin{equation}
-\mathcal{P}_m = \frac{i}{2\tau_2} \nabla_m \tau, \quad
-\bar{\mathcal{P}}_m = -\frac{i}{2\tau_2} \nabla_m \bar{\tau}
-\end{equation}
-
-\begin{equation}
+\begin{aligned}
 D_m \mathcal{P}_n
-= \nabla_m \mathcal{P}_n - 2i Q_m \mathcal{P}_n
-= 2\mathcal{P}_m \mathcal{P}_n + \frac{i}{2\tau_2} \nabla_m \nabla_n \tau
-\end{equation}
-
-\begin{equation}
+&= \nabla_m \mathcal{P}_n - 2i Q_m \mathcal{P}_n
+&= 2\mathcal{P}_m \mathcal{P}_n + \frac{i}{2\tau_2} \nabla_m \nabla_n \tau \\
 D_m \bar{\mathcal{P}}_n
-= \nabla_m \bar{\mathcal{P}}_n + 2i Q_m \bar{\mathcal{P}}_n
-= 2\bar{\mathcal{P}}_m \bar{\mathcal{P}}_n - \frac{i}{2\tau_2} \nabla_m \nabla_n \bar{\tau}
+&= \nabla_m \bar{\mathcal{P}}_n + 2i Q_m \bar{\mathcal{P}}_n
+&= 2\bar{\mathcal{P}}_m \bar{\mathcal{P}}_n - \frac{i}{2\tau_2} \nabla_m \nabla_n \bar{\tau}
+\end{aligned}
 \end{equation}
-
+which implies that $D_m P_n$ is symmetric.
+The complex 3-form is defined by
 \begin{equation}
 G_3 \equiv \frac{1}{\sqrt{\tau_2}} (F_3 - \tau H_3)
 \end{equation}
-
+The contraction of the $t_8 t_8$ tensor with four rank-4 tensors is defined by
 \begin{align}
 	t_8 t_8 \left\{ ABCD \right\} := (t_8)^{a_1 \ldots a_8} (t_8)^{b_1 \ldots b_8} A_{a_1 a_2 b_1 b_2} B_{a_3 a_4 b_3 b_4} C_{a_5 a_6 b_5 b_6} D_{a_7 a_8 b_7 b_8} \,,
 \end{align}
-
-\begin{align}
-t_{abcdefgh} M_1^{ab} M_2^{cd} M_3^{ef} M_4^{gh} &= -2\left(\operatorname{tr}M_1 M_2 \operatorname{tr}M_3 M_4 + \operatorname{tr}M_1 M_3 \operatorname{tr}M_2 M_4 + \operatorname{tr}M_1 M_4 \operatorname{tr}M_2 M_3\right) \notag \\
-&\quad + 8\left(\operatorname{tr}M_1 M_2 M_3 M_4 + \operatorname{tr}M_1 M_3 M_2 M_4 + \operatorname{tr}M_1 M_3 M_4 M_2\right), \label{eq:A1}
-\end{align}
+The $t_8$ tensor itself is conventionally \cite{Aggarwal:2025lxf,Liu:2025uqu} defined to represent taking traces with cyclic symmetry:
+\begin{equation}
+t_8 ABCD = 8 \text{tr} (ABCD) - 2 \text{tr} (AB) \text{tr} (CD) + \text{cycl}(B,C,D).
+\end{equation}
+It also has a component definition \footnote{See also \cite{Minasian:2015bxa}}
+\begin{equation}
+\begin{aligned}
+t_8^{a_1 a_2 b_1 b_2 c_1 c_2 d_1 d_2}
+&= 8 g^{a_2 b_1} g^{b_2 c_1} g^{c_2 d_1} g^{d_2 a_1}
+- 2 g^{a_2 b_1} g^{b_2 a_1} g^{c_2 d_1} g^{d_2 c_1}\\
+&+ \text{cycl}(b,c,d)
+- (a_1 \leftrightarrow a_2)
+- (b_1 \leftrightarrow b_2)
+- (c_1 \leftrightarrow c_2)
+- (d_1 \leftrightarrow d_2).
+\end{aligned}
+\end{equation}
+In particular, when acting on a tensor with the symmetries of the Riemann tensor, we have
 
 \begin{align}
 t_8 t_8 R^4 &= 3 \times 2^7 \Biggl\{
@@ -66,8 +155,7 @@ R_{abef} R^{fg}{}_{cd} R^{dahe} R_{gh}{}^{bc}
 + \frac{1}{32} (R_{abcd} R^{abcd})^2
 \Biggr\}. \label{eq:A2}
 \end{align}
-Another useful identity is
-
+Another useful identity is if $S$ has Riemann-like symmetries, then
 \begin{align}
 t_8 t_8 R^2 S^2 &= 4 R_{abcd} R_{abcd} S_{efgh} S_{efgh}
 + 16 R_{abcd} R_{abef} S_{cdgh} S_{efgh} \\
