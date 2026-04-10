@@ -5,7 +5,7 @@ from itertools import product as iterprod
 # 1. Set up the fundamental variables (indices) and functions
 
 # Define indices — change this one line to add/remove external coordinates
-INDEX_LABELS = ['m', 'n', 'r', 's', 'p', 'q'] # add more if needed
+INDEX_LABELS = ['m', 'n', 'r', 's', 'p'] # add more if needed
 
 indices = list(sp.symbols(' '.join(INDEX_LABELS), real=True))
 index_names = dict(zip(indices, INDEX_LABELS))
@@ -84,6 +84,82 @@ def real_parts(expr):
     expr = expr.replace(lambda e: e.func == sp.im, lambda e: sp.S.Zero)
     return expr
 
+
+def deriv_monomials(*index_pairs):
+    """Return derivative monomials for one or more pairs of external indices.
+
+    Each index pair (mu, nu) contributes:
+      - 2nd derivative symbols: nabla_mu nabla_nu tau_i
+      - 1st derivative pairs:  (nabla_mu tau_i)(nabla_nu tau_j)
+
+    For multiple pairs, monomials are all products across pairs.
+    E.g. for pairs [(m,n), (r,s)], a monomial might be
+    (nabla_m nabla_n tau_1) * (nabla_r tau_1)(nabla_s tau_2).
+
+    Args:
+        *index_pairs: tuples of (mu, nu) external index symbols
+
+    Returns:
+        (monomials, extract_coeffs) where:
+          - monomials: list of sympy expressions (the monomial basis)
+          - extract_coeffs(expr): returns list of tau-dependent coefficients
+    """
+    # For each pair, build the atomic monomials (d2 symbols and d1*d1 products)
+    atoms_per_pair = []
+    for mu, nu in index_pairs:
+        pair_atoms = []
+        # second derivatives
+        for f in funcs:
+            key = (f, tuple(sorted([mu, nu], key=lambda x: index_names[x])))
+            if key in SYM_D2:
+                pair_atoms.append(SYM_D2[key])
+        # first derivative products
+        d1_mu = [SYM_D1[(f, mu)] for f in funcs if (f, mu) in SYM_D1]
+        d1_nu = [SYM_D1[(f, nu)] for f in funcs if (f, nu) in SYM_D1]
+        for a in d1_mu:
+            for b in d1_nu:
+                pair_atoms.append(a * b)
+        atoms_per_pair.append(pair_atoms)
+
+    # Full monomials = cartesian product across pairs
+    monomials = [sp.Mul(*combo) for combo in iterprod(*atoms_per_pair)]
+
+    def extract_coeffs(expr):
+        expr = sp.expand(expr)
+        coeffs = []
+        for mono in monomials:
+            c = expr
+            for factor in mono.as_ordered_factors():
+                c = c.coeff(factor)
+            coeffs.append(c)
+        return coeffs
+
+    return monomials, extract_coeffs
+
+
+def decompose(target, basis, *index_pairs):
+    """Decompose target as a linear combination of basis expressions.
+
+    Solves target = sum_i c_i * basis[i] where c_i can be complex functions
+    of tau_1, tau_2. All expressions should already have func2sym applied.
+
+    Args:
+        target: sympy expression to decompose
+        basis: list of sympy expressions
+        *index_pairs: tuples of (mu, nu) for each Riemann factor
+            e.g. (m, n) for R_{ambn}, or (m, n), (r, s) for R*R products
+
+    Returns:
+        solution vector as a sympy Matrix, or empty dict if no solution.
+    """
+    monomials, extract_coeffs = deriv_monomials(*index_pairs)
+    M = sp.Matrix([extract_coeffs(b) for b in basis]).T
+    t = sp.Matrix(extract_coeffs(target))
+    c = [sp.Symbol(f'c{i}') for i in range(len(basis))]
+    sol = sp.solve(M @ sp.Matrix(c) - t, c)
+    if not sol:
+        return []
+    return [sol[ci] for ci in c]
 
 
 # Also define composite functions that are not independent variables
