@@ -12,27 +12,54 @@ t_8 t_8 R^2 S \bar{S} &=
 &+64\,R^{m n r s} R^{t u v w} S_{m t r v} \bar{S}\,_{n u s w}
 \end{aligned}
 \end{equation}
-Letting $S_{mnrs} = DP_{mnrs}$, and substituting the eqm $D_m P^m = 0$, as well as $R_{mn} = -2 \bar{P}_{(m} P_{n)}$, we find that the above expression reduces to
+Letting $S_{mnrs} = DP_{mnrs}$, we find that the above expression reduces to
 \begin{equation}
 \begin{aligned}
 t_8 t_8 R^2 |DP^2|
 &=
-{}32\,D_{m} P_{n}\, R_{r}\,^{s}\,_{t}\,^{u} R^{r m t n}\, D_{s} \bar{P}_{u}
-+96\,D_{m} P_{n}\, R_{r}\,^{n}\,_{s}\,^{t} R^{r m s u}\, D_{u} \bar{P}_{t}\\
-&-16\,D_{m} P_{n}\, R_{r s}\,^{n t} R^{r s m u}\, D_{u} \bar{P}_{t}
--32\,D_{m} P^{n}\, R_{r s t}\,^{u} R^{r s t m}\, D_{u} \bar{P}_{n}\\
-&+4\,D^{m} P^{n}\, R_{r s t u} R^{r s t u}\, D_{m} \bar{P}_{n}
--32\,D_{m} P_{n}\, P^{m} R_{r}\,^{s n t} \bar{P}\,^{r}\, D_{s} \bar{P}_{t}\\
-&-32\,D_{m} P_{n}\, P^{r} R_{r}\,^{s n t} \bar{P}\,^{m}\, D_{s} \bar{P}_{t}
-+16\,D_{m} P_{n}\, P^{r} R^{m s n t} \bar{P}_{r}\, D_{s} \bar{P}_{t}\\
-&+32\,D_{m} P_{n}\, P^{r} R_{r}\,^{m n s} \bar{P}\,^{t}\, D_{t} \bar{P}_{s}
-+32\,D_{m} P_{n}\, P^{r} R_{s}\,^{m n t} \bar{P}\,^{s}\, D_{r} \bar{P}_{t}\\
-&-32\,D_{m} P^{n}\, P^{r} R_{r}\,^{m}\,_{s}\,^{t} \bar{P}\,^{s}\, D_{t} \bar{P}_{n}
--32\,D_{m} P^{n}\, P^{r} R_{r}\,^{s}\,_{t}\,^{m} \bar{P}\,^{t}\, D_{s} \bar{P}_{n}\\
-&+32\,D_{m} P_{n}\, P^{m} P^{r} \bar{P}\,^{n} \bar{P}\,^{s}\, D_{r} \bar{P}_{s}
--16\,D_{m} P_{n}\, P^{m} P^{n} \bar{P}\,^{r} \bar{P}\,^{s}\, D_{r} \bar{P}_{s}\\
-&-16\,D_{m} P_{n}\, P^{r} P^{s} \bar{P}\,^{m} \bar{P}\,^{n}\, D_{r} \bar{P}_{s}
-+16\,D^{m} P^{n}\, P_{r} P^{r} \bar{P}_{s} \bar{P}\,^{s}\, D_{m} \bar{P}_{n}\\
-&+16\,D^{m} P^{n}\, P^{r} P^{s} \bar{P}_{r} \bar{P}_{s}\, D_{m} \bar{P}_{n}
+{}16\,R^{r m}\,_{r}\,^{n} R^{s t}\,_{s}\,^{u}\, D_{t} \bar{P}_{u}\, D_{m} P_{n}
++32\,R_{r}\,^{s}\,_{t}\,^{u} R^{r m t n}\, D_{s} \bar{P}_{u}\, D_{m} P_{n}\\
+&{}+96\,R_{r}\,^{n}\,_{s}\,^{t} R^{r m s u}\, D_{u} \bar{P}_{t}\, D_{m} P_{n}
+-16\,R^{r m}\,_{r}\,^{s} R^{t n}\,_{t}\,^{u}\, D_{s} \bar{P}_{u}\, D_{m} P_{n}\\
+&{}-16\,R_{r s}\,^{n t} R^{r s m u}\, D_{u} \bar{P}_{t}\, D_{m} P_{n}
++8\,R^{r s}\,_{r s} R^{m t n u}\, D_{t} \bar{P}_{u}\, D_{m} P_{n}\\
+&{}-32\,R^{r s}\,_{r}\,^{m} R_{s}\,^{t n u}\, D_{t} \bar{P}_{u}\, D_{m} P_{n}
+-4\,R_{r s t}\,^{n} R^{r s t m}\, D^{u} \bar{P}_{u}\, D_{m} P_{n}\\
+&{}+8\,R^{r s}\,_{r}\,^{t} R_{s}\,^{m}\,_{t}\,^{n}\, D^{u} \bar{P}_{u}\, D_{m} P_{n}
++32\,R^{r s}\,_{r}\,^{t} R_{s}\,^{m n u}\, D_{t} \bar{P}_{u}\, D_{m} P_{n}\\
+&{}-32\,R_{r s t}\,^{u} R^{r s t m}\, D_{u} \bar{P}_{n}\, D_{m} P^{n}
+-32\,R^{r s}\,_{r}\,^{t} R_{s}\,^{m}\,_{t}\,^{u}\, D_{u} \bar{P}_{n}\, D_{m} P^{n}\\
+&{}+R_{n r s t} R^{n r s t}\, D^{u} \bar{P}_{u}\, D^{m} P_{m}
++4\,R_{r s t u} R^{r s t u}\, D_{m} \bar{P}_{n}\, D^{m} P^{n}\\
+&{}+8\,R^{r s}\,_{r}\,^{t} R_{s}\,^{u}\,_{t u}\, D_{m} \bar{P}_{n}\, D^{m} P^{n}
+-4\,R_{n r s}\,^{t} R^{n r s u}\, D_{u} \bar{P}_{t}\, D^{m} P_{m}\\
+&{}+8\,R^{n r}\,_{n}\,^{s} R_{r}\,^{t}\,_{s}\,^{u}\, D_{t} \bar{P}_{u}\, D^{m} P_{m}
 \end{aligned}
 \end{equation}
+Now we make the substitution
+$D_m\bar{P}_n D_r P_s = \frac{1}{4}(\hat{g}^{ac}\hat{g}^{bd} - \hat{g}^{ab}\hat{g}^{cd}+\hat{g}^{ad}\hat{g}^{bc})\hat{R}_{ambn}\hat{R}_{crds}$, as well as $R_{mnrs} = \hat{R}_{mnrs}$, we find
+\begin{equation}
+\begin{aligned}
+t_8 t_8 \hat{R}^2 |D P|^2
+&= \tfrac{1}{4}\,\mathcal{G}^{abcd}\,\Big[
+16\,\hat{R}^{r m}\,_{r}\,^{n}\,\hat{R}^{s t}\,_{s}\,^{u}\,\hat{R}_{a t b u}\,\hat{R}_{c m d n}
++32\,\hat{R}_{r}\,^{s}\,_{t}\,^{u}\,\hat{R}^{r m t n}\,\hat{R}_{a s b u}\,\hat{R}_{c m d n}\\
+&\quad+96\,\hat{R}_{r}\,^{n}\,_{s}\,^{t}\,\hat{R}^{r m s u}\,\hat{R}_{a u b t}\,\hat{R}_{c m d n}
+-16\,\hat{R}^{r m}\,_{r}\,^{s}\,\hat{R}^{t n}\,_{t}\,^{u}\,\hat{R}_{a s b u}\,\hat{R}_{c m d n}\\
+&\quad-16\,\hat{R}_{r s}\,^{n t}\,\hat{R}^{r s m u}\,\hat{R}_{a u b t}\,\hat{R}_{c m d n}
++8\,\hat{R}^{r s}\,_{r s}\,\hat{R}^{m t n u}\,\hat{R}_{a t b u}\,\hat{R}_{c m d n}\\
+&\quad-32\,\hat{R}^{r s}\,_{r}\,^{m}\,\hat{R}_{s}\,^{t n u}\,\hat{R}_{a t b u}\,\hat{R}_{c m d n}
+-4\,\hat{R}_{r s t}\,^{n}\,\hat{R}^{r s t m}\,\hat{R}_{a}\,^{u}\,_{b u}\,\hat{R}_{c m d n}\\
+&\quad+8\,\hat{R}^{r s}\,_{r}\,^{t}\,\hat{R}_{s}\,^{m}\,_{t}\,^{n}\,\hat{R}_{a}\,^{u}\,_{b u}\,\hat{R}_{c m d n}
++32\,\hat{R}^{r s}\,_{r}\,^{t}\,\hat{R}_{s}\,^{m n u}\,\hat{R}_{a t b u}\,\hat{R}_{c m d n}\\
+&\quad-32\,\hat{R}_{r s t}\,^{u}\,\hat{R}^{r s t m}\,\hat{R}_{a u b n}\,\hat{R}_{c m d}\,^{n}
+-32\,\hat{R}^{r s}\,_{r}\,^{t}\,\hat{R}_{s}\,^{m}\,_{t}\,^{u}\,\hat{R}_{a u b n}\,\hat{R}_{c m d}\,^{n}\\
+&\quad+\hat{R}_{n r s t}\,\hat{R}^{n r s t}\,\hat{R}_{a}\,^{u}\,_{b u}\,\hat{R}_{c}\,^{m}\,_{d m}
++4\,\hat{R}_{r s t u}\,\hat{R}^{r s t u}\,\hat{R}_{a m b n}\,\hat{R}_{c}\,^{m}\,_{d}\,^{n}\\
+&\quad+8\,\hat{R}^{r s}\,_{r}\,^{t}\,\hat{R}_{s}\,^{u}\,_{t u}\,\hat{R}_{a m b n}\,\hat{R}_{c}\,^{m}\,_{d}\,^{n}
+-4\,\hat{R}_{n r s}\,^{t}\,\hat{R}^{n r s u}\,\hat{R}_{a u b t}\,\hat{R}_{c}\,^{m}\,_{d m}\\
+&\quad+8\,\hat{R}^{n r}\,_{n}\,^{s}\,\hat{R}_{r}\,^{t}\,_{s}\,^{u}\,\hat{R}_{a t b u}\,\hat{R}_{c}\,^{m}\,_{d m}
+\Big]
+\end{aligned}
+\end{equation}
+where $\mathcal{G}^{abcd} = \hat{g}^{ac}\hat{g}^{bd} - \hat{g}^{ab}\hat{g}^{cd}+\hat{g}^{ad}\hat{g}^{bc}$.
