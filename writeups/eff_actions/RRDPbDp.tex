@@ -40,148 +40,60 @@ Now we make the substitution
 $D_m\bar{P}_n D_r P_s = \frac{1}{4}(\hat{g}^{ac}\hat{g}^{bd} - \hat{g}^{ab}\hat{g}^{cd}+\hat{g}^{ad}\hat{g}^{bc})\hat{R}_{ambn}\hat{R}_{crds}$, as well as $R_{mnrs} = \hat{R}_{mnrs}$, we find
 \begin{equation}
 \begin{aligned}
-t_8 t_8 \hat{R}^2 |D P|^2
-&= \tfrac{1}{4}\,\mathcal{G}^{abcd}\,\Big[
-16\,\hat{R}^{r m}\,_{r}\,^{n}\,\hat{R}^{s t}\,_{s}\,^{u}\,\hat{R}_{a t b u}\,\hat{R}_{c m d n}
-+32\,\hat{R}_{r}\,^{s}\,_{t}\,^{u}\,\hat{R}^{r m t n}\,\hat{R}_{a s b u}\,\hat{R}_{c m d n}\\
-&\quad+96\,\hat{R}_{r}\,^{n}\,_{s}\,^{t}\,\hat{R}^{r m s u}\,\hat{R}_{a u b t}\,\hat{R}_{c m d n}
--16\,\hat{R}^{r m}\,_{r}\,^{s}\,\hat{R}^{t n}\,_{t}\,^{u}\,\hat{R}_{a s b u}\,\hat{R}_{c m d n}\\
-&\quad-16\,\hat{R}_{r s}\,^{n t}\,\hat{R}^{r s m u}\,\hat{R}_{a u b t}\,\hat{R}_{c m d n}
-+8\,\hat{R}^{r s}\,_{r s}\,\hat{R}^{m t n u}\,\hat{R}_{a t b u}\,\hat{R}_{c m d n}\\
-&\quad-32\,\hat{R}^{r s}\,_{r}\,^{m}\,\hat{R}_{s}\,^{t n u}\,\hat{R}_{a t b u}\,\hat{R}_{c m d n}
--4\,\hat{R}_{r s t}\,^{n}\,\hat{R}^{r s t m}\,\hat{R}_{a}\,^{u}\,_{b u}\,\hat{R}_{c m d n}\\
-&\quad+8\,\hat{R}^{r s}\,_{r}\,^{t}\,\hat{R}_{s}\,^{m}\,_{t}\,^{n}\,\hat{R}_{a}\,^{u}\,_{b u}\,\hat{R}_{c m d n}
-+32\,\hat{R}^{r s}\,_{r}\,^{t}\,\hat{R}_{s}\,^{m n u}\,\hat{R}_{a t b u}\,\hat{R}_{c m d n}\\
-&\quad-32\,\hat{R}_{r s t}\,^{u}\,\hat{R}^{r s t m}\,\hat{R}_{a u b n}\,\hat{R}_{c m d}\,^{n}
--32\,\hat{R}^{r s}\,_{r}\,^{t}\,\hat{R}_{s}\,^{m}\,_{t}\,^{u}\,\hat{R}_{a u b n}\,\hat{R}_{c m d}\,^{n}\\
-&\quad+\hat{R}_{n r s t}\,\hat{R}^{n r s t}\,\hat{R}_{a}\,^{u}\,_{b u}\,\hat{R}_{c}\,^{m}\,_{d m}
-+4\,\hat{R}_{r s t u}\,\hat{R}^{r s t u}\,\hat{R}_{a m b n}\,\hat{R}_{c}\,^{m}\,_{d}\,^{n}\\
-&\quad+8\,\hat{R}^{r s}\,_{r}\,^{t}\,\hat{R}_{s}\,^{u}\,_{t u}\,\hat{R}_{a m b n}\,\hat{R}_{c}\,^{m}\,_{d}\,^{n}
--4\,\hat{R}_{n r s}\,^{t}\,\hat{R}^{n r s u}\,\hat{R}_{a u b t}\,\hat{R}_{c}\,^{m}\,_{d m}\\
-&\quad+8\,\hat{R}^{n r}\,_{n}\,^{s}\,\hat{R}_{r}\,^{t}\,_{s}\,^{u}\,\hat{R}_{a t b u}\,\hat{R}_{c}\,^{m}\,_{d m}
-\Big]
+t_8t_8 R^2 |DP|^2
+&= \frac{1}{16} R^{m n r s} R_{m n r s} R^{a t b u} R_{a t b u}
+- \frac{1}{16} R^{m n r s} R_{m n r s} R^{a t}{}_{a}{}^{u} R^{b}{}_{t b u} \\
+& + \frac{1}{16} R^{m n r s} R_{m n r s} R^{a t b u} R_{b t a u}
++ \frac{1}{64} R^{m n r s} R_{m n r s} R^{a t b}{}_{t} R_{a}{}^{u}{}_{b u} \\
+& - \frac{1}{64} R^{m n r s} R_{m n r s} R^{a t}{}_{a t} R^{b u}{}_{b u}
++ \frac{1}{64} R^{m n r s} R_{m n r s} R^{a t b}{}_{t} R_{b}{}^{u}{}_{a u} \\
+& - \frac{1}{2} R^{m n r s} R_{m n r}{}^{t} R^{a}{}_{s}{}^{b u} R_{a t b u}
++ \frac{1}{2} R^{m n r s} R_{m n r}{}^{t} R^{a}{}_{s a}{}^{u} R^{b}{}_{t b u} \\
+& - \frac{1}{2} R^{m n r s} R_{m n r}{}^{t} R^{a}{}_{s}{}^{b u} R_{b t a u}
+- \frac{1}{4} R^{m n r s} R_{m n}{}^{t u} R^{a}{}_{r}{}^{b}{}_{t} R_{a s b u} \\
+& + \frac{1}{4} R^{m n r s} R_{m n}{}^{t u} R^{a}{}_{r a t} R^{b}{}_{s b u}
+- \frac{1}{4} R^{m n r s} R_{m n}{}^{t u} R^{a}{}_{r}{}^{b}{}_{t} R_{b s a u} \\
+& - \frac{1}{16} R^{m n r s} R_{m n r}{}^{t} R^{a}{}_{s}{}^{b}{}_{t} R_{a}{}^{u}{}_{b u}
++ \frac{1}{16} R^{m n r s} R_{m n r}{}^{t} R^{a}{}_{s a t} R^{b u}{}_{b u} \\
+& - \frac{1}{16} R^{m n r s} R_{m n r}{}^{t} R^{a}{}_{s}{}^{b}{}_{t} R_{b}{}^{u}{}_{a u}
+- \frac{1}{16} R^{m n r s} R_{m n r}{}^{t} R^{a u b}{}_{u} R_{a s b t} \\
+& + \frac{1}{16} R^{m n r s} R_{m n r}{}^{t} R^{a u}{}_{a u} R^{b}{}_{s b t}
+- \frac{1}{16} R^{m n r s} R_{m n r}{}^{t} R^{a u b}{}_{u} R_{b s a t} \\
+& + \frac{1}{4} R^{a m b n} R_{a}{}^{r}{}_{b}{}^{s} R_{m}{}^{t}{}_{n t} R_{r}{}^{u}{}_{s u}
+- \frac{1}{4} R^{a m}{}_{a}{}^{n} R^{b r}{}_{b}{}^{s} R_{m}{}^{t}{}_{n t} R_{r}{}^{u}{}_{s u} \\
+& + \frac{1}{4} R^{a m b n} R_{b}{}^{r}{}_{a}{}^{s} R_{m}{}^{t}{}_{n t} R_{r}{}^{u}{}_{s u}
++ \frac{3}{2} R^{m n r s} R_{m}{}^{t}{}_{r}{}^{u} R^{a}{}_{n}{}^{b}{}_{t} R_{a s b u} \\
+& - \frac{3}{2} R^{m n r s} R_{m}{}^{t}{}_{r}{}^{u} R^{a}{}_{n a t} R^{b}{}_{s b u}
++ \frac{3}{2} R^{m n r s} R_{m}{}^{t}{}_{r}{}^{u} R^{a}{}_{n}{}^{b}{}_{t} R_{b s a u} \\
+& - R^{m n}{}_{m}{}^{r} R_{n}{}^{s t u} R^{a}{}_{r}{}^{b}{}_{t} R_{a s b u}
++ R^{m n}{}_{m}{}^{r} R_{n}{}^{s t u} R^{a}{}_{r a t} R^{b}{}_{s b u} \\
+& - R^{m n}{}_{m}{}^{r} R_{n}{}^{s t u} R^{a}{}_{r}{}^{b}{}_{t} R_{b s a u}
++ \frac{1}{2} R^{m n r s} R_{m}{}^{t}{}_{r}{}^{u} R^{a}{}_{n}{}^{b}{}_{s} R_{a t b u} \\
+& - \frac{1}{2} R^{m n r s} R_{m}{}^{t}{}_{r}{}^{u} R^{a}{}_{n a s} R^{b}{}_{t b u}
++ \frac{1}{2} R^{m n r s} R_{m}{}^{t}{}_{r}{}^{u} R^{a}{}_{n}{}^{b}{}_{s} R_{b t a u} \\
+& - \frac{1}{4} R^{a m b n} R_{a}{}^{r}{}_{b}{}^{s} R_{m}{}^{t}{}_{r t} R_{n}{}^{u}{}_{s u}
++ \frac{1}{4} R^{a m}{}_{a}{}^{n} R^{b r}{}_{b}{}^{s} R_{m}{}^{t}{}_{r t} R_{n}{}^{u}{}_{s u} \\
+& - \frac{1}{4} R^{a m b n} R_{b}{}^{r}{}_{a}{}^{s} R_{m}{}^{t}{}_{r t} R_{n}{}^{u}{}_{s u}
++ \frac{1}{8} R^{m n}{}_{m}{}^{r} R_{n}{}^{s}{}_{r s} R^{a t b u} R_{a t b u} \\
+& - \frac{1}{8} R^{m n}{}_{m}{}^{r} R_{n}{}^{s}{}_{r s} R^{a t}{}_{a}{}^{u} R^{b}{}_{t b u}
++ \frac{1}{8} R^{m n}{}_{m}{}^{r} R_{n}{}^{s}{}_{r s} R^{a t b u} R_{b t a u} \\
+& - \frac{1}{2} R^{m n}{}_{m}{}^{r} R_{n}{}^{s}{}_{r}{}^{t} R^{a}{}_{s}{}^{b u} R_{a t b u}
++ \frac{1}{2} R^{m n}{}_{m}{}^{r} R_{n}{}^{s}{}_{r}{}^{t} R^{a}{}_{s a}{}^{u} R^{b}{}_{t b u} \\
+& - \frac{1}{2} R^{m n}{}_{m}{}^{r} R_{n}{}^{s}{}_{r}{}^{t} R^{a}{}_{s}{}^{b u} R_{b t a u}
++ \frac{1}{8} R^{m n}{}_{m}{}^{r} R_{n}{}^{s}{}_{r}{}^{t} R^{a}{}_{s}{}^{b}{}_{t} R_{a}{}^{u}{}_{b u} \\
+& - \frac{1}{8} R^{m n}{}_{m}{}^{r} R_{n}{}^{s}{}_{r}{}^{t} R^{a}{}_{s a t} R^{b u}{}_{b u}
++ \frac{1}{8} R^{m n}{}_{m}{}^{r} R_{n}{}^{s}{}_{r}{}^{t} R^{a}{}_{s}{}^{b}{}_{t} R_{b}{}^{u}{}_{a u} \\
+& + \frac{1}{8} R^{m n}{}_{m}{}^{r} R_{n}{}^{s}{}_{r}{}^{t} R^{a u b}{}_{u} R_{a s b t}
+- \frac{1}{8} R^{m n}{}_{m}{}^{r} R_{n}{}^{s}{}_{r}{}^{t} R^{a u}{}_{a u} R^{b}{}_{s b t} \\
+& + \frac{1}{8} R^{m n}{}_{m}{}^{r} R_{n}{}^{s}{}_{r}{}^{t} R^{a u b}{}_{u} R_{b s a t}
++ \frac{1}{8} R^{m n}{}_{m n} R^{r s t u} R^{a}{}_{r}{}^{b}{}_{t} R_{a s b u} \\
+& - \frac{1}{8} R^{m n}{}_{m n} R^{r s t u} R^{a}{}_{r a t} R^{b}{}_{s b u}
++ \frac{1}{8} R^{m n}{}_{m n} R^{r s t u} R^{a}{}_{r}{}^{b}{}_{t} R_{b s a u}
 \end{aligned}
 \end{equation}
-where $\mathcal{G}^{abcd} = \hat{g}^{ac}\hat{g}^{bd} - \hat{g}^{ab}\hat{g}^{cd}+\hat{g}^{ad}\hat{g}^{bc}$.
-Evaluating, we find
+
+Let us examine the $R_{mnrs} R^{mnrs}$ terms, its coefficient is
 \begin{equation}
-t_8 t_8 \hat{R}^2 |D P|^2 = \frac{1}{4} (I - II + III)
-\end{equation}
-where
-\begin{equation}
-\begin{aligned}
-\text{I} &=
-16\,\hat{R}^{rm}{}_{r}{}^{n}\,\hat{R}^{st}{}_{s}{}^{u}\,
-\hat{R}^{e}{}_{t}{}^{f}{}_{u}\,\hat{R}_{emfn}
-+32\,\hat{R}_{r}{}^{s}{}_{t}{}^{u}\,\hat{R}^{rmtn}\,
-\hat{R}^{e}{}_{s}{}^{f}{}_{u}\,\hat{R}_{emfn}\\
-&+96\,\hat{R}_{r}{}^{n}{}_{s}{}^{t}\,\hat{R}^{rmsu}\,
-\hat{R}^{e}{}_{u}{}^{f}{}_{t}\,\hat{R}_{emfn}
--16\,\hat{R}^{rm}{}_{r}{}^{s}\,\hat{R}^{tn}{}_{t}{}^{u}\,
-\hat{R}^{e}{}_{s}{}^{f}{}_{u}\,\hat{R}_{emfn}\\
-&-16\,\hat{R}_{rs}{}^{nt}\,\hat{R}^{rsmu}\,
-\hat{R}^{e}{}_{u}{}^{f}{}_{t}\,\hat{R}_{emfn}
-+8\,\hat{R}^{rs}{}_{rs}\,\hat{R}^{mtnu}\,
-\hat{R}^{e}{}_{t}{}^{f}{}_{u}\,\hat{R}_{emfn}\\
-&-32\,\hat{R}^{rs}{}_{r}{}^{m}\,\hat{R}_{s}{}^{tnu}\,
-\hat{R}^{e}{}_{t}{}^{f}{}_{u}\,\hat{R}_{emfn}
--4\,\hat{R}_{rst}{}^{n}\,\hat{R}^{rstm}\,
-\hat{R}^{e}{}_{u}{}^{f u}\,\hat{R}_{emfn}\\
-&+8\,\hat{R}^{rs}{}_{r}{}^{t}\,\hat{R}_{s}{}^{m}{}_{t}{}^{n}\,
-\hat{R}^{e}{}_{u}{}^{f u}\,\hat{R}_{emfn}
-+32\,\hat{R}^{rs}{}_{r}{}^{t}\,\hat{R}_{s}{}^{mnu}\,
-\hat{R}^{e}{}_{t}{}^{f}{}_{u}\,\hat{R}_{emfn}\\
-&-32\,\hat{R}_{rst}{}^{u}\,\hat{R}^{rstm}\,
-\hat{R}^{e}{}_{u}{}^{f}{}_{n}\,\hat{R}_{emf}{}^{n}
--32\,\hat{R}^{rs}{}_{r}{}^{t}\,\hat{R}_{s}{}^{m}{}_{t}{}^{u}\,
-\hat{R}^{e}{}_{u}{}^{f}{}_{n}\,\hat{R}_{emf}{}^{n}\\
-&+\hat{R}_{nrst}\,\hat{R}^{nrst}\,
-\hat{R}^{e}{}_{u}{}^{fu}\,\hat{R}_{e}{}^{m}{}_{fm}
-+4\,\hat{R}_{rstu}\,\hat{R}^{rstu}\,
-\hat{R}^{e}{}_{m}{}^{f}{}_{n}\,\hat{R}_{e}{}^{m}{}_{f}{}^{n}\\
-&+8\,\hat{R}^{rs}{}_{r}{}^{t}\,\hat{R}_{s}{}^{u}{}_{tu}\,
-\hat{R}^{e}{}_{m}{}^{f}{}_{n}\,\hat{R}_{e}{}^{m}{}_{f}{}^{n}
--4\,\hat{R}_{nrs}{}^{t}\,\hat{R}^{nrsu}\,
-\hat{R}^{e}{}_{u}{}^{f}{}_{t}\,\hat{R}_{e}{}^{m}{}_{fm}\\
-&+8\,\hat{R}^{nr}{}_{n}{}^{s}\,\hat{R}_{r}{}^{t}{}_{s}{}^{u}\,
-\hat{R}^{e}{}_{t}{}^{f}{}_{u}\,\hat{R}_{e}{}^{m}{}_{fm}
-\end{aligned}
-\end{equation}
-\begin{equation}
-\begin{aligned}
-\text{II} &=
-16\,\hat{R}^{rm}{}_{r}{}^{n}\,\hat{R}^{st}{}_{s}{}^{u}\,
-\mathcal{R}_{tu}\,\mathcal{R}_{mn}
-+32\,\hat{R}_{r}{}^{s}{}_{t}{}^{u}\,\hat{R}^{rmtn}\,
-\mathcal{R}_{su}\,\mathcal{R}_{mn}\\
-&+96\,\hat{R}_{r}{}^{n}{}_{s}{}^{t}\,\hat{R}^{rmsu}\,
-\mathcal{R}_{ut}\,\mathcal{R}_{mn}
--16\,\hat{R}^{rm}{}_{r}{}^{s}\,\hat{R}^{tn}{}_{t}{}^{u}\,
-\mathcal{R}_{su}\,\mathcal{R}_{mn}\\
-&-16\,\hat{R}_{rs}{}^{nt}\,\hat{R}^{rsmu}\,
-\mathcal{R}_{ut}\,\mathcal{R}_{mn}
-+8\,\hat{R}^{rs}{}_{rs}\,\hat{R}^{mtnu}\,
-\mathcal{R}_{tu}\,\mathcal{R}_{mn}\\
-&-32\,\hat{R}^{rs}{}_{r}{}^{m}\,\hat{R}_{s}{}^{tnu}\,
-\mathcal{R}_{tu}\,\mathcal{R}_{mn}
--4\,\hat{R}_{rst}{}^{n}\,\hat{R}^{rstm}\,
-\mathcal{R}^{u}{}_{u}\,\mathcal{R}_{mn}\\
-&+8\,\hat{R}^{rs}{}_{r}{}^{t}\,\hat{R}_{s}{}^{m}{}_{t}{}^{n}\,
-\mathcal{R}^{u}{}_{u}\,\mathcal{R}_{mn}
-+32\,\hat{R}^{rs}{}_{r}{}^{t}\,\hat{R}_{s}{}^{mnu}\,
-\mathcal{R}_{tu}\,\mathcal{R}_{mn}\\
-&-32\,\hat{R}_{rst}{}^{u}\,\hat{R}^{rstm}\,
-\mathcal{R}_{un}\,\mathcal{R}_{m}{}^{n}
--32\,\hat{R}^{rs}{}_{r}{}^{t}\,\hat{R}_{s}{}^{m}{}_{t}{}^{u}\,
-\mathcal{R}_{un}\,\mathcal{R}_{m}{}^{n}\\
-&+\hat{R}_{nrst}\,\hat{R}^{nrst}\,
-\mathcal{R}^{u}{}_{u}\,\mathcal{R}^{m}{}_{m}
-+4\,\hat{R}_{rstu}\,\hat{R}^{rstu}\,
-\mathcal{R}_{mn}\,\mathcal{R}^{mn}\\
-&+8\,\hat{R}^{rs}{}_{r}{}^{t}\,\hat{R}_{s}{}^{u}{}_{tu}\,
-\mathcal{R}_{mn}\,\mathcal{R}^{mn}
--4\,\hat{R}_{nrs}{}^{t}\,\hat{R}^{nrsu}\,
-\mathcal{R}_{ut}\,\mathcal{R}^{m}{}_{m}\\
-&+8\,\hat{R}^{nr}{}_{n}{}^{s}\,\hat{R}_{r}{}^{t}{}_{s}{}^{u}\,
-\mathcal{R}_{tu}\,\mathcal{R}^{m}{}_{m}
-\end{aligned}
-\end{equation}
-\begin{equation}
-\begin{aligned}
-\text{III} &=
-16\,\hat{R}^{rm}{}_{r}{}^{n}\,\hat{R}^{st}{}_{s}{}^{u}\,
-\hat{R}^{e}{}_{u}{}^{f}{}_{t}\,\hat{R}_{emfn}
-+32\,\hat{R}_{r}{}^{s}{}_{t}{}^{u}\,\hat{R}^{rmtn}\,
-\hat{R}^{e}{}_{u}{}^{f}{}_{s}\,\hat{R}_{emfn}\\
-&+96\,\hat{R}_{r}{}^{n}{}_{s}{}^{t}\,\hat{R}^{rmsu}\,
-\hat{R}^{e}{}_{t}{}^{f}{}_{u}\,\hat{R}_{emfn}
--16\,\hat{R}^{rm}{}_{r}{}^{s}\,\hat{R}^{tn}{}_{t}{}^{u}\,
-\hat{R}^{e}{}_{u}{}^{f}{}_{s}\,\hat{R}_{emfn}\\
-&-16\,\hat{R}_{rs}{}^{nt}\,\hat{R}^{rsmu}\,
-\hat{R}^{e}{}_{t}{}^{f}{}_{u}\,\hat{R}_{emfn}
-+8\,\hat{R}^{rs}{}_{rs}\,\hat{R}^{mtnu}\,
-\hat{R}^{e}{}_{u}{}^{f}{}_{t}\,\hat{R}_{emfn}\\
-&-32\,\hat{R}^{rs}{}_{r}{}^{m}\,\hat{R}_{s}{}^{tnu}\,
-\hat{R}^{e}{}_{u}{}^{f}{}_{t}\,\hat{R}_{emfn}
--4\,\hat{R}_{rst}{}^{n}\,\hat{R}^{rstm}\,
-\hat{R}^{eu}{}_{fu}\,\hat{R}_{emfn}\\
-&+8\,\hat{R}^{rs}{}_{r}{}^{t}\,\hat{R}_{s}{}^{m}{}_{t}{}^{n}\,
-\hat{R}^{eu}{}_{fu}\,\hat{R}_{emfn}
-+32\,\hat{R}^{rs}{}_{r}{}^{t}\,\hat{R}_{s}{}^{mnu}\,
-\hat{R}^{e}{}_{u}{}^{f}{}_{t}\,\hat{R}_{emfn}\\
-&-32\,\hat{R}_{rst}{}^{u}\,\hat{R}^{rstm}\,
-\hat{R}^{e}{}_{n}{}^{f}{}_{u}\,\hat{R}_{emf}{}^{n}
--32\,\hat{R}^{rs}{}_{r}{}^{t}\,\hat{R}_{s}{}^{m}{}_{t}{}^{u}\,
-\hat{R}^{e}{}_{n}{}^{f}{}_{u}\,\hat{R}_{emf}{}^{n}\\
-&+\hat{R}_{nrst}\,\hat{R}^{nrst}\,
-\hat{R}^{eu}{}_{fu}\,\hat{R}_{e}{}^{m}{}_{fm}
-+4\,\hat{R}_{rstu}\,\hat{R}^{rstu}\,
-\hat{R}^{e}{}_{n}{}^{f}{}_{m}\,\hat{R}_{e}{}^{m}{}_{f}{}^{n}\\
-&+8\,\hat{R}^{rs}{}_{r}{}^{t}\,\hat{R}_{s}{}^{u}{}_{tu}\,
-\hat{R}^{e}{}_{n}{}^{f}{}_{m}\,\hat{R}_{e}{}^{m}{}_{f}{}^{n}
--4\,\hat{R}_{nrs}{}^{t}\,\hat{R}^{nrsu}\,
-\hat{R}^{e}{}_{t}{}^{f}{}_{u}\,\hat{R}_{e}{}^{m}{}_{fm}\\
-&+8\,\hat{R}^{nr}{}_{n}{}^{s}\,\hat{R}_{r}{}^{t}{}_{s}{}^{u}\,
-\hat{R}^{e}{}_{u}{}^{f}{}_{t}\,\hat{R}_{e}{}^{m}{}_{fm}
-\end{aligned}
+\frac{1}{16}
+(R^{a t b u} R_{a t b u} - R^{a t}{}_{a}{}^{u} R^{b}{}_{t b u} + R^{a t b u} R_{b t a u} + \frac{1}{4} R^{a t b}{}_{t} R_{a}{}^{u}{}_{b u} - \frac{1}{4} R^{a t}{}_{a t} R^{b u}{}_{b u} + \frac{1}{4} R^{a t b}{}_{t} R_{b}{}^{u}{}_{a u})
 \end{equation}
