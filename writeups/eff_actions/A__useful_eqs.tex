@@ -157,23 +157,37 @@ This means we also can not write terms as $PP$ and $\bar{P}\bar{P}$, which appea
 
 \begin{equation}
 \begin{aligned}
-D_m\bar{P}_n D_r P_s &= \frac{1}{4}(g^{ab}g^{cd} - \epsilon^{ab}\epsilon^{cd})R_{amcn}R_{brds}\\
+D_m\bar{P}_n D_r P_s &= \frac{1}{4}(g^{ac}g^{bd} - g^{ab}g^{cd}+g^{ad}g^{bc})R_{ambn}R_{crds}\\
 D_m \bar{G}_{3,nrs} D_{m'} G_{3,n'r's'}
 &= \hat{\nabla}_m F_{4,nrs a} \hat{\nabla}_{m'} F_{4,n'r's' b} g^{ab}\end{aligned}
 \end{equation}
 
 We also have that 
 
-$$|DG_3|^2 = (\nabla F_4)_a (\nabla F_4)^a$$
+$$|DG_3|^2 = (\hat{\nabla} F_4)_a (\hat{\nabla} F_4)^a$$
 
 as well as
 
 \begin{equation}
-\text{Re} D_m P_n D_r \bar{G}_3 D_s \bar{G}_3 = \frac{1}{2} (g^{ac} g^{bd} - \epsilon^{ac} \epsilon^{bd}) R_{ambn} \nabla_r F_{4c} \nabla_s F_{4d}
+\text{Re} D_m P_n D_r \bar{G}_3 D_s \bar{G}_3 = \frac{1}{2} (g^{ac} g^{bd} - g^{ab}g^{cd} + g^{ad}g^{bc}) R_{ambn} \nabla_r F_{4c} \nabla_s F_{4d}
 \end{equation}
 
 
 \subsection{Tensor Identities}
+In generic dimensions, one has that
+\begin{equation}
+\begin{aligned}
+\epsilon_{\mu_1...\mu_D} 
+&= \sqrt{|g|}\varepsilon_{\mu_1...\mu_D},\\
+\varepsilon_{0,1,...,(D-2),(D-1)} 
+&= 1,\\
+\epsilon_{\mu_1...\mu_p \lambda_1 ...\lambda_{D-p}}
+\epsilon^{\nu_1...\nu_p \lambda_1 ...\lambda_{D-p}}
+&=(-1)^{[t]} p!(D-p)!\delta^{\nu_1...\nu_p}_{\mu_1...\mu_p}
+\end{aligned}
+\end{equation}
+So that on an Euclidean 2-torus, we have that $\epsilon^{ac}\epsilon^{bd} = g^{ab}g^{cd} - g^{ad}g^{bc}$.
+
 The contraction of the $t_8 t_8$ tensor with four rank-4 tensors is defined by
 \begin{align}
 	t_8 t_8 \left\{ ABCD \right\} := (t_8)^{a_1 \ldots a_8} (t_8)^{b_1 \ldots b_8} A_{a_1 a_2 b_1 b_2} B_{a_3 a_4 b_3 b_4} C_{a_5 a_6 b_5 b_6} D_{a_7 a_8 b_7 b_8} \,,
