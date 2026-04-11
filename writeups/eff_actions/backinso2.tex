@@ -1,3 +1,6 @@
+\section{Known Effective Action}
+
+
 \section{Back to SO(2)}
 
 
@@ -16,45 +19,34 @@ So here is the strategy:
 \end{itemize}
 
 
-\subsection{Riemann tensor}
-
-Given this metric, with the 2x2 torus having indices 10, 11, we compute all nonvanishing components of the Riemann tensor
-
-\begin{equation}
-\mathcal{G}_{MN}
-= \begin{pmatrix}
-    g_{mn} & 0 & 0 \\
-    0 & \frac{1}{\tau_2} & \frac{\tau_1}{\tau_2} \\
-    0 & \frac{\tau_1}{\tau_2} & \frac{|\tau|^2}{\tau_2}
-\end{pmatrix},\quad
-g_{ab} = \frac{1}{\tau_2}\begin{pmatrix}
-    1 & \tau_1 \\
-    \tau_1 & |\tau|^2
-\end{pmatrix}.
-\end{equation}
-
-
 \subsection{Known effective action}
 
 Ref: \cite{Policastro:2008hg,Minasian:2015bxa,Liu:2025uqu} 
 
-\begin{align}
+The 4-point 8-derivative effective action can be written as
+\begin{equation}
+\begin{aligned}
 \frac{L_{\text{4-pt}}^{(3)}}{\alpha\, f_{0}(\tau,\bar{\tau})}
-&=\left(t_{8}t_{8}-\tfrac{1}{4}\epsilon_{8}\epsilon_{8}\right)\biggl[R^4+6R^{2}\left(4|DP|^{2}+|\nabla G_{3}|^{2}\right)+24|DP|^{2}|\nabla G_{3}|^{2}\\[0.4em]
-&\quad+12R\left(DP(\nabla\overline{G}_{3})^{2}+\overline{DP}(\nabla{G}_{3})^{2}\right)\biggr] +O_{1}\left((|DP|^{2})^{2}\right)+O_{2}\left((|\nabla G_{3}|^{2})^{2}\right)
+&=\left(t_{8}t_{8}-\tfrac{1}{4}\epsilon_{8}\epsilon_{8}\right)\biggl[R^4+6R^{2}\left(4|DP|^{2}+|\nabla G_{3}|^{2}\right)+24|DP|^{2}|\nabla G_{3}|^{2}\\
+&+12R\left(DP(\nabla\overline{G}_{3})^{2}+\overline{DP}(\nabla{G}_{3})^{2}\right)\biggr]\\
+&+O_{1}\left((|DP|^{2})^{2}\right)\\
+&+O_{2}\left((|\nabla G_{3}|^{2})^{2}\right)
 \label{eq:PTaction}
-\end{align}
-
+\end{aligned}
+\end{equation}
 Here $O_1$ is meant to represent $1536 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)$.
 Interestingly, it is known that $O_1$ can not be written in a $t_8t_8$ structure, but can be obtained from $\hat{t}_8\hat{t}_8 \hat{R}^4$ \cite{Minasian:2015bxa}.
 This had been one of the arguments for the 12d uplift of the effective action in the form $\hat{t}_8\hat{t}_8 \hat{R}^4$.
 
-We note that there is a beautiful structure in \eqref{eq:PTaction}.
+We note that there is an intriguing structure in \eqref{eq:PTaction}.
 First, the gravity + scalar sector can be written as
 \begin{equation}
 L_{\text{gravity+scalar}} = (t_8t_8 - \frac{1}{4}\epsilon_8\epsilon_8)
 (R^4 + 24 R^2 |DP|^2) + 1536 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)
 \end{equation}
+In 12d perspective, $DP$ represents second derivatives on $\tau$, hence belongs to components of Riemann tensor.
+So we can write the gravity + scalar sector schematically takes the form $\hat{R}^4$.
+
 The 3-form sector can be written as
 \begin{equation}
 L_{\text{3-form}} = (t_8t_8 - \frac{1}{4}\epsilon_8\epsilon_8)
@@ -62,17 +54,16 @@ L_{\text{3-form}} = (t_8t_8 - \frac{1}{4}\epsilon_8\epsilon_8)
 \end{equation}
 which factorizes into
 \begin{equation}
-L_{\text{3-form}} = (t_8t_8 - \frac{1}{4}\epsilon_8\epsilon_8)
-6(R \nabla G_3 + 2 DP \nabla \bar{G}_3)
+L_{\text{3-form}} = 
+6(t_8t_8 - \frac{1}{4}\epsilon_8\epsilon_8)
+(R \nabla G_3 + 2 DP \nabla \bar{G}_3)
 (R \nabla \bar{G}_3 + 2 D \bar{P} \nabla G_3) + O_2((|\nabla G_3|^2)^2).
 \end{equation}
 
 We see the structure of $|R \nabla G_3 + 2DP \nabla \bar{G}_3|^2$.
-In 12d perspective, $DP$ represents 2nd derivatives and squared first derivatives of $\tau$, hence belongs to components of 12d Riemann tensor.
-So schematically it's of the form $(\hat{R} F_4)^2$, where $F_4$ is the 12d uplift of $H_3, F_3$.
-So one may ask, can we uplift the entire 3-form 4-point sector into a cleaner 12d structure, perhaps something like $\hat{R}^2 (\nabla F_4)^2$?
+In 12d perspective, we substitute $DP$ for $\hat{R}$, and let $\hat{F}_4 = H_3 \wedge dy_1 + F_3 \wedge dy_2$ be the 12d uplift of $G_3$, as discussed in \cite{Cheng:2025efp}.
+One may ask, can we uplift the entire 3-form 4-point sector into a cleaner 12d structure, perhaps something like $\hat{R}^2 (\nabla F_4)^2$?
 
-Let us begin
 
 \subsection{$R^2|DP|^2$}
 One can show that 
@@ -94,10 +85,7 @@ and the overall contribution is
 
 \subsection{$R^2|\nabla G_3|^2$}
 One can show that with $F_4 = H_3 \wedge dy_1 + F_3 \wedge dy_2$, we have
-\begin{equation}
-\nabla_m \bar{G}_{3,nrs} \nabla_{m'} G_{3,n'r's'}
-= \hat{\nabla}_m F_{4,nrs a} \hat{\nabla}_{m'} F_{4,n'r's' b} g^{ab}
-\end{equation}
+
 So the overall contribution is
 \begin{equation}
 6 R^2(t_8t_8 - \tfrac14 \epsilon_8\epsilon_8)  \nabla (F_4)_a \nabla (F_4)_b g^{ab}
