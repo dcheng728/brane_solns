@@ -58,22 +58,6 @@ $R_{2m2n}$ & $-\frac{\tau_1}{\tau_2}$ & $\frac{\tau_1^2-\tau_2^2}{2\tau_2^2}$ & 
 \end{tabular}
 \medskip
 
-% \renewcommand{\arraystretch}{1.8}
-% \begin{tabular}{c|ccccc}
-% \toprule
-% $g^{mn}R_{ambn}$
-%   & $\Delta\tau_1$
-%   & $\Delta\tau_2$
-%   & $(\nabla\tau_1)^2$
-%   & $\nabla\tau_1\!\cdot\!\nabla\tau_2$
-%   & $(\nabla\tau_2)^2$ \\
-% \midrule
-% $g^{mn}R_{1m1n}$ & $0$ & $\frac{1}{2\tau_2^2}$ & $\frac{1}{4\tau_2^3}$ & $0$ & $-\frac{3}{4\tau_2^3}$ \\[4pt]
-% $g^{mn}R_{1m2n}$ & $-\frac{1}{2\tau_2}$ & $\frac{\tau_1}{2\tau_2^2}$ & $\frac{\tau_1}{4\tau_2^3}$ & $\frac{1}{\tau_2^2}$ & $-\frac{3\tau_1}{4\tau_2^3}$ \\[4pt]
-% $g^{mn}R_{2m1n}$ & $-\frac{1}{2\tau_2}$ & $\frac{\tau_1}{2\tau_2^2}$ & $\frac{\tau_1}{4\tau_2^3}$ & $\frac{1}{\tau_2^2}$ & $-\frac{3\tau_1}{4\tau_2^3}$ \\[4pt]
-% $g^{mn}R_{2m2n}$ & $-\frac{\tau_1}{\tau_2}$ & $\frac{\tau_1^2-\tau_2^2}{2\tau_2^2}$ & $\frac{\tau_1^2-3\tau_2^2}{4\tau_2^3}$ & $\frac{2\tau_1}{\tau_2^2}$ & $\frac{\tau_2^2-3\tau_1^2}{4\tau_2^3}$ \\
-% \bottomrule
-% \end{tabular}
 
 We further find the trace is $g^{ab} R_{ambn} = -\frac{1}{2\tau_2^2}(\nabla_m \tau_1 \nabla_n \tau_1 + \nabla_m \tau_2 \nabla_n\tau_2)$.
 The antisymmetric part is $\frac{1}{2}(R_{1m2n} - R_{2m1n})
@@ -236,3 +220,25 @@ t_8 t_8 R^2 S^2 &=
 \label{eq:t8R2S2}
 \end{aligned}
 \end{equation}
+
+\subsection{Additional tensor identities}
+Define $K^{mnrs} \equiv D^m\bar{P}^n D^r P^s$.
+For any contraction with a real tensor $T$, one has the effective symmetry
+\begin{equation}
+    \mathcal{K}^{mnrs} \;\cong\; \mathcal{K}^{rsmn}.
+\end{equation}
+Proof is done by conjugation.
+It follows that
+\begin{equation}\label{eq:K_vanish}
+    \mathcal{K}^{mnrs}R_{m}{}^{t}{}_{n}{}^{u}\,R_{rtsu} = 0.
+\end{equation}
+\emph{Proof.}
+Apply the first Bianchi identity $R_{r[tsu]}=0$ to the second Riemann factor. \(\square\)
+
+Furthermore,
+\begin{equation}\label{eq:K_bianchi}
+    \mathcal{K}^{mnrs}\,R_{mr}{}^{tu}\,R_{nstu}
+    = 2\,\mathcal{K}^{mnrs}\,R_{m}{}^{t}{}_{r}{}^{u}\,R_{nstu}.
+\end{equation}
+\emph{Proof.}
+First Bianchi identity. \(\square\)

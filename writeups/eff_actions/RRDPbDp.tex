@@ -16,26 +16,55 @@ Letting $S_{mnrs} = DP_{mnrs}$, we find that the above expression reduces to
 \begin{equation}
 \begin{aligned}
 t_8 t_8 R^2 |DP^2|
-&=
-{}16\,R^{r m}\,_{r}\,^{n} R^{s t}\,_{s}\,^{u}\, D_{t} \bar{P}_{u}\, D_{m} P_{n}
-+32\,R_{r}\,^{s}\,_{t}\,^{u} R^{r m t n}\, D_{s} \bar{P}_{u}\, D_{m} P_{n}\\
-&{}+96\,R_{r}\,^{n}\,_{s}\,^{t} R^{r m s u}\, D_{u} \bar{P}_{t}\, D_{m} P_{n}
--16\,R^{r m}\,_{r}\,^{s} R^{t n}\,_{t}\,^{u}\, D_{s} \bar{P}_{u}\, D_{m} P_{n}\\
-&{}-16\,R_{r s}\,^{n t} R^{r s m u}\, D_{u} \bar{P}_{t}\, D_{m} P_{n}
-+8\,R^{r s}\,_{r s} R^{m t n u}\, D_{t} \bar{P}_{u}\, D_{m} P_{n}\\
-&{}-32\,R^{r s}\,_{r}\,^{m} R_{s}\,^{t n u}\, D_{t} \bar{P}_{u}\, D_{m} P_{n}
--4\,R_{r s t}\,^{n} R^{r s t m}\, D^{u} \bar{P}_{u}\, D_{m} P_{n}\\
-&{}+8\,R^{r s}\,_{r}\,^{t} R_{s}\,^{m}\,_{t}\,^{n}\, D^{u} \bar{P}_{u}\, D_{m} P_{n}
-+32\,R^{r s}\,_{r}\,^{t} R_{s}\,^{m n u}\, D_{t} \bar{P}_{u}\, D_{m} P_{n}\\
-&{}-32\,R_{r s t}\,^{u} R^{r s t m}\, D_{u} \bar{P}_{n}\, D_{m} P^{n}
--32\,R^{r s}\,_{r}\,^{t} R_{s}\,^{m}\,_{t}\,^{u}\, D_{u} \bar{P}_{n}\, D_{m} P^{n}\\
-&{}+R_{n r s t} R^{n r s t}\, D^{u} \bar{P}_{u}\, D^{m} P_{m}
-+4\,R_{r s t u} R^{r s t u}\, D_{m} \bar{P}_{n}\, D^{m} P^{n}\\
-&{}+8\,R^{r s}\,_{r}\,^{t} R_{s}\,^{u}\,_{t u}\, D_{m} \bar{P}_{n}\, D^{m} P^{n}
--4\,R_{n r s}\,^{t} R^{n r s u}\, D_{u} \bar{P}_{t}\, D^{m} P_{m}\\
-&{}+8\,R^{n r}\,_{n}\,^{s} R_{r}\,^{t}\,_{s}\,^{u}\, D_{t} \bar{P}_{u}\, D^{m} P_{m}
+&=\frac{1}{4}\,R^{m n r s} R_{m n r s} K^{t u} \bar{K}\,_{t u}
++\frac{1}{16}\,R^{m n r s} R_{m n r s} K^{t}\,_{t} \bar{K}\,^{u}\,_{u}\\
+&-2\,R^{m n r s} R_{m n r}\,^{t} K_{s}\,^{u} \bar{K}\,_{t u}
+-R^{m n r s} R_{m n}\,^{t u} K_{r t} \bar{K}\,_{s u}\\
+&-\frac{1}{4}\,R^{m n r s} R_{m n r}\,^{t} K^{u}\,_{u} \bar{K}\,_{s t}
+-\frac{1}{4}\,R^{m n r s} R_{m n r}\,^{t} K_{s t} \bar{K}\,^{u}\,_{u}\\
+&+R^{m n}\,_{m}\,^{r} R^{s t}\,_{s}\,^{u} K_{n r} \bar{K}\,_{t u}
++6\,R^{m n r s} R_{m}\,^{t}\,_{r}\,^{u} K_{n t} \bar{K}\,_{s u}\\
+&-2\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s t u} K_{r t} \bar{K}\,_{s u}
++2\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s t u} K_{s t} \bar{K}\,_{r u}\\
+&+2\,R^{m n r s} R_{m}\,^{t}\,_{r}\,^{u} K_{n s} \bar{K}\,_{t u}
+-R^{m n}\,_{m}\,^{r} R^{s t}\,_{s}\,^{u} K_{n t} \bar{K}\,_{r u}\\
+&+\frac{1}{2}\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s}\,_{r s} K^{t u} \bar{K}\,_{t u}
+-2\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s}\,_{r}\,^{t} K_{s}\,^{u} \bar{K}\,_{t u}\\
+&+\frac{1}{2}\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s}\,_{r}\,^{t} K^{u}\,_{u} \bar{K}\,_{s t}
++\frac{1}{2}\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s}\,_{r}\,^{t} K_{s t} \bar{K}\,^{u}\,_{u}\\
+&+\frac{1}{2}\,R^{m n}\,_{m n} R^{r s t u} K_{r t} \bar{K}\,_{s u}
 \end{aligned}
 \end{equation}
+
+Sorting
+\begin{equation}
+\begin{aligned}
+t_8 t_8 R^2 |DP^2|
+%--- 4 free indices on K \bar{K} ---
+&=-\,R^{m n r s} R_{m n}\,^{t u} K_{r t} \bar{K}\,_{s u}
++R^{m n}\,_{m}\,^{r} R^{s t}\,_{s}\,^{u} K_{n r} \bar{K}\,_{t u}\\
+&+6\,R^{m n r s} R_{m}\,^{t}\,_{r}\,^{u} K_{n t} \bar{K}\,_{s u}
+-2\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s t u} K_{r t} \bar{K}\,_{s u}\\
+&+2\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s t u} K_{s t} \bar{K}\,_{r u}
++\cancel{2\,R^{m n r s} R_{m}\,^{t}\,_{r}\,^{u} K_{n s} \bar{K}\,_{t u}}\\
+&-R^{m n}\,_{m}\,^{r} R^{s t}\,_{s}\,^{u} K_{n t} \bar{K}\,_{r u}
++\frac{1}{2}\,R^{m n}\,_{m n} R^{r s t u} K_{r t} \bar{K}\,_{s u}\\
+%--- 2 free indices on K \bar{K} ---
+&-2\,R^{m n r s} R_{m n r}\,^{t} K_{s}\,^{u} \bar{K}\,_{t u}
+-\frac{1}{4}\,R^{m n r s} R_{m n r}\,^{t} K^{u}\,_{u} \bar{K}\,_{s t}\\
+&-\frac{1}{4}\,R^{m n r s} R_{m n r}\,^{t} K_{s t} \bar{K}\,^{u}\,_{u}
+-2\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s}\,_{r}\,^{t} K_{s}\,^{u} \bar{K}\,_{t u}\\
+&+\frac{1}{2}\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s}\,_{r}\,^{t} K^{u}\,_{u} \bar{K}\,_{s t}
++\frac{1}{2}\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s}\,_{r}\,^{t} K_{s t} \bar{K}\,^{u}\,_{u}\\
+%--- 0 free indices on K \bar{K} ---
+&+\frac{1}{4}\,R^{m n r s} R_{m n r s} K^{t u} \bar{K}\,_{t u}
++\frac{1}{16}\,R^{m n r s} R_{m n r s} K^{t}\,_{t} \bar{K}\,^{u}\,_{u}\\
+&+\frac{1}{2}\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s}\,_{r s} K^{t u} \bar{K}\,_{t u}
+\end{aligned}
+\end{equation}
+From the properties we have derived, we know that $2\,R^{m n r s} R_{m}\,^{t}\,_{r}\,^{u} K_{n s} \bar{K}\,_{t u} = 0$.
+
+
 Now we make the substitution
 $D_m\bar{P}_n D_r P_s = \frac{1}{4}(\hat{g}^{ac}\hat{g}^{bd} - \hat{g}^{ab}\hat{g}^{cd}+\hat{g}^{ad}\hat{g}^{bc})\hat{R}_{ambn}\hat{R}_{crds}$, as well as $R_{mnrs} = \hat{R}_{mnrs}$, we find
 \begin{equation}
