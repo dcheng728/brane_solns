@@ -206,6 +206,10 @@ Rd_mnab = {} # For indices m,n this gives R_{mnab} as 2x2 matrix in a,b
 for mu, nu in iterprod(indices, indices):
     Rd_mnab[(mu, nu)] = sp.simplify( Gamma_mab[mu] * Gamma_a_mb[nu] - Gamma_a_mb[nu].T * Gamma_mab[mu].T)
 
+Ru_mnab = {}
+for mu, nu in iterprod(indices, indices):
+    Ru_mnab[(mu, nu)] = sp.simplify( ginv_func * Rd_mnab[(mu, nu)] * ginv_func )
+
 # One can show that R_{ambn} = -g_{ac}(\nabla_n \Gamma^c{}_{mb} + \Gamma^c{}_{nd}\Gamma^d{}_{mb})
 Rd_ambn = {} # Gives R_{ambn} for indices m, n
 for mu, nu in iterprod(indices, indices):
