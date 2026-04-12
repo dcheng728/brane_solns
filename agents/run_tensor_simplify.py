@@ -137,23 +137,45 @@ def build_verifier_prompt(
 # AGENT RUNNER
 # ═══════════════════════════════════════════════════════════════════════
 
-async def run_agent(prompt: str, model: str) -> str:
+async def run_agent(prompt: str, model: str, label: str = "") -> str:
     """Run a Claude Code agent and collect its text output."""
     chunks: list[str] = []
+    turn = 0
+    start = datetime.now()
     try:
         async for message in query(
             prompt=prompt,
             options=ClaudeCodeOptions(
                 model=model,
-                allowed_tools=[],
+                allowed_tools=["Read", "Bash", "Write", "Glob", "Grep"],
             ),
         ):
+            elapsed = (datetime.now() - start).seconds
+            mins, secs = divmod(elapsed, 60)
+            ts = f"{mins}m{secs:02d}s" if mins else f"{secs}s"
+
             if isinstance(message, AssistantMessage):
+                turn += 1
                 for block in message.content:
-                    if hasattr(block, "text"):
+                    if hasattr(block, "text") and block.text.strip():
                         chunks.append(block.text)
+                        # Show first 120 chars of each text block
+                        preview = block.text.strip()[:120].replace("\n", " ↵ ")
+                        print(f"    [{label} {ts}] 💬 {preview}")
+                    elif hasattr(block, "name"):
+                        tool_input_preview = ""
+                        if hasattr(block, "input") and isinstance(block.input, dict):
+                            # Show key details of tool input
+                            if "command" in block.input:
+                                tool_input_preview = f": {block.input['command'][:80]}"
+                            elif "file_path" in block.input:
+                                tool_input_preview = f": {block.input['file_path']}"
+                            elif "pattern" in block.input:
+                                tool_input_preview = f": {block.input['pattern']}"
+                        print(f"    [{label} {ts}] 🔧 tool:{block.name}{tool_input_preview}")
             elif isinstance(message, ResultMessage):
-                pass
+                total = "\n".join(chunks)
+                print(f"    [{label} {ts}] ✓ finished — {len(total)} chars total")
     except MessageParseError:
         pass
     return "\n".join(chunks)
@@ -264,7 +286,25 @@ async def main():
             proposer_prompt = build_proposer_prompt(
                 working_doc, SYMMETRIES, rejected_proposals or None
             )
-            proposal = await run_agent(proposer_prompt, args.proposer_model)
+            proposal = await run_agent(proposer_prompt, args.proposer_model, "Proposer")
+
+            print(f"  [Proposer] Finished — {len(proposal)} chars")
+            if "SIMPLIFICATION_FOUND" in proposal:
+                print(f"  [Proposer] >>> Found a simplification")
+                # Extract and show the TARGET and CLAIM lines
+                for line in proposal.splitlines():
+                    line = line.strip()
+                    if line.startswith("TARGET:") or line.startswith("CLAIM:"):
+                        print(f"    | {line[:120]}")
+            elif is_done(proposal):
+                print(f"  [Proposer] >>> No more simplifications")
+            else:
+                print(f"  [Proposer] >>> Response (no structured marker found)")
+                # Show first few lines for debugging
+                for line in proposal.strip().splitlines()[:3]:
+                    line = line.strip()
+                    if line:
+                        print(f"    | {line[:120]}")
 
             log_entries.append(
                 f"# Round {round_num}, Attempt {retry + 1} — PROPOSER\n\n"
@@ -286,15 +326,23 @@ async def main():
             verifier_prompt = build_verifier_prompt(
                 working_doc, SYMMETRIES, proposal
             )
-            verdict = await run_agent(verifier_prompt, args.verifier_model)
+            verdict = await run_agent(verifier_prompt, args.verifier_model, "Verifier")
 
             log_entries.append(
                 f"# Round {round_num}, Attempt {retry + 1} — VERIFIER\n\n"
                 f"## Response\n\n{verdict}"
             )
 
+            # Print verifier summary
+            print(f"  [Verifier] Finished — {len(verdict)} chars")
+            # Show first few lines of the verdict for context
+            for line in verdict.strip().splitlines()[:5]:
+                line = line.strip()
+                if line:
+                    print(f"    | {line[:100]}")
+
             if is_accepted(verdict):
-                print(f"  [Verifier] ACCEPTED")
+                print(f"  [Verifier] >>> ACCEPTED")
 
                 step = {
                     "round": round_num,
@@ -309,7 +357,7 @@ async def main():
                 accepted = True
                 break
             else:
-                print(f"  [Verifier] REJECTED")
+                print(f"  [Verifier] >>> REJECTED")
                 rejected_proposals.append(
                     f"PROPOSAL:\n{proposal}\n\nREJECTION REASON:\n{verdict}"
                 )
