@@ -191,9 +191,11 @@ epsilon2_up = sp.simplify(ginv_func * epsilon2_down * ginv_func)
 # compute Christoffel symbols using the torus metric
 Gamma_a_mb = {} # For index m this gives \Gamma^a{}_{mb} = 1/2 g^{ac} g_{bc,m}
 Gamma_mab = {} # For index m this gives \Gamma_{mab} = -1/2 g_{ab,m}
+Gamma_abm = {} # For index m this gives \Gamma_{abm} = g_{ac} \Gamma^c{}_{mb}
 for index in indices:
     Gamma_a_mb[index] = sp.simplify(sp.Rational(1,2) * ginv_func * sp.diff(g_func, index))
     Gamma_mab[index] = sp.simplify(- sp.Rational(1,2) * sp.diff(g_func, index))
+    Gamma_abm[index] = sp.simplify(g_func * Gamma_a_mb[index])
 
 F4 = sp.Matrix([H3, F3]) # The doublet 3-form components
 nablaF4_down = {} # For index m, this gives (\nabla_m F4)_a
@@ -202,6 +204,10 @@ for index in indices:
 
 
 # Also define the Riemann tensors, as expressions of the symbols, because one should not need to take derivatives of the Riemann tensor
+Rd_0101m = {} # For index m, this gives R_{0101} contracted with m
+for mu in indices:
+    Rd_0101m[mu] = sp.simplify( Gamma_abm[mu][0,0] * Gamma_abm[mu][1,1] - Gamma_abm[mu][0,1] * Gamma_abm[mu][1,0] )
+
 Rd_mnab = {} # For indices m,n this gives R_{mnab} as 2x2 matrix in a,b
 for mu, nu in iterprod(indices, indices):
     Rd_mnab[(mu, nu)] = sp.simplify( Gamma_mab[mu] * Gamma_a_mb[nu] - Gamma_a_mb[nu].T * Gamma_mab[mu].T)
@@ -224,8 +230,8 @@ Ru_ambn_sym = {} # symbols for e.g. R^2{}_m{}^1{}_n with key (2, m, 1, n)
 for mu, nu in iterprod(indices, indices):
     mu_n, nu_n = index_names[mu], index_names[nu]
     for a, b in iterprod(range(2), range(2)):
-        Rd_ambn_sym[(a, mu, b, nu)] = sp.Symbol(rf"R_{{{a}{mu_n}{b}{nu_n}}}")
-        Ru_ambn_sym[(a, mu, b, nu)] = sp.Symbol(rf"R^{{{a}}}{{}}_{{{mu_n}}}{{}}^{{{b}}}{{}}_{{{nu_n}}}")
+        Rd_ambn_sym[(a, mu, b, nu)] = sp.Symbol(rf"R_{{{a}{mu_n}{b}{nu_n}}}", real=True)
+        Ru_ambn_sym[(a, mu, b, nu)] = sp.Symbol(rf"R^{{{a}}}{{}}_{{{mu_n}}}{{}}^{{{b}}}{{}}_{{{nu_n}}}", real=True)
 
 # Give the D_m P_n and D_m Pb_n in terms of Riemann tensor symbols
 DP_with_R, DPb_with_R = {}, {} # on indices (m,n) gives D_m P_n in terms of Riemann tensor symbols
