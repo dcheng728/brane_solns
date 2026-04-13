@@ -117,8 +117,8 @@ From the properties we have derived, we know that $2{}R^{m n r s} R_{m}{}^{t}{}_
 
 Looking at the current expression term by term, I'll label them in order of appearance (skipping the already-cancelled T6):
 
-- T10: $-\frac{1}{4}R^{mnrs}R_{mnr}{}^{t}\,K^{u}{}_{u}\,\bar{K}_{st}$
-- T11: $-\frac{1}{4}R^{mnrs}R_{mnr}{}^{t}\,K_{st}\,\bar{K}^{u}{}_{u}$
+- T10: $-\frac{1}{4}R^{mnrs}R_{mnr}{}^{t}{}K^{u}{}_{u}{}\bar{K}_{st}$
+- T11: $-\frac{1}{4}R^{mnrs}R_{mnr}{}^{t}{}K_{st}{}\bar{K}^{u}{}_{u}$
 
 These two have identical Riemann structure but swapped $K \leftrightarrow \bar{K}$ roles.
 
