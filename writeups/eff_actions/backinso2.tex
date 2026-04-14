@@ -49,6 +49,44 @@ In fact, it was claimed in \cite{Minasian:2015bxa} that $\hat{t}_8\hat{t}_8 \hat
 In 10d the 4-point gravity + axio-dilaton amplitudes come from \eqref{eq:4pt-gravity-axiodilaton}, one can expand the $t_8t_8$ structure and compare it with the 4-point expansion of $\hat{t}_8 \hat{t}_8 \hat{R}^4$ reduced to 10d \footnote{See eq B.10 of \cite{Minasian:2015bxa}}, they only partially agree.
 Yet, the claim of \cite{Minasian:2015bxa} had been that once the fields are expanded to linear order and the kinematic structures are imposed, the two sides agree.
 
+We here provide a ``bottom-up'' perspective to reconcile the results of \cite{Minasian:2015bxa}, by uplifting the known 10d effective actions. 
+Upon expanding the $t_8t_8 R^4$ structure, we find that the $R^2 \tau^2$ sector takes the form
+\begin{equation}
+\begin{aligned}
+t_8 t_8 R^2 |DP^2|
+&=-\,R^{m n r s} R_{m n}\,^{t u} K_{r t} \bar{K}\,_{s u}
++R^{m n}\,_{m}\,^{r} R^{s t}\,_{s}\,^{u} K_{n r} \bar{K}\,_{t u}\\
+&+6\,R^{m n r s} R_{m}\,^{t}\,_{r}\,^{u} K_{n t} \bar{K}\,_{s u}
+-4\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s t u} K_{r t} \bar{K}\,_{s u}\\
+&-R^{m n}\,_{m}\,^{r} R^{s t}\,_{s}\,^{u} K_{n t} \bar{K}\,_{r u}
++\frac{1}{2}\,R^{m n}\,_{m n} R^{r s t u} K_{r t} \bar{K}\,_{s u}\\
+&-2\,R^{m n r s} R_{m n r}\,^{t} K_{s}\,^{u} \bar{K}\,_{t u}
+-\frac{1}{2}\,R^{m n r s} R_{m n r}\,^{t} K_{s t} \bar{K}\,^{u}\,_{u}\\
+&-2\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s}\,_{r}\,^{t} K_{s}\,^{u} \bar{K}\,_{t u}
++R^{m n}\,_{m}\,^{r} R_{n}\,^{s}\,_{r}\,^{t} K_{s t} \bar{K}\,^{u}\,_{u}\\
+&+\frac{1}{4}\,R^{m n r s} R_{m n r s} K^{t u} \bar{K}\,_{t u}
++\frac{1}{16}\,R^{m n r s} R_{m n r s} K^{t}\,_{t} \bar{K}\,^{u}\,_{u}\\
+&+\frac{1}{2}\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s}\,_{r s} K^{t u} \bar{K}\,_{t u},
+\end{aligned}
+\end{equation}
+here we have not set $D_m P^m$ to zero, which is the scalar equation of motion. 
+Recall that we are working with the normalization such that $t_8 t_8 R^4$ contains $\frac{1}{32} (R_{mnrs} R^{mnrs})^2$.
+Suppose $(R_{mnrs} R^{mnrs})^2$ comes from a 12d contraction $(R_{MNRS}R^{MNRS})^2$, given the nonvanishing components of $R_{MNRS}$ are $R_{mnrs}, R_{ambn}, R_{mnab}, R_{abcd}$, we expect to find that
+\begin{equation}
+(R_{MNRS}R^{MNRS})^2 = R_{pquv} R^{pquv} (R_{mnrs} R^{mnrs}  8 R_{ambn} R^{ambn} + 4 R_{mnab} R^{mnab} + 2 R_{abcd} R^{abcd}) + ...
+\end{equation}
+Substituting the components of the 12d Riemann tensor, we expect to find that the coefficient of $R_{mnrs} R^{mnrs}$ at four points is $\frac{1}{32}( R_{mnrs} R^{mnrs} + 8 D_m \bar{P}_n D^m P^n)$, which is indeed the case.
+Now let us consider the $O_1 = 2 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)$ term, which does not arise from a $t_8 t_8$ structure. Taking into consideration the form of the 12d Riemann tensor, this term can only come from the contraction of $R_{m a n b} R^{m c n d} R_r{}^{a}{}_{s}{}^{b} R^{r}{}_{c}{}^{s}{}_{d}$, which may descent from the 12d contraction
+\begin{equation}
+\tfrac{1}{2}\,R_{MNRS}\,R^{SPNQ}\,R_{QUPV}\,R^{VRUM} \in \hat{t}_8\hat{t}_8 \hat{R}^4.
+\end{equation}
+In this specific contraction, there are 4 ways to pick torus indices in each Riemann tensor, and Bianchi identities contributes an additional factor of 2, so we expect to find the contributeion
+\begin{equation}
+\frac{2}{2}\frac{4^4}{32}R_{m a n b} R^{m c n d} R_r{}^{a}{}_{s}{}^{b} R^{r}{}_{c}{}^{s}{}_{d}
+= 2 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s),
+\end{equation}
+which is precisely the $O_1$ term in \eqref{eq:PTaction}.
+Hence one can make sense of the results of \cite{Minasian:2015bxa}. What would be interesting is to perform similar analysis to 5-point and 6-point effective actions, by directly uplifting the known 10d effective actions.
 
 Upon inspection, we find that the 3-form sector of \eqref{eq:PTaction} admits a factorization
 \begin{equation}
