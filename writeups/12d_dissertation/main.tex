@@ -1,0 +1,82 @@
+\documentclass[11pt]{article}
+% or [12pt] if you want it a bit larger
+
+\usepackage{graphicx, amsmath, amsfonts, amssymb, amsthm, mathrsfs} % Required 
+\usepackage[setpagesize=false,pagebackref=false, 
+linktocpage, bookmarksopen=true, colorlinks=true, 
+linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{color}
+\usepackage{dynkin-diagrams}
+\usepackage{booktabs}
+% \usepackage{setspace}
+% \setstretch{1.2}
+\renewcommand{\baselinestretch}{1.2}
+
+
+\usepackage{latexsym,amsmath,amssymb,theorem,epsfig}
+\usepackage[margin=1in]{geometry}
+
+
+\title{A 12d Origin of the Type IIB String Theory: A Review}
+
+% \author{\footnote{Email:  }}
+
+% \author{}
+% commented out for double anonymous review
+\author{
+\\[2pt]
+\large{Chang Cheng}\footnote{\href{mailto:chang.cheng24@imperial.ac.uk}{chang.cheng24@imperial.ac.uk}} 
+\\[10pt]
+\it{Department of Physics,}\\
+\it{Imperial College London, SW7 2AZ, U.K.}
+\\[2pt]
+}
+
+\date{}
+\begin{document}
+\maketitle
+
+
+
+\begin{abstract}
+We review several lines of evidence for a 12d interpretation of the type IIB brane solutions and effective actions.
+The axio-dilaton sector fits naturally into 12d gravity, as supported by brane geometries and supersymmetry.
+The special role of the D3 brane in a potential 12d interpretation of type IIB is reviewed, with emphasis on the connection between its SL(2, Z) self-duality and worldvolume electromagnetic duality.
+Whether the higher-derivative corrections of type IIB admit a 12d interpretation is discussed, and we suggest certain directions for future exploration.
+\end{abstract}
+\tableofcontents
+\input{1__introduction}
+\input{2__IIB}
+\input{3__12d_supergravity}
+\input{4__brane_perspective}
+\input{5__D3}
+\input{6__12d_covariant_unification}
+\input{7__effective_actions}
+\input{8__Outlook}
+
+
+% commented out for double anonymous review
+\section{Acknowledgements}
+This review was submitted in partial fulfillment of the requirements for the MSc degree in Physics at Imperial College London.
+I would like to thank Arkady Tseytlin for his guidance and many valuable discussions.
+{\color{orange}I would also like to thank Amihay Hanany for their String Theory lectures at Imperial College London, and Jesse van Muiden for comments on the draft. }
+
+\newpage
+\appendix
+\input{scratch}
+\input{A__notations}
+\input{A__dynkin_labels}
+\input{A__SL2SO2_coset.tex}
+\input{A__11d_on_a_line}
+\input{A__IKKT_dual_background_uplift}
+
+\bibliographystyle{JHEP}
+\bibliography{references}
+
+
+
+\end{document}
+
+% What I learned from this project:
+% - you don't have to check every detail of other people's work. while it is important to understand prior work, you don't have to check every detail. the difficult part is that it is important sometimes to check something to understand it. i guess this is part of the art of doing research.
+% - related to above, at points where you have to check details, don't shy away from the technical work. otherwise you may find yourself not fully understanding something, and 8 months later realized that if you had just pushed yourself a little harder, you would have gotten it.

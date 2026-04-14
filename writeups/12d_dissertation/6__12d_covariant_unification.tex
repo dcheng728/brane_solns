@@ -1,0 +1,121 @@
+\section{A Covariant Unification in 12d}
+The various brane-related evidence for an effective 12d interpretation of the type IIB theory suggests a very specific 12d interpretation of the axio-dilaton sector.
+In addition, one seeks a 12d interpretation of the type IIB RR and NSNS form fields.
+In this section, we gather the various 12d insights obtained in the previous section from the type IIB branes, and present a 12d covariant unification of $SL(2,R)\times SO(9,1)$ form fields.
+We will use calligraphic letters to denote fields in the higher dimension\footnote{
+It is standard in the literature to use $\mathcal C$ to denote the Euclidean compact scalar.
+We will adopt that $\mathcal C$ is the 10d compact scalar.
+This should not cause any confusions because we will not work with any 12d scalars, as all type IIB scalars are uplifted into the 12d metric $\mathcal G_{MN}$.
+% This should not cause confusion because we will only be working with higher forms rank-3 or above in 12d.
+}.
+The 10d metric $g_{mn}$ with $m,n=0,1,...,9$ will be interpreted as embedded inside a 12d metric $\mathcal G_{MN}$, with $M,N=0,1,...,11$. We will use the calligraphic $\mathcal R$ to denote the Ricci scalar computed with $\mathcal G_{MN}$, and use $\mathcal F_{n+1} = d\mathcal C_{n}$ to denote form fields in 12d.
+
+Let the 12d coordinates be parameterized by $(x^m,u,v)$, and let $M_{ij}$ be the $2\times 2$ metric on the torus.
+The key insight from the previous section is that one shall consider the 12d metric embedding given by
+\begin{equation}
+\mathcal{G}_{MN}=\begin{pmatrix}
+g_{mn} & 0 \\
+0 &M_{ij}
+\end{pmatrix},\quad
+M_{ij}
+=\frac{1}{\tau_2}\begin{pmatrix}
+1& \tau_1\\
+\tau_1 & \tau_1^2+\tau_2^2
+\end{pmatrix}.
+\label{12d metric ansatz}
+\end{equation}
+The axio-dilaton action may be written as a 12d Einstein-Hilbert action compactified on $T_2$. In particular,
+\begin{equation}
+\begin{aligned}
+\frac{1}{2\kappa_{10}^2}\int d^{10}x\sqrt{-g}\left(
+R - \frac{\partial\tau \partial\bar\tau}{2\tau_2^2}
+\right)
+&=
+\frac{Vol(T_2)}{2\kappa_{12}^2}\int d^{10}x \sqrt{-\mathcal{G}} \mathcal{R}\\
+&=\frac{1}{2\kappa_{12}^2}\int_{T_2}dudv\int d^{10}x\sqrt{-\mathcal G}\mathcal{R},
+\end{aligned}
+\label{axio-dilaton 12d uplift}
+\end{equation}
+where we have schematically defined $\kappa_{12}$ by 
+\begin{equation}
+\frac{1}{\kappa_{10}^2} = \frac{Vol(T_2)}{\kappa_{12}^2}
+=\frac{1}{\kappa_{12}^2}\int_{T_2}*_2 1,\quad
+[\kappa_{12}^2] = L^{10}.
+\end{equation}
+The 3-form field strengths form an SL(2,R) doublet. 
+To unify them in 12d we define a 12d 4-form field strength with exactly one leg on the torus:
+\begin{equation}
+\mathcal{F}_4=d\mathcal C_3 = H_3\wedge du + F_3\wedge dv,\quad
+\mathcal C_3 \equiv B_2\wedge du + C_2\wedge dv.
+\end{equation}
+Using the 12d metric ansatz \eqref{12d metric ansatz}, the 10d 3-form field strengths and their axio-dilaton couplings follow from contracting $\mathcal F_4$:
+\begin{equation}
+\begin{aligned}
+|\mathcal F_4|\bigg|_{\mathcal{G}_{MN}}
+&=M^{uu}|H_3|^2+2M^{uv}|F_3\cdot H_3|+M^{vv}|F_3|^2\\
+&=\left(
+e^{-\Phi}|H_3|^2 + e^\Phi|F_3-CH_3|^2
+\right)\bigg|_{g_{mn}}.
+\end{aligned}
+\end{equation}
+Finding a 12d interpretation for the 5-form sector is trickier. 
+One observes that the composite, SL(2, R) singlet 5-form 
+\begin{equation}
+\tilde F_5 = F_5 - \frac12 C_2 \wedge H_3 + \frac{1}{2}B_2\wedge F_3    
+\end{equation}
+can not be sensibly constructed in 12d, due to the lack of a pair of form field potential and strength with ranks that sum to 5 in 12d.
+However, the 10d self-dual 5-form field strength admits two possible uplifts to 12d:
+\begin{equation}
+\mathcal{F}_5 = F_5,\quad \mathcal{F}_7=F_5\wedge du\wedge dv.
+\end{equation}
+Then note that
+\begin{equation}
+\begin{aligned}
+|\mathcal{F}_5|^2\bigg|_{\mathcal{G}_{MN}} 
+&= |F_5|^2\bigg|_{g_{mn}},\\
+|\mathcal{F}_7|^2\bigg|_{\mathcal{G}_{MN}}
+&=\det(M_{ij})|F_5|^2\bigg|_{g_{mn}} = |F_5|^2\bigg|_{g_{mn}},
+\end{aligned}
+\end{equation}
+where in the last equality we used $\det (M_{ij})=1$.
+Then we may define a 12d 7-form
+\begin{equation}
+\tilde{\mathcal F}_7 \equiv \mathcal F_7 + \frac{1}{2}\mathcal{C}_3 \wedge \mathcal F_4
+\end{equation}
+that exactly supplies the type IIB composite 5-form contribution upon contraction in 12d:
+\begin{equation}
+|\tilde{\mathcal{F}}_7|^2\bigg|_{\mathcal{G}_{MN}} = 
+\det(M_{ij})|\tilde F_5|^2\bigg|_{g_{mn}}.
+\end{equation}
+The 10d self-duality condition on $F_5$ may then be written as a 12d Hodge duality
+\begin{equation}
+\mathcal F_7 = *_{12}\mathcal F_5\quad
+\Leftrightarrow\quad
+F_5 = *_{10}F_5.
+\label{12d interpretation of 10d self-duality}
+\end{equation}
+The 10d Chern-Simons term can also be obtained using the 12d potentials and their corresponding field strengths:
+\begin{equation}
+\frac{1}{2}\int_{T_2\times \mathbb{R}^{1,9}} \mathcal C_4\wedge \mathcal{F}_4\wedge\mathcal{F}_4=
+Vol(T_2)\int_{\mathbb{R}^{1,9}}C_4\wedge H_3\wedge F_3.
+\end{equation}
+We note that reproducing the type IIB Chern-Simons term in 12d necessitates the inclusion of both 4- and 5-form field strengths.
+One can write down a ``12d"\footnote{
+Not dynamical 12d, but dynamical 10d times a 2-torus.
+}
+action
+\begin{equation}
+\begin{aligned}
+S_{IIB}=
+S_{\text{``12"}}
+= \frac{1}{2\kappa_{12}^2}\int_{T_2}dudv\int d^{10}x
+\sqrt{-\mathcal G}
+\left(
+R - \frac{1}{2}|\mathcal F_4|^2-\frac{1}{4}|\tilde{\mathcal{F}}_7|^2
+\right)-\frac{1}{4\kappa_{12}^2}\int_{T_2\times \mathbb{R}^{1,9}}\mathcal C_4\wedge \mathcal F_4\wedge \mathcal F_4.
+\end{aligned}
+\label{12d action}
+\end{equation}
+The $\mathcal F_7$ does not arise from an independent degree of freedom, it is related to $\mathcal C_4$ by $*_{12}d\mathcal C_4 = \mathcal F_7$.
+The action \eqref{12d action} is exactly the Einstein frame type IIB action \eqref{Einstein frame IIB action} with $g_s=1$.
+The 2d integrand is just a repackaging of $1/\kappa_{10}^2$, and it is likely that $\mathcal C_3, \mathcal C_4$ do not furnish independent degrees of freedom, as has been discussed in \cite{Tseytlin:1996ne}.
