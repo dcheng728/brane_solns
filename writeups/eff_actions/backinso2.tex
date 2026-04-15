@@ -32,18 +32,41 @@ The 4-point 8-derivative effective action can be written as \cite{Policastro:200
 \label{eq:PTaction}
 \end{aligned}
 \end{equation}
-Here $O_1$ in our normalization represents $2 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)$ \footnote{We are working with the normalization such that $t_8t_8 R^4$, when expanded, has coefficient $\frac{1}{32}$ on $(R_{mnrs}R^{mnrs})^2$, the coefficient has been absorbed into the $\alpha$}.
+We are working with the normalization such that $t_8t_8 R^4$, when expanded, has coefficient $\frac{1}{32}$ on $(R_{mnrs}R^{mnrs})^2$,
+here $O_1$ in our normalization represents $2 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)$.
 Interestingly, it is known that $O_1$ can not be written in a $t_8t_8$ structure, but can be obtained from $\hat{t}_8\hat{t}_8 \hat{R}^4$ \cite{Minasian:2015bxa}.
 This had been one of the arguments for the 12d uplift of the effective action in the form $\hat{t}_8\hat{t}_8 \hat{R}^4$.
 
-We note that there is an intriguing structure in \eqref{eq:PTaction}.
-First, the gravity + scalar sector can be written as
+The gravity + scalar sector of \eqref{eq:PTaction} can be written as
 \begin{equation}
-L_{\text{gravity+scalar}} = (t_8t_8 - \frac{1}{4}\epsilon_8\epsilon_8)
+L_{\text{gravity+scalar}} = (t_8t_8)
 (R^4 + 24 R^2 |DP|^2) + 2 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)
 \label{eq:4pt-gravity-axiodilaton}
 \end{equation}
-In 12d perspective, $DP$ contains second order derivatives on components of the metric, hence may be obtained from linear combinations of 12d Riemann tensor components.
+In 12d perspective, $D_m P_n$ contains second order derivatives \footnote{Second order derivatives here mean second derivatives or products of first derivatives.} on components of the metric, hence may be obtained from linear combinations of 12d Riemann tensor components.
+One finds that, using complex tangent frame coordinates $z, \bar{z}$, with $g_{zz} = g_{\bar{z}\bar{z}} = 0$, $g_{z\bar{z}} = \frac{1}{2}$, the only nonvanishing component of the 12d Riemann tensor are
+\begin{equation}
+R_{z\bar{z}z\bar{z}} = -\frac14 |P|^2,\quad
+R_{mnz\bar{z}} = P_{[m}\bar{P}_{n]},\quad
+R_{mzn\bar{z}} = - \frac{P_m \bar{P}_n}{2}\quad
+R_{mznz} = \frac{D_m P_n}{2},
+\end{equation}
+and equations of motions are $R_{mn} = 2 P_{(m} \bar{P}_{n)}$ and $D^m P_m = 0$.
+One may then substitute $P$ and $\nabla P$ in the 10d effective action with 12d covariant objects, such as the Riemann tensor, and check if the resulting expression has a cleaner interpretation.
+Let us expand \eqref{eq:4pt-gravity-axiodilaton}, substituting the equations of motion, we find
+\begin{equation}
+\begin{aligned}
+L_{\text{gravity+scalar}} 
+&= t_8t_8 R^4
+-\,R^{m n r s} R_{m n}\,^{t u} K_{r t} \bar{K}\,_{s u}
++6\,R^{m n r s} R_{m}\,^{t}\,_{r}\,^{u} K_{n t} \bar{K}\,_{s u}\\
+&-2\,R^{m n r s} R_{m n r}\,^{t} K_{s}\,^{u} \bar{K}\,_{t u}
++\frac{1}{4}\,R^{m n r s} R_{m n r s} K^{t u} \bar{K}\,_{t u}
+\label{eq:4pt-gravity-axiodilaton-expanded}
+\end{aligned}
+\end{equation}
+
+
 The gravity + scalar sector schematically takes the form $\hat{R}^4$.
 In fact, it was claimed in \cite{Minasian:2015bxa} that $\hat{t}_8\hat{t}_8 \hat{R}^4$ reproduces the gravity + axio-dilaton 4-point amplitudes when reduced to 10d, which is surprising for the following reasons.
 In 10d the 4-point gravity + axio-dilaton amplitudes come from \eqref{eq:4pt-gravity-axiodilaton}, one can expand the $t_8t_8$ structure and compare it with the 4-point expansion of $\hat{t}_8 \hat{t}_8 \hat{R}^4$ reduced to 10d \footnote{See eq B.10 of \cite{Minasian:2015bxa}}, they only partially agree.
