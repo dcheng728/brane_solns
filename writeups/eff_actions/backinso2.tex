@@ -43,8 +43,13 @@ L_{\text{gravity+scalar}} = (t_8t_8)
 (R^4 + 24 R^2 |DP|^2) + 2 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)
 \label{eq:4pt-gravity-axiodilaton}
 \end{equation}
-In 12d perspective, $D_m P_n$ contains second order derivatives \footnote{Second order derivatives here mean second derivatives or products of first derivatives.} on components of the metric, hence may be obtained from linear combinations of 12d Riemann tensor components.
-One finds that, using complex tangent frame coordinates $z, \bar{z}$, with $g_{zz} = g_{\bar{z}\bar{z}} = 0$, $g_{z\bar{z}} = \frac{1}{2}$, the only nonvanishing component of the 12d Riemann tensor are
+In 12d perspective, $D_m P_n$ contains second order derivatives acting on components of the metric, hence may be obtained from linear combinations of 12d Riemann tensor components.
+A general strategy for uplifting type IIB effective action may look like the following. Examine the effective action, substituting $\tau$ for components of the torus metric, and derivatives of $\tau$ for 12d Riemannt ensor, then examine whether the resulting expression, in particular the coefficient of the distinct contraction patterns, may have a natural interpretation as arising from a higher dimensional contraction.
+Here we provide an illustration of such procedure as well as a review of the results of 1506.
+
+One finds that, using complex tangent frame coordinates $z, \bar{z}$, with vielbein $e_{\alpha}{}^a = \frac{1}{2\sqrt{\tau_2}}\begin{pmatrix}
+    -\tau & 1 \\ -\bar{\tau} & 1
+\end{pmatrix}$, the only nonvanishing component of the 12d Riemann tensor are
 \begin{equation}
 R_{z\bar{z}z\bar{z}} = -\frac14 |P|^2,\quad
 R_{mnz\bar{z}} = P_{[m}\bar{P}_{n]},\quad
@@ -52,6 +57,66 @@ R_{mzn\bar{z}} = - \frac{P_m \bar{P}_n}{2}\quad
 R_{mznz} = \frac{D_m P_n}{2},
 \end{equation}
 and equations of motions are $R_{mn} = 2 P_{(m} \bar{P}_{n)}$ and $D^m P_m = 0$.
+
+The gravity + scalar sector of \eqref{eq:PTaction} can be written as
+\begin{equation}
+L_{\text{gravity+scalar}} = (t_8t_8)
+(R^4 + 24 R^2 |DP|^2) + 2 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)
+\label{eq:4pt-gravity-axiodilaton}
+\end{equation}
+Expanding the $t_8t_8$ contraction, and substituting $D_m P_n$ with the 12d Riemann tensor, we find
+
+\begin{equation}
+\begin{aligned}
+L_{\text{gravity+scalar}} 
+&= 
+t_8t_8 R^4
++ \frac12 R^{manb} R_{mcnd} R^r{}_a{}^s{}_b R_r{}^c{}_s{}^d
++ R^{manb} R^r{}_a{}^s{}_b R_m{}^t{}_r{}^u R_{nust}
+- R^{manb} R_{ma}{}^r{}_b R_r{}^{stu} R_{nstu}\\
+&+\frac18 R^{manb} R_{manb} R^{rstu} r_{rstu}
++ R^{manb} R^r{}_a{}^s{}_b R_m{}^t{}_n{}^u R_{rtsu}
++ O(R^2 P^3)
+\end{aligned}
+\label{eq:4pt-gravity-axiodilaton-expanded}
+\end{equation}
+
+Substituting the 6 terms of $t_8t_8 R^4$, we find
+\begin{equation}
+\begin{aligned}
+L_{\text{gravity+scalar}} 
+&= 
+R_{mnrs} R^{sp}{}_{qu} R^{umvr} R_{pv}{}^{nq}
++ \frac{1}{2} R_{mnrs} R^{spnq} R_{qupv} R^{vrum} \notag \\
+&\quad - \frac{1}{2} R_{mnrs} R^{rsnp} R_{pquv} R^{qmuv}
+- \frac{1}{4} R_{mnrs} R^{rs}{}_{pq} R^{qmuv} R_{uv}{}^{np} \notag \\
+&\quad + \frac{1}{16} R_{mnrs} R^{mnpq} R_{pquv} R^{uvrs}
++ \frac{1}{32} (R_{mnrs} R^{mnrs})^2
++ \frac12 R^{manb} R_{mcnd} R^r{}_a{}^s{}_b R_r{}^c{}_s{}^d
++ R^{manb} R^r{}_a{}^s{}_b R_m{}^t{}_r{}^u R_{nust}
+- R^{manb} R_{ma}{}^r{}_b R_r{}^{stu} R_{nstu}\\
+&+\frac18 R^{manb} R_{manb} R^{rstu} r_{rstu}
++ R^{manb} R^r{}_a{}^s{}_b R_m{}^t{}_n{}^u R_{rtsu}
++ O(R^2 P^3)
+\end{aligned}
+\label{eq:4pt-gravity-axiodilaton-expanded}
+\end{equation}
+
+
+
+\begin{equation}
+\begin{aligned}
+t_8 t_8 R^4 &= 3 \times 2^7 \Biggl\{
+R_{mnrs} R^{sp}{}_{qu} R^{umvr} R_{pv}{}^{nq}
++ \frac{1}{2} R_{mnrs} R^{spnq} R_{qupv} R^{vrum} \notag \\
+&\quad - \frac{1}{2} R_{mnrs} R^{rsnp} R_{pquv} R^{qmuv}
+- \frac{1}{4} R_{mnrs} R^{rs}{}_{pq} R^{qmuv} R_{uv}{}^{np} \notag \\
+&\quad + \frac{1}{16} R_{mnrs} R^{mnpq} R_{pquv} R^{uvrs}
++ \frac{1}{32} (R_{mnrs} R^{mnrs})^2
+\Biggr\}. \label{eq:A2}
+\end{aligned}
+\end{equation}
+
 One may then substitute $P$ and $\nabla P$ in the 10d effective action with 12d covariant objects, such as the Riemann tensor, and check if the resulting expression has a cleaner interpretation.
 Let us expand \eqref{eq:4pt-gravity-axiodilaton}, substituting the equations of motion, we find
 \begin{equation}
@@ -65,6 +130,7 @@ L_{\text{gravity+scalar}}
 \label{eq:4pt-gravity-axiodilaton-expanded}
 \end{aligned}
 \end{equation}
+
 
 
 The gravity + scalar sector schematically takes the form $\hat{R}^4$.
