@@ -1,69 +1,7 @@
-\section{Known Effective Action}
 
 
-\section{Back to SO(2)}
+---
 
-
-
-The complete 4-point effective action is known, but it is commonly written in U(1) covariant form, which makes the 2x2 torus metric a little obscure.
-In particular, in real torus coordinates the 3-form doublet is written as $F_4 = H_3 \wedge dy_1 + F_3 \wedge dy_2$. But in complex coordinates they are written as $G_3 = \frac{1}{\sqrt{\tau_2}}(F_3 - \tau H_3)$, which makes the 12d structure harder to spot.
-So we may try to put known effective actions in real coordinates, take U(1) to SO(2).
-
-So here is the strategy:
-\begin{itemize}
-    \item write everything in the known 4-pt effective action in SO(2) rather than U(1), as in with $F_3, H_3, \tau_1, \tau_2$ rather than $G_3, \mathcal{P}_m, Q_m$.
-    \item In the type IIB effective action, there will be terms of $\tau_1, \tau_2$, they should be substituted for $g^{ab}$.
-    \item First derivatives on $\tau_1, \tau_2$ should correspond to 12d Christoffel symbols
-    \item Second derivatives and products of first derivatives should correspond to 12d Riemann tensors.
-    \item Determine whether the result admits a cleaner 12d interpretation.
-\end{itemize}
-
-
-\subsection{Known effective action}
-
-The 4-point 8-derivative effective action can be written as \cite{Policastro:2008hg,Minasian:2015bxa,Liu:2025uqu} 
-\begin{equation}
-\begin{aligned}
-\frac{L_{\text{4-pt}}^{(3)}}{\alpha\, f_{0}(\tau,\bar{\tau})}
-&=\left(t_{8}t_{8}-\tfrac{1}{4}\epsilon_{8}\epsilon_{8}\right)\biggl[R^4+6R^{2}\left(4|DP|^{2}+|\nabla G_{3}|^{2}\right)+24|DP|^{2}|\nabla G_{3}|^{2}\\
-&+12R\left(DP(\nabla\overline{G}_{3})^{2}+D\overline{P}(\nabla{G}_{3})^{2}\right)\biggr]\\
-&+O_{1}\left((|DP|^{2})^{2}\right)\\
-&+O_{2}\left((|\nabla G_{3}|^{2})^{2}\right)
-\label{eq:PTaction}
-\end{aligned}
-\end{equation}
-We are working with the normalization such that $t_8t_8 R^4$, when expanded, has coefficient $\frac{1}{32}$ on $(R_{mnrs}R^{mnrs})^2$,
-here $O_1$ in our normalization represents $2 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)$.
-Interestingly, it is known that $O_1$ can not be written in a $t_8t_8$ structure, but can be obtained from $\hat{t}_8\hat{t}_8 \hat{R}^4$ \cite{Minasian:2015bxa}.
-This had been one of the arguments for the 12d uplift of the effective action in the form $\hat{t}_8\hat{t}_8 \hat{R}^4$.
-
-The gravity + scalar sector of \eqref{eq:PTaction} can be written as
-\begin{equation}
-L_{\text{gravity+scalar}} = (t_8t_8)
-(R^4 + 24 R^2 |DP|^2) + 2 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)
-\label{eq:4pt-gravity-axiodilaton}
-\end{equation}
-In 12d perspective, $D_m P_n$ contains second order derivatives acting on components of the metric, hence may be obtained from linear combinations of 12d Riemann tensor components.
-A general strategy for uplifting type IIB effective action may look like the following. Examine the effective action, substituting $\tau$ for components of the torus metric, and derivatives of $\tau$ for 12d Riemannt ensor, then examine whether the resulting expression, in particular the coefficient of the distinct contraction patterns, may have a natural interpretation as arising from a higher dimensional contraction.
-Here we provide an illustration of such procedure as well as a review of the results of 1506.
-
-One finds that, using complex tangent frame coordinates $z, \bar{z}$, with vielbein $e_{\alpha}{}^a = \frac{1}{2\sqrt{\tau_2}}\begin{pmatrix}
-    -\tau & 1 \\ -\bar{\tau} & 1
-\end{pmatrix}$, the only nonvanishing component of the 12d Riemann tensor are
-\begin{equation}
-R_{z\bar{z}z\bar{z}} = -\frac14 |P|^2,\quad
-R_{mnz\bar{z}} = P_{[m}\bar{P}_{n]},\quad
-R_{mzn\bar{z}} = - \frac{P_m \bar{P}_n}{2}\quad
-R_{mznz} = \frac{D_m P_n}{2},
-\end{equation}
-and equations of motions are $R_{mn} = 2 P_{(m} \bar{P}_{n)}$ and $D^m P_m = 0$.
-
-The gravity + scalar sector of \eqref{eq:PTaction} can be written as
-\begin{equation}
-L_{\text{gravity+scalar}} = (t_8t_8)
-(R^4 + 24 R^2 |DP|^2) + 2 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)
-\label{eq:4pt-gravity-axiodilaton}
-\end{equation}
 Expanding the $t_8t_8$ contraction, and substituting $D_m P_n$ with the 12d Riemann tensor, we find
 
 \begin{equation}
