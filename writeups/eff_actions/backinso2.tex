@@ -1,0 +1,241 @@
+
+
+---
+
+Expanding the $t_8t_8$ contraction, and substituting $D_m P_n$ with the 12d Riemann tensor, we find
+
+\begin{equation}
+\begin{aligned}
+L_{\text{gravity+scalar}} 
+&= 
+t_8t_8 R^4
++ \frac12 R^{manb} R_{mcnd} R^r{}_a{}^s{}_b R_r{}^c{}_s{}^d
++ R^{manb} R^r{}_a{}^s{}_b R_m{}^t{}_r{}^u R_{nust}
+- R^{manb} R_{ma}{}^r{}_b R_r{}^{stu} R_{nstu}\\
+&+\frac18 R^{manb} R_{manb} R^{rstu} r_{rstu}
++ R^{manb} R^r{}_a{}^s{}_b R_m{}^t{}_n{}^u R_{rtsu}
++ O(R^2 P^3)
+\end{aligned}
+\label{eq:4pt-gravity-axiodilaton-expanded}
+\end{equation}
+
+Substituting the 6 terms of $t_8t_8 R^4$, we find
+\begin{equation}
+\begin{aligned}
+L_{\text{gravity+scalar}} 
+&= 
+R_{mnrs} R^{sp}{}_{qu} R^{umvr} R_{pv}{}^{nq}
++ \frac{1}{2} R_{mnrs} R^{spnq} R_{qupv} R^{vrum} \notag \\
+&\quad - \frac{1}{2} R_{mnrs} R^{rsnp} R_{pquv} R^{qmuv}
+- \frac{1}{4} R_{mnrs} R^{rs}{}_{pq} R^{qmuv} R_{uv}{}^{np} \notag \\
+&\quad + \frac{1}{16} R_{mnrs} R^{mnpq} R_{pquv} R^{uvrs}
++ \frac{1}{32} (R_{mnrs} R^{mnrs})^2
++ \frac12 R^{manb} R_{mcnd} R^r{}_a{}^s{}_b R_r{}^c{}_s{}^d
++ R^{manb} R^r{}_a{}^s{}_b R_m{}^t{}_r{}^u R_{nust}
+- R^{manb} R_{ma}{}^r{}_b R_r{}^{stu} R_{nstu}\\
+&+\frac18 R^{manb} R_{manb} R^{rstu} r_{rstu}
++ R^{manb} R^r{}_a{}^s{}_b R_m{}^t{}_n{}^u R_{rtsu}
++ O(R^2 P^3)
+\end{aligned}
+\label{eq:4pt-gravity-axiodilaton-expanded}
+\end{equation}
+
+
+
+\begin{equation}
+\begin{aligned}
+t_8 t_8 R^4 &= 3 \times 2^7 \Biggl\{
+R_{mnrs} R^{sp}{}_{qu} R^{umvr} R_{pv}{}^{nq}
++ \frac{1}{2} R_{mnrs} R^{spnq} R_{qupv} R^{vrum} \notag \\
+&\quad - \frac{1}{2} R_{mnrs} R^{rsnp} R_{pquv} R^{qmuv}
+- \frac{1}{4} R_{mnrs} R^{rs}{}_{pq} R^{qmuv} R_{uv}{}^{np} \notag \\
+&\quad + \frac{1}{16} R_{mnrs} R^{mnpq} R_{pquv} R^{uvrs}
++ \frac{1}{32} (R_{mnrs} R^{mnrs})^2
+\Biggr\}. \label{eq:A2}
+\end{aligned}
+\end{equation}
+
+One may then substitute $P$ and $\nabla P$ in the 10d effective action with 12d covariant objects, such as the Riemann tensor, and check if the resulting expression has a cleaner interpretation.
+Let us expand \eqref{eq:4pt-gravity-axiodilaton}, substituting the equations of motion, we find
+\begin{equation}
+\begin{aligned}
+L_{\text{gravity+scalar}} 
+&= t_8t_8 R^4
+-\,R^{m n r s} R_{m n}\,^{t u} K_{r t} \bar{K}\,_{s u}
++6\,R^{m n r s} R_{m}\,^{t}\,_{r}\,^{u} K_{n t} \bar{K}\,_{s u}\\
+&-2\,R^{m n r s} R_{m n r}\,^{t} K_{s}\,^{u} \bar{K}\,_{t u}
++\frac{1}{4}\,R^{m n r s} R_{m n r s} K^{t u} \bar{K}\,_{t u}
+\label{eq:4pt-gravity-axiodilaton-expanded}
+\end{aligned}
+\end{equation}
+
+
+
+The gravity + scalar sector schematically takes the form $\hat{R}^4$.
+In fact, it was claimed in \cite{Minasian:2015bxa} that $\hat{t}_8\hat{t}_8 \hat{R}^4$ reproduces the gravity + axio-dilaton 4-point amplitudes when reduced to 10d, which is surprising for the following reasons.
+In 10d the 4-point gravity + axio-dilaton amplitudes come from \eqref{eq:4pt-gravity-axiodilaton}, one can expand the $t_8t_8$ structure and compare it with the 4-point expansion of $\hat{t}_8 \hat{t}_8 \hat{R}^4$ reduced to 10d \footnote{See eq B.10 of \cite{Minasian:2015bxa}}, they only partially agree.
+Yet, the claim of \cite{Minasian:2015bxa} had been that once the fields are expanded to linear order and the kinematic structures are imposed, the two sides agree.
+
+We here provide a ``bottom-up'' perspective to reconcile the results of \cite{Minasian:2015bxa}, by uplifting the known 10d effective actions. 
+Upon expanding the $t_8t_8 R^4$ structure, we find that the $R^2 \tau^2$ sector takes the form
+\begin{equation}
+\begin{aligned}
+t_8 t_8 R^2 |DP^2|
+&=-\,R^{m n r s} R_{m n}\,^{t u} K_{r t} \bar{K}\,_{s u}
++R^{m n}\,_{m}\,^{r} R^{s t}\,_{s}\,^{u} K_{n r} \bar{K}\,_{t u}\\
+&+6\,R^{m n r s} R_{m}\,^{t}\,_{r}\,^{u} K_{n t} \bar{K}\,_{s u}
+-4\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s t u} K_{r t} \bar{K}\,_{s u}\\
+&-R^{m n}\,_{m}\,^{r} R^{s t}\,_{s}\,^{u} K_{n t} \bar{K}\,_{r u}
++\frac{1}{2}\,R^{m n}\,_{m n} R^{r s t u} K_{r t} \bar{K}\,_{s u}\\
+&-2\,R^{m n r s} R_{m n r}\,^{t} K_{s}\,^{u} \bar{K}\,_{t u}
+-\frac{1}{2}\,R^{m n r s} R_{m n r}\,^{t} K_{s t} \bar{K}\,^{u}\,_{u}\\
+&-2\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s}\,_{r}\,^{t} K_{s}\,^{u} \bar{K}\,_{t u}
++R^{m n}\,_{m}\,^{r} R_{n}\,^{s}\,_{r}\,^{t} K_{s t} \bar{K}\,^{u}\,_{u}\\
+&+\frac{1}{4}\,R^{m n r s} R_{m n r s} K^{t u} \bar{K}\,_{t u}
++\frac{1}{16}\,R^{m n r s} R_{m n r s} K^{t}\,_{t} \bar{K}\,^{u}\,_{u}\\
+&+\frac{1}{2}\,R^{m n}\,_{m}\,^{r} R_{n}\,^{s}\,_{r s} K^{t u} \bar{K}\,_{t u},
+\end{aligned}
+\end{equation}
+here we have not set $D_m P^m$ to zero, which is the scalar equation of motion. 
+Recall that we are working with the normalization such that $t_8 t_8 R^4$ contains $\frac{1}{32} (R_{mnrs} R^{mnrs})^2$.
+Suppose $(R_{mnrs} R^{mnrs})^2$ comes from a 12d contraction $(R_{MNRS}R^{MNRS})^2$, given the nonvanishing components of $R_{MNRS}$ are $R_{mnrs}, R_{ambn}, R_{mnab}, R_{abcd}$, we expect to find that
+\begin{equation}
+(R_{MNRS}R^{MNRS})^2 = R_{pquv} R^{pquv} (R_{mnrs} R^{mnrs}  8 R_{ambn} R^{ambn} + 4 R_{mnab} R^{mnab} + 2 R_{abcd} R^{abcd}) + ...
+\end{equation}
+Substituting the components of the 12d Riemann tensor, we expect to find that the coefficient of $R_{mnrs} R^{mnrs}$ at four points is $\frac{1}{32}( R_{mnrs} R^{mnrs} + 8 D_m \bar{P}_n D^m P^n)$, which is indeed the case.
+Now let us consider the $O_1 = 2 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)$ term, which does not arise from a $t_8 t_8$ structure. Taking into consideration the form of the 12d Riemann tensor, this term can only come from the contraction of $R_{m a n b} R^{m c n d} R_r{}^{a}{}_{s}{}^{b} R^{r}{}_{c}{}^{s}{}_{d}$, which may descent from the 12d contraction
+\begin{equation}
+\tfrac{1}{2}\,R_{MNRS}\,R^{SPNQ}\,R_{QUPV}\,R^{VRUM} \in \hat{t}_8\hat{t}_8 \hat{R}^4.
+\end{equation}
+In this specific contraction, there are 4 ways to pick torus indices in each Riemann tensor, and Bianchi identities contributes an additional factor of 2, so we expect to find the contributeion
+\begin{equation}
+\frac{2}{2}\frac{4^4}{32}R_{m a n b} R^{m c n d} R_r{}^{a}{}_{s}{}^{b} R^{r}{}_{c}{}^{s}{}_{d}
+= 2 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s),
+\end{equation}
+which is precisely the $O_1$ term in \eqref{eq:PTaction}.
+Hence one can make sense of the results of \cite{Minasian:2015bxa}. What would be interesting is to perform similar analysis to 5-point and 6-point effective actions, by directly uplifting the known 10d effective actions.
+
+Upon inspection, we find that the 3-form sector of \eqref{eq:PTaction} admits a factorization
+\begin{equation}
+L_{\text{3-form}} = 
+6(t_8t_8 - \frac{1}{4}\epsilon_8\epsilon_8)
+|R \nabla G_3 + 2 (\delta \nabla P) \nabla \overline{G}_3|^2
++ O_2((|\nabla G_3|^2)^2).
+\label{eq:3-form-uplift}
+\end{equation}
+
+We see the structure of $|R \nabla G_3 + 2 \delta \nabla P \nabla \bar{G}_3|^2$.
+In the perspective of 12d, we may substitute $\nabla_m P_n$ for linear combinations of $\hat{R}_{ambn}$, and let $\hat{F}_4 = H_3 \wedge dy_1 + F_3 \wedge dy_2$ be the 12d uplift of $G_3$, as discussed in \cite{Cheng:2025efp}.
+The contractions of \eqref{eq:3-form-uplift} are those between $\hat{R}^2 (\hat{\nabla} \hat{F}_4)^2$ and $(\hat{\nabla} \hat{F}_4)^4$.
+
+Indeed, one may replace $\nabla P$ and $P$ in type IIB effective actions with 12d Riemann tensors, and check if the resulting expression admits a 12d interpretation.
+In the appendix we compute the 12d Christoffel symbols and Riemann tensor components for the 12d metric ansatze, as well as a dictionary between 10d dynamical terms and 12d ones.
+However, this procedure may not be carried out on the full effective action, as the 12d metric ansatze poses a fundamental obstruction to writing the 10d effective action in 12d covariant ways.
+
+In generic spacetime on $T_2$, the components $R_{ambn}, R_{mn12}, R_{1212}$ furnish 6 linearly independent components of the Riemann tensor, which are second-order derivatives on the metric.
+However, for the specific F-theory ansatze, $R_{mn12}$ and $R_{1212}$ can both be obtained as linear combinations of $R_{ambn}$. For two real functions $\tau_1, \tau_2$, their second-order derivatives have 6 linearly independent bases, while the higher-dimensional Riemann tensor can only provide 4. So there are certain combinations of dynamical terms of the axio-dilaton that can not be written with 12d Riemann tensors.
+For example, one can show that while $|\nabla \tau|^2$ can be obtained with $R_{1212}$, terms like $(\nabla \tau_1)^2 - (\nabla \tau_2)^2$ can not be obtained with any linear combination of 12d Riemann tensor components.
+Such obstruction terms indeed appear in type IIB effective actions, starting at 5-pt, in both U(1)-conserving and U(1)-violating sectors.
+
+% Secondly, the 12d Riemann tensor with torsion,
+% Let us consider a Riemann tensor with torsion $\hat{\Omega}_N{}^{RS}$, then
+% \begin{equation}
+% \hat{R}_{MN}{}^{RS}(\hat{\Omega}) = \hat{R}_{MN}{}^{RS} + \nabla_{[M} \hat{\Omega}_{N]}{}^{RS} + \frac{1}{2}\hat{\Omega}_{[M|}{}^{RT} \hat{\Omega}_{N]T}{}^{S}.
+% \end{equation}
+% In the standard Einstein-Cartan formulation, the spin connection is treated as a potential and the torsion is a field strength.
+% Here we shall treat the torsion as a potential, then expanding $\hat{R}^4$ contractions we find
+% \begin{equation}
+% \hat{R}^4(\hat{\Omega}) = \hat{R}^2 + 6 \hat{R}^2 (\nabla \hat{\Omega})^2 + (\nabla \hat{\Omega})^4 + \hat{\Omega}^8 + ...
+% \end{equation}
+% where $...$ represents 11 more terms in the expansion.
+
+
+
+
+\subsection{$R^2|DP|^2$}
+One can show that 
+\begin{equation}
+D_m\bar{P}_n D_r P_s = \frac{1}{4}(g^{ab}g^{cd} - \epsilon^{ab}\epsilon^{cd})R_{amcn}R_{brds}
+\end{equation}
+So that for the four-index tensor $(DP)_{mpnq} \equiv g_{[m[n} D_{p]} P_{q]}$ antisymmetrized in $mp$, and $nq$ with overall normalization 1. 
+We have
+% (note that $D_p P_q$ by definition is symmetric in $pq$)
+\begin{equation}
+|DP|^2_{m'p'n'q' mpnq} = g_{m'n'}g_{mn} \frac{1}{4}(g^{ab}g^{cd} - \epsilon^{ab}\epsilon^{cd})R_{a p' c q'}R_{b p d q}
+\end{equation}
+antisymmetrized in $[m'p']$, $[n'q']$, $[mp]$, $[nq]$ with normalization 1.
+and the overall contribution is
+\begin{equation}
+24R^2 (t_8t_8-\tfrac14\epsilon_8\epsilon_8)(g^{ab}g^{cd} - \epsilon^{ab}\epsilon^{cd}) g_{m'n'}g_{mn}R_{a p' c q'}R_{b p d q}
+\quad \in \hat{R}^4
+\end{equation}
+
+\subsection{$R^2|\nabla G_3|^2$}
+One can show that with $F_4 = H_3 \wedge dy_1 + F_3 \wedge dy_2$, we have
+
+So the overall contribution is
+\begin{equation}
+6 R^2(t_8t_8 - \tfrac14 \epsilon_8\epsilon_8)  \nabla (F_4)_a \nabla (F_4)_b g^{ab}
+\quad \in \hat{R}^2 (\nabla F_4)^2
+\end{equation}
+
+\subsection{$\text{Re}[R DP (D\bar{G}_3)^2]$}
+One can show that together they give the overall contribution
+\begin{equation}
+12R(t_8t_8-\tfrac14 \epsilon_8 \epsilon_8)(g^{ac}g^{bd} - \epsilon^{ac}\epsilon^{bd})g_{m' n'}R_{ambn}\hat{\nabla}_r(F_4)_{pquc}\,\hat{\nabla}_s(F_4)_{p'q'u'd}
+\quad \in \hat{R}^2 (\nabla F_4)^2
+\end{equation}
+antisymmetrized in $[mp]$, $[nq]$, $[m'p']$, $[n'q']$ with normalization 1.
+We wrote out the indices of the latter terms to make the contraction structure more clear.
+
+\subsection{$|DP|^2|\nabla G_3|^2$}
+One can show that together they give the overall contribution
+\begin{equation}
+24(t_8t_8 - \tfrac14 \epsilon_8 \epsilon_8) g_{m'n'}g_{mn} \frac{1}{4}(g^{ab}g^{cd} - \epsilon^{ab}\epsilon^{cd})R_{a p' c q'}R_{b p d q}
+\,\hat{\nabla}(F_4)_e \,\hat{\nabla}(F_4)_f\, g^{ef}
+\quad \in \hat{R}^2 (\nabla F_4)^2
+\end{equation}
+antisymmetrized in $[mp]$, $[nq]$, $[m'p']$, $[n'q']$ with normalization 1.
+Again we wrote out some indices explicitly to make the contraction structure more clear.
+
+\section{Comments}
+It is straightforward to see that the known 4-point eight derivative effective actions uplift to 12d $\hat{R}^4$ and $\hat{R}^2 (\nabla F_4)^2$ structures.
+What is interesting, however, is that the uplift structures contain not only the metric on the torus $g^{ab}$, but also the Levi-Civita tensor on the torus $\epsilon^{ab}$.
+Perhaps it is worth investigating the structure of
+\begin{equation}
+(t_8t_8 - \tfrac14 \epsilon_8 \epsilon_8)(g^{ab}g^{cd} - \epsilon^{ab}\epsilon^{cd})
+\end{equation}
+which we have seen contracts the 12d Riemann tensor and 4-form derivatives, and whether it may have a more elegant form, possibly after adding or removing terms that vanish on the IIB locus.
+Afterall, there is no reason to expect the 12d uplift takes the form $\hat{t}_8\hat{t}_8 \hat{R}^4$, as has been proposed in \cite{Minasian:2015bxa}.
+Upon closer inspection \footnote{Checked with Cadabra, also see eq B.10 of \cite{Minasian:2015bxa}.}, when one expands $\hat{t}_8\hat{t}_8 \hat{R}^4$, one finds many terms that are not present in the known 10d effective action, and many terms in the known 10d effective action that do not appear in the expansion of $\hat{t}_8\hat{t}_8 \hat{R}^4$.
+
+There is also no reason for the 12d effective action, if it exists, to take on the form $\hat{t}_8\hat{t}_8 \hat{R}^4$, though it may be a good starting point to reproduce 10d $t_8t_8 R^4$.
+Afterall, $t_8t_8 R^4$ is just a way to repackage 6 linearly-independent ways to contract 4 Riemann tensors.
+In component form it looks roughly like $(g^{mn})^8$, hence has 16 indices.
+Had we written out the 6 terms it's not even that complicated, but the benefit of $t_8t_8$ is that it makes the fact that 10d closed string amplitudes can be obtained as the tensor product of open string amplitudes manifest.
+But in 12d, there are no open strings, and there is no $\mathcal{N} = 4$ SYM.
+
+
+% However, such structure contraction structure may not be the ultimate answer, as if one actually expands the $\hat{t}_8\hat{t}_8 \hat{R}^4$ structure, one finds many terms that are not present in the known 10d effective action. 
+
+% For example, let us consider the $t_8t_8 (R^4 + 24 R^2 |DP|^2)$ sector in \eqref{eq:PTaction}.
+% This is the only 4-point sector that has a clean uplift to 12d (besides $O_1$).
+% Upon evaluating $\hat{t}_8\hat{t}_8 \hat{R}^4$ one finds $t_8t_8 R^4$ plus a lot of gravity + scalar couplings (see eq B.10 of \cite{Minasian:2015bxa}), upon inspection only very few match the known 10d $t_8t_8 R^2 |DP|^2$ sector. Worse, there are many terms in $t_8t_8 R^2 |DP|^2$ that do not appear in the expansion of $\hat{t}_8\hat{t}_8 \hat{R}^4$.
+
+
+
+% First note that, in complex coordinates, the only component of the 12d Riemann tensor that contains terms of the form $DP$ is $R_{mznz} = \frac{1}{2}D_m P_n$.
+% In complex coordinates we have $g_{z\bar{z}} = \tfrac12$, and $g^{z\bar{z}} = 2$, so we can in fact write
+% \begin{equation}
+% 1536 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s) = 1536 R_{mznz} R_{m'z n' z} R_{r\bar{z}s\bar{z}} R_{r'\bar{z}s'\bar{z}} g^{mm'} g^{nn'} g^{rr'} g^{ss'} (g^{z\bar{z}})^4.
+% \end{equation}
+
+
+% Let us evaluate it and determine it purely in terms of $\tau_1, \tau_2$
+
+% First of all, given $G_3 = \frac{1}{\sqrt{\tau_2}}(F_3-\tau H_3)$, we have that $DG_3 = \nabla G_3 - iQ G_3$, which can be evaluated to
+
+% We find that $D_{m'}\bar{G}_{3,n'r's'}D_{m}G_{3,nrs} = \hat{\nabla}_{m'}(F_4)_{n'r's'a} \hat{\nabla}_{m}(F_4)_{nrs b} g^{ab}$.
+
+
+% just give me the simplest thing that works:

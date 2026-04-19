@@ -9,6 +9,42 @@ We would like to compute $t_8t_8 R^2 DP D\bar{P}$, using \eqref{eq:t8R2S2}, with
 \right)
 \end{equation}
 
+
+Using Cadabra, one finds that 
+
+\begin{equation}
+\begin{aligned}
+  &t_8t_8RR|DP|^2\\
+  &=\\
+  &+4\,\bar{K}\,_{m n} K^{m n} R_{r s t u} R^{r s t u}\\
+  &------------------------------------------------\\
+  &+32\,\bar{K}\,^{m n} K^{r s} R_{m}\,^{t}\,_{n}\,^{u} R_{r t s u}
+  -32\,\bar{K}\,^{m n} K_{m}\,^{r} R_{n}\,^{s t u} R_{r s t u}
+  +96\,\bar{K}\,^{m n} K^{r s} R_{m}\,^{t}\,_{r}\,^{u} R_{n t s u}
+  -16\,\bar{K}\,^{m n} K^{r s} R_{m r}\,^{t u} R_{n s t u}\\
+  &================================================\\
+  &\hat{t}_{8} \hat{t}_8\hat{R}^4 \\
+  &= \\
+  &+4\,\bar{K}\,^{m n} K_{m n} R_{r s t u} R^{r s t u}\\
+  &------------------------------------------------\\
+  &+32\,\bar{K}\,^{m n} K^{r s} R_{m}\,^{t}\,_{n}\,^{u} R_{r t s u}
+  -32\,\bar{K}\,^{m n} K_{m}\,^{r} R_{n}\,^{s t u} R_{r s t u}
+  +32\,\bar{K}\,^{m n} K^{r s} R_{m}\,^{t}\,_{r}\,^{u} R_{n u s t}\\
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  &================================================\\
+  &-\hat{\epsilon}_{12} \hat{\epsilon}_{12}\hat{R}^4 \\
+  &= \\
+  &+4\,\bar{K}\,^{m n} K_{m n} R_{r s t u} R^{r s t u}\\
+  &+32\,\bar{K}\,^{m n} K^{r s} R_{m}\,^{t}\,_{n}\,^{u} R_{r t s u}
+  -32\,\bar{K}\,^{m n} K_{m}\,^{r} R_{n}\,^{s t u} R_{r s t u}
+  -32\,\bar{K}\,^{m n} K^{r s} R_{m}\,^{t}\,_{r}\,^{u} R_{n t s u}
+  -16\,\bar{K}\,^{m n} K^{r s} R_{m r}\,^{t u} R_{n s t u}
+\end{aligned}
+\end{equation}
+
+
+\section{Outdated computation}
+
 Using Cadabra, one finds that $t_8 t_8 R^2 DP D\bar{P}$ is the sum of the following terms (we have used $D$ to denote the 4-index object $DP$ and $K$ to denote 2-index object $DP$)
 
 
