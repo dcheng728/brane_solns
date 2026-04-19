@@ -5,12 +5,12 @@ The most notable theories with 32 supercharges are the 11d, type IIA, and type I
 These theories are believed to be the low-energy limits of the corresponding membrane and string theories \cite{Green:2012oqa}.
 
 {\color{orange}
-Einstein's theory of gravity is nonlinear with an infinite-dimensional diffeomorphism symmetry group.
+Einstein's theory of gravity is nonlinear with the diffeomorphism symmetry group.
 However, one can expand it to quadratic order around a flat spacetime with $g_{mn} = \eta_{mn} + \kappa h_{mn}$, where $\kappa$ is the gravitational coupling.
 Then the Einstein-Hilbert action becomes that of a free massless spin-2 field $h_{mn}$, with a rigid Poincare symmetry SO(d-1,1), as well as possibly a rigid R-symmetry acting on the supercharges.
 On-shell single-particle (free) states furnish representations of the little group SO(d-2), From this one can determine the theory's low-energy spectrum.
 
-The upper-bound of 32 supercharges implies that a supergravity theory can have at most 128 bosonic and 128 fermionic on-shell degrees of freedom.
+The bound of 32 supercharges implies that a supergravity theory can have at most 128 bosonic and 128 fermionic on-shell degrees of freedom.
 In 11d, they transform under irreducible representations of SO(9), and consists of a gravitino, a graviton, and a 3-form potential.
 The 11d supergravity multiplet can be given with SO(9) Dynkin labels as\footnote{Our convention for Dynkin Labels is given in Appendix \ref{sec:Dynkin Label Conventions}.}
 \begin{equation}
@@ -57,7 +57,7 @@ This is the first puzzle of the type IIB theory: does it have a higher dimension
 {\color{orange}
 Interestingly, the type IIB multiplet can only contain the components of the 4-form potential $C_4$ whose field strength is (anti)self-dual. 
 This is demanded by supersymmetry as had we included the full 4-form potential, the bosonic degrees of freedom would exceed 128.}
-This leads to the second major puzzle of the type IIB theory: 
+This leads to the second puzzle of the type IIB theory: 
 what is the dynamical mechanism behind self-duality of the 5-form field strength?
 This can not be imposed at the level of the action, e.g. via Lagrange multipliers\footnote{
 A simple way to see this is to start with a generic 4-form $C_4$ with field strength $F_5$, which has 70 on-shell degrees of freedom in 10d.
@@ -106,7 +106,7 @@ We note that \eqref{string frame IIB action} is invariant, up to a boundary term
 G_{mn}\to |c\tau+d|G_{mn},\quad
 \tau\equiv C + i e^{-\Phi} \to \frac{a\tau+b}{c\tau+d},\quad
 \begin{pmatrix}
-F_3\\H_3
+H_3\\F_3
 \end{pmatrix}
 \to
 \begin{pmatrix}
@@ -120,9 +120,7 @@ F_5 \to F_5.
 \end{equation}
 
 The presence of SL(2, R) acting on the metric \eqref{string frame sl2r transformations} is a consequence of the fact that the string frame Einstein-Hilbert term couples to the dilaton.
-The standard procedure is to then define an Einstein frame metric \cite{Becker:2006dvp,Weigand:2018rez} where the Einstein-Hilbert action is canonical.
-This fixes the Einstein frame metric up to a conventional factor.
-When it comes to fixing such factor, two choices are common, either by
+It is then desirable to define the Einstein frame metric \cite{Becker:2006dvp,Weigand:2018rez} where the Einstein-Hilbert action is canonical, which fixes the Einstein frame metric up to a conventional factor, with two common mutually-exclusive choices:
 \begin{enumerate}
     \item demanding that the Einstein frame metric is SL(2, R)-invariant, or
     \item demanding that the Einstein frame metric is asymptotically flat.
@@ -133,7 +131,7 @@ g_{mn} \equiv e^{-\Phi/2}G_{mn}.
 \label{sl2r invariant Einstein frame metric}
 \end{equation}
 From string perturbation theory, the string frame metric $G_{mn}$ is taken to be asymptotically flat: $G_{mn} \to \eta_{mn}$, hence the SL(2, R)-invariant Einstein frame metric is not: $g_{mn} \to g_s^{1/2}\eta_{mn}$.
-There is an implicit difference in length scale between the string and Einstein frame $l_E = g_s^{1/4}l_s$, which one must be careful when comparing tensions computed in the Einstein and string frame.
+There is an implicit difference in length scale between the string and Einstein frame $l_E = g_s^{1/4}l_s$, which one must account for when comparing tensions computed in the Einstein and string frame.
 The action is given as
 \begin{equation}
 \begin{aligned}
@@ -146,6 +144,7 @@ e^{-\Phi}|H_3|^2+e^\Phi|\tilde{F}_3|^2
 \right]\\
 &-\frac{1}{4\kappa^2}\int C_4\wedge H_3\wedge F_3.
 \end{aligned}
+\label{eq:sl2r_invariant_einstein_frame_action}
 \end{equation}
 Had one chosen to taken route 2) and intend to work with an asymptotically-flat Einstein frame metric $\tilde{g}_{mn} \equiv g_s^{1/2}e^{-\Phi/2}G_{mn}$, there is no longer a difference in length scale between the two frames, but the metric is not SL(2, R)-invariant:
 \begin{equation}
@@ -166,7 +165,7 @@ e^{-\Phi}|H_3|^2+e^\Phi|\tilde{F}_3|^2
 \right]\\
 &-\frac{1}{4\kappa^2}\int C_4\wedge H_3\wedge F_3,
 \end{aligned}
-\label{asymptotically flat einstein frame action}
+\label{eq:asymptotically_flat_einstein_frame_action}
 \end{equation}
 where the factors of $g_s$ are fixed by demanding that the action is SL(2, R)-invariant.
 
