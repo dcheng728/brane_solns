@@ -18,16 +18,16 @@ An $n$-point amplitude is a summation over worldsheet path-integrals of genus $g
 }
 
 
-The tree-level 4-point function in the type IIA and type IIB string theories is the Virasoro-Shapiro amplitude \cite{Green:2012oqa}, for the symmetric traceless massless modes in the NSNS sector of the string, they take the following form \cite{Green:1999pv}
+The tree-level 4-point function in the type IIA and type IIB string theories is the Virasoro-Shapiro amplitude \cite{Green:2012oqa}, for the symmetric traceless massless modes in the NSNS sector of the string, they take the following form \cite{Green:1999pv} up to an irrelevant overall factor
 \begin{equation}
 \mathcal A_4
-=-t_8^{m_1...m_8}t_8^{n_1...n_8}
+=\frac{1}{3\cdot 2^3}t_8^{m_1...m_8}t_8^{n_1...n_8}               
 \prod_{r=1}^4\zeta^{(r)}_{m_{2r}n_{2r}}k^{(r)}_{m_{2r-1}}k^{(r)}_{n_{2r-1}}
 \times \frac{\alpha^{\prime 4}}{g_s^2}
 \times\frac{64}{\alpha^{\prime 3}stu}
 \frac{\Gamma[1-\tfrac{\alpha'}{4}s]\Gamma[1-\tfrac{\alpha'}{4}t]\Gamma[1-\tfrac{\alpha'}{4}u]}{\Gamma[1+\tfrac{\alpha'}{4}s]\Gamma[1+\tfrac{\alpha'}{4}t]\Gamma[1+\tfrac{\alpha'}{4}u]}
 \end{equation}
-where $s,t,u$ are Mandelstam variables, $\zeta^{(i)}_{mn}$ is the polarization of the symmetric traceless modes on a closed string, they may also be interpreted as polarizations of the spacetime graviton $h^{(i)}_{mn}$ in $g_{mn}=\eta_{mn} + \kappa h_{mn}$. 
+where $s,t,u$ are Mandelstam variables, $\zeta^{(i)}_{mn}$ is the dimensionless polarization of the symmetric traceless modes on a closed string, they may also be interpreted as polarizations of the spacetime graviton $\kappa h^{(i)}_{mn}$ in $g_{mn}=\eta_{mn} + \kappa h_{mn}$. 
 The explicit form of $t_8 t_8$ can be found in \cite{Schwarz:1982jn,Policastro:2008hg,Liu:2025uqu}.
 We can expand the $t_8t_8$ contraction explicitly and put back the momenta as derivatives
 \begin{equation}
@@ -35,8 +35,8 @@ We can expand the $t_8t_8$ contraction explicitly and put back the momenta as de
 t_8^{m_1...m_8}t_8^{n_1...n_8}
 \prod_{r=1}^4\zeta^{(r)}_{m_{2r}n_{2r}}k^{(r)}_{m_{2r-1}}k^{(r)}_{n_{2r-1}}
 &=t_8^{m_1...m_8}t_8^{n_1...n_8}
-\prod_{r=1}^4 h^{(r)}_{m_{2r}n_{2r},m_{2r-1} n_{2r-1}}.\\
-&= \frac{t_8t_8 R^4}{\kappa^4} + O(h^4).
+\prod_{r=1}^4 \kappa h^{(r)}_{m_{2r}n_{2r},m_{2r-1} n_{2r-1}}.\\
+&= \frac{t_8t_8 R^4}{16} + O(h^4).
 \end{aligned}
 \end{equation}
 \footnote{
@@ -52,8 +52,8 @@ R_{\mu_8\nu_8\mu_7\nu_7}.
 }
 Now we can write the string amplitude with spacetime fields, which amounts to the following effective Lagrangian
 \begin{equation}
-\mathcal L_4\supset
--t_8t_8 R^4\frac{4}{\alpha^{\prime 3}stu}
+\mathcal L_4 =
+\frac{1}{2\kappa^2}\frac{(\alpha')^3}{3\cdot 2^7}t_8t_8 R^4\frac{4^3}{\alpha^{\prime 3}stu}
 \frac{\Gamma[1-\tfrac{\alpha'}{4}s]\Gamma[1-\tfrac{\alpha'}{4}t]\Gamma[1-\tfrac{\alpha\prime}{4}u]}{\Gamma[1+\tfrac{\alpha'}{4}s]\Gamma[1+\tfrac{\alpha'}{4}t]\Gamma[1+\tfrac{\alpha'}{4}u]}
 +O(h^5).
 \end{equation}
