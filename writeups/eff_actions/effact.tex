@@ -1,105 +1,268 @@
-\section{Known Effective Action}
+\section{Introduction}
+We begin by reviewing the known relations between type IIB and 12d, using a somewhat more general ``bottom-up" approach.
+The type IIB axio-dilaton action, at the two-derivative level, can be written as
+\begin{equation}
+2\kappa^2 S_{IIB,\tau}
+= \int d^{10}x \sqrt{-g} \left(R - 2 P_m \overline{P}^m\right).
+\label{eq:IIB-two-derivative}
+\end{equation}
+where $P_m \equiv \frac{i\nabla_m \tau}{2\tau_2}$, and $\tau = \tau_1 + i \tau_2 = C_0 + i e^{-\Phi}$ is the axio-dilaton.
 
-We will now discuss 12d perspectives on the type IIB effective action, and argue that type IIB effective actions can not be written in 12d covariant form.
-This is separate from the arguments related to the Eisenstein series structure, as well as the U(1)-violating sector, which has been recognized as difficult to capture in 12d covariant form.
-However, nevertheless, one may still hope that 12d contractions, upon reduction to 10d, and after applying LSZ reduction, produce the kinematic structure of string scattering amplitudes.
-We argue that this can not be done.
+The proposal of F-theory \cite{Vafa:1996xn} is that for backreacted 7-brane configurations, the axio-dilaton profile $\tau$ can be geometrized as the complex structure of an auxiliary torus.
+This proposal can be understood by noting that the 10d axio-dilaton action can be obtained by certain 12d action on a specific metric ansatze, where the 12d metric is given by
+\begin{equation}
+\widehat{g}_{MN}=\begin{pmatrix}
+g_{mn} & 0 \\
+0 &\widehat{g}_{ab}
+\end{pmatrix},\quad
+\widehat{g}_{ab}
+=\frac{1}{\tau_2}\begin{pmatrix}
+1& \tau_1\\
+\tau_1 & \tau_1^2+\tau_2^2
+\end{pmatrix}.
+\label{eq:F-theory-ansatze}
+\end{equation}
+One may adopt complex tangent frame coordinates $z, \overline{z}$, with vielbein $e_{\alpha}{}^a = \frac{1}{2\sqrt{\tau_2}}\begin{pmatrix}
+    -\tau & 1 \\ -\overline{\tau} & 1
+\end{pmatrix}$, the nonvanishing components of the 12d Riemann tensor are \cite{Liu:2025uqu}
+\begin{equation}
+\widehat{R}_{mrns} = R_{mrns},\quad
+R_{z\overline{z}z\overline{z}} = -\frac14 |P|^2,\quad
+R_{mnz\overline{z}} = P_{[m}\overline{P}_{n]},\quad
+R_{mzn\overline{z}} = - \frac{P_m \overline{P}_n}{2}\quad
+R_{mznz} = \frac{D_m P_n}{2}.
+\label{eq:12d-Riemann-complex}
+\end{equation}
+Substituting $P_m\overline{P}_n$ in \eqref{eq:IIB-two-derivative} with $R_{mzn\overline{z}}$, we find
+\begin{equation}
+\sqrt{-g}[R - 2 P_m \overline{P}^m]
+=\sqrt{-\widehat{g}}[R + \widehat{R}^{mz}{}_{mz} + \widehat{R}^{m\overline{z}}{}_{m\overline{z}}]
+=\sqrt{-\widehat{g}} \widehat{R},
+\label{eq:2-derivative-index-splitting}
+\end{equation}
+which verifies that the F-theory ansatze \eqref{eq:F-theory-ansatze} relates the 10d axio-dilaton action to a 12d Einstein-Hilbert term.
+Hence we may map solutions of 12d Einstein gravity, such as the pp-wave \cite{Tseytlin:1996ne} and the KK-monopole \cite{Cheng:2025efp} solutions, to type IIB geometries with nontrivial axio-dilaton profile.
 
-The 4-point 8-derivative effective action can be written as \cite{Policastro:2008hg,Minasian:2015bxa,Liu:2025uqu} 
+What we have been discussing is the classical, two-derivative, two field type IIB theory, which is the leading term in the $\alpha'$ expansion of the type IIB string theory.
+Under quantum corrections, \eqref{eq:IIB-two-derivative} receives higher order and higher derivative corrections, which can be computed from string perturbation theory and non-perturbative saddles.
+It is natural to ask whether such corrections can also be understood from 12d perspective, e.g. at 8-derivatives?
+The answer does not appear to be a clearcut yes or no, the purpose of this writeup is to discuss the subtleties that arise.
+
+\section{Type IIB at 4 points}
+
+The 4-point 8-derivative effective action can be written \cite{Liu:2025uqu,Minasian:2015bxa,Policastro:2008hg} as
 \begin{equation}
 \begin{aligned}
-\frac{L_{\text{4-pt}}^{(3)}}{\alpha\, f_{0}(\tau,\bar{\tau})}
-&=\left(t_{8}t_{8}\right)\biggl[R^4+6R^{2}\left(4|DP|^{2}+|\nabla G_{3}|^{2}\right)+24|DP|^{2}|\nabla G_{3}|^{2}\\
-&+12R\left(DP(\nabla\overline{G}_{3})^{2}+D\overline{P}(\nabla{G}_{3})^{2}\right)\biggr]\\
-&+O_{1}\left((|DP|^{2})^{2}\right)\\
+\frac{L_{\text{4-pt}}}{\alpha\, f_{0}(\tau,\overline{\tau})}
+&= t_{8}t_{8} \biggl[R^4+6R^{2}\left(4|\delta\nabla P|^{2}+|\nabla G_{3}|^{2}\right)+24|\delta \nabla P|^{2}|\nabla G_{3}|^{2}\\
+&+12R\left(\delta \nabla P(\nabla\overline{G}_{3})^{2}+D\overline{P}(\nabla{G}_{3})^{2}\right)\biggr]\\
+&+1536 |\nabla_m P_n \nabla^m P^n|^2\\
 &+O_{2}\left((|\nabla G_{3}|^{2})^{2}\right)
 \label{eq:PTaction}
 \end{aligned}
 \end{equation}
+where $\alpha = \frac{(\alpha')^3}{3 \cdot 2^{12}}$ and $(\delta \nabla P)_{mrns} \equiv g_{[m[n} \nabla_{r]} P_{s]}$ is defined to have the same symmetries as the Riemann tensor, upto $\delta$-functions located at the sources of $\tau$.
 Restricting to the gravity + scalar sector of \eqref{eq:PTaction}, we have
 \begin{equation}
-L_{\text{gravity+scalar}} = (t_8t_8)
-(R^4 + 24 R^2 |DP|^2) + 1536 (D_m P_n D^m P^n)(D_r \bar{P}_s D^r \bar{P}^s)
+\frac{L_{\text{4-pt},\tau}}{\alpha f_0(\tau,\overline{\tau})} = t_8t_8
+(R^4 + 24 R^2 |\delta \nabla P|^2) + 1536 (\nabla_m P_n \nabla^m P^n)(\nabla_r \overline{P}_s \nabla^r \overline{P}^s).
 \label{eq:4pt-gravity-axiodilaton}
 \end{equation}
-In 12d perspective, $D_m P_n$ contains second order derivatives acting on components of the metric, hence may be obtained from linear combinations of 12d Riemann tensor components.
-A general strategy for uplifting type IIB effective action may look like the following. Examine the effective action, substituting $\tau_1, \tau_2$ for components of the 12d metric on $T_2$, and derivatives of $\tau_1, \tau_2$ for 12d Riemannt tensor.
-This packages SL(2, Z) as part of 12d covariance. 
-One may then examine whether the resulting expression, in particular the coefficient of the distinct contraction patterns, may have a natural interpretation as arising from a higher dimensional contraction.
-The idea is that if certain terms of the 10d effective action arises from a 12d contraction, then one must be able to rewrite the 10d effective action to invert the index splitting, and promote a group of 10d terms to a 12d contraction.
+In the 12d perspective $\tau$ is embedded in the metric.
+Suppose certain axio-dilaton couplings in the 10d effective action admits a 12d interpretation, one shall be able to rewrite such terms using 12d-covariant differential operators acting on the metric, i.e. the 12d Riemann tensor \eqref{eq:12d-Riemann-complex}. 
+Once we had replaced the 10d fields and their derivatives with their 12d counterparts, we may reexamine the resulting expression, and see if the terms group into a natuaral pattern as a result of index splitting.
+We had carried out this exercise at the two-derivative level in \eqref{eq:2-derivative-index-splitting}, we now perform the same exercise at the 8-derivative level to \eqref{eq:4pt-gravity-axiodilaton}, as a way to review the results of \cite{Minasian:2015bxa}.
 
-Here we provide an illustration of such procedure as well as a review of the results of 1506.
-To compute the 12d Riemann tensors, one may adopt complex tangent frame coordinates $z, \bar{z}$, with vielbein $e_{\alpha}{}^a = \frac{1}{2\sqrt{\tau_2}}\begin{pmatrix}
-    -\tau & 1 \\ -\bar{\tau} & 1
-\end{pmatrix}$, the nonvanishing component of the 12d Riemann tensor are
-\begin{equation}
-R_{z\bar{z}z\bar{z}} = -\frac14 |P|^2,\quad
-R_{mnz\bar{z}} = P_{[m}\bar{P}_{n]},\quad
-R_{mzn\bar{z}} = - \frac{P_m \bar{P}_n}{2}\quad
-R_{mznz} = \frac{D_m P_n}{2},
-\end{equation}
-and equations of motions are
-\begin{equation}
-R_{mn} = 2 P_{(m} \bar{P}_{n)} \quad \quad D^m P_m = 0.
-\end{equation}
-We note that crucially, while for a generic 12d metric ansatze, $R_{ambn}, R_{mnab}, R_{abcd}$ are independent of each other, for the specific F-theory ansatze, $R_{mnab}$ and $R_{abcd}$ can both be obtained as linear combinations or contractions of $R_{ambn}$.
-For example, $R_{z\bar{z}z\bar{z}} = \tfrac12 R^m{}_{zm\bar{z}}$, and $R_{mnz\bar{z}} = R_{m\bar{z}nz} - R_{mzn\bar{z}}$, leaving us with only 4 linearly independent components.
-This basis mismatch is related to the specific 12d metric ansatze chosen, and has important consequences as we will see.
-
-It is then possible to substitute the 12d Riemann tensors for axio-dilaton kinetic terms $DP$ in \eqref{eq:4pt-gravity-axiodilaton}.
-Expanding the $t_8 t_8 R^2 |DP|^2$ sector, we find (with $\alpha = \zeta(3) \cdot 3 \cdot 2^8 / g_s^{3/2}$)
-\begin{equation}
-\begin{aligned}
-\frac{L_{\text{grav}+\text{scalar}}}{\alpha}
-&=  \frac{t_8 t_8 R^4}{3 \cdot 2^7}\\
-&+ 4\, D^{m}P^{n}\, D^{r}\bar{P}^{s}\, R_{m}{}^{t}{}_{r}{}^{u}\, R_{nust} \nonumber \\
-&+ 4\, D^{m}P^{n}\, D^{r}\bar{P}^{s}\, R_{m}{}^{t}{}_{n}{}^{u}\, R_{rtsu}\\
-&+ 4\, D^{m}P^{n}\, D_{m}P_{n}\, D^{r}\bar{P}^{s}\, D_{r}\bar{P}_{s} \nonumber \\
-&- 4\, D_{m}\bar{P}^{r}\, D^{m}P^{n}\, R_{n}{}^{stu}\, R_{rstu} \\
-&+ \frac{1}{2}\, D_{m}\bar{P}_{n}\, D^{m}P^{n}\, R^{rstu}\, R_{rstu} \nonumber + O(R^2 P^3).
-\end{aligned}
-\end{equation}
-we note that because the only 12d Riemann tensor linear in $P$ is $R_{mznz}$ and its conjugate, we have
-\begin{equation}
-\hat{R}_{ambn} \hat{R}^{a}{}_{r}{}^{b}{}_{s} = 2 \text{Re} D_m P_n D_r \bar{P}_s + O(P^3).
-\end{equation}
-Recall that $D_m P_n$ is symmetric in $m,n$, substituting in the 12d Riemann tensors for coavariant derivatives on $P$, as well as recalling that $t_8 t_8 R^4$ can be written as
+Let us begin by expanding the $t_8t_8$ contractions.
+The $t_8t_8R^4$ contraction is known \cite{Policastro:2008hg} to be 
 \begin{equation}
 \begin{aligned}
 \frac{t_8t_8 R^4}{3 \cdot 2^7}
 &=  R_{pnqm} R^{prqs} R^{mt}{}_{ru} R^{nu}{}_{st} + \frac{1}{2}R_{mpnq} R^{qrps} R_{tsur} R^{untm} \\
-& - \frac{1}{2}R_{mnrs} R^{rsnp} R_{pquv} R^{qmuv} - \frac{1}{4} R_{mnrs} R^{rs}{}_{pq} R^{qmuv} R_{uv}{}^{np}\\
-& + \frac{1}{16} R_{mnrs} R^{mnpq} R_{pquv} R^{uvrs} + \frac{1}{32}(R_{mnrs} R^{mnrs})^2
+& - \frac{1}{2}R_{mnrs} R^{rsnp} R_{pquv} R^{qmuv} - \frac{1}{4} R_{mnrs} R^{rs}{}_{pq} R^{qmuv} R^{np}{}_{uv}\\
+& + \frac{1}{16} R_{mnrs} R^{mnpq} R_{pquv} R^{uvrs} + \frac{1}{32}(R_{mnrs} R^{mnrs})^2.
 \end{aligned}
+\label{eq:t8t8R4}
 \end{equation}
-We find that
+
+Expanding the $t_8 t_8 R^2 |\delta \nabla P|^2$ sector, we find\footnote{
+The computation is done with Cadabra, which agrees with the results of \cite{Minasian:2015bxa}. We have taken $f_0(\tau,\overline{\tau})$ to be $2\zeta(3) \tau_2^{3/2}$.
+}
 \begin{equation}
 \begin{aligned}
-\frac{L_{\text{grav}+\text{scalar}}}{\alpha}
-&=
-R_{pnqm} R^{prqs} R^{mt}{}_{ru} R^{nu}{}_{st}
-+ 2 R_{anbm} R^{arbs} R^{mt}{}_{ru} R^{nu}{}_{st}\\
-& + \frac{1}{2}\left[ R_{mpnq} R^{qrps} R_{tsur} R^{untm}
-+ 4 R_{ambn} R^{bras} R_{tsur} R^{untm}
-+ 2 R_{ambn} R^{bras} R_{csdr} R^{dncm}\right]\\
-& - \frac{1}{2}\left[ R_{mnrs} R^{rsnp} R_{pquv} R^{qmuv}
- + 4 R_{mban} R^{anbp} R_{pquv} R^{qmuv} \right]\\
-& - \frac{1}{4} R_{mnrs} R^{rs}{}_{pq} R^{qmuv} R_{uv}{}^{np}\\
-& + \frac{1}{16} R_{mnrs} R^{mnpq} R_{pquv} R^{uvrs}\\
-& + \frac{1}{32}(R_{rstu} R^{rstu})
-\left[R_{mnrs} R^{mnrs}+ 8 R_{ambn} R^{ambn}\right]+ O(R^2 P^3)
+\frac{1}{3 \cdot 2^{8}\zeta(3) \tau_2^{3/2}}\frac{L_{\text{4-pt},\tau}}{\alpha}
+&=  \frac{t_8 t_8 R^4}{3 \cdot 2^7}
++ 4 \nabla_n P_m \nabla^r \overline{P}^s R^{mt}{}_{ru} R^{nu}{}_{st} \\
+&+ 4 \nabla_m P_n \nabla^r \overline{P}^s R_{tsur} R^{untm}
++ 4 |\nabla_m P_n \nabla^m P^n|^2 \\
+&- 4 \nabla_m P_n \nabla^n \overline{P}^r R_{rsuv} r^{smuv}
++ \frac{1}{2} \nabla_{m} P_{n} \nabla^{m}\overline{P}^{n}R^{rstu}R_{rstu} + O(R^2 P^3).
 \end{aligned}
 \end{equation}
 
-In this expression we have grouped terms with the same index contraction structure together. Because the only 12d Riemann tensor that is linear in $P$ is $R_{ambn}$, so we have, for example 
+The next step is to replace the 10d terms with their 12d counterparts. The only 10d terms that remains are $\nabla P$.
+we note that because the only 12d Riemann tensor linear in $P$ is $R_{mznz}$ and its conjugate, so we have
 \begin{equation}
-\hat{R}_{MNRS}\hat{R}^{MNRS} = R_{mrns} R^{mnrs} + 4 \hat{R}_{ambn} \hat{R}^{ambn} + O(P^3),
+\widehat{R}_{ambn} \widehat{R}^{a}{}_{r}{}^{b}{}_{s} = 2 \text{Re} D_m P_n D_r \overline{P}_s + O(P^3).
 \end{equation}
-hence the last term is compatible with coming from a 12d contraction $\frac{1}{32} (R_{MNRS} R^{MNRS})^2  \in t_8 t_8 \hat{R}^4$.
-The rest of the terms also arise from 12d contraction $t_8 t_8 \hat{R}^4$ at 4pt, as was shown in \cite{Minasian:2015bxa}, using a ``top-down" approach, by making an educated guess of the 12d contraction.
+Substituting this as well as $t_8 t_8 R^4$, we find
+\begin{equation}
+\begin{aligned}
+\frac{1}{3 \cdot 2^{8}\zeta(3) \tau_2^{3/2}}\frac{L_{\text{4-pt},\tau}}{\alpha}
+&=
+R_{pnqm} R^{prqs} R^{mt}{}_{ru} R^{nu}{}_{st}
++ 2 \widehat{R}_{anbm} \widehat{R}^{arbs} R^{mt}{}_{ru} R^{nu}{}_{st}\\
+& + \frac{1}{2}\left[ R_{mpnq} R^{qrps} R_{tsur} R^{untm}
++ 4 \widehat{R}_{ambn} \widehat{R}^{bras} R_{tsur} R^{untm}
++ 2 \widehat{R}_{ambn} \widehat{R}^{bras} \widehat{R}_{csdr} \widehat{R}^{dncm}\right]\\
+& - \frac{1}{2}\left[ R_{mnrs} R^{rsnp} R_{pquv} R^{qmuv}
+ + 4 \widehat{R}_{mban} \widehat{R}^{anbp} R_{pquv} R^{qmuv} \right]\\
+& - \frac{1}{4} R_{mnrs} R^{rs}{}_{pq} R^{qmuv} R^{np}{}_{uv}\\
+& + \frac{1}{16} R_{mnrs} R^{mnpq} R_{pquv} R^{uvrs}\\
+& + \frac{1}{32}(R_{rstu} R^{rstu})
+\left[R_{mnrs} R^{mnrs}+ 8 \widehat{R}_{ambn} \widehat{R}^{ambn}\right]+ O(\text{5-pt})
+\end{aligned}
+\label{eq:4pt-gravity-axiodilaton-12d-replaced}
+\end{equation}
 
-The ``bottom-up" approach outlined here, despite requires more index-relabeling and tensor identities, should be the more systematic one. If there were to exist a 12d covariant expression that reproduce any 10d effective action, then after substituting 10d objects for 12d objects, one should always find that the terms group into a more natural pattern that is a result of index splitting. 
-What would be a genuine obstruction, and this is independent of the human brain's capacity to identify a pattern, is if certain terms can not be written using 12d objects at all.
+In this expression we have grouped terms with the same index contraction structure together. 
+We again see contraction patterns that could reveal a 12d covariant structure.
+For example
+\begin{equation}
+\widehat{R}_{MNRS}\widehat{R}^{MNRS} = R_{mrns} R^{mnrs} + 4 \widehat{R}_{ambn} \widehat{R}^{ambn} + O(P^3),
+\end{equation}
+the factor of 4 arises from the 4 ways to choose two torus legs in $\widehat{R}_{MNRS}$ that contribute to 4-pt amplitudes.
+Hence the last term in \eqref{eq:4pt-gravity-axiodilaton-12d-replaced} is compatible with arising a 12d contraction $\frac{1}{32} (R_{MNRS} R^{MNRS})^2  \in t_8 t_8 \widehat{R}^4$.
+Upon further investigation, one finds
+\begin{equation}
+\begin{aligned}
+\widehat{R}_{PNQM} \widehat{R}^{PRQS} \widehat{R}^{MT}{}_{RU} \widehat{R}^{NU}{}_{ST}
+&=
+R_{pnqm} R^{prqs} R^{mt}{}_{ru} R^{nu}{}_{st}
++ 2 \widehat{R}_{anbm} \widehat{R}^{arbs} R^{mt}{}_{ru} R^{nu}{}_{st}+ \ldots\\
+\widehat{R}_{MPNQ} \widehat{R}^{QRPS} \widehat{R}_{TSUR} \widehat{R}^{UNTM}
+&= R_{mpnq} R^{qrps} R_{tsur} R^{untm}
++ 4 \widehat{R}_{ambn} \widehat{R}^{bras} R_{tsur} R^{untm}
++ 2 \widehat{R}_{ambn} \widehat{R}^{bras} \widehat{R}_{csdr} \widehat{R}^{dncm}+ \ldots\\
+\widehat{R}_{MNRS} \widehat{R}^{RSNP} \widehat{R}_{PQUV} \widehat{R}^{QMUV}
+&= R_{mnrs} R^{rsnp} R_{pquv} R^{qmuv}
+ + 4 \widehat{R}_{mban} \widehat{R}^{anbp} R_{pquv} R^{qmuv}+ \ldots\\
+\widehat{R}_{MNRS} \widehat{R}^{RS}{}_{PQ} \widehat{R}^{QMUV} \widehat{R}^{NP}{}_{UV}
+&= R_{mnrs} R^{rs}{}_{pq} R^{qmuv} R^{np}{}_{uv}+ \ldots\\
+\widehat{R}_{MNRS} \widehat{R}^{MNPQ} \widehat{R}_{PQUV} \widehat{R}^{UVRS}
+&= R_{mnrs} R^{mnpq} R_{pquv} R^{uvrs}+ \ldots\\
+(\widehat{R}_{MNRS}\widehat{R}^{MNRS})^2
+&= (R_{rstu} R^{rstu})
+\left[R_{mnrs} R^{mnrs}+ 8 \widehat{R}_{ambn} \widehat{R}^{ambn}\right]+ \ldots
+\end{aligned}
+\end{equation}
+where the ellipses denote terms with more than 4 fields in 10d, or terms that vanish when summed with the coefficients in \eqref{eq:t8t8R4}.
+Thus, every term in \eqref{eq:4pt-gravity-axiodilaton-12d-replaced} has an origin from a 12d contraction $t_8 t_8 \widehat{R}^4$, upon substituting the specific F-theory ansatze \eqref{eq:F-theory-ansatze}.
 
-At 5-pt, the 
+The relation above was first noted in \cite{Minasian:2015bxa} in a ``top-down" fashion, by making an informed guess of a 12d effective action, then showing that the resulting 10d action matches the known gravity and axio-dilaton amplitudes.
+The ``bottom-up" approach outlined here, despite requiring more exercises in index-relabeling and tensor identities, is perhaps more systematic, as it does not require one to make a 12d effective ansatze a priori.
+If there were to exist a 12d covariant expression that reproduce any 10d effective action, then after substituting 10d objects for 12d ones, one must be able to find that the terms group into a more natural pattern arising from splitting 12d indices.
+Whether one is capable of identifying such a pattern, especially when studying more complicated effective actions, is a separate matter.
+But in principle, it can be done\footnote{
+    At the moment, there does not exist computer algebra systems that allows one to invert the index-splitting of tensor contractions.
+    However, emerging language models have shown capabilities to perform symbolic manipulations that are beyond mechanical, which may be useful for this purpose in the future. 
+}.
+What would be a genuine obstruction to a 12d covariant interpretation, is if certain terms can not be written using covariant 12d objects at all.
+
+\section{Type IIB at 5 points}
+
+Recently, the 5-point 8-derivative effective action in the axio-dilaton sector has been computed \cite{Liu:2025uqu}.
+Interestingly, in the U(1)-preserving sector at 5 points, there exists a term, which realises SL(2, Z)-invariance on its own, with the form (we drop all numerical factors)
+\begin{equation}
+L_{\text{5pt},\tau} \supset
+\text{Re} R^{mnsr} \nabla_m \overline{P}_s \nabla_n \overline{P}_r P_q P^q.
+\label{eq:12d-obstruction}
+\end{equation}
+Both $R^{mnsr}$ and $\nabla_m \overline{P}_s$ can be written as 12d covariant objects (see \eqref{eq:12d-Riemann-complex}).
+However, while we may write $P_q \overline{P}^q$ using $\widehat{R}_{z\overline{z}z\overline{z}}$, there is no 12d covariant object that can be substituted for $P_q P^q$.
+We now study this term more carefully.
+
+We had previously worked with, from \eqref{eq:12d-Riemann-complex}, the 12d Riemann tensor components for the complex tangent frame coordinates $\widehat{g}_{zz} = \widehat{g}_{\overline{z}\overline{z}} = 0$, $\widehat{g}_{z\overline{z}} = 1/2$. Using real coordinates where $\widehat{g}_{ab} = \frac{1}{\tau_2}\begin{pmatrix}
+1 & \tau_1 \\
+\tau_1 & |\tau|^2
+\end{pmatrix}$, we find the following components of the 12d Riemann tensor
+
+\medskip
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{c|cccccc}
+\toprule
+$\widehat{R}_{ambn}$ 
+  & $\nabla_m\nabla_n\tau_1$ 
+  & $\nabla_m\nabla_n\tau_2$ 
+  & $(\nabla_m\tau_1)(\nabla_n\tau_1)$ 
+  & $(\nabla_m\tau_2)(\nabla_n\tau_2)$ 
+  & $\nabla_m\tau_1\nabla_n\tau_2$ 
+  & $\nabla_m\tau_2\nabla_n\tau_1$ \\
+\midrule
+$\widehat{R}_{1m1n}$ & $0$ & $\frac{1}{2\tau_2^2}$ & $\frac{1}{4\tau_2^3}$ & $-\frac{3}{4\tau_2^3}$ & $0$ & $0$ \\
+$\widehat{R}_{1m2n}$ & $-\frac{1}{2\tau_2}$ & $\frac{\tau_1}{2\tau_2^2}$ & $\frac{\tau_1}{4\tau_2^3}$ & $-\frac{3\tau_1}{4\tau_2^3}$ & $\frac{1}{4\tau_2^2}$ & $\frac{3}{4\tau_2^2}$ \\
+$\widehat{R}_{2m1n}$ & $-\frac{1}{2\tau_2}$ & $\frac{\tau_1}{2\tau_2^2}$ & $\frac{\tau_1}{4\tau_2^3}$ & $-\frac{3\tau_1}{4\tau_2^3}$ & $\frac{3}{4\tau_2^2}$ & $\frac{1}{4\tau_2^2}$ \\
+
+$\widehat{R}_{2m2n}$ & $-\frac{\tau_1}{\tau_2}$ & $\frac{\tau_1^2-\tau_2^2}{2\tau_2^2}$ & $\frac{\tau_1^2-3\tau_2^2}{4\tau_2^3}$ & $\frac{\tau_2^2-3\tau_1^2}{4\tau_2^3}$ & $\frac{\tau_1}{\tau_2^2}$ & $\frac{\tau_1}{\tau_2^2}$ \\
+\bottomrule
+\end{tabular}
+\medskip
+
+As for the rest of the non-vanishing Riemann tensor components,
+\begin{equation}
+\begin{aligned}
+\widehat{R}_{mnab} 
+&= 2\widehat{R}_{[a|m|b]n}\\
+% = \frac{1}{2\tau_2^2}[\nabla_m\tau_2\nabla_n\tau_1-\nabla_m\tau_1\nabla_n\tau_2],\\
+\widehat{R}_{1212}
+&= -\frac{1}{2}g^{mn}g^{ab} \widehat{R}_{ambn} 
+% = \frac{1}{4\tau_2^2}|\nabla \tau|^2.
+\end{aligned}
+\end{equation}
+
+Generically $\widehat{R}_{ambn}$, $\widehat{R}_{abcd}$ and $\widehat{R}_{mnab}$ form independent bases for second order derivatives \footnote{We use second order derivative to mean second derivative or products of first derivatives.} of the metric components.
+However, for the specific 12d ansatze required by type IIB, $\widehat{R}_{mnab}$ and $\widehat{R}_{abcd}$ can both be obtained as linear combinations or contractions of $\widehat{R}_{ambn}$.
+A direct consequence of such lack of independent Riemann tensor components is that there may be second order derivatives of $\tau$ that the 12d Riemann tensor can not capture.
+For example, while we can construct $(\nabla \tau_1)^2 + (\nabla \tau_2)^2$ using $\widehat{R}_{1212}$, we can not construct $(\nabla \tau_1)^2 - (\nabla \tau_2)^2$
+or $\nabla_m \tau_1 \nabla_n \tau_2$
+\footnote{
+    Since all nonvanishing 12d Riemann tensors are either pure 10d Riemann tensors or can be obtained via $\widehat{R}_{ambn}$, it suffices to consider linear combinations of $\widehat{R}_{ambn}$, i.e. our table. Demanding no appearances of $\nabla^2 \tau_1$ or $\nabla^2 \tau_2$ enforces $(\nabla \tau_1)^2$ to appear with the same sign as $(\nabla \tau_2)^2$, and that the cross-term $\nabla_m \tau_1 \nabla^m \tau_2$ vanishes.
+}
+.
+Given that
+\begin{equation}
+P_m P^m = -\frac{1}{4\tau_2^2} 
+\left[
+    (\nabla\tau_1)^2 - (\nabla\tau_2)^2 + 2i \nabla^m \tau_1 \nabla_m \tau_2
+\right],
+\end{equation}
+the contribution from \eqref{eq:12d-obstruction}, which realizes SL(2, Z) on its own, can not be written in a 12d covariant manner.
+We note that the rest of the terms in the U(1)-preseving 5-point effective action in \cite{Liu:2025uqu} do not suffer from this problem.
+It was already noted in \cite{Liu:2025uqu} that at 5-pt in the U(1)-preserving sector, certain axio-dilaton couplings begin to deviate from those predicted by $t_8t_8 \widehat{R}^4$.
+Our result here is stronger as we have shown that no covariant contraction of any type in 12d, may capture the 5-pt dynamics of type IIB.
+
+\section{Discussion}
+We have argued that the answer to whether type IIB effective actions have 12d interpretations is subtle.
+While at 4 pts the answer is yes, at 5 pt there exists fundamental obstructions, and this does not have to do with U(1)-violation.
+Indeed, it is possible, that beginning at 6-pt or above, there appears additional 12d obstructive terms, similar to the $PP$ described here that together with the 5-pt terms, somehow conspire to support 12d covariant uplift.
+To investigate this possibility, one needs axio-dilaton effective actions up to 8 points.
+The alternative is that the obstruction we found is real, and type IIB effective actions can not be written in 12d covariant form.
+
+
+% We will now discuss 12d perspectives on the type IIB effective action, and argue that type IIB effective actions can not be written in 12d covariant form.
+% This is separate from the arguments related to the Eisenstein series structure, as well as the U(1)-violating sector, which has been recognized as difficult to be understood from 12d perspective \cite{Minasian:2015bxa,Liu:2025uqu}.
+% However, nevertheless, one may still hope that 12d contractions, upon reduction to 10d, and after applying LSZ reduction, produce the kinematic structure of string scattering amplitudes.
+% We argue that this can not be done.
+
+
+
+% A general strategy for uplifting type IIB effective action may look like the following. Examine the effective action, substituting $\tau_1, \tau_2$ for components of the 12d metric on $T_2$, and derivatives of $\tau_1, \tau_2$ for 12d Riemannt tensor.
+% This packages SL(2, Z) as part of 12d covariance. 
+% One may then examine whether the resulting expression, in particular the coefficient of the distinct contraction patterns, may have a natural interpretation as arising from a higher dimensional contraction.
+% The idea is that if certain terms of the 10d effective action arises from a 12d contraction, then one must be able to rewrite the 10d effective action to invert the index splitting, and promote a group of 10d terms to a 12d contraction.
+
+
+% We note that crucially, while for a generic 12d metric ansatze, $R_{ambn}, R_{mnab}, R_{abcd}$ are independent of each other, for the specific F-theory ansatze, $R_{mnab}$ and $R_{abcd}$ can both be obtained as linear combinations or contractions of $R_{ambn}$.
+% For example, $R_{z\overline{z}z\overline{z}} = \tfrac12 R^m{}_{zm\overline{z}}$, and $R_{mnz\overline{z}} = R_{m\overline{z}nz} - R_{mzn\overline{z}}$, leaving us with only 4 linearly independent components.
+% This basis mismatch is related to the specific 12d metric ansatze chosen, and has important consequences as we will see.
 
