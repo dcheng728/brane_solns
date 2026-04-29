@@ -11,6 +11,8 @@ __pycache__
 **/latex_outputs/
 main.bbl
 
-# Paper source directories (arXiv downloads)
-papers_2_read/arXiv*/
+# Paper source directories (arXiv downloads — drop unzipped folders here)
+literature_tex/
+# Generated paper summaries (regenerable via agents/process_paper.py)
+agents/outputs/literature_review/
 src/tensorGlow/psets/
