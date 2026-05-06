@@ -35,41 +35,38 @@ The associated integrability condition is that the total holonomy built with the
 + \frac{i}{2}F_{\mu\nu}(Q)\right]
 \epsilon = 0,\quad
 F_{\mu\nu}(Q)=(\nabla_\mu Q_\nu-\nabla_\nu Q_\mu).
+\label{eq:axio-dilaton-integrability}
 \end{equation}
-This can be satisfied in two ways: either they cancel each other (as for the D7 brane) or both contributions vanish (as for the D(-1) instanton).
-We now present both solutions.
-
 {\color{orange}
-Among the known BPS branes in the type IIA, IIB, and 11d theories \cite{Stelle:1998xg}, the D7 brane plays a special role: it is co-dimension 2, which means its harmonic function is logarithmic rather than exhibiting the power-law behavior $\sim \frac{1}{r^{\tilde{d}-2}}$, and thus is not asymptotically flat.
+There are two ways to satisfy this condition. 
+The first is to have both contributions vanish, as in the case of the D-instanton, which is a solution to the Euclidean type IIB theory \cite{Gibbons:1995vg}.
+In Einstein frame, the D-instanton solution can be written as
+\begin{equation}
+ds_{10}^2 = \sum_{i=1}^{10} dx_i^2,\quad
+e^\Phi = H, \quad\mathcal C\equiv-iC = H^{-1}-1,\quad
+H=1+\frac{Q}{r^8}
+\end{equation}
+where $\mathcal{C}$ is the purely imaginary Euclidean axion.
+The second way to satisfy the integrability condition \eqref{eq:axio-dilaton-integrability} is to have the two nonvanishing contributions cancel each other, as in the case of the D7 brane.
 
+Among the known BPS branes in the type IIA, IIB, and the 11d theory \cite{Stelle:1998xg}, the D7 brane plays a special role: it has co-dimension 2, which means its harmonic function is logarithmic and thus is not asymptotically flat.
 The general $N$ D7 brane solution can be written as \cite{Greene:1989ya,Gibbons:1995vg,Tseytlin:1996ne,Bergshoeff:2006jj}
 \begin{equation}
 ds_{D7}^2 = -dt^2 + d\vec{x}_7^2 + \text{Im} \tau dz d\bar z,
 \end{equation}
-where $\tau = C^{(0)} + i e^{-\Phi}$ is the axio-dilaton, and is takes the form
+where $\tau = C_0 + i e^{-\Phi}$ is the axio-dilaton, and takes the form
 \begin{equation}
-j(\tau(z)) = \frac{P_N(z)}{P_{N-1}(z)},
+j(\tau(z)) = \frac{P_N(z)}{P_{N-1}(z)}.
 \end{equation}
-with $j(\tau)$ the holomorphic modular invariant function, and $P_N(z)$ a degree $N$ polynomial, the roots of which are the locations of the D7 branes.
+Here we are using $P_N$ to denote certain degree $N$ polynomial, and $j(\tau)$ is the unique holomorphic, modular-invariant function satisfying $j(e^{2\pi i /3}) = 0, j(i) = 12^3$. It diverges at points where $\tau$ has monodromies, hence the roots of $P_{N-1}(z)$ are the locations where $N-1$ D7 branes are localised, with the remaining D7 brane located at infinity where $P_N / P_{N-1}$ diverges.
 For the case of a single D7 brane localized at $z_i$, the axio-dilaton profile near $z_i$ is dictated by monodromies to be
 \begin{equation}
 \tau \sim \frac{1}{2\pi i}\ln (z-z_i)+\text{const}
  = \frac{\text{Arg}(z-z_i)}{2\pi} -i\frac{\ln |z-z_i|}{2\pi}+\text{const}.
  \label{D7 axio-dilaton profile}
 \end{equation}
-
-
 }
 
-{\color{orange}
-The D(-1) is a solution to the Euclidean type IIB theory, within the axio-dilaton sector \cite{Gibbons:1995vg}.
-In Einstein frame, it can be written as
-\begin{equation}
-ds_{10}^2 = \sum_{i=1}^{10} dx_i^2,\quad
-e^\Phi = H, \quad\mathcal C\equiv-iC = H^{-1}-1,\quad
-H=1+\frac{Q}{r^8}.
-\end{equation}
-}
 
 \subsection{D7 and D6 interpreted as 12d and 11d KK-monopoles}
 % As discussed earlier, the additional two coordinates introduced in F-theory \cite{Vafa:1996xn} must be treated as auxiliary in order to keep the D7 energy density finite.
@@ -101,7 +98,7 @@ It is co-dimension 3, localised on $S_1\times\mathbb{R}^3$.
 We will recognize this $S_1$ as the M-theory circle.
 By matching \eqref{11d KK-monopole} with the string frame KK reduction ansatz
 \begin{equation}
-ds_{11}^2=e^{-2\Phi/3}ds_{10}^2+e^{4\Phi/3}(du+ \vec{A}\cdot d\vec{y})^2,
+ds_{11}^2=e^{-2\phi/3}ds_{10,string}^2+e^{4\phi/3}(du+ \vec{A}\cdot d\vec{y})^2,
 \label{string frame KK reduction ansatz}
 \end{equation}
 we find the 10d metric and dilaton profile of
@@ -146,7 +143,7 @@ After accounting for the induced transformations on $\vec{A}$ and $H$, the metri
 ds_{12}^2=ds_{1,7}^2+
 H(dy_{1}^2 + dy_2^2)
 +Hdy_3^2
-+H^{-1}[du+A_3dy_3]^2.
++H^{-1}(du+A_3dy_3)^2.
 \end{equation}
 We now rename the coordinates and fields in the following manner:
 \begin{equation}
@@ -297,33 +294,38 @@ The type IIA pure gravity combined with the KK-vector and dilaton sector has the
 \left(
 \nabla_m - \frac{1}{8}e^\phi F_{np}\Gamma_m{}^{np\rho} \Gamma^{11}
 \right)\epsilon = 0.
-\label{IIA Killing spinor equation}
+\label{eq:IIA-Killing-spinor-equation}
 \end{equation}
-This equation arises directly from the dimensional reduction of the 11d covariantly constant spinor condition $\nabla^{(11)}_M\epsilon = 0$. See, for example, \cite{Becker:2006dvp}.
+This equation arises directly from the dimensional reduction of the 11d covariantly constant spinor condition $\hat{\nabla}^{(11)}_M\epsilon = 0$. 
+{\color{orange}
+The $e^\phi$ and $F_2$ in \eqref{eq:IIA-Killing-spinor-equation} arise from the vielbein and spin connection components of the higher dimensional metric on the KK-reduction ansatze.
+}
+See, for example, \cite{Becker:2006dvp}.
 We now demonstrate that analogously, the type IIB gravitino variation can be derived from a 12d covariant derivative.
 
-A 12d covariant derivative $\nabla^{(12)}_M\epsilon = 0$ restricted to 10d takes the form
+{\color{orange}
+    A generic 12d covariant derivative $\hat{\nabla}^{(12)}_M\epsilon = 0$ restricted to 10d takes the form
 \begin{equation}
-\nabla^{(12)}_m\epsilon
+\hat{\nabla}^{(12)}_m\epsilon
 =\left(
 \nabla^{(10)}_m
-+\frac{1}{2}\omega_m{}^{10,n}\Gamma_{10,n}
-+\frac{1}{2}\omega_m{}^{11,n}\Gamma_{11,n}
-+\frac{1}{4}\omega_m{}^{10,11}\Gamma_{10,11}\right)\epsilon = 0,
++\frac{1}{2}\hat{\omega}_m{}^{10,n}\Gamma_{10,n}
++\frac{1}{2}\hat{\omega}_m{}^{11,n}\Gamma_{11,n}
++\frac{1}{2}\hat{\omega}_m{}^{10,11}\Gamma_{10,11}\right)\epsilon = 0.
 \label{12d covariant derivative}
 \end{equation}
-where $\omega_{M}{}^{NP}$ denotes the spin connections.
-Using the 12d metric ansatz \eqref{12d metric ansatz 0}, we find
+    For the F-theory ansatze \eqref{12d metric ansatz 0}, we find
 \begin{equation}
-\omega_m{}^{10,n}=\omega_m{}^{11,n}=0,\quad
-\omega_m{}^{10,11} = -\frac{1}{2}\frac{\partial_m \tau_1}{\tau_2}.
+\hat{\omega}_m{}^{10,n}=\hat{\omega}_m{}^{11,n}=0,\quad
+\hat{\omega}_m{}^{10,11} = Q_m.
 \end{equation}
 The 12d covariant derivative \eqref{12d covariant derivative} thus becomes
 \begin{equation}
 \left[
-\nabla_m -\frac{i}{4}\frac{\partial_m(\tau+\bar\tau)}{\tau-\bar\tau}\Gamma_{10,11}
+\nabla_m + \frac{1}{2}Q_m \Gamma_{10,11}
 \right]\epsilon.
 \end{equation}
+}
 After performing a similarity transformation\footnote{
 On the Euclidean torus, we have
 \begin{equation}
